@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "promisory.recovery-restart.v1",
+  "startedAt": "2026-11-11T04:55:50.290Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+  "previousPodUid": "a37d8725-39b9-4493-ae7b-9becd2dba34c",
+  "previousGeneration": 8,
+  "restartApplied": true,
+  "rolloutReady": true,
+  "persistenceVerified": true,
+  "liveRecoveryVerified": false,
+  "newPodUid": "6d70b69a-fde1-48e9-95db-06f4701a88c0",
+  "newGeneration": 9,
+  "podReplaced": true,
+  "storageUnchanged": true,
+  "markerUnchanged": true,
+  "operationAndGrantUnchanged": true,
+  "operationCountUnchanged": true,
+  "claimRetained": true,
+  "stillUncertain": true,
+  "passed": true,
+  "finishedAt": "2026-11-11T04:56:11.211Z"
+}

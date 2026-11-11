@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "promisory.connection-deployment-expectations.v1",
+  "recordedAt": "2026-11-11T06:22:47.097Z",
+  "reportedDeploymentVersion": "3.6.0",
+  "source": "effect-binding-forge-deployment.json",
+  "nativeInvocationVerified": false
+}

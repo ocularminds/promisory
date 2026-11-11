@@ -1,0 +1,33 @@
+/* Promisory semantic tokens v1.1. */
+@font-face{font-family:Manrope;src:url("fonts/Manrope-Variable.woff2") format("woff2");font-weight:200 800;font-display:swap;}
+@font-face{font-family:Inter;src:url("fonts/Inter-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap;}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/IBMPlexMono-Regular.woff2") format("woff2");font-weight:400;font-display:swap;}
+:root{
+  --ink:#102D46;
+  --primary:#0078D4;
+  --primary-hover:#0063B1;
+  --canvas:#F5F8FC;
+  --link:#0067B8;
+  --surface:#FFFFFF;
+  --subtle:#EBF4FC;
+  --text-secondary:#4B6177;
+  --border:#CFDBE6;
+  --border-strong:#71869A;
+  --accent-warm:#EEA28B;
+  --info:#3154B5;
+  --focus:#0078D4;
+  --success:#15724A;
+  --success-surface:#E9F5ED;
+  --warning:#8A5600;
+  --warning-surface:#FFF4D6;
+  --danger:#B42318;
+  --danger-surface:#FFF0EE;
+  --unknown:#535E76;
+  --unknown-surface:#EEF1F6;
+  --font-heading:Manrope,Inter,system-ui,sans-serif;
+  --font-body:Inter,system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",monospace;
+  --radius-control:8px;
+  --radius-card:12px;
+  --radius-dialog:16px;
+}

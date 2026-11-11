@@ -1,0 +1,13 @@
+{
+  "name": "@promisory/integrations-decionis",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@decionis/agent-safe-pipeline": "0.5.0",
+    "@promisory/contracts": "0.1.0",
+    "@promisory/domain": "0.1.0",
+    "zod": "4.6.7"
+  }
+}

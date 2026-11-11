@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "promisory.connection-check-runtime.v1",
+  "recordedAt": "2026-11-11T02:33:22.784Z",
+  "node": "v22.23.4",
+  "platform": "linux",
+  "architecture": "x64",
+  "uid": 1000,
+  "gid": 1000,
+  "serverSha256": "a8dbfe8c549f57bcf3e6855fee232b87deea3039a50c4aa4a33e6db5646c6db8",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "false",
+  "shareIntent": "true",
+  "shareSnapshot": "true",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "context": {
+    "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+    "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+    "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+  },
+  "operationRecords": 0,
+  "claimRecords": 0,
+  "localCompiledSha256": "a8dbfe8c549f57bcf3e6855fee232b87deea3039a50c4aa4a33e6db5646c6db8",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:36e40b3d1d8a83b136058969f73cc53cb72d953e46912a65a1d7007226d6d7df",
+  "checks": {
+    "expectedImage": true,
+    "oneReadyReplica": true,
+    "compiledImageMatchesLocal": true,
+    "linuxAmd64": true,
+    "nodePinned": true,
+    "nonRoot": true,
+    "enforcementHoldPreserved": true,
+    "sharingPreserved": true,
+    "policyPreserved": true,
+    "noRemoteOperations": true,
+    "httpBoundary": true
+  },
+  "statuses": {
+    "health": 200,
+    "unauthenticatedConnection": 400,
+    "unauthenticatedApply": 400,
+    "unauthenticatedReconcile": 400,
+    "unknownRoute": 404,
+    "oversizedConnection": 413
+  },
+  "authenticatedForgeInvocationVerified": false,
+  "governedJiraWriteOccurred": false,
+  "passed": true
+}

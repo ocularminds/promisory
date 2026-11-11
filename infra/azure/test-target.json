@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "promisory.azure-test.v1",
+  "subscriptionId": "e7b998b6-a628-4548-a9d6-f54cf98a0464",
+  "resourceGroup": "decionis-rg",
+  "cluster": "decionis-aks",
+  "namespace": "decionis",
+  "registry": "decionisacr.azurecr.io",
+  "publicHost": "promisory-test.decionis.com",
+  "ingressAddress": "52.143.254.111",
+  "ingressClass": "decionis-nginx",
+  "ingressNamespace": "app-routing-system",
+  "ingressPodApp": "nginx-decionis-0",
+  "clusterIssuer": "letsencrypt-prod",
+  "storageClass": "decionis-zrs",
+  "storageSize": "4Gi",
+  "policyRevision": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "effectObserverApiKeyId": "c97a5168-1325-487c-94e8-e3d4b06adffd"
+}

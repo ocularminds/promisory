@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "promisory.recovery-fix-validation.v1",
+  "recordedAt": "2026-11-11T06:20:13.641Z",
+  "runtime": {
+    "node": "22.23.4",
+    "npm": "10.9.9",
+    "forgeCli": "15.1.0"
+  },
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "status": "passed",
+      "files": 20,
+      "tests": 139
+    },
+    {
+      "command": "npm run remote:build",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed"
+    },
+    {
+      "command": "npm run forge:bundle",
+      "status": "passed",
+      "entryPoints": [
+        {
+          "name": "index",
+          "sha256": "75fdebbbc0f53fe5386bc057cdbfd64c173b92a67d110fba2335eb94fa410f9a"
+        },
+        {
+          "name": "events",
+          "sha256": "51b2cbca59daa34cdb1f51066ee91a71f04bf2960357e0a4859a4db35f3da9f0"
+        },
+        {
+          "name": "rovo",
+          "sha256": "702211d9da9d7d765b6be81c927ec6d9d8d22076117677f8a149122d07ad3b12"
+        }
+      ]
+    },
+    {
+      "command": "forge lint",
+      "status": "passed"
+    }
+  ],
+  "newTests": 9,
+  "newTestFile": "tests/contracts/recovery.test.ts",
+  "previousUiFixtureChecks": {
+    "tests": 2,
+    "passed": true,
+    "observedDuring": "3.5 history-fix UI validation",
+    "native": false,
+    "presentationChangedByEffectBindingFix": false
+  },
+  "credentialScan": "effect-binding-source-review.json",
+  "sourceSha256": "c70bff275dfa43fa951ef72058e2f10c6245edf408b20609acd27acfe7316d05",
+  "serverSha256": "be2b685d5d1853cfb85fa019eb152614bce2be6961dbad3383be61e6b8ab82e5",
+  "buildWarning": "Existing main workspace JavaScript chunk exceeds the 500 kB warning threshold; production performance acceptance remains open.",
+  "fixedDuringValidation": "A new synthetic test used the wrong effect discriminator; corrected to the existing SET_JIRA_DUE_DATE contract before all 139 tests passed.",
+  "liveNativeHistoryVerified": true,
+  "liveAuthorityRecoveryVerified": false,
+  "oldClaimState": "INDETERMINATE",
+  "overallP0Accepted": false
+}

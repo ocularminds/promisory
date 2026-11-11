@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "promisory.network-check.v1",
+  "recordedAt": "2026-11-11T00:47:12.151Z",
+  "initial": {
+    "dnsResolved": true,
+    "authorityAddress": "52.143.254.111",
+    "authority": "TIMEOUT",
+    "forgeKeysStatus": 200,
+    "atlassianUnauthenticatedStatus": 401
+  },
+  "correction": {
+    "selector": {
+      "namespace": "app-routing-system",
+      "podApp": "nginx-decionis-0"
+    },
+    "port": 443,
+    "purpose": "Permit the API public load-balancer route after translation to existing ingress pods",
+    "arbitraryPrivateEgressEnabled": false
+  },
+  "after": {
+    "authorityCredentialContextStatus": 200,
+    "forgeKeysStatus": 200,
+    "atlassianUnauthenticatedStatus": 401
+  },
+  "passed": true
+}

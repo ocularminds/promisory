@@ -1,0 +1,33 @@
+{
+  "mode": "LIVE_POLICY_TECHNICAL_REPAIR_PUBLICATION",
+  "recordedAt": "2026-11-10T23:55:52.000Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policyId": "promisory-test-jira-due-date",
+  "bundleId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "version": "promisory-test-v3",
+  "replacesHistoricalBundleId": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "approvalReference": "call_cdszgGZuZnAOg42LHgkhxzgh:0",
+  "approvedBy": "Festus Jejelowo",
+  "technicalRepairPreservesApprovedBusinessEffect": true,
+  "newHumanApprovalClaimed": false,
+  "approvalRequirementRetained": true,
+  "expiresAt": "2026-11-12T00:00:00.000Z",
+  "requestSha256": "c01ac489360be1853cab1495fae7e62eeae4997ef5c5f89d83f4741ca5ab655f",
+  "validationStatus": 200,
+  "valid": true,
+  "httpStatus": 202,
+  "accepted": true,
+  "responseKeys": [
+    "accepted",
+    "service",
+    "protocol_version",
+    "artifact",
+    "artifact_id",
+    "org_id",
+    "received_at"
+  ],
+  "readBackStatus": 200,
+  "exactPayloadVerified": true,
+  "lifecycleState": "ACTIVE",
+  "readBackAt": "2026-11-10T23:55:54.507Z"
+}

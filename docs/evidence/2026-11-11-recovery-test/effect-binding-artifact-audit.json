@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "promisory.recovery-fix-artifact-audit.v1",
+  "recordedAt": "2026-11-11T06:23:38.818Z",
+  "jsonValidated": 80,
+  "documentCount": 8,
+  "configuredCredentialMatches": 0,
+  "missingFileLinks": [],
+  "sourceStillMatchesBuiltArchive": true,
+  "passed": true,
+  "liveRecoveryAccepted": false
+}

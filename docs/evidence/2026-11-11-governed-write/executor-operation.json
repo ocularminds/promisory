@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "promisory.test-operation-observation.v1",
+  "recordedAt": "2026-11-11T03:55:44.639Z",
+  "source": "Owned test executor journal; allowlisted metadata and approved date effect only",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": true,
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "operationRecordCount": 1,
+  "rejectedRecordCount": 0,
+  "operations": [
+    {
+      "context": {
+        "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+        "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+        "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "principalAccountId": "712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9"
+      },
+      "operationId": "operation-9a24d5a1-2097-45ac-bdf9-e0bf31a87036",
+      "proposalId": "proposal-fdee684c-d174-41f2-a49c-244ea8228d8d",
+      "proposalHash": "sha256:7208421ef3242cdd231ade77fb96cd31518f0bd6227f68f2735afb195cb5c99a",
+      "idempotencyKey": "apply-proposal-fdee684c-d174-41f2-a49c-244ea8228d8d",
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10001",
+        "expectedUpdatedAt": "2026-11-10T20:41:07.858Z",
+        "expectedDueDate": "2026-11-12",
+        "desiredDueDate": "2026-11-18"
+      },
+      "state": "SETTLED",
+      "acknowledged": true,
+      "authorization": {
+        "decisionId": "bf4f4c88-5be8-454f-bf90-24f60e17d111",
+        "dossierId": "8485dce8-7bfb-4a18-a0bd-f96e51384d37",
+        "grantId": "6206930c-05b6-80e5-849c-6ac3566d8317",
+        "intentHash": "sha256:a60917692b3b29d610eab9546b8207e0d953e1a40fb22ddb3f30a40342418ce4",
+        "expiresAt": "2026-11-11T03:52:19.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "bf4f4c88-5be8-454f-bf90-24f60e17d111",
+        "grantReference": "6206930c-05b6-80e5-849c-6ac3566d8317",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "RECORDED"
+      }
+    }
+  ],
+  "successfulFinalizedOperationIds": [
+    "operation-9a24d5a1-2097-45ac-bdf9-e0bf31a87036"
+  ],
+  "acknowledgedJiraWriteAndReadbackVerified": true,
+  "lostResponseRecoveryVerified": false,
+  "actionInvokedByCollector": false,
+  "status": "GOVERNED_ACTION_VERIFIED"
+}

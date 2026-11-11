@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "promisory.execution-mode.v1",
+  "recordedAt": "2026-11-11T01:04:53.410Z",
+  "authorization": "User: turn on enforcement",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "mode": "ENFORCEMENT",
+  "shareIndependentDueDateIntent": true,
+  "sharePermittedJiraDateSnapshot": true,
+  "independentlyVerifiedEnforcement": false,
+  "authenticatedForgeInvocationVerified": false,
+  "executionReady": false,
+  "hold": "AUTHENTICATED_FORGE_INVOCATION_NOT_YET_VERIFIED",
+  "restartRequired": false,
+  "runtimeVerifiedAt": "2026-11-11T01:07:48.021Z"
+}

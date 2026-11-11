@@ -1,0 +1,425 @@
+/* Fictional Promisory design fixture; no network calls. */
+window.PROMISORY_DEMO = {
+  "schemaVersion": "promisory.demo.v1",
+  "mode": "EXAMPLE_ONLY",
+  "clock": "2026-11-18T09:00:00+01:00",
+  "timeZone": "Europe/Stockholm",
+  "notice": "Fictional data for the UX prototype. No live API, policy evaluation, message sending, or external mutation.",
+  "project": {
+    "id": "project-example-mx",
+    "key": "MX",
+    "name": "Merchant Experience"
+  },
+  "people": [
+    {
+      "id": "maya",
+      "name": "Maya Chen",
+      "role": "Delivery manager",
+      "initials": "MC"
+    },
+    {
+      "id": "leah",
+      "name": "Leah Ortiz",
+      "role": "Team lead",
+      "initials": "LO"
+    },
+    {
+      "id": "owen",
+      "name": "Owen Reed",
+      "role": "Engineer",
+      "initials": "OR"
+    },
+    {
+      "id": "alex",
+      "name": "Alex Morgan",
+      "role": "Scrum facilitator",
+      "initials": "AM"
+    },
+    {
+      "id": "jon",
+      "name": "Jon Bell",
+      "role": "Product owner",
+      "initials": "JB"
+    }
+  ],
+  "work": [
+    {
+      "id": "program",
+      "key": "MX-1",
+      "type": "CUSTOM",
+      "nativeTypeName": "Program",
+      "hierarchyLevel": 3,
+      "title": "Merchant growth",
+      "owner": "jon",
+      "status": "In progress"
+    },
+    {
+      "id": "initiative",
+      "key": "MX-10",
+      "type": "CUSTOM",
+      "nativeTypeName": "Initiative",
+      "hierarchyLevel": 2,
+      "parentId": "program",
+      "title": "Self-service activation",
+      "owner": "maya",
+      "status": "In progress"
+    },
+    {
+      "id": "epic",
+      "key": "MX-100",
+      "type": "EPIC",
+      "title": "Merchant launch",
+      "owner": "maya",
+      "status": "In progress",
+      "hierarchyLevel": 1,
+      "parentId": "initiative"
+    },
+    {
+      "id": "story",
+      "key": "MX-110",
+      "parentId": "epic",
+      "type": "STORY",
+      "hierarchyLevel": 0,
+      "title": "Activate a merchant once",
+      "owner": "jon",
+      "status": "In progress"
+    },
+    {
+      "id": "task",
+      "key": "MX-121",
+      "parentId": "epic",
+      "type": "TASK",
+      "title": "Enable production onboarding",
+      "owner": "leah",
+      "status": "In progress",
+      "dueDate": "2026-11-19",
+      "hierarchyLevel": 0
+    },
+    {
+      "id": "subtask",
+      "key": "MX-122",
+      "parentId": "task",
+      "type": "SUBTASK",
+      "title": "Confirm tenant configuration",
+      "owner": "owen",
+      "status": "Done",
+      "dueDate": "2026-11-18",
+      "hierarchyLevel": -1
+    },
+    {
+      "id": "bug",
+      "key": "MX-137",
+      "parentId": "epic",
+      "type": "BUG",
+      "title": "Duplicate onboarding events",
+      "owner": "owen",
+      "status": "Resolved",
+      "dueDate": "2026-11-19",
+      "hierarchyLevel": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": "bug",
+      "to": "task",
+      "kind": "BLOCKS",
+      "state": "CONFIRMED"
+    },
+    {
+      "from": "task",
+      "to": "PM-101",
+      "kind": "SUPPORTS",
+      "state": "CONFIRMED"
+    },
+    {
+      "from": "task",
+      "to": "story",
+      "kind": "IMPLEMENTS",
+      "state": "CONFIRMED"
+    }
+  ],
+  "commitments": [
+    {
+      "id": "PM-101",
+      "title": "Launch merchant onboarding",
+      "owner": "maya",
+      "beneficiary": "Northstar Retail",
+      "dueDate": "2026-11-20",
+      "lifecycle": "ACTIVE",
+      "health": "WATCH",
+      "coverage": "COMPLETE",
+      "workIds": [
+        "task"
+      ],
+      "acceptance": "Production onboarding is released and the designated customer owner confirms acceptance.",
+      "planningIds": [
+        "goal",
+        "initiative-context"
+      ],
+      "requirementIds": [
+        "REQ-07"
+      ],
+      "phase": "DELIVERY",
+      "gateIds": [
+        "gate-release"
+      ]
+    },
+    {
+      "id": "PM-102",
+      "title": "Publish reconciliation export",
+      "owner": "jon",
+      "beneficiary": "Finance team",
+      "dueDate": "2026-11-25",
+      "lifecycle": "ACTIVE",
+      "health": "ON_TRACK",
+      "coverage": "COMPLETE",
+      "workIds": [],
+      "acceptance": "Finance validates the export against the agreed sample."
+    },
+    {
+      "id": "PM-103",
+      "title": "Complete support handover",
+      "owner": "alex",
+      "beneficiary": "Support team",
+      "dueDate": "2026-11-23",
+      "lifecycle": "ACTIVE",
+      "health": "UNKNOWN",
+      "coverage": "INCOMPLETE",
+      "workIds": [],
+      "acceptance": "Support owner accepts the runbook and escalation roster."
+    },
+    {
+      "id": "PM-104",
+      "title": "Verify settlement status page",
+      "owner": "leah",
+      "beneficiary": "Merchant operations",
+      "dueDate": "2026-11-17",
+      "lifecycle": "FULFILLED",
+      "health": "ON_TRACK",
+      "coverage": "COMPLETE",
+      "workIds": [],
+      "acceptance": "The service owner verifies the production status page."
+    }
+  ],
+  "scenario": {
+    "trigger": "Simulate dependency delay",
+    "changes": [
+      {
+        "id": "bug",
+        "status": "Reopened",
+        "dueDate": "2026-11-24"
+      }
+    ],
+    "impact": {
+      "commitmentId": "PM-101",
+      "health": "AT_RISK",
+      "reason": "The reopened bug blocks onboarding; its target date is later than the agreed launch."
+    }
+  },
+  "hierarchyConfiguration": {
+    "mode": "CONFIGURED_EXAMPLE",
+    "notice": "Fictional tenant with optional Program and Initiative levels. The prototype also shows a planning-link alternative.",
+    "levels": [
+      {
+        "level": 3,
+        "types": [
+          "Program"
+        ]
+      },
+      {
+        "level": 2,
+        "types": [
+          "Initiative"
+        ]
+      },
+      {
+        "level": 1,
+        "types": [
+          "Epic"
+        ]
+      },
+      {
+        "level": 0,
+        "types": [
+          "Story",
+          "Task",
+          "Bug"
+        ]
+      },
+      {
+        "level": -1,
+        "types": [
+          "Subtask"
+        ]
+      }
+    ]
+  },
+  "planning": [
+    {
+      "id": "product",
+      "kind": "PRODUCT",
+      "title": "Merchant Experience",
+      "owner": "jon"
+    },
+    {
+      "id": "goal",
+      "kind": "OBJECTIVE",
+      "title": "Reliable self-service activation",
+      "owner": "jon",
+      "measure": "Duplicate activation rate; example baseline pending"
+    },
+    {
+      "id": "initiative-context",
+      "kind": "INITIATIVE",
+      "title": "Self-service activation",
+      "owner": "maya",
+      "nativeWorkId": "initiative"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-07",
+      "artifactId": "artifact-definition",
+      "sourceRevision": "3",
+      "section": "Activation integrity",
+      "description": "One activation per merchant request",
+      "workIds": [
+        "epic",
+        "story",
+        "task"
+      ],
+      "mappingState": "CONFIRMED",
+      "notice": "Illustrative confirmed mapping; not a live Confluence page."
+    }
+  ],
+  "lifecycle": [
+    {
+      "id": "strategy",
+      "title": "Strategy & outcomes",
+      "owner": "jon",
+      "artifact": "Vision and goals",
+      "revision": "4",
+      "criterion": "Name the intended outcome, baseline, target, beneficiary, and review horizon.",
+      "description": "Product direction and explicit outcome ownership.",
+      "artifactId": "artifact-strategy",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "discovery",
+      "title": "Opportunity & discovery",
+      "owner": "jon",
+      "artifact": "Research and opportunity brief",
+      "revision": "2",
+      "criterion": "Support the problem with evidence and record assumptions and alternatives.",
+      "description": "Customer learning and a recorded proceed or hold decision.",
+      "artifactId": "artifact-discovery",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "initiative",
+      "title": "Initiative & investment",
+      "owner": "maya",
+      "artifact": "Initiative charter and roadmap",
+      "revision": "2",
+      "criterion": "Confirm investment, scope boundaries, owners, and which dates are commitments.",
+      "description": "Program and initiative context above epics.",
+      "artifactId": "artifact-initiative",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "definition",
+      "title": "Definition & design",
+      "owner": "jon",
+      "artifact": "Merchant activation PRD",
+      "revision": "3",
+      "criterion": "Review REQ-07, acceptance conditions, experience, and architecture assumptions.",
+      "description": "Versioned requirements linked to delivery work.",
+      "artifactId": "artifact-definition",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "planning",
+      "title": "Planning & decomposition",
+      "owner": "maya",
+      "artifact": "Project plan and story map",
+      "revision": "2",
+      "criterion": "Link epics and standard work to requirements and confirm owners and dependencies.",
+      "description": "Real parent links, implementation links, and scoped responsibility.",
+      "artifactId": "artifact-planning",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "delivery",
+      "title": "Delivery & collaboration",
+      "owner": "leah",
+      "artifact": "Delivery decision log",
+      "revision": "5",
+      "criterion": "Keep implementation evidence, decisions, and blocking defects current.",
+      "description": "Stories, tasks, bugs, and subtasks with a visible impact path.",
+      "artifactId": "artifact-delivery",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "validation",
+      "title": "Validation & readiness",
+      "owner": "leah",
+      "artifact": "Release readiness and UAT",
+      "revision": "2",
+      "criterion": "Check required acceptance, PRD applicability, test evidence, and support handover.",
+      "description": "A ready review gate is separate from permission to execute.",
+      "artifactId": "artifact-validation",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "release",
+      "title": "Release & adoption",
+      "owner": "maya",
+      "artifact": "Launch and rollout plan",
+      "revision": "1",
+      "criterion": "Attach actual release evidence and collect designated business acceptance.",
+      "description": "Delivery fulfillment and adoption measurement remain distinct.",
+      "artifactId": "artifact-release",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "operate",
+      "title": "Operate & learn",
+      "owner": "alex",
+      "artifact": "Runbook and outcome review",
+      "revision": "1",
+      "criterion": "Compare observed outcomes with targets and assign retrospective follow-through.",
+      "description": "Operating evidence feeds the next improvement commitment.",
+      "artifactId": "artifact-operate",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    },
+    {
+      "id": "retire",
+      "title": "Evolve or retire",
+      "owner": "jon",
+      "artifact": "Migration and retirement plan",
+      "revision": "1",
+      "criterion": "Agree affected stakeholders, migration criteria, and retention decisions.",
+      "description": "Proposed future workflow; no retirement action in this prototype.",
+      "artifactId": "artifact-retire",
+      "sourceType": "CONFLUENCE_EXAMPLE"
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate-release",
+      "phase": "VALIDATION",
+      "requiredRequirementIds": [
+        "REQ-07"
+      ],
+      "basis": [
+        {
+          "artifactId": "artifact-definition",
+          "revision": "3"
+        }
+      ],
+      "readiness": "NOT_READY",
+      "applicability": "CURRENT",
+      "reason": "Production and designated acceptance evidence are still pending in this example."
+    }
+  ]
+};

@@ -1,0 +1,8 @@
+{
+  "mode": "LIVE_POLICY_RETIREMENT_READ_BACK",
+  "observedAt": "2026-11-10T23:52:26.476Z",
+  "httpStatus": 200,
+  "bundleId": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "lifecycleState": "HISTORICAL",
+  "version": "promisory-test-v2"
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "promisory.acr-build.v1",
+  "recordedAt": "2026-11-11T02:31:51.083Z",
+  "createTime": "2026-11-11T02:28:12.572249+00:00",
+  "finishTime": "2026-11-11T02:29:59.034615+00:00",
+  "outputImages": [
+    {
+      "digest": "sha256:36e40b3d1d8a83b136058969f73cc53cb72d953e46912a65a1d7007226d6d7df",
+      "registry": "decionisacr.azurecr.io",
+      "repository": "promisory/executor",
+      "tag": "5027f2910352"
+    }
+  ],
+  "platform": {
+    "architecture": "amd64",
+    "os": "linux",
+    "variant": null
+  },
+  "runId": "cj49",
+  "startTime": "2026-11-11T02:28:12.873432+00:00",
+  "status": "Succeeded",
+  "sourceSha256": "5027f2910352197ec097b4aa6450253057cf39b9e4021afaf65df1a143a179c7",
+  "sourceDirectory": "release/remote-build-5027f2910352-uM3Zlj",
+  "registryDigest": "sha256:36e40b3d1d8a83b136058969f73cc53cb72d953e46912a65a1d7007226d6d7df",
+  "registryDigestMatches": true,
+  "platformVerifiedFromCompletedBuild": true,
+  "submissionCount": 1
+}

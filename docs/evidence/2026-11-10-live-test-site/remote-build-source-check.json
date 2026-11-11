@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "promisory.build-source-check.v1",
+  "recordedAt": "2026-11-11T00:18:31.514Z",
+  "sourceSha256": "d9341d78a281a7a707570bb1d27a75ffcc8877b3a6a82ab2fa6e169d53c40862",
+  "archiveSha256": "f7c8ae537677c0516bff3b73486138fff1efd772f2d92a4df17419c9efb51cd1",
+  "archiveFileCount": 28,
+  "archiveSourceDigestsVerified": true,
+  "explicitFileAllowlistVerified": true,
+  "textFilesScanned": 32,
+  "configuredCredentialsFound": 0,
+  "passed": true
+}

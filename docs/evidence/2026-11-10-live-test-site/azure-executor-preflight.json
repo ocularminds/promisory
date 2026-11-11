@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "promisory.azure-preflight.v1",
+  "recordedAt": "2026-11-11T00:15:30.638Z",
+  "mode": "READ_ONLY_AND_SERVER_DRY_RUN",
+  "subscriptionId": "e7b998b6-a628-4548-a9d6-f54cf98a0464",
+  "cluster": "decionis-aks",
+  "namespace": "decionis",
+  "resourceGroup": "decionis-rg",
+  "registry": "decionisacr.azurecr.io",
+  "ingressClass": "decionis-nginx",
+  "ingressAddress": "52.143.254.111",
+  "proposedHost": "promisory-test.decionis.com",
+  "dnsRecordExists": false,
+  "namespacedDeploymentAccess": true,
+  "storageClassRead": "FORBIDDEN_CLUSTER_SCOPE",
+  "storageClassSource": "Decionis/infra/azure/k8s/storageclass.yaml",
+  "storageClassParametersFromSource": {
+    "skuName": "Premium_ZRS",
+    "reclaimPolicy": "Retain",
+    "volumeBindingMode": "WaitForFirstConsumer"
+  },
+  "serverDryRun": {
+    "accepted": true,
+    "resources": [
+      {
+        "kind": "ServiceAccount",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "ConfigMap",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "PersistentVolumeClaim",
+        "name": "promisory-test-state",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "Service",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "Deployment",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "NetworkPolicy",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      },
+      {
+        "kind": "Ingress",
+        "name": "promisory-test-executor",
+        "namespace": "decionis"
+      }
+    ]
+  },
+  "resourcesCreated": false,
+  "observer": {
+    "apiKeyId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+    "currentlyTrusted": false,
+    "existingObserverCount": 0,
+    "sharedApiRolloutApplied": false,
+    "serverDryRunAccepted": true
+  },
+  "build": {
+    "sourceSha256": "bf48b140c6346ad8458e78d2c61568b4ff392e7babe9ae3e68dc972db98088c7",
+    "archiveSha256": "246080d2fac8768b6fdbcb84645f4aeb2939c0a4b26728cb9a4a22d48299cc0a",
+    "fileCount": 28,
+    "archiveBytes": 180102,
+    "containerImageBuilt": false,
+    "registryPushed": false,
+    "sourceArchiveVerified": true,
+    "verifiedAt": "2026-11-11T00:24:09.939Z"
+  },
+  "docker": {
+    "desktop": "REPORTED_RUNNING",
+    "engine": "EOF",
+    "restartAttempted": false
+  },
+  "pricing": {
+    "source": "https://prices.azure.com/api/retail/prices",
+    "status": "RATE_LIMITED",
+    "exactCostKnown": false
+  },
+  "browserControl": "DISABLED_IN_WORK_SETTINGS"
+}

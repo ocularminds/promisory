@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.recovery-deployment.v1",
+  "startedAt": "2026-11-11T04:44:33.929Z",
+  "approvalReference": "call_6hHzX1BGUJM5Xol2KwWDPAJY:0",
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "probeSha256": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "previousGeneration": 7,
+  "previousState": {
+    "operationCount": 1,
+    "pendingOperationCount": 0,
+    "claimCount": 0,
+    "markerPresent": false
+  },
+  "configMapApplied": false,
+  "policyBindingApplied": false,
+  "deploymentApplied": false,
+  "rolloutReady": false,
+  "passed": false
+}

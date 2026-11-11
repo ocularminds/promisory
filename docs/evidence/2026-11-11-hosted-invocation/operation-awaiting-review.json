@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "promisory.test-operation-observation.v1",
+  "recordedAt": "2026-11-11T03:12:23.500Z",
+  "source": "Owned test executor journal; allowlisted metadata and approved date effect only",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": true,
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "operationRecordCount": 0,
+  "rejectedRecordCount": 0,
+  "operations": [],
+  "successfulFinalizedOperationIds": [],
+  "acknowledgedJiraWriteAndReadbackVerified": false,
+  "lostResponseRecoveryVerified": false,
+  "actionInvokedByCollector": false,
+  "status": "AWAITING_REVIEWED_APPLY"
+}

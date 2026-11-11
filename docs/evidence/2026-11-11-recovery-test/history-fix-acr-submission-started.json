@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "promisory.recovery-history-build-start.v1",
+  "startedAt": "2026-11-11T05:31:48.281Z",
+  "registry": "decionisacr",
+  "repository": "promisory/executor",
+  "tag": "557b2cc44b12",
+  "sourceSha256": "557b2cc44b123ec43b34facddaa35c07b1fde4df845a3af59a558f1d5d34dd59",
+  "changedSourceFiles": [
+    "apps/remote/src/index.ts"
+  ],
+  "submissionCount": 1
+}

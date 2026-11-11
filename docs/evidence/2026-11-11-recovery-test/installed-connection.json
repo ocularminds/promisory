@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v2",
+  "recordedAt": "2026-11-11T04:51:54.669Z",
+  "environment": "development",
+  "expectedAppVersion": "3.4.0",
+  "source": "Forge CLI and the owned test executor logs; only strict connection-check events retained",
+  "failedChecks": 0,
+  "failureEvents": [],
+  "rejectedEventCount": 0,
+  "verifiedConnections": [
+    {
+      "schemaVersion": "promisory.remote-connection.v2",
+      "context": {
+        "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+        "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+        "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "principalAccountId": "712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9"
+      },
+      "requestId": "b8490c30-3266-479a-a662-929213b5b97c",
+      "checkedAt": "2026-11-11T04:49:53.124Z",
+      "moduleKey": "promisory-workspace",
+      "fitModuleKey": "promisory-workspace",
+      "moduleVerification": "FIT_AND_HOSTED_CONTEXT",
+      "appVersion": "3.4.0",
+      "currentUserVerified": true,
+      "readOnly": true,
+      "mode": "ENFORCEMENT",
+      "enforcementVerificationHeld": false,
+      "dataSharingEnabled": true
+    }
+  ],
+  "verifiedConnectionSources": [
+    {
+      "requestId": "b8490c30-3266-479a-a662-929213b5b97c",
+      "sources": [
+        "FORGE",
+        "EXECUTOR"
+      ]
+    }
+  ],
+  "authenticatedForgeInvocationVerified": true,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "VERIFIED_CONNECTION"
+}

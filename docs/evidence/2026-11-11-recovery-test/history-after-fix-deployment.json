@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "promisory.recovery-history-read.v1",
+  "recordedAt": "2026-11-11T05:40:33.400Z",
+  "runtimeProfile": "history-fix",
+  "pod": {
+    "uid": "77b44cfd-d969-49d8-b906-c93f8efe0297",
+    "createdAt": "2026-11-11T05:38:57Z",
+    "generation": 11,
+    "image": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd"
+  },
+  "observations": [
+    {
+      "schemaVersion": "promisory.recovery-history-observation.v1",
+      "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+      "source": "JIRA_REST_CHANGELOG",
+      "recordedAt": "2026-11-11T05:26:27.953Z",
+      "startAt": 0,
+      "httpStatus": 200,
+      "pageParsed": true,
+      "entryCount": 5,
+      "taggedEntryCount": 1,
+      "dateItems": [
+        {
+          "stableFieldIdMatches": true,
+          "field": "duedate",
+          "from": {
+            "format": "ISO_DATE",
+            "calendarDate": "2026-11-18"
+          },
+          "to": {
+            "format": "ISO_DATE",
+            "calendarDate": "2026-11-19"
+          },
+          "fromString": {
+            "format": "OTHER"
+          },
+          "toString": {
+            "format": "OTHER"
+          }
+        }
+      ]
+    }
+  ],
+  "observerSha256": "3d06fe1f531558986c97981af37e6c4ce0f81db3d5d566edc8f3494b42da7d40",
+  "originalProbeSha256": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4",
+  "actionInvokedByCollector": false,
+  "claimContentsRead": false,
+  "status": "NATIVE_HISTORY_OBSERVED"
+}

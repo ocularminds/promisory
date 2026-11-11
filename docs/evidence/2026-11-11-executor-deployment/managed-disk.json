@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "promisory.managed-disk.v1",
+  "recordedAt": "2026-11-11T01:10:58.026Z",
+  "id": "/subscriptions/e7b998b6-a628-4548-a9d6-f54cf98a0464/resourceGroups/decionis-rg-aks-nodes/providers/Microsoft.Compute/disks/pvc-65f5f167-e9fe-41b4-85c6-b953adccea5b",
+  "sizeGiB": 4,
+  "sku": "Premium_ZRS",
+  "location": "centralus",
+  "state": "Attached",
+  "provisioningState": "Succeeded",
+  "networkAccessPolicy": "DenyAll",
+  "publicNetworkAccess": "Disabled",
+  "createdAt": "2026-11-11T00:42:16.0690668+00:00",
+  "passed": true
+}

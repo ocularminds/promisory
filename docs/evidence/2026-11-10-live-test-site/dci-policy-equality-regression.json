@@ -1,0 +1,72 @@
+{
+  "mode": "LOCAL_REAL_DECIONIS_POLICY_CORE_SYNTHETIC_CASES",
+  "abi": 9,
+  "moduleSha256": "166a5a84b797356bd86f0eb0659b4e456c0adf267e342e8444ba2bbda3d16ac5",
+  "noNetwork": true,
+  "results": [
+    {
+      "revision": "v2",
+      "case": "approved",
+      "ok": true,
+      "outcome": "APPROVE",
+      "selectedRule": "allow_exact_promisory_test_effect",
+      "error": null
+    },
+    {
+      "revision": "v2",
+      "case": "wrong-date",
+      "ok": true,
+      "outcome": "APPROVE",
+      "selectedRule": "allow_exact_promisory_test_effect",
+      "error": null
+    },
+    {
+      "revision": "v2",
+      "case": "wrong-principal",
+      "ok": true,
+      "outcome": "APPROVE",
+      "selectedRule": "allow_exact_promisory_test_effect",
+      "error": null
+    },
+    {
+      "revision": "v2",
+      "case": "wrong-issue-prefix",
+      "ok": true,
+      "outcome": "APPROVE",
+      "selectedRule": "allow_exact_promisory_test_effect",
+      "error": null
+    },
+    {
+      "revision": "v3",
+      "case": "approved",
+      "ok": true,
+      "outcome": "APPROVE",
+      "selectedRule": "allow_exact_promisory_test_effect",
+      "error": null
+    },
+    {
+      "revision": "v3",
+      "case": "wrong-date",
+      "ok": true,
+      "outcome": "REJECT",
+      "selectedRule": "reject_other_actions",
+      "error": null
+    },
+    {
+      "revision": "v3",
+      "case": "wrong-principal",
+      "ok": true,
+      "outcome": "REJECT",
+      "selectedRule": "reject_other_actions",
+      "error": null
+    },
+    {
+      "revision": "v3",
+      "case": "wrong-issue-prefix",
+      "ok": true,
+      "outcome": "REJECT",
+      "selectedRule": "reject_other_actions",
+      "error": null
+    }
+  ]
+}

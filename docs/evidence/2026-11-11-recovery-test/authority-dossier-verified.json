@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "promisory.authority-dossier-observation.v1",
+  "recordedAt": "2026-11-11T05:01:16.487Z",
+  "source": "Approved DCI organization API, GET protocol dossier",
+  "httpStatus": 200,
+  "readOnly": true,
+  "dossierId": "ce216c34-5e22-4274-800a-54ebcd40bafe",
+  "decisionId": "ca997e3a-1cf8-4a3a-86b0-f5c0d04155e7",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "checks": {
+    "requestSucceeded": true,
+    "dossierMatches": true,
+    "organizationMatches": true,
+    "decisionMatches": true,
+    "payloadEvaluationMatches": true
+  },
+  "decisionField": "dossier.decision_evaluation_id",
+  "dossierPayloadRetained": false,
+  "executionCredentialRetained": false,
+  "earlierCollectorCorrection": "The initial read checked an absent decision_id field; the documented dossier record links its decision using decision_evaluation_id.",
+  "passed": true
+}

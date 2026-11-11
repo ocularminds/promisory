@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "promisory.artifact-review.v1",
+  "recordedAt": "2026-11-11T04:32:20.086Z",
+  "filesChecked": 23,
+  "jsonFilesParsed": 9,
+  "localLinksChecked": 96,
+  "credentialValuesChecked": 3,
+  "credentialRawAndBase64Matches": 0,
+  "privateKeyAndBearerTokenPatterns": 0,
+  "preparedHashesMatch": true,
+  "configMapMatchesCompiledProbe": true,
+  "rawProviderBodiesIncluded": false,
+  "files": [
+    {
+      "path": "scripts/prepare-recovery-test.ts",
+      "sha256": "3ce0d76e1bac14a38f2ce48f3da6276b6adea10404b9313d24644690f05788e2"
+    },
+    {
+      "path": "scripts/live/recovery-probe.ts",
+      "sha256": "19cc11e1894208e666d0fa64b58e64e8cd55c67ce7e71717bc2621e9112ec0e1"
+    },
+    {
+      "path": "scripts/read-test-operations.ts",
+      "sha256": "2155de3bc3361d9020988f1634c99b6529516fd76707a1d2308097204dbb2c27"
+    },
+    {
+      "path": "tests/contracts/recovery-probe.test.ts",
+      "sha256": "a58f3113471819a61559595f8290fc3203254b1e1d3d0ac27dc180731fdd7711"
+    },
+    {
+      "path": "docs/authority/promisory-dci-recovery-policy.draft.json",
+      "sha256": "61590396cf26069719e25a2fde662c730446f37bf04859232ba7797e4b047418"
+    },
+    {
+      "path": "docs/authority/recovery-test-plan.md",
+      "sha256": "ae82d17a72be0074912eac38cd4db50d6c4f114e41a125bd8fe05ac42faa440c"
+    },
+    {
+      "path": "docs/authority/README.md",
+      "sha256": "bb4a9d3b003a5962e851e7e0456a66a1a256ff1c62869e21516499b4e88711c1"
+    },
+    {
+      "path": "docs/decisions/0013-controlled-recovery-acceptance.md",
+      "sha256": "ec1d4265438c0e6270131d3e05c1288fa9231432aaa2c2cc7ab6141ebea56a4b"
+    },
+    {
+      "path": "docs/implementation-report.md",
+      "sha256": "0cd82747aba0844a512db12b0b7af21537f842c03bcc093a3f148c223dc44114"
+    },
+    {
+      "path": "docs/runbooks/live-acceptance.md",
+      "sha256": "f5e1420016858ddfcdd3c2eb572c46b32dc096949a493a4ed135475c49272b26"
+    },
+    {
+      "path": "docs/runbooks/development-and-installation.md",
+      "sha256": "6173431bb007f9c814d0294ab2ce210ff3d9ce5f6be2e038c9fecb7760c47c72"
+    },
+    {
+      "path": "infra/azure/README.md",
+      "sha256": "adb90a59874778c1bfcdfff144da760dbe43b2c38e2b6e99fa43246d6f5839f5"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-governed-write/README.md",
+      "sha256": "f762918e4fe81bfdfa51b5bc9b7645876621bc05b29e0a923264a3942eccfb61"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-governed-write/authority-dossier.json",
+      "sha256": "3b1e883066af297a3048174aef857273623def79f14bbeac83b13efb41c7c00b"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-governed-write/executor-operation.json",
+      "sha256": "87307128ae01f2604be5edceb0d2d4a393a7bd0b23061ee26b2bb73b3bc45006"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-preparation/README.md",
+      "sha256": "0af37988ec6a5364eaa137a711d8e17887e7ee160e1c21451db243463267b3ce"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-preparation/local-validation.json",
+      "sha256": "d3391b3d67f7728a7d876b277c7861f072339da556ef2c7141e5f1dd4a446e37"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-preparation/prepared-resources.json",
+      "sha256": "c57afaa7003d2797006c514a2094fa5f3b35babbca3e600cc57fe2d66af1fcf6"
+    },
+    {
+      "path": "release/recovery-test-final-review/executor.config.patch.json",
+      "sha256": "1c3cc6b43e1820dfc956cdb9e5f144708b44e17ae44290ffa0259c47c3e410aa"
+    },
+    {
+      "path": "release/recovery-test-final-review/executor.deployment.patch.json",
+      "sha256": "cd86e5d5cac9554a6fc433537eeb88ac7cbdd5d507b5ad2dbcb67f13118af1b5"
+    },
+    {
+      "path": "release/recovery-test-final-review/recovery-probe.configmap.json",
+      "sha256": "3c316d5209b372fcfc76d211408605eec2a67234ccc673b177becee4eb9fabd9"
+    },
+    {
+      "path": "release/recovery-test-final-review/recovery-probe.mjs",
+      "sha256": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4"
+    },
+    {
+      "path": "release/recovery-test-final-review/review.json",
+      "sha256": "c57afaa7003d2797006c514a2094fa5f3b35babbca3e600cc57fe2d66af1fcf6"
+    }
+  ],
+  "passed": true
+}

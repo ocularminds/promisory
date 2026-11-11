@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Promisory · Interactive UX preview</title>
+<link rel="icon" href="brand/promisory-icon.svg?v=1.1" type="image/svg+xml">
+<link rel="stylesheet" href="brand/tokens.css?v=1.1"><link rel="stylesheet" href="prototype.css?v=1.1">
+</head>
+<body>
+<a class="skip" href="#main">Skip to workspace</a>
+<div class="app-shell">
+<aside class="sidebar">
+<a class="brand" href="index.html" aria-label="Promisory product package"><img src="brand/promisory-logo-reversed.svg?v=1.1" alt="Promisory"></a>
+<div class="workspace-label">DELIVERY WORKSPACE</div>
+<nav aria-label="Main navigation">
+<button class="nav-item active" data-view="overview" aria-current="page"><span aria-hidden="true">◫</span> Overview</button>
+<button class="nav-item" data-view="lifecycle"><span aria-hidden="true">◎</span> Lifecycle</button>
+<button class="nav-item" data-view="map"><span aria-hidden="true">⌘</span> Work map</button>
+<button class="nav-item" data-view="reviews"><span aria-hidden="true">✓</span> Reviews <span id="review-count" class="nav-count">0</span></button>
+<button class="nav-item" data-view="evidence"><span aria-hidden="true">▤</span> Evidence</button>
+</nav>
+<div class="project-nav"><div class="workspace-label">SELECTED PROJECT</div><div class="project-token">MX</div><strong>Merchant Experience</strong><p>One connected delivery team</p></div>
+<div class="sidebar-bottom">
+<label for="persona">Preview a role</label>
+<select id="persona"><option value="manager">Delivery manager</option><option value="lead">Team lead</option><option value="engineer">Engineer</option><option value="account">Account owner</option></select>
+<p>Role views use fictional people.</p>
+<a href="index.html#brand">Brand &amp; design system <span aria-hidden="true">↗</span></a>
+</div>
+</aside>
+<div class="app-content">
+<header class="topbar"><div class="breadcrumb">Workspace <span>/</span> Merchant Experience</div><div class="topbar-right"><span class="snapshot">18 Nov 2026 · Example snapshot</span><span class="avatar" aria-label="Maya Chen">MC</span></div></header>
+<main id="main" tabindex="-1">
+<div class="prototype-banner"><span class="demo-dot"></span><strong>Design prototype</strong><span>Example data. No live connections or external actions.</span><a href="index.html">Open implementation package ↗</a></div>
+<div class="page-heading"><div><div class="eyebrow">PROMISES · PEOPLE · PROOF</div><h1 id="page-title">Keep the launch in view.</h1><p id="page-subtitle">See what changed, who is responsible, and what needs to happen next.</p></div><div class="heading-actions"><button id="simulate" class="button secondary">Simulate dependency delay</button><button id="new-commitment" class="button primary"><span aria-hidden="true">＋</span> New commitment</button></div></div>
+<section class="metrics" aria-label="Commitment summary"><div><span>Active commitments</span><strong id="active-count">3</strong><small>In this example role view</small></div><div><span>At risk</span><strong id="risk-count">0</strong><small id="risk-caption">No confirmed delivery blocker</small></div><div><span>Outcomes verified</span><strong id="verified-count">1</strong><small id="verified-caption">1 completed before its deadline</small></div></section>
+<section id="change-notice" class="change-notice" aria-label="Latest change"></section>
+<div class="workspace-grid"><section class="main-panel" aria-label="Selected workspace view"><div id="view-content"></div></section><aside id="detail-panel" class="detail-panel" aria-label="Commitment details"></aside></div>
+<footer class="workspace-footer"><span>Context and authority stay distinct.</span><span>All names, records, and results in this preview are illustrative.</span></footer>
+</main>
+</div>
+</div>
+<dialog id="commitment-dialog" aria-labelledby="commitment-dialog-title">
+<form id="commitment-form" novalidate>
+<div class="dialog-header"><div><div class="eyebrow">EXAMPLE DRAFT</div><h2 id="commitment-dialog-title">Make the outcome clear.</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close commitment form">×</button></div>
+<p class="dialog-intro">Project: <strong>Merchant Experience</strong>. Add a fictional commitment to this preview. In the product, the accountable owner must accept it before activation.</p>
+<div id="form-error" class="form-error" role="alert" hidden></div>
+<div class="field"><label for="commit-title">Commitment <span>Required</span></label><input id="commit-title" name="title" maxlength="140" placeholder="What will the team deliver?" required aria-describedby="title-hint"><small id="title-hint">Describe an observable outcome, not just a task.</small></div>
+<div class="form-grid"><div class="field"><label for="commit-owner">Accountable owner <span>Required</span></label><select id="commit-owner" name="owner" required><option value="">Select an owner</option><option value="maya">Maya Chen · Delivery manager</option><option value="leah">Leah Ortiz · Team lead</option><option value="jon">Jon Bell · Product owner</option><option value="alex">Alex Morgan · Scrum facilitator</option></select></div><div class="field"><label for="commit-beneficiary">Beneficiary <span>Required</span></label><input id="commit-beneficiary" name="beneficiary" placeholder="Customer or internal team" maxlength="100" required></div></div>
+<div class="form-grid thirds"><div class="field"><label for="commit-date">Due date <span>Required</span></label><input id="commit-date" name="date" type="date" value="2026-11-26" required></div><div class="field"><label for="commit-time">Cutoff time</label><input id="commit-time" name="time" type="time" value="17:00" required></div><div class="field"><label for="commit-zone">Time zone</label><select id="commit-zone" name="zone"><option>Europe/Stockholm</option><option>UTC</option></select></div></div>
+<div class="field"><label for="commit-acceptance">Acceptance conditions <span>Required</span></label><textarea id="commit-acceptance" name="acceptance" rows="3" maxlength="1000" placeholder="What evidence will someone check?" required></textarea><small>For example: production release evidence and the designated owner's acceptance.</small></div>
+<label class="checkbox-label"><input type="checkbox" id="watch-draft" checked> Add this draft to my example watch list</label>
+<div class="dialog-footer"><button type="button" class="button secondary close-dialog">Cancel</button><button type="submit" class="button primary">Add example draft</button></div>
+</form></dialog>
+<dialog id="review-dialog" aria-labelledby="review-title"><div class="dialog-header"><div><div class="eyebrow">EXAMPLE REVIEW</div><h2 id="review-title">Review the exact change.</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close review">×</button></div><div id="review-body"></div><div class="dialog-footer"><button type="button" class="button secondary close-dialog">Close</button><button id="record-review" class="button primary">Record example review</button></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="prototype-data.js"></script><script src="prototype.js"></script>
+</body></html>

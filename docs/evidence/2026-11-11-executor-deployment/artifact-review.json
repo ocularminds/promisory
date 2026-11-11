@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "promisory.artifact-review.v1",
+  "recordedAt": "2026-11-11T01:19:25.371Z",
+  "scannedFiles": 50,
+  "credentialSources": [
+    "Ignored local .env credential values",
+    "Owned immutable Kubernetes runtime secret"
+  ],
+  "rawAndBase64ValuesChecked": true,
+  "credentialValuesRecorded": false,
+  "filesWithCredentialMatches": [],
+  "documentsChecked": 7,
+  "localLinksChecked": 110,
+  "missingLocalLinks": [],
+  "evidenceJsonFilesParsed": 18,
+  "passed": true
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "promisory.recovery-history-fix-http-check.v1",
+  "recordedAt": "2026-11-11T05:40:28.665Z",
+  "origin": "https://promisory-test.decionis.com",
+  "healthStatus": 200,
+  "unauthenticatedReconciliationStatus": 400,
+  "healthPassed": true,
+  "unauthenticatedRequestRefused": true,
+  "nativeRequestAuthorized": false
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "promisory.recovery-authority-claim-observation.v1",
+  "recordedAt": "2026-11-11T06:07:54.001Z",
+  "readOnly": true,
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+  "dossierId": "ce216c34-5e22-4274-800a-54ebcd40bafe",
+  "decisionId": "ca997e3a-1cf8-4a3a-86b0-f5c0d04155e7",
+  "runtimeSha256": "53658b28976c38e0cea2fd645c214ca5cfbb9a14680fcb64417bf48a0d45f4b4",
+  "claim": {
+    "status": "INDETERMINATE",
+    "claimed_at": "2026-11-11T04:53:02.669Z",
+    "eligibility_validated_at": "2026-11-11T04:53:02.685Z",
+    "lease_expires_at": "2026-11-11T04:53:32.669Z",
+    "indeterminate_at": "2026-11-11T04:53:04.502Z",
+    "finalized_at": null,
+    "effect_evidence_present": false,
+    "protocol_version": "1.1",
+    "expected_effect_digest": null,
+    "request_digest": "sha256:48c5880a1e075f650b110c15b258010d6de58db21b08e3c1cc392fa61b85cc5f",
+    "reconciliation_count": 0
+  },
+  "evidenceDelivery": [
+    {
+      "evidence_kind": "COMMIT",
+      "status": "DELIVERED",
+      "count": 1
+    },
+    {
+      "evidence_kind": "REVALIDATION",
+      "status": "DELIVERED",
+      "count": 1
+    }
+  ],
+  "syntheticRuntimeValidation": {
+    "missingBindingResult": "EFFECT_EXPECTED_BINDING_UNAVAILABLE",
+    "downgradeResult": "EFFECT_EVIDENCE_VERSION_DOWNGRADE"
+  },
+  "sourceContentRetained": false,
+  "nativeWritePerformed": false,
+  "authorityMutationPerformed": false,
+  "runtimeCredentialUsedInPlace": true,
+  "claimTokenRead": false,
+  "credentialOrClaimTokenExported": false,
+  "collectorCorrection": "The original credentialOrClaimTokenRead label was overbroad: the existing runtime credential authenticated the read-only query in place. No claim token was read and no credential was exported. Observed claim and evidence fields are unchanged."
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "promisory.forge-connection-deployment.v1",
+  "recordedAt": "2026-11-11T02:36:01.510Z",
+  "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environment": "development",
+  "reportedDeploymentVersion": "3.2.0",
+  "deployStatus": "DEPLOYED",
+  "cliVersion": "15.1.0",
+  "lint": {
+    "passed": true,
+    "issues": 0
+  },
+  "manifestScopesChanged": false,
+  "remoteOriginChanged": false,
+  "runsOnAtlassianEligible": false,
+  "installedFitVersionVerified": false,
+  "liveConnectionCheck": "AWAITING_USER_INVOCATION",
+  "browserAutomation": "DISABLED_BY_WORK_SETTINGS",
+  "installReadback": {
+    "id": "283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "environment": "development",
+    "site": "decionis-promisory.atlassian.net",
+    "product": "Jira (Required), Confluence",
+    "majorVersion": "3 (Latest)",
+    "appVersion": "3",
+    "status": "Up-to-date"
+  }
+}

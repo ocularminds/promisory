@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "promisory.forge-upgrade.v1",
+  "recordedAt": "2026-11-11T01:18:17.970Z",
+  "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environment": "development",
+  "environmentId": "24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+  "deployment": {
+    "reportedVersion": "3.0.0",
+    "status": "DEPLOYED",
+    "versionEvidence": "Successful Forge deploy output observed during this session",
+    "cliVersion": "15.1.0",
+    "nodeVersion": "22.23.4",
+    "acknowledgedRule": "MAJOR_VERSION_RULE",
+    "authorization": "Existing user approval for this test executor deployment and enforcement",
+    "additionalScope": "read:app-user-token",
+    "remoteKey": "promisory-executor",
+    "remoteOrigin": "https://promisory-test.decionis.com",
+    "currentUserTokenEnabled": true,
+    "localManifestSha256": "63b037d8877cc0bdbecddab19e972a7d1bc8fcdf62347a5c187fb2c7b61d2162",
+    "runsOnAtlassianEligible": false,
+    "marketplaceEligibilityEstablished": false
+  },
+  "installReadbackCommand": "forge install list --json",
+  "installReadback": {
+    "id": "283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "environment": "development",
+    "site": "decionis-promisory.atlassian.net",
+    "product": "Jira (Required), Confluence",
+    "majorVersion": "3 (Latest)",
+    "appVersion": "3",
+    "status": "Up-to-date"
+  },
+  "installationIdentityPreserved": true,
+  "version3UiVerified": false,
+  "authenticatedForgeInvocationVerified": false,
+  "governedJiraWriteOccurred": false,
+  "installationUpgradeVerified": true
+}

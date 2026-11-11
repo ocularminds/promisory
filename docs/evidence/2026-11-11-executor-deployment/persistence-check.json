@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "promisory.persistence-check.v1",
+  "recordedAt": "2026-11-11T00:48:22.651Z",
+  "oldPodUid": "5ebeec78-17cd-4081-b596-dd0b5cae6130",
+  "newPodUid": "b32e1045-ebbe-4925-91ca-7fb186aa1e36",
+  "podChanged": true,
+  "pvcUid": "65f5f167-e9fe-41b4-85c6-b953adccea5b",
+  "sameVolume": true,
+  "capacity": "4Gi",
+  "imageId": "decionisacr.azurecr.io/promisory/executor@sha256:a1de435f15a591c86fd14332fd99be9257ace62a84dd5b7cc263428086bdf4da",
+  "imageUnchanged": true,
+  "probeMatched": true,
+  "probeRemoved": true,
+  "healthStatus": 200,
+  "mode": "SHADOW",
+  "passed": true
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "promisory.review-guidance-runtime.v1",
+  "recordedAt": "2026-11-11T03:26:44.784Z",
+  "node": "v22.23.4",
+  "platform": "linux",
+  "architecture": "x64",
+  "uid": 1000,
+  "gid": 1000,
+  "serverSha256": "9443e31f8b66a0fd6eba38aa599b3072dc3c4edb51d7f7a37abb4ddd9fbe513b",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "true",
+  "shareIntent": "true",
+  "shareSnapshot": "true",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "context": {
+    "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+    "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+    "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+  },
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "deploymentGeneration": 7,
+  "checks": {
+    "sameDeployment": true,
+    "sameImage": true,
+    "oneReadyReplica": true,
+    "sameServer": true,
+    "contextPreserved": true,
+    "enforcementActive": true,
+    "sharingEnabled": true,
+    "exactPolicy": true
+  },
+  "runtimeChangedByThisCheck": false,
+  "passed": true
+}

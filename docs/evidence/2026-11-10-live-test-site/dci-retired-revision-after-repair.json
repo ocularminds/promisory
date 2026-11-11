@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "promisory.policy-check.v1",
+  "mode": "LIVE_AUTHORITY_SYNTHETIC_SHADOW_POLICY_CASES",
+  "observedAt": "2026-11-11T00:07:07.342Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policySelector": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "requestedMode": "SHADOW",
+  "sourceSnapshot": "EXPLICITLY_SYNTHETIC_NOT_READ_FROM_JIRA",
+  "noJiraReadOrWrite": true,
+  "noGrantClaimAttempted": true,
+  "passed": true,
+  "results": [
+    {
+      "case": "approved-effect",
+      "expected": "BLOCK",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": true,
+      "authorizationPresent": false,
+      "decisionId": "6f7cd26e-9b10-45f9-b421-79ae1bf65bc0",
+      "dossierId": "22b365b8-955c-4c43-92b1-290864a10994",
+      "reasonCodes": [
+        "AUTHORITY_POLICY_ID_MISMATCH"
+      ],
+      "wire": {
+        "httpStatus": 503,
+        "status": "ERROR",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    }
+  ]
+}

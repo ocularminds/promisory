@@ -1,0 +1,12 @@
+--- a/infra/azure/k8s/workloads/api.yaml
++++ b/infra/azure/k8s/workloads/api.yaml
+@@ -62,6 +62,9 @@
+               value: "3001"
+             - name: NODE_ENV
+               value: production
++            # Promisory test executor effect observer; non-secret key ID.
++            - name: DECIONIS_TRUSTED_EFFECT_OBSERVER_API_KEY_IDS
++              value: "c97a5168-1325-487c-94e8-e3d4b06adffd"
+             - name: GIT_SHA
+               value: "GIT_SHA_PLACEHOLDER"
+             # API -> Protocol traffic stays on the cluster network, with no

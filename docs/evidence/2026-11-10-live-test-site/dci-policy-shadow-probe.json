@@ -1,0 +1,36 @@
+{
+  "mode": "LIVE_AUTHORITY_SYNTHETIC_SHADOW_PROBE",
+  "observedAt": "2026-11-10T23:12:23.783Z",
+  "authorityOrigin": "https://api.decionis.com",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policyId": "promisory-test-jira-due-date",
+  "bundleId": "1a1e5eea-52d2-4a57-9808-76bc5a86b136",
+  "credentialContext": {
+    "organizationMatches": true,
+    "scopes": [
+      "decision:enforce"
+    ],
+    "policyId": null
+  },
+  "requestedMode": "SHADOW",
+  "syntheticAction": "promisory.synthetic.policy_readiness",
+  "verdict": "BLOCK",
+  "failClosed": true,
+  "reasonCodes": [
+    "AUTHORITY_POLICY_ID_MISMATCH"
+  ],
+  "decisionId": "e5bd5333-7ece-46f5-b923-ac36c4d67b27",
+  "dossierId": "37396629-d77a-4c68-babc-8724102f195f",
+  "authorizationPresent": false,
+  "wire": {
+    "httpStatus": 503,
+    "status": "ERROR",
+    "reasonCodes": [
+      "AUTHORITY_POLICY_ID_MISMATCH"
+    ],
+    "executionTokenPresent": false,
+    "executionGrantPresent": false
+  },
+  "noJiraDataSubmitted": true,
+  "noDownstreamExecution": true
+}

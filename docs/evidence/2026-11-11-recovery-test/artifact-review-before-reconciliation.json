@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "promisory.artifact-review.v1",
+  "recordedAt": "2026-11-11T05:05:59.934Z",
+  "filesChecked": 36,
+  "jsonFilesParsed": 27,
+  "localLinksChecked": 99,
+  "credentialRawAndBase64Matches": 0,
+  "privateKeyAndBearerTokenPatterns": 0,
+  "files": [
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/README.md",
+      "sha256": "2788d7c387a6fc7027f219fb8e3f0e829e16c1088a19e18496b6982dd794ba50"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/after-reconciliation-request.json",
+      "sha256": "1377cf91d4cc171f82e5603d59baddfab8e1493ddbfbf5aadc47bcc24bf8a134"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/after-restart.json",
+      "sha256": "d138ab331b79334f77cef57e0906472c245a4828ebb83a65925f68d005265679"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/after-user-reported-finalization.json",
+      "sha256": "3be0a8c94bcb6dea7a50ce9ec37bf751cfeac5bd97abb7c2bd5fd50c12aa79f4"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/after-user-reported-review.json",
+      "sha256": "53cfef4d7d4dda7ff82370ececdb603434cd6b1233af46d572d3caee56832095"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/after-user-request.json",
+      "sha256": "894b7d190c769525d8da56c33001e70747abab992104e0530fdbe5067b0199ac"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/approval.json",
+      "sha256": "42d2611ac85f3f4f7e99f29191d3026525789b344152c73bb8de4b9c33d51ad9"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/authority-dossier-verified.json",
+      "sha256": "de948461a7c6cd131a54da925a4cf4b35638284916a4203605f2797e1ba2b7ba"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/authority-dossier.json",
+      "sha256": "1d129f765a17303c3155f55740688abd1043c05437203b2f25d092cb2a65ab51"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/before-reviewed-apply.json",
+      "sha256": "d3cba3247008787630474e49f43f41cdce537147cd054c5404c4377992342705"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/deployment-started.json",
+      "sha256": "34e843a4f78de2df51c5320ffe647d219b4406a26ed9e49ca1bc64bb642f59da"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/deployment.json",
+      "sha256": "534345c7a3cde65fa6ab4959043e315afa9399eaeeda9c14371a62b8ec332a98"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/forge-reconciliation-diagnostics.json",
+      "sha256": "1fbf881963991b457178015b9a18c5b380e5dd75aa2000737e071d7913fe9141"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/installed-connection.json",
+      "sha256": "cbdad19e39cf2352ea57e9365f52b3b07d7a89890fe0578f60a12f7a236e87e0"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/local-validation.json",
+      "sha256": "69c462af1a3bc6b5b961da9d8277143a5216462c1d37da27bf03f44910a45f38"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-metadata-repair.json",
+      "sha256": "dae88448f955808cbf9556675e8da3992e8778917755871413e204342aea7f70"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-publication-accepted.json",
+      "sha256": "e63a3c82678e3f007d9d9a71f756caddc994858300cd127ac3c2e6bb23afa02b"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-publication-diagnostic.json",
+      "sha256": "4c7d921471b3ca92b308c63722ae0772982cc9e5d3fab2f1c4ede6ce18a7c8bc"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-publication-started.json",
+      "sha256": "b0ba9f4b46022b9524dc40382b947786f23f35b7824f52bde25bc9eb4650b971"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-publication.json",
+      "sha256": "53bb8b12b5161ddc665d30e975493b4337651c228f42245fcb2dd94b6208f2d4"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-shadow-cases.json",
+      "sha256": "d6064c23a02c50f90a5a5c043c20635ae6f41e479ca5e6698c697f56e8732e5c"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/policy-validation.json",
+      "sha256": "a75943287e9c3e4cbc802fe31094cf48ac0aa5797d1cf474683950a49376971d"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/prepared-resources.json",
+      "sha256": "50257b47952940e72335fe189ba381b45fb8c1be900d6c76f4ab3c9436aad6e1"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/rejected-policy-payload.json",
+      "sha256": "93cf972771c136be785fd73d304d1dbfe1bb2434699e16e0e92d319429ec761c"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/restart-started.json",
+      "sha256": "bc1ab5f9cb6aa00166fa1f0c5fd1af467b45d3af601b755ef7cee80fe4e33155"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/restart.json",
+      "sha256": "4e7e3e1624070ab0545cd0dcf791089f01b0390cf3a7763a1ab517d68f528af0"
+    },
+    {
+      "path": "docs/evidence/2026-11-11-recovery-test/restart.patch.json",
+      "sha256": "63d8650982b938695fb232856a41f72b73e1e48ad78758088b8c20aa17a89dfb"
+    },
+    {
+      "path": "docs/authority/promisory-dci-recovery-policy.approved.json",
+      "sha256": "d92bba844ff503900df5a547dcad3da3d2fa67372a61f914e2671d22b19393fb"
+    },
+    {
+      "path": "docs/authority/retire-dci-recovery-policy.mjs",
+      "sha256": "882c13c550c250aa3d3e7aa5044081beb4410858363aeb8810d973b631f6a95a"
+    },
+    {
+      "path": "docs/authority/recovery-test-plan.md",
+      "sha256": "9ca04bd7661077917927e3cfdf682283fca74b433859cf03cb23b04f02e61df7"
+    },
+    {
+      "path": "docs/authority/README.md",
+      "sha256": "e0cf9a84a9d5120b14415405a291a46f9e7a987e326a744a15058224da540ba9"
+    },
+    {
+      "path": "docs/implementation-report.md",
+      "sha256": "c6ff44945917f37ddad45b7e566c3b3e6d0174ad5614b5cddd39bc4e4e14de24"
+    },
+    {
+      "path": "docs/submission/release-dossier.md",
+      "sha256": "bb6edef7062514788abf6f85fd304e0d723045d6971ce0415f2f81339a60e493"
+    },
+    {
+      "path": "scripts/read-recovery-test.ts",
+      "sha256": "c786467b78c41430e8e8ee1d8c4fb6fdbefbb2851a10257a4d71737f32c818f7"
+    },
+    {
+      "path": "scripts/check-dci-test-policy.ts",
+      "sha256": "22c8904ae017a13ae618069754cd30d0901ff1d3a390d3a266ca72ef1b16be61"
+    },
+    {
+      "path": "scripts/prepare-recovery-test.ts",
+      "sha256": "869f571773f2f1b21e4905a20f10157e4be86c8a64a503c99df41878f79ed00a"
+    }
+  ],
+  "liveLostResponseRecoveryVerified": false,
+  "cleanupPerformed": false,
+  "passed": true
+}

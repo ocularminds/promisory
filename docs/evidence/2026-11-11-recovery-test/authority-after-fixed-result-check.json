@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "promisory.authority-recovery-log-observation.v1",
+  "recordedAt": "2026-11-11T05:53:42.907213+00:00",
+  "source": "Scoped API logs, fixed grant only; no payloads, headers, or raw errors",
+  "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+  "podUID": "3ec60a76-a50f-48c4-99b9-2775ae0ffcc9",
+  "deploymentGeneration": 197,
+  "trustedObserverAllowed": true,
+  "matchingRecords": []
+}

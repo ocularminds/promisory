@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "promisory.executor-image-rollout.v1",
+  "recordedAt": "2026-11-11T01:50:21.738Z",
+  "context": "decionis-aks",
+  "namespace": "decionis",
+  "deployment": "promisory-test-executor",
+  "uid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:a1de435f15a591c86fd14332fd99be9257ace62a84dd5b7cc263428086bdf4da",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:838f91d36f0fc450ee4214bccd6abf8d991d0c39d2cf5426fa069e5277f6a062",
+  "sourceSha256": "962d3e4369a52e9e20f732b1827460b8489dcf387ff7dd382d9f19d311f48cba",
+  "guardedResourceVersion": "29728272",
+  "previousGeneration": 3,
+  "generation": 4,
+  "serverDryRunPassed": true,
+  "imageOnlyPatch": true,
+  "configurationBefore": {
+    "PROMISORY_MODE": "ENFORCEMENT",
+    "PROMISORY_ENFORCEMENT_VERIFIED": "false",
+    "PROMISORY_AUTHORITY_POLICY_ID": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+    "PROMISORY_SHARE_DUE_DATE_INTENT": "true",
+    "PROMISORY_SHARE_JIRA_DATE_SNAPSHOT": "true"
+  },
+  "rollout": "VERIFIED",
+  "verifiedAt": "2026-11-11T01:52:46.037Z"
+}

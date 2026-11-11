@@ -1,0 +1,11 @@
+{
+  "mode": "LIVE_ADMINISTRATOR_UI_OBSERVATION",
+  "forgeVersion": "2.11.0",
+  "observedDate": "2026-11-10",
+  "surface": "Connections / Execution setup identifiers",
+  "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+  "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+  "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+  "grantsAuthority": false
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "promisory.public-boundary.v1",
+  "recordedAt": "2026-11-11T00:51:35.896Z",
+  "origin": "https://promisory-test.decionis.com",
+  "credentials": "NONE",
+  "cases": [
+    {
+      "name": "no auth apply",
+      "status": 400,
+      "expectedStatus": 400,
+      "passed": true
+    },
+    {
+      "name": "no auth reconcile",
+      "status": 400,
+      "expectedStatus": 400,
+      "passed": true
+    },
+    {
+      "name": "unknown route",
+      "status": 404,
+      "expectedStatus": 404,
+      "passed": true
+    },
+    {
+      "name": "oversize input",
+      "status": 413,
+      "expectedStatus": 413,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "governedWriteClaimed": false
+}

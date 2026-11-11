@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "promisory.recovery-restart.v1",
+  "startedAt": "2026-11-11T04:55:50.290Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+  "previousPodUid": "a37d8725-39b9-4493-ae7b-9becd2dba34c",
+  "previousGeneration": 8,
+  "restartApplied": false,
+  "rolloutReady": false,
+  "persistenceVerified": false,
+  "liveRecoveryVerified": false
+}

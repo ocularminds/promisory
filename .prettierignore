@@ -1,0 +1,8 @@
+node_modules/
+**/dist/
+docs/product/
+brand/
+packages/design-system/brand/
+.playwright-mcp/
+docs/evidence/
+package-lock.json

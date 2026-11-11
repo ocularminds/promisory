@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "promisory.effect-binding-http-observation.v1",
+  "recordedAt": "2026-11-11T06:17:13.307Z",
+  "host": "https://promisory-test.decionis.com",
+  "healthStatus": 200,
+  "unsignedReconcileStatus": 400,
+  "healthPassed": true,
+  "unauthenticatedRequestRefused": true,
+  "jiraInvocationPerformed": false,
+  "authorityInvocationPerformed": false
+}

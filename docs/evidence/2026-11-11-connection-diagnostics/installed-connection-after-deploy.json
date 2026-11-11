@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v2",
+  "recordedAt": "2026-11-11T02:36:07.374Z",
+  "environment": "development",
+  "expectedAppVersion": "3.2.0",
+  "source": "Forge CLI and the owned test executor logs; only strict connection-check events retained",
+  "failedChecks": 1,
+  "failureEvents": [
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK_FAILED",
+      "schemaVersion": "promisory.remote-connection-diagnostic.v1",
+      "recordedAt": "2026-11-11T02:33:21.737Z",
+      "origin": "EXECUTOR",
+      "stage": "REQUEST",
+      "code": "INVALID_INVOCATION"
+    }
+  ],
+  "rejectedEventCount": 0,
+  "verifiedConnections": [],
+  "verifiedConnectionSources": [],
+  "authenticatedForgeInvocationVerified": false,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "CHECK_FAILED"
+}

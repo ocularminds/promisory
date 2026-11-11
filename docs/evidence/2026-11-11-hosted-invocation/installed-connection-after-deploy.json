@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v2",
+  "recordedAt": "2026-11-11T02:57:43.241Z",
+  "environment": "development",
+  "expectedAppVersion": "3.3.0",
+  "source": "Forge CLI and the owned test executor logs; only strict connection-check events retained",
+  "failedChecks": 1,
+  "failureEvents": [
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK_FAILED",
+      "schemaVersion": "promisory.remote-connection-diagnostic.v1",
+      "recordedAt": "2026-11-11T02:53:33.359Z",
+      "origin": "EXECUTOR",
+      "stage": "REQUEST",
+      "code": "INVALID_INVOCATION"
+    }
+  ],
+  "rejectedEventCount": 0,
+  "verifiedConnections": [
+    {
+      "schemaVersion": "promisory.remote-connection.v2",
+      "context": {
+        "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+        "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+        "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "principalAccountId": "712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9"
+      },
+      "requestId": "2dcf449e-b24b-41ae-8220-9995c2f94f4e",
+      "checkedAt": "2026-11-11T02:57:28.877Z",
+      "moduleKey": "promisory-workspace",
+      "fitModuleKey": "promisory-workspace",
+      "moduleVerification": "FIT_AND_HOSTED_CONTEXT",
+      "appVersion": "3.3.0",
+      "currentUserVerified": true,
+      "readOnly": true,
+      "mode": "ENFORCEMENT",
+      "enforcementVerificationHeld": true,
+      "dataSharingEnabled": true
+    }
+  ],
+  "verifiedConnectionSources": [
+    {
+      "requestId": "2dcf449e-b24b-41ae-8220-9995c2f94f4e",
+      "sources": [
+        "FORGE",
+        "EXECUTOR"
+      ]
+    }
+  ],
+  "authenticatedForgeInvocationVerified": true,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "VERIFIED_CONNECTION"
+}

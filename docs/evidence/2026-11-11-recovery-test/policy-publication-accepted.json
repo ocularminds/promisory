@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.recovery-policy-publication.v1",
+  "recordedAt": "2026-11-11T04:41:48.183Z",
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "stablePolicyId": "promisory-test-jira-recovery",
+  "version": "promisory-recovery-test-v1",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "approvalReference": "call_6hHzX1BGUJM5Xol2KwWDPAJY:0",
+  "approvedBy": "Festus Jejelowo",
+  "expiresAt": "2026-11-12T00:00:00.000Z",
+  "requestSha256": "466ea4a2d6c3fdc236a40910ade163ad10c997f87b4d98faf5451f8e0418c4a3",
+  "canonicalPayloadSha256": "13bffd5abbb3ceae56be8f3b5013a5559d5e07646d14ef9fa77f60ee375e1ad3",
+  "published": true,
+  "exactPayloadVerified": true,
+  "lifecycleState": "ACTIVE",
+  "passed": true,
+  "httpStatus": 202,
+  "accepted": true,
+  "readBackStatus": 200
+}

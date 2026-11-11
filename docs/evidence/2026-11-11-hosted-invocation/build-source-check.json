@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "promisory.remote-build-source-check.v1",
+  "recordedAt": "2026-11-11T02:48:07.565Z",
+  "directory": "release/remote-build-a443a6da5c7f-fUV7RV",
+  "sourceSha256": "a443a6da5c7fea6237bcf1e899071b990642000163e297afdc8b4dda17d674c1",
+  "archiveSha256": "b9bda833ea958dc460a0b795e8aae1be429039b7a983033532b1001a88af86b3",
+  "fileCount": 30,
+  "archiveMembershipVerified": true,
+  "allFileHashesVerified": true,
+  "rawAndBase64CredentialsAbsent": true,
+  "credentialValuesRecorded": false,
+  "noGraphOrEvidenceFiles": true,
+  "passed": true
+}

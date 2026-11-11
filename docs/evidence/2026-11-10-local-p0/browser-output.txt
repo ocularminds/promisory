@@ -1,0 +1,19 @@
+
+> promisory@0.1.0 test:e2e
+> playwright test
+
+
+Running 8 tests using 1 worker
+
+(node:41045) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/workspace.spec.ts:18:1 › example mode is explicit and role and search filters keep empty states truthful (885ms)
+  ✓  2 tests/e2e/workspace.spec.ts:61:1 › invalid input preserves the draft, error focus is visible, and only owner acceptance activates it (845ms)
+  ✓  3 tests/e2e/workspace.spec.ts:113:1 › review is independent and example execution stays held without an external request (949ms)
+  ✓  4 tests/e2e/workspace.spec.ts:149:1 › PRD drift invalidates the accepted gate while retaining the recorded review (713ms)
+  ✓  5 tests/e2e/workspace.spec.ts:169:1 › native story, task and bug remain peers and a bug traces its explicit blocking path (667ms)
+  ✓  6 tests/e2e/workspace.spec.ts:194:1 › issue panel and Confluence macro render only the selected source context (681ms)
+  ✓  7 tests/e2e/workspace.spec.ts:228:1 › desktop and narrow layouts have no serious accessibility failures or page overflow (1.9s)
+  ✓  8 tests/e2e/workspace.spec.ts:291:1 › 200 percent equivalent viewport keeps the form and its submit control reachable (635ms)
+
+  8 passed (8.6s)

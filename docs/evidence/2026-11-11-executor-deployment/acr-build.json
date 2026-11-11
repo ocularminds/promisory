@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "promisory.acr-build.v1",
+  "requestedAt": "2026-11-11T00:32:30.931Z",
+  "approval": "call_jkKzus5S8rhsJZf1EfAr2uxp:0",
+  "registry": "decionisacr.azurecr.io",
+  "imageTag": "promisory/executor:bf48b140c6346ad8458e78d2c61568b4ff392e7babe9ae3e68dc972db98088c7",
+  "sourceSha256": "bf48b140c6346ad8458e78d2c61568b4ff392e7babe9ae3e68dc972db98088c7",
+  "archiveSha256": "246080d2fac8768b6fdbcb84645f4aeb2939c0a4b26728cb9a4a22d48299cc0a",
+  "fileCount": 28,
+  "platform": "linux/amd64",
+  "status": "SUCCEEDED",
+  "runId": "cj47",
+  "submissionCompletedAt": "2026-11-11T00:32:34.030Z",
+  "buildFinishedAt": "2026-11-11T00:34:23.121346+00:00",
+  "imageDigest": "sha256:a1de435f15a591c86fd14332fd99be9257ace62a84dd5b7cc263428086bdf4da",
+  "registryMetadataVerified": true,
+  "imageOs": "linux",
+  "imageArchitecture": "amd64"
+}

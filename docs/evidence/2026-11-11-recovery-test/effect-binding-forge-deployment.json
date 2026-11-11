@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "promisory.effect-binding-forge-deployment.v1",
+  "recordedAt": "2026-11-11T06:20:13.640Z",
+  "appId": "6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environment": "development",
+  "reportedDeploymentVersion": "3.6.0",
+  "deployStatus": "Deployed",
+  "cliVersion": "15.1.0",
+  "forgeLintPassed": true,
+  "manifestChanged": false,
+  "scopesChanged": false,
+  "remoteContractChanged": false,
+  "entryPoints": [
+    {
+      "name": "index",
+      "sha256": "75fdebbbc0f53fe5386bc057cdbfd64c173b92a67d110fba2335eb94fa410f9a"
+    },
+    {
+      "name": "events",
+      "sha256": "51b2cbca59daa34cdb1f51066ee91a71f04bf2960357e0a4859a4db35f3da9f0"
+    },
+    {
+      "name": "rovo",
+      "sha256": "702211d9da9d7d765b6be81c927ec6d9d8d22076117677f8a149122d07ad3b12"
+    }
+  ],
+  "installReadback": {
+    "id": "283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "environment": "development",
+    "site": "decionis-promisory.atlassian.net",
+    "product": "Jira (Required), Confluence",
+    "majorVersion": "3 (Latest)",
+    "appVersion": "3",
+    "status": "Up-to-date"
+  },
+  "nativeInvocationOfNewVersionVerified": false,
+  "liveRecoveryVerified": false
+}

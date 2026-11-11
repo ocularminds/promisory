@@ -1,0 +1,63 @@
+{
+  "mode": "LIVE_AUTHORITY_SYNTHETIC_SHADOW_POLICY_CASES",
+  "observedAt": "2026-11-10T23:42:33.631Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policyId": "promisory-test-jira-due-date",
+  "bundleId": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "requestedMode": "SHADOW",
+  "sourceSnapshot": "EXPLICITLY_SYNTHETIC_NOT_READ_FROM_JIRA",
+  "noJiraReadOrWrite": true,
+  "noGrantClaimAttempted": true,
+  "results": [
+    {
+      "case": "approved-date",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "b076a6d3-a188-4ca5-8d7e-9babf60aabeb",
+      "dossierId": "72b94204-4d0c-49d9-9e91-13792e612af3",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ALLOW",
+        "policyVersion": "promisory-test-v2",
+        "tokenPresent": false,
+        "grantPresent": false,
+        "reasonCodes": [
+          "PROTOCOL_OUTCOME_APPROVE",
+          "POLICY_MATCHED",
+          "POLICY_ACTION_AUTO_APPROVE"
+        ]
+      }
+    },
+    {
+      "case": "different-date",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "cf945e67-8bf7-4c15-a78a-266c63b07fe1",
+      "dossierId": "b4dc5a1d-d544-4330-a468-4a8d53897419",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ALLOW",
+        "policyVersion": "promisory-test-v2",
+        "tokenPresent": false,
+        "grantPresent": false,
+        "reasonCodes": [
+          "PROTOCOL_OUTCOME_APPROVE",
+          "POLICY_MATCHED",
+          "POLICY_ACTION_AUTO_APPROVE"
+        ]
+      }
+    }
+  ]
+}

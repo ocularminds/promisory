@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "promisory.recovery-guidance-deployment-start.v1",
+  "recordedAt": "2026-11-11T05:34:21.968Z",
+  "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environment": "development",
+  "previousVersion": "3.4.0",
+  "typecheckPassed": true,
+  "workspaceBuildPassed": true,
+  "forgeBundlePassed": true,
+  "forgeLintPassed": true,
+  "browserTestsPassed": 2,
+  "browserMode": "EXAMPLE",
+  "atlassianSessionAccessed": false,
+  "manifestSha256": "63b037d8877cc0bdbecddab19e972a7d1bc8fcdf62347a5c187fb2c7b61d2162",
+  "sourceFiles": [
+    {
+      "path": "apps/forge/static/workspace/src/components.tsx",
+      "sha256": "5c9c2432cab32beda0e0e2ac41e28b0ac4e42693675a2002032f34a9276aa871"
+    },
+    {
+      "path": "apps/forge/static/workspace/src/workspace.tsx",
+      "sha256": "382440e0f3fa3e2e641ee5c462a47a71200e91d04472fe0e1e9aa4416923c9b6"
+    }
+  ],
+  "liveRecoveredResultVerified": false
+}

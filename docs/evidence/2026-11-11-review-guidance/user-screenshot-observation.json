@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "promisory.review-ui-observation.v1",
+  "recordedAt": "2026-11-11T03:39:08.938Z",
+  "source": "Two user-supplied screenshots",
+  "deploymentExpected": "3.4.0",
+  "deploymentVersionAttestedByScreenshots": false,
+  "sourceContentCopied": false,
+  "atlassianOnlyProposalPayloadCopied": false,
+  "observations": [
+    {
+      "image": 1,
+      "displayedExpiryLocal": "10 Nov 2026, 22:14",
+      "timeZone": "Europe/Stockholm",
+      "reviewDisabled": true,
+      "operationRecorded": true,
+      "recordedReviewDisposition": "APPROVE",
+      "executionMessageClass": "AUTHORIZATION_UNAVAILABLE",
+      "finalization": "NOT_REQUIRED"
+    },
+    {
+      "image": 2,
+      "displayedExpiryLocal": "10 Nov 2026, 23:47",
+      "timeZone": "Europe/Stockholm",
+      "displayedStatus": "EXPIRED",
+      "reviewDisabled": true,
+      "proposalOriginClass": "ATLASSIAN_ONLY",
+      "externalApplyDisabled": true
+    }
+  ],
+  "finding": "Both pictured proposals expired on the previous day; one has a prior held attempt and the other is an internal Rovo proposal.",
+  "nextStep": "Prepare a fresh owner-authored intent in the commitment recovery form, obtain independent review, then apply once.",
+  "currentAccountIdentityVerifiedByScreenshots": false,
+  "freshProposalShown": false,
+  "liveGovernedWriteVerified": false
+}

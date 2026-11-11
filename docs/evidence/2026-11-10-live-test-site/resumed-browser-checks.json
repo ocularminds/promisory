@@ -1,0 +1,55 @@
+{
+  "mode": "LIVE_INSTALLED_UI",
+  "recordedAt": "2026-11-10T23:16:37.191157Z",
+  "version": "2.13.0",
+  "appId": "6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "checks": [
+    {
+      "check": "Rovo role subject and confirming administrator with duplicate display names",
+      "result": "PASS",
+      "scope": "One resumed live answer; generated person links now target the correct accounts."
+    },
+    {
+      "check": "Primary inbox isolation",
+      "result": "PASS",
+      "scope": "Secondary read marker and quiet-hour settings did not alter the primary account."
+    },
+    {
+      "check": "Primary inbox read persistence",
+      "result": "PASS",
+      "scope": "Mark read became Read after server refetch and remained Read after Refresh evidence."
+    },
+    {
+      "check": "Explicit inbox loading state",
+      "result": "PASS",
+      "scope": "Checking current notices appeared before confirmed results."
+    },
+    {
+      "check": "Rovo recovery proposal in installed reviews",
+      "result": "PASS",
+      "scope": "Internal-only proposal visible, no independent approval or operation, external apply disabled."
+    },
+    {
+      "check": "Expired proposal presentation",
+      "result": "FAIL",
+      "scope": "2.13.0 still labelled an expired proposal Awaiting review; repaired in 2.14.0, separate live check required."
+    },
+    {
+      "check": "Expired proposal presentation after repair",
+      "version": "2.14.0",
+      "result": "PASS",
+      "scope": "Expired label and full date visible, pending count cleared, review/apply disabled. Existing held operation and approval retained."
+    },
+    {
+      "check": "Primary inbox after deployment and page reload",
+      "version": "2.14.0",
+      "result": "PASS",
+      "scope": "Explicit loading followed by the same Read finding and 18:00\u201308:00 UTC quiet hours."
+    }
+  ],
+  "rawRovoContentSaved": false,
+  "graphDataSaved": false,
+  "updatedAt": "2026-11-10T23:19:25.895382Z",
+  "latestInstalledVersion": "2.14.0",
+  "latestObservedAssetId": "96b0a669-d929-4daa-8d28-97774c8d40ca"
+}

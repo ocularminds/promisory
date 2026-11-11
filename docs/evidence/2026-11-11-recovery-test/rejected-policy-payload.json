@@ -1,0 +1,133 @@
+{
+  "protocol_version": "1.0",
+  "bundle_id": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "policy_id": "promisory-test-jira-recovery",
+  "org_id": "124e5022-6eee-4717-ab65-a03899db6237",
+  "version": "promisory-recovery-test-v1",
+  "effective_from": "2026-11-11T04:00:00.000Z",
+  "effective_to": "2026-11-12T00:00:00.000Z",
+  "required_signals": [
+    "agent_safe.action.type",
+    "agent_safe.action.resource",
+    "agent_safe.action.parameters.cloudId",
+    "agent_safe.action.parameters.issueId",
+    "agent_safe.action.parameters.expectedUpdatedAt",
+    "agent_safe.action.parameters.expectedDueDate",
+    "agent_safe.action.parameters.desiredDueDate",
+    "agent_safe.action.parameters.operationId",
+    "agent_safe.actor.id",
+    "agent_safe.downstream_target.environment",
+    "context.installation_id",
+    "context.proposal_hash"
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_exact_promisory_recovery_test_effect",
+      "name": "Allow the scoped Promisory recovery test date change",
+      "decision_domain": "*",
+      "priority": 100,
+      "enabled": true,
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "MATCHES",
+            "value": "^jira\\.issue\\.set_due_date$"
+          },
+          {
+            "field": "agent_safe.action.resource",
+            "operator": "MATCHES",
+            "value": "^jira:e207942a-9edf-4952-b945-2ed6ed3707a7:10001$"
+          },
+          {
+            "field": "agent_safe.action.parameters.cloudId",
+            "operator": "MATCHES",
+            "value": "^e207942a-9edf-4952-b945-2ed6ed3707a7$"
+          },
+          {
+            "field": "agent_safe.action.parameters.issueId",
+            "operator": "MATCHES",
+            "value": "^10001$"
+          },
+          {
+            "field": "agent_safe.action.parameters.expectedDueDate",
+            "operator": "MATCHES",
+            "value": "^2026-11-18$"
+          },
+          {
+            "field": "agent_safe.action.parameters.desiredDueDate",
+            "operator": "MATCHES",
+            "value": "^2026-11-19$"
+          },
+          {
+            "field": "agent_safe.actor.id",
+            "operator": "MATCHES",
+            "value": "^712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9$"
+          },
+          {
+            "field": "agent_safe.actor.type",
+            "operator": "MATCHES",
+            "value": "^atlassian_user$"
+          },
+          {
+            "field": "agent_safe.actor.runtime",
+            "operator": "MATCHES",
+            "value": "^promisory-forge$"
+          },
+          {
+            "field": "agent_safe.downstream_target.system",
+            "operator": "MATCHES",
+            "value": "^jira$"
+          },
+          {
+            "field": "agent_safe.downstream_target.operation",
+            "operator": "MATCHES",
+            "value": "^set_due_date$"
+          },
+          {
+            "field": "agent_safe.downstream_target.environment",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866$"
+          },
+          {
+            "field": "context.installation_id",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8$"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_APPROVE",
+        "severity": "routine"
+      },
+      "rationale": "DRAFT: one additional controlled recovery test on the same Promisory installation and KAN-2, from 18 to 19 November 2026. Activation needs an independent human checker. The test-only transport probe will reserve a durable one-use marker, forward one exact already-authorized Jira PUT, then suppress only its successful acknowledgement. Fresh native user access, owner authority, independent proposal review, the bound grant, claimed execution and read-only reconciliation remain required. Restore the original runtime policy binding after the test."
+    },
+    {
+      "rule_id": "reject_other_actions",
+      "name": "Reject every other execution action",
+      "decision_domain": "*",
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "EXISTS"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_REJECT",
+        "severity": "elevated"
+      },
+      "priority": 0,
+      "enabled": true,
+      "rationale": "This test policy grants no other action, principal, site, issue or date change."
+    }
+  ],
+  "metadata": {
+    "author": "promisory-policy-authoring",
+    "requires_approval": true,
+    "source": "promisory-dci-recovery-test-draft",
+    "change_ticket": "Exact 18-to-19 November recovery test approved by the human checker in call_6hHzX1BGUJM5Xol2KwWDPAJY:0: Approve this recovery test and policy. Includes one deliberately suppressed acknowledgement, restart/reconciliation and scoped cleanup; expiry unchanged.",
+    "approved_by": "Festus Jejelowo"
+  }
+}

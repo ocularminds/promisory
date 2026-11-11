@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.recovery-policy-metadata-repair.v1",
+  "recordedAt": "2026-11-11T04:41:48.174Z",
+  "field": "metadata.change_ticket",
+  "previousLength": 257,
+  "newLength": 154,
+  "maximumLength": 200,
+  "previousFileSha256": "93cf972771c136be785fd73d304d1dbfe1bb2434699e16e0e92d319429ec761c",
+  "approvedFileSha256": "d92bba844ff503900df5a547dcad3da3d2fa67372a61f914e2671d22b19393fb",
+  "rulesAndExpiryUnchanged": true,
+  "approvalReference": "call_6hHzX1BGUJM5Xol2KwWDPAJY:0",
+  "fullProtocolSchemaValidated": true
+}

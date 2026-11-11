@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "promisory.remote-runtime-check.v1",
+  "observedAt": "2026-11-11T00:05:56.698Z",
+  "mode": "LOCAL_COMPILED_SERVER_PRODUCTION_DEPENDENCIES",
+  "node": "v22.23.4",
+  "sourceSha256": "2d5e8214df5a9b0306f700359d3dc16bcb59dc417bc353c8b8716f1aa9e77d31",
+  "productionPackages": 73,
+  "containerImageBuilt": false,
+  "noExternalCredentials": true,
+  "noExternalWrite": true,
+  "results": [
+    {
+      "case": "health",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "publicHealth": {
+        "status": "ok"
+      }
+    },
+    {
+      "case": "unauthenticated-apply",
+      "status": 400,
+      "expected": 400,
+      "passed": true
+    },
+    {
+      "case": "unauthenticated-reconcile",
+      "status": 400,
+      "expected": 400,
+      "passed": true
+    },
+    {
+      "case": "unknown-route",
+      "status": 404,
+      "expected": 404,
+      "passed": true
+    },
+    {
+      "case": "oversized-body",
+      "status": 413,
+      "expected": 413,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

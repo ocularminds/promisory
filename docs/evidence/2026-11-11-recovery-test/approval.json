@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "promisory.recovery-test-approval.v1",
+  "recordedAt": "2026-11-11T04:38:02.508Z",
+  "approvalQuestionReference": "call_6hHzX1BGUJM5Xol2KwWDPAJY:0",
+  "approvalAnswer": "Approve this recovery test and policy",
+  "approvalSource": "Explicit user approval in Codex",
+  "approvedBy": "Festus Jejelowo",
+  "policyAuthor": "promisory-policy-authoring",
+  "approvalRequirementRetained": true,
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "policyPath": "docs/authority/promisory-dci-recovery-policy.approved.json",
+  "draftSha256": "61590396cf26069719e25a2fde662c730446f37bf04859232ba7797e4b047418",
+  "approvedFileSha256": "93cf972771c136be785fd73d304d1dbfe1bb2434699e16e0e92d319429ec761c",
+  "rulesUnchanged": true,
+  "expectedDueDate": "2026-11-18",
+  "desiredDueDate": "2026-11-19",
+  "expiresAt": "2026-11-12T00:00:00.000Z",
+  "controlledAcknowledgementLossApproved": true,
+  "ownedTestRestartAndCleanupApproved": true,
+  "newPaidResources": false,
+  "published": false
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "promisory.effect-binding-fix-preparation.v1",
+  "recordedAt": "2026-11-11T06:15:47.197Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "previousGeneration": 11,
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b",
+  "effectObserverId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+  "deploymentPatch": "release/effect-binding-fix/executor.deployment.patch.json",
+  "configPatch": "release/effect-binding-fix/executor.configmap.patch.json",
+  "expectedTemplateSha256": "9905e9a9b1ed3fcb30bca0dbc5b46f3b880abebf32246cd6cceee1902eade93a",
+  "expectedConfigDataSha256": "cf2ced1469f316f234f5508500513bbeb856dd1065472bacdc26d94ba2b8fa74",
+  "serverDryRunsPassed": true,
+  "policyAndProbesPreserved": true,
+  "claimFileCount": 1,
+  "resourcesApplied": false
+}

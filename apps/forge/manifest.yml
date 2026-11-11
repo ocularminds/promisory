@@ -1,0 +1,275 @@
+modules:
+  jira:globalPage:
+    - key: promisory-workspace
+      resource: workspace
+      resolver:
+        function: promisory-resolver
+      title: Promisory
+      icon: resource:brand;promisory-icon.svg
+  jira:projectPage:
+    - key: promisory-project
+      resource: workspace
+      resolver:
+        function: promisory-resolver
+      title: Promisory
+      icon: resource:brand;promisory-icon.svg
+  jira:issuePanel:
+    - key: promisory-impact-panel
+      resource: workspace
+      resolver:
+        function: promisory-resolver
+      title: Commitment impact
+      icon: resource:brand;promisory-icon.svg
+  jira:adminPage:
+    - key: promisory-settings
+      resource: workspace
+      resolver:
+        function: promisory-resolver
+      title: Promisory connections
+  macro:
+    - key: promisory-lifecycle
+      resource: workspace
+      resolver:
+        function: promisory-resolver
+      title: Promisory commitments
+      description: Permission-aware commitment, requirement, and readiness context for
+        this page.
+      layout: block
+  rovo:agent:
+    - key: promisory-agent
+      name: Promisory
+      description: Connect commitments to work, responsible people, and verifiable outcomes.
+      icon: resource:brand;promisory-icon.svg
+      prompt: resource:agent;prompt.txt
+      conversationStarters:
+        - What threatens our project commitments?
+        - Which requirements does this bug affect?
+        - What evidence is missing for release readiness?
+      actions:
+        - promisory-get-context
+        - promisory-trace-impact
+        - promisory-responsible-people
+        - promisory-lifecycle-context
+        - promisory-requirement-impact
+        - promisory-gate-readiness
+        - promisory-fulfillment
+        - promisory-my-reviews
+        - promisory-propose
+        - promisory-recovery
+  action:
+    - key: promisory-get-context
+      name: get context
+      function: rovo-get-context
+      actionVerb: GET
+      description: Get the current authorized agreement and diagnostic evidence.
+      inputs: &a1
+        projectId:
+          title: Stable numeric Jira project ID
+          type: string
+          required: true
+          description: Stable numeric Jira project ID
+        commitmentId:
+          title: Promisory commitment ID
+          type: string
+          required: false
+          description: Promisory commitment ID
+        workId:
+          title: Stable work ID from a previous tool result
+          type: string
+          required: false
+          description: Stable work ID from a previous tool result
+        requirementId:
+          title: Mapped requirement ID
+          type: string
+          required: false
+          description: Mapped requirement ID
+    - key: promisory-trace-impact
+      name: trace impact
+      function: rovo-trace-impact
+      actionVerb: GET
+      description: Trace confirmed work dependencies to commitments using the shared
+        impact engine.
+      inputs: *a1
+    - key: promisory-responsible-people
+      name: responsible people
+      function: rovo-responsible-people
+      actionVerb: GET
+      description: Read confirmed scoped owners and role bindings, never inferred
+        reporting lines.
+      inputs: *a1
+    - key: promisory-lifecycle-context
+      name: lifecycle context
+      function: rovo-lifecycle-context
+      actionVerb: GET
+      description: Read permitted initiative, lifecycle artifacts, requirements, and
+        readiness.
+      inputs: *a1
+    - key: promisory-requirement-impact
+      name: requirement impact
+      function: rovo-requirement-impact
+      actionVerb: GET
+      description: Read exact requirement versions and their confirmed work links.
+      inputs: *a1
+    - key: promisory-gate-readiness
+      name: gate readiness
+      function: rovo-gate-readiness
+      actionVerb: GET
+      description: Explain readiness and source drift. This does not approve a gate.
+      inputs: *a1
+    - key: promisory-fulfillment
+      name: fulfillment
+      function: rovo-fulfillment
+      actionVerb: GET
+      description: Read versioned acceptance conditions and verified or unknown outcomes.
+      inputs: *a1
+    - key: promisory-my-reviews
+      name: my reviews
+      function: rovo-my-reviews
+      actionVerb: GET
+      description: Read the current user’s permitted review context.
+      inputs: *a1
+    - key: promisory-propose
+      function: rovo-propose
+      actionVerb: CREATE
+      name: Propose a commitment
+      description: Only on explicit user intent, save an unconfirmed candidate from
+        accessible Jira work. No external effect.
+      inputs:
+        projectId:
+          title: Stable Jira project ID
+          type: string
+          required: true
+          description: Stable Jira project ID
+        issueId:
+          title: Stable Jira issue ID
+          type: string
+          required: true
+          description: Stable Jira issue ID
+        title:
+          title: Candidate commitment title
+          type: string
+          required: true
+          description: Candidate commitment title
+    - key: promisory-recovery
+      function: rovo-recovery
+      actionVerb: CREATE
+      name: Draft a recovery proposal
+      description: Only on explicit user intent, prepare an exact internal due-date
+        proposal. Does not approve or execute.
+      inputs:
+        commitmentId:
+          title: Commitment ID
+          type: string
+          required: true
+          description: Commitment ID
+        expectedRevision:
+          title: Current aggregate revision
+          type: integer
+          required: true
+          description: Current aggregate revision
+        issueId:
+          title: Stable Jira issue ID
+          type: string
+          required: true
+          description: Stable Jira issue ID
+        desiredDueDate:
+          title: Desired Jira calendar date YYYY-MM-DD
+          type: string
+          required: true
+          description: Desired Jira calendar date YYYY-MM-DD
+  sql:
+    - key: promisory-db
+      engine: mysql
+  trigger:
+    - key: promisory-installed
+      function: installation
+      events:
+        - avi:forge:installed:app
+        - avi:forge:upgraded:app
+    - key: promisory-work-events
+      function: source-changed
+      events:
+        - avi:jira:created:issue
+        - avi:jira:updated:issue
+        - avi:jira:deleted:issue
+        - avi:confluence:updated:page
+  scheduledTrigger:
+    - key: promisory-reconcile
+      function: reconciliation
+      interval: hour
+  function:
+    - key: promisory-resolver
+      handler: index.handler
+    - key: installation
+      handler: events.installed
+    - key: source-changed
+      handler: events.sourceChanged
+    - key: reconciliation
+      handler: events.reconcileSchedule
+    - key: rovo-get-context
+      handler: rovo.getCommitmentContext
+    - key: rovo-trace-impact
+      handler: rovo.traceCommitmentImpact
+    - key: rovo-responsible-people
+      handler: rovo.findResponsiblePeople
+    - key: rovo-lifecycle-context
+      handler: rovo.getLifecycleContext
+    - key: rovo-requirement-impact
+      handler: rovo.traceRequirementImpact
+    - key: rovo-gate-readiness
+      handler: rovo.explainGateReadiness
+    - key: rovo-fulfillment
+      handler: rovo.explainFulfillment
+    - key: rovo-my-reviews
+      handler: rovo.listMyReviews
+    - key: rovo-propose
+      handler: rovo.proposeCommitment
+    - key: rovo-recovery
+      handler: rovo.draftRecoveryProposal
+resources:
+  - key: workspace
+    path: static/workspace/dist
+  - key: brand
+    path: resources/brand
+  - key: agent
+    path: resources/agent
+permissions:
+  scopes:
+    - read:jira-work
+    - read:jira-user
+    - write:jira-work
+    - read:page:confluence
+    - read:space:confluence
+    - read:confluence-content.summary
+    - storage:app
+    - read:graph:issue:jira
+    - read:graph:user:atlassian
+    - read:app-user-token
+  content:
+    styles:
+      - unsafe-inline
+remotes:
+  - key: promisory-executor
+    baseUrl: https://promisory-test.decionis.com
+    operations:
+      - compute
+      - storage
+    storage:
+      inScopeEUD: true
+    auth:
+      appUserToken:
+        enabled: true
+app:
+  id: ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae
+  runtime:
+    name: nodejs22.x
+    architecture: arm64
+    memoryMB: 256
+  compatibility:
+    jira:
+      required: true
+    confluence:
+      required: false
+  licensing:
+    enabled: false
+  description: Keep every commitment connected.

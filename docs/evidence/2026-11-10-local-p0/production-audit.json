@@ -1,0 +1,253 @@
+{
+  "recordedAt": "2026-11-10T13:52:33.869497+00:00",
+  "command": "npm audit --omit=dev --json",
+  "exitCode": 1,
+  "result": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {
+      "@decionis/agent-safe-pipeline": {
+        "name": "@decionis/agent-safe-pipeline",
+        "severity": "high",
+        "isDirect": true,
+        "via": [
+          "@decionis/presence-node"
+        ],
+        "effects": [],
+        "range": "*",
+        "nodes": [
+          "node_modules/@decionis/agent-safe-pipeline"
+        ],
+        "fixAvailable": false
+      },
+      "@decionis/presence-node": {
+        "name": "@decionis/presence-node",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          "@decionis/presence-types"
+        ],
+        "effects": [
+          "@decionis/agent-safe-pipeline"
+        ],
+        "range": "*",
+        "nodes": [
+          "node_modules/@decionis/presence-node"
+        ],
+        "fixAvailable": false
+      },
+      "@decionis/presence-types": {
+        "name": "@decionis/presence-types",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          "zod"
+        ],
+        "effects": [
+          "@decionis/presence-node"
+        ],
+        "range": "<=0.2.0",
+        "nodes": [
+          "node_modules/@decionis/presence-types"
+        ],
+        "fixAvailable": false
+      },
+      "@forge/api": {
+        "name": "@forge/api",
+        "severity": "moderate",
+        "isDirect": true,
+        "via": [
+          "@forge/manifest"
+        ],
+        "effects": [
+          "@forge/sql"
+        ],
+        "range": "6.1.1-experimental-3ed5db1 - 6.1.1-experimental-78c5fee || >=6.1.2-next.0",
+        "nodes": [
+          "node_modules/@forge/api"
+        ],
+        "fixAvailable": {
+          "name": "@forge/api",
+          "version": "6.1.1",
+          "isSemVerMajor": true
+        }
+      },
+      "@forge/bridge": {
+        "name": "@forge/bridge",
+        "severity": "moderate",
+        "isDirect": true,
+        "via": [
+          "@forge/manifest"
+        ],
+        "effects": [],
+        "range": "5.5.0-experimental-6de6b19 - 5.5.0-next.1 || >=5.6.0-next.0",
+        "nodes": [
+          "node_modules/@forge/bridge"
+        ],
+        "fixAvailable": {
+          "name": "@forge/bridge",
+          "version": "5.5.0",
+          "isSemVerMajor": true
+        }
+      },
+      "@forge/manifest": {
+        "name": "@forge/manifest",
+        "severity": "moderate",
+        "isDirect": true,
+        "via": [
+          "glob"
+        ],
+        "effects": [
+          "@forge/api",
+          "@forge/bridge"
+        ],
+        "range": ">=4.20.2-next.0",
+        "nodes": [
+          "node_modules/@forge/manifest"
+        ],
+        "fixAvailable": {
+          "name": "@forge/manifest",
+          "version": "4.20.1",
+          "isSemVerMajor": true
+        }
+      },
+      "@forge/sql": {
+        "name": "@forge/sql",
+        "severity": "moderate",
+        "isDirect": true,
+        "via": [
+          "@forge/api"
+        ],
+        "effects": [],
+        "range": ">=3.0.6-next.0",
+        "nodes": [
+          "node_modules/@forge/sql"
+        ],
+        "fixAvailable": {
+          "name": "@forge/sql",
+          "version": "3.0.5",
+          "isSemVerMajor": true
+        }
+      },
+      "glob": {
+        "name": "glob",
+        "severity": "moderate",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1244013,
+            "name": "glob",
+            "dependency": "glob",
+            "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+            "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-400"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            },
+            "range": ">=9.0.0 <=14.0.1"
+          },
+          "minimatch"
+        ],
+        "effects": [
+          "@forge/manifest"
+        ],
+        "range": "9.0.0 - 14.0.1",
+        "nodes": [
+          "node_modules/glob"
+        ],
+        "fixAvailable": {
+          "name": "@forge/manifest",
+          "version": "4.20.1",
+          "isSemVerMajor": true
+        }
+      },
+      "minimatch": {
+        "name": "minimatch",
+        "severity": "moderate",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1244623,
+            "name": "minimatch",
+            "dependency": "minimatch",
+            "title": "minimatch has potential denial of service via globparts amplification",
+            "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+            "severity": "moderate",
+            "cwe": [
+              "CWE-405"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            },
+            "range": ">=7.0.0 <11.0.1"
+          }
+        ],
+        "effects": [
+          "glob"
+        ],
+        "range": "7.0.0 - 11.0.0",
+        "nodes": [
+          "node_modules/minimatch"
+        ],
+        "fixAvailable": {
+          "name": "@forge/manifest",
+          "version": "4.20.1",
+          "isSemVerMajor": true
+        }
+      },
+      "zod": {
+        "name": "zod",
+        "severity": "high",
+        "isDirect": false,
+        "via": [
+          {
+            "source": 1243066,
+            "name": "zod",
+            "dependency": "zod",
+            "title": "Zod can exhaust memory while validating oversized constrained collections",
+            "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+            "severity": "high",
+            "cwe": [
+              "CWE-770"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            },
+            "range": "<4.6.6"
+          }
+        ],
+        "effects": [
+          "@decionis/presence-types"
+        ],
+        "range": "<4.6.6",
+        "nodes": [
+          "node_modules/@decionis/presence-types/node_modules/zod"
+        ],
+        "fixAvailable": false
+      }
+    },
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 6,
+        "high": 4,
+        "critical": 0,
+        "total": 10
+      },
+      "dependencies": {
+        "prod": 165,
+        "dev": 897,
+        "optional": 53,
+        "peer": 2,
+        "peerOptional": 0,
+        "total": 1061
+      }
+    }
+  }
+}

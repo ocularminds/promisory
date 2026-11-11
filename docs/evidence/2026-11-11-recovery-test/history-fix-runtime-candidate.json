@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "promisory.recovery-history-runtime.v1",
+  "recordedAt": "2026-11-11T05:38:00.466Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd",
+  "serverSha256": "a72c38f8ca6e426bc158210e0b3d320407d6fac7de6c921a8e3c0ab29caaa155",
+  "sourceSha256": "557b2cc44b123ec43b34facddaa35c07b1fde4df845a3af59a558f1d5d34dd59",
+  "buildRunId": "cj4b",
+  "buildSucceeded": true,
+  "registryDigestMatches": true,
+  "platform": "linux/amd64",
+  "nativeReceiptRule": "EXACT_OPERATION_TAG_STABLE_FIELD_ID_RAW_ISO_DATES"
+}
