@@ -1,0 +1,132 @@
+{
+  "protocol_version": "1.0",
+  "bundle_id": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "policy_id": "promisory-test-jira-due-date",
+  "org_id": "124e5022-6eee-4717-ab65-a03899db6237",
+  "version": "promisory-test-v2",
+  "effective_from": "2026-11-10T00:00:00.000Z",
+  "effective_to": "2026-11-12T00:00:00.000Z",
+  "required_signals": [
+    "agent_safe.action.type",
+    "agent_safe.action.resource",
+    "agent_safe.action.parameters.cloudId",
+    "agent_safe.action.parameters.issueId",
+    "agent_safe.action.parameters.expectedUpdatedAt",
+    "agent_safe.action.parameters.expectedDueDate",
+    "agent_safe.action.parameters.desiredDueDate",
+    "agent_safe.action.parameters.operationId",
+    "agent_safe.actor.id",
+    "agent_safe.downstream_target.environment",
+    "context.installation_id",
+    "context.proposal_hash"
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_exact_promisory_test_effect",
+      "name": "Allow only the named Promisory test due-date change",
+      "decision_domain": "*",
+      "priority": 100,
+      "enabled": true,
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "EQ",
+            "value": "jira.issue.set_due_date"
+          },
+          {
+            "field": "agent_safe.action.resource",
+            "operator": "EQ",
+            "value": "jira:e207942a-9edf-4952-b945-2ed6ed3707a7:10001"
+          },
+          {
+            "field": "agent_safe.action.parameters.cloudId",
+            "operator": "EQ",
+            "value": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+          },
+          {
+            "field": "agent_safe.action.parameters.issueId",
+            "operator": "EQ",
+            "value": "10001"
+          },
+          {
+            "field": "agent_safe.action.parameters.expectedDueDate",
+            "operator": "EQ",
+            "value": "2026-11-12"
+          },
+          {
+            "field": "agent_safe.action.parameters.desiredDueDate",
+            "operator": "EQ",
+            "value": "2026-11-18"
+          },
+          {
+            "field": "agent_safe.actor.id",
+            "operator": "EQ",
+            "value": "712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9"
+          },
+          {
+            "field": "agent_safe.actor.type",
+            "operator": "EQ",
+            "value": "atlassian_user"
+          },
+          {
+            "field": "agent_safe.actor.runtime",
+            "operator": "EQ",
+            "value": "promisory-forge"
+          },
+          {
+            "field": "agent_safe.downstream_target.system",
+            "operator": "EQ",
+            "value": "jira"
+          },
+          {
+            "field": "agent_safe.downstream_target.operation",
+            "operator": "EQ",
+            "value": "set_due_date"
+          },
+          {
+            "field": "agent_safe.downstream_target.environment",
+            "operator": "EQ",
+            "value": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866"
+          },
+          {
+            "field": "context.installation_id",
+            "operator": "EQ",
+            "value": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_APPROVE",
+        "severity": "routine"
+      },
+      "rationale": "Dedicated DCI tenant test policy for the exact Promisory development installation and named Jira date change. Approval is required before activation. Promisory separately checks current source access, owner authority and exact independent review; AgentSafe must obtain and claim a supported bound grant before one narrow Jira PUT."
+    },
+    {
+      "rule_id": "reject_other_actions",
+      "name": "Reject every other execution action",
+      "decision_domain": "*",
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "EXISTS"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_REJECT",
+        "severity": "elevated"
+      },
+      "priority": 0,
+      "enabled": true,
+      "rationale": "This test policy grants no other action, principal, site, issue or date change."
+    }
+  ],
+  "metadata": {
+    "author": "promisory-policy-authoring",
+    "requires_approval": true,
+    "source": "promisory-dci-test-setup",
+    "approved_by": "Festus Jejelowo"
+  }
+}

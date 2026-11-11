@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "promisory.execution-runtime.v1",
+  "recordedAt": "2026-11-11T01:07:48.021Z",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "false",
+  "shareIntent": "true",
+  "shareSnapshot": "true",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "serverSha256": "2d5e8214df5a9b0306f700359d3dc16bcb59dc417bc353c8b8716f1aa9e77d31",
+  "operationRecords": 0,
+  "claimRecords": 0,
+  "localCompiledSha256": "2d5e8214df5a9b0306f700359d3dc16bcb59dc417bc353c8b8716f1aa9e77d31",
+  "compiledImageMatchesLocal": true,
+  "publicHealthStatus": 200,
+  "unauthenticatedApplyStatus": 400,
+  "executionReady": false,
+  "hold": "AUTHENTICATED_FORGE_INVOCATION_NOT_YET_VERIFIED",
+  "passed": true
+}

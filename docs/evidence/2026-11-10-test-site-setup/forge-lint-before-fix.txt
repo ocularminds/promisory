@@ -1,0 +1,12 @@
+
+> promisory@0.1.0 forge:lint
+> cd apps/forge && forge lint
+
+The linter checks the app code for known errors. Warnings are issues you should fix, but they won't stop the app code from building.
+Press Ctrl+C to cancel.
+
+apps/forge/src/remote.ts
+33:40   error    The remote key "promisory-executor" does not exist in the "remotes" section of your app's manifest.yml file  missing-remote-key
+
+X 1 issue (1 error, 0 warnings, 0 approvals)
+  Issue found is not automatically fixable with forge lint.

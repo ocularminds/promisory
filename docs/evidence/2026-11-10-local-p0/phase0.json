@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-11-10T14:11:17.702Z",
+  "mode": "LOCAL_PREREQUISITE_CHECK_ONLY",
+  "versions": {
+    "node": "22.23.4",
+    "npm": "10.9.9",
+    "forgeCli": "15.1.0",
+    "@forge/api": "8.5.0",
+    "@forge/bridge": "7.3.0",
+    "@forge/resolver": "2.0.2",
+    "@forge/sql": "4.0.10",
+    "@forge/manifest": "13.9.0",
+    "@decionis/agent-safe-pipeline": "0.5.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "forgeAuthentication": "AUTHENTICATED_CLI_ONLY",
+  "appIdentity": "NOT_REGISTERED",
+  "credentialsPresentOnly": {
+    "ATLASSIAN_SITE": false,
+    "PROMISORY_APP_ID": false,
+    "PROMISORY_AUTHORITY_URL": false,
+    "PROMISORY_AUTHORITY_API_KEY": false,
+    "PROMISORY_REMOTE_SIGNING_KEY": false,
+    "PROMISORY_INSTALLATION_ID": false
+  },
+  "capabilities": [
+    {
+      "capability": "Jira current-user read and due-date permission",
+      "status": "NOT_RUN",
+      "prerequisite": "A selected Jira test site and installed Promisory identity are required."
+    },
+    {
+      "capability": "Confluence connected page access",
+      "status": "NOT_RUN",
+      "prerequisite": "Connect Confluence and use two users with different page access."
+    },
+    {
+      "capability": "Teamwork Graph current-user query",
+      "status": "NOT_RUN",
+      "prerequisite": "Install the declared graph scopes and verify result, denial, partial and unavailable cases."
+    },
+    {
+      "capability": "Rovo agent and shared actions",
+      "status": "NOT_RUN",
+      "prerequisite": "Enable Rovo in the selected site and validate installed action context."
+    },
+    {
+      "capability": "Forge current-user remote invocation",
+      "status": "NOT_RUN",
+      "prerequisite": "An HTTPS remote and verified FIT installation binding are required."
+    },
+    {
+      "capability": "Decionis authority and bound grant",
+      "status": "NOT_RUN",
+      "prerequisite": "A test organization, authority credentials and configured policy are required; local SDK contracts are separate evidence."
+    },
+    {
+      "capability": "AgentSafe enforced dispatch and reconciliation",
+      "status": "NOT_RUN",
+      "prerequisite": "Verify enforcement and trusted effect-observer provenance on the configured authority before enabling writes."
+    },
+    {
+      "capability": "Marketplace and judge installation",
+      "status": "NOT_RUN",
+      "prerequisite": "Register distinct identities and verify current multi-app distribution eligibility and installation URLs."
+    }
+  ],
+  "limitations": [
+    "CLI authentication is not tenant installation.",
+    "No credential, account email, OAuth token, API response body, or local signing material is included.",
+    "Offline manifest and fixture tests are recorded separately from live evidence."
+  ]
+}

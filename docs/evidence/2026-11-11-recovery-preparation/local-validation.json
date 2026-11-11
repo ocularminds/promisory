@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "promisory.recovery-preparation-validation.v1",
+  "recordedAt": "2026-11-11T04:31:40.565Z",
+  "status": "LOCAL_AND_PREPARATION_CHECKS_PASSED",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "tests": {
+    "command": "npm test",
+    "exitCode": 0,
+    "passed": 122,
+    "files": 17,
+    "newSyntheticProbeTests": 6
+  },
+  "compiledProbe": {
+    "syntaxCheck": true,
+    "inactiveModuleImport": true,
+    "inactiveTransportUnchanged": true
+  },
+  "liveRuntimeDependencyCheck": {
+    "readOnly": true,
+    "node": "v22.23.4",
+    "zodStrictObject": true,
+    "zodIsoDate": true,
+    "probeEnabled": false
+  },
+  "serverDryRunsPassed": 3,
+  "probeDeployed": false,
+  "recoveryPolicyApproved": false,
+  "recoveryPolicyPublished": false,
+  "liveRecoveryVerified": false,
+  "applicationCodeChanged": false,
+  "newPaidResources": false
+}

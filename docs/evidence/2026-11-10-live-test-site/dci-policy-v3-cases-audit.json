@@ -1,0 +1,152 @@
+{
+  "mode": "STRICT_AUDIT_OF_RECORDED_LIVE_POLICY_CASES",
+  "observedAt": "2026-11-11T00:07:04.494Z",
+  "source": "dci-policy-v3-shadow-cases.json",
+  "checks": [
+    {
+      "case": "approved-effect",
+      "expected": "ALLOW",
+      "actual": "ALLOW",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-date-same-year",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-existing-date",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-issue-same-numeric-prefix",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-principal-same-numeric-prefix",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "secondary-test-account",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-action",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-resource",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-cloud",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-actor-type",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-runtime",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-system",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-operation",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-environment",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "different-installation",
+      "expected": "BLOCK",
+      "actual": "BLOCK",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "missing-source-version",
+      "expected": "ESCALATE",
+      "actual": "ESCALATE",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "missing-operation-id",
+      "expected": "ESCALATE",
+      "actual": "ESCALATE",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    },
+    {
+      "case": "missing-proposal-hash",
+      "expected": "ESCALATE",
+      "actual": "ESCALATE",
+      "httpStatus": 200,
+      "policyVersion": "promisory-test-v3",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

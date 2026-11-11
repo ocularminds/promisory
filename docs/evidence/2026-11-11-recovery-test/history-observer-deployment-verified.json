@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.recovery-history-deployment-verification.v1",
+  "recordedAt": "2026-11-11T05:21:18.137Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "podReplaced": true,
+  "expectedGeneration": true,
+  "observerPodMatches": true,
+  "sameImage": true,
+  "sameStorage": true,
+  "sameMarker": true,
+  "sameOperationAndGrant": true,
+  "sameOperationCount": true,
+  "claimRetained": true,
+  "pendingOperationRetained": true,
+  "originalProbeUnchanged": true,
+  "observerHashMatches": true,
+  "passed": true,
+  "actionInvokedByCollector": false,
+  "lostResponseRecoveryVerified": false
+}

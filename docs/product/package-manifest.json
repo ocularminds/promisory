@@ -1,0 +1,292 @@
+{
+  "package": "Promisory product and implementation package",
+  "version": "1.1",
+  "preparedDate": "2026-11-10",
+  "files": [
+    {
+      "path": "01-technical-specification.md",
+      "bytes": 47842,
+      "sha256": "572f4e5dd8e13a0da08b50862687455051cb6d270bcab1e6bbc252694af4a062"
+    },
+    {
+      "path": "02-brand-and-ux-system.md",
+      "bytes": 16703,
+      "sha256": "8215d7bc0bca7fa17708062f83bb0e5d83157871d976d2053e6f061035507422"
+    },
+    {
+      "path": "03-implementation-plan.md",
+      "bytes": 21468,
+      "sha256": "7154a5981dd86fec9909e75489f24b7fc178f61910cdf2538caff46b71fab4ef"
+    },
+    {
+      "path": "04-codex-implementation-instructions.md",
+      "bytes": 16069,
+      "sha256": "dc3993da1db6d506b92be8ec45ae623f2a43c4ca864cbdeb8a465c0eccb6434a"
+    },
+    {
+      "path": "05-sources-and-decisions.md",
+      "bytes": 11453,
+      "sha256": "cca587c2c9b6226b88f12eb8ef580307eba1aa01d6a072236ee6867c1955ebaf"
+    },
+    {
+      "path": "06-product-lifecycle-and-traceability.md",
+      "bytes": 15950,
+      "sha256": "360b47daf9ab0cfcfe9b296c10493b4604983445811d1192041ed1ad36353009"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3826,
+      "sha256": "d6a75aa9c21bb76a9c9c31fa2d1c95febad42279698d83abd0c9fe8e6b42918c"
+    },
+    {
+      "path": "brand/brand-overview.png",
+      "bytes": 156713,
+      "sha256": "00b249a987ab14abfeeaa621c5e525881701550e1b72a4aee32333c22ae22bcf"
+    },
+    {
+      "path": "brand/contrast-report.json",
+      "bytes": 2601,
+      "sha256": "547075bfe1a125ac2e384d2dbf6868ee5bcb4c863039c04227006c493e0ab2cd"
+    },
+    {
+      "path": "brand/fonts/IBMPlexMono-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "brand/fonts/IBMPlexMono-Regular.ttf",
+      "bytes": 135580,
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+    },
+    {
+      "path": "brand/fonts/IBMPlexMono-Regular.woff2",
+      "bytes": 39172,
+      "sha256": "4732ea624a65569a8345a638202e4d29dc48beb0b4c7918243f19f209420ec18"
+    },
+    {
+      "path": "brand/fonts/Inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "brand/fonts/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "brand/fonts/Inter-Variable.woff2",
+      "bytes": 350364,
+      "sha256": "37afcdf38540bfe8145cfb69b845fb07346364c590837cc4388f2023416067dd"
+    },
+    {
+      "path": "brand/fonts/Manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "brand/fonts/Manrope-Variable.ttf",
+      "bytes": 164700,
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"
+    },
+    {
+      "path": "brand/fonts/Manrope-Variable.woff2",
+      "bytes": 53820,
+      "sha256": "971ec0a330f549a614fad8358ff68d959e444ad0dfe291cab3e52be4c0c422b7"
+    },
+    {
+      "path": "brand/promisory-icon-256.png",
+      "bytes": 6251,
+      "sha256": "f9bbb8851421983550c72a96a3c937fa376031874a6480a20d48bbe797ed7b73"
+    },
+    {
+      "path": "brand/promisory-icon-512.png",
+      "bytes": 15853,
+      "sha256": "83dad2d7d548f90a5647157f616f12ae3767538c337ecd38feec0fff681de6eb"
+    },
+    {
+      "path": "brand/promisory-icon.svg",
+      "bytes": 504,
+      "sha256": "45f0313d1329e2527f2620764f211176900e6ecdd1eb7f0b2c1b650f3cc14b21"
+    },
+    {
+      "path": "brand/promisory-logo-preview.png",
+      "bytes": 25277,
+      "sha256": "b994cae6e359b093ff46eec34a2a6efb2ecd3503905c29deb18668dfc9a3f2a9"
+    },
+    {
+      "path": "brand/promisory-logo-reversed.svg",
+      "bytes": 11399,
+      "sha256": "a16fde2ce04c2aed31930ef250ec0a3637f3a93b3f87509d000fc318d5420560"
+    },
+    {
+      "path": "brand/promisory-logo.svg",
+      "bytes": 11399,
+      "sha256": "14bf363be6912a37ab9bd286d8a9c6cc4af6ea912cd39310580a06815a0a38f5"
+    },
+    {
+      "path": "brand/promisory-mark-1024.png",
+      "bytes": 25113,
+      "sha256": "d4916509561bf0ebaf8b11849aa668327d2fc1c210bbce504d02dcf2afde7117"
+    },
+    {
+      "path": "brand/promisory-mark-mono.svg",
+      "bytes": 435,
+      "sha256": "e85d5f33ca2d41b2e2c543352601c33ab8af75c66d1a725005742548a6bf9882"
+    },
+    {
+      "path": "brand/promisory-mark.svg",
+      "bytes": 439,
+      "sha256": "c5ff8e78c444ab2b4d01c619cd7607d7e94e51298b43c8f2666ec5a9a37cb475"
+    },
+    {
+      "path": "brand/tokens.css",
+      "bytes": 1116,
+      "sha256": "f931ca96abd030aa12393ecc7ca4ebeeaf73ebd2ecea623433a3a29a03061585"
+    },
+    {
+      "path": "brand/tokens.json",
+      "bytes": 1353,
+      "sha256": "f5e0ff44fecc678ce99e2a6744a07411656088d5dd17d488eced541a51769c3e"
+    },
+    {
+      "path": "brand.css",
+      "bytes": 7845,
+      "sha256": "bb44d70764745a292be42a156999e2da74c2a99f23d3fd3c793b9411b6f3f52e"
+    },
+    {
+      "path": "brand.html",
+      "bytes": 6085,
+      "sha256": "a8d10b0c4e37ff022f24733108c5a2310d454f33bd9fc5511cacf2e3718a8b0e"
+    },
+    {
+      "path": "contracts/demo-scenario.json",
+      "bytes": 11560,
+      "sha256": "3758b51dd7b516b40e2595f0a6e932e738cdef57147768ff7ebce016e2bbb3ae"
+    },
+    {
+      "path": "contracts/domain-contracts.ts",
+      "bytes": 8801,
+      "sha256": "05125ed17a5127e61b1f782d528ad7f110a151416ee6d6fca271b18325431c73"
+    },
+    {
+      "path": "contracts/source-audit.json",
+      "bytes": 2490,
+      "sha256": "ca7969af7444488ec27ec232cec29979694ad086169ca441aba665e2674abd64"
+    },
+    {
+      "path": "diagrams/architecture.png",
+      "bytes": 107508,
+      "sha256": "2e7ed7b64a3c5164f0d4446883080c61c71662b3be15fcc4e640410d38e4403f"
+    },
+    {
+      "path": "diagrams/architecture.svg",
+      "bytes": 5809,
+      "sha256": "da864057eddc4faa1195e6d3c863c428e971abc57d7a11035ff3282b0923f2f8"
+    },
+    {
+      "path": "diagrams/hierarchy-and-impact.png",
+      "bytes": 152888,
+      "sha256": "ede9377b3bbd73fca57147bc538c39e14e8fc3e8cb6a2052cea0032c10b6c9cf"
+    },
+    {
+      "path": "diagrams/hierarchy-and-impact.svg",
+      "bytes": 8570,
+      "sha256": "84418e70ab3b19c935f459ce7c1126b385d8a5f4ba2132e17c21314737cc70d9"
+    },
+    {
+      "path": "diagrams/product-lifecycle.png",
+      "bytes": 172317,
+      "sha256": "6cf39fb444d30d70e10c8cd6aab8318b9e32d75f631b31b2eb0b9adfc81ec18a"
+    },
+    {
+      "path": "diagrams/product-lifecycle.svg",
+      "bytes": 9443,
+      "sha256": "5c2eb668e34fbb385c4329c95aef243f0e82f6067b7b0067bb883815eceb905e"
+    },
+    {
+      "path": "index.html",
+      "bytes": 162235,
+      "sha256": "c9cc8740ed45cd10569fb0612a5a9fcdc0bda0f8e10a897e0cebc173f644640f"
+    },
+    {
+      "path": "previews/lifecycle.png",
+      "bytes": 291842,
+      "sha256": "95d52d8ff830308050e7c6a6f7b20e34dcdab1c03d798b9131b7142042882297"
+    },
+    {
+      "path": "previews/mobile.png",
+      "bytes": 165329,
+      "sha256": "314dd11a6e856efb5bd92513055abba69f102582be9528adf8a16fd22b635b77"
+    },
+    {
+      "path": "previews/package-viewer.png",
+      "bytes": 160093,
+      "sha256": "b00fb68d3dd48f73210032585957695df5a91ea09ae2857506fb83a52cd24623"
+    },
+    {
+      "path": "previews/requirement-drift.png",
+      "bytes": 291993,
+      "sha256": "3a63fbaa3fc0652b5a2c03c39bd430dd4e7cec765c2630a7b235608c1d1307fc"
+    },
+    {
+      "path": "previews/technical-reader.png",
+      "bytes": 187514,
+      "sha256": "fb5fbc5f0da025ff692d1ee57a303fd4b399fe048052499d33f3935bb933102d"
+    },
+    {
+      "path": "previews/work-map.png",
+      "bytes": 313541,
+      "sha256": "7c39cf0bf23b0bb17286152bdf344ac96ccb5f4c4a9689c17b3cf6d910d88660"
+    },
+    {
+      "path": "previews/workspace.png",
+      "bytes": 208579,
+      "sha256": "91b5dbf745f41f58ea26bf384545528bea314b8ea3050e2b2972f1e9cc52dfa3"
+    },
+    {
+      "path": "prototype-data.js",
+      "bytes": 11645,
+      "sha256": "38f1510b858fe42d4fa6d2a6ad09e647a1c9aa1671a88de0e96a4ef647d2d6b2"
+    },
+    {
+      "path": "prototype.css",
+      "bytes": 26041,
+      "sha256": "91e552544b45865cd45124a92d574a29e17acd2b9f93343879ff80e02f440b56"
+    },
+    {
+      "path": "prototype.html",
+      "bytes": 7316,
+      "sha256": "ef2b8ec0262a95719e4b44a39290a6cbf4ce735e8ff6be096160f1ff7148f0e4"
+    },
+    {
+      "path": "prototype.js",
+      "bytes": 29634,
+      "sha256": "8051e24e7e950ed6417d5d0d33b058926f796d62b81d9f737a76e6e7b27bd862"
+    },
+    {
+      "path": "templates/AGENTS.md",
+      "bytes": 3454,
+      "sha256": "b9578954d41701a57d47ca7102b7b39a938a525f46d4fe78d4f1c265728890ad"
+    },
+    {
+      "path": "templates/implementation-prompt.md",
+      "bytes": 3010,
+      "sha256": "13cc84587b41e9258cd150354a112fbdb28d72966e0030ee1b02b675f2d83e22"
+    },
+    {
+      "path": "validation-report.md",
+      "bytes": 4474,
+      "sha256": "a464c3a8ef016dbc603aa354712b2ae96709e613b9c67401a60b382b3505e066"
+    },
+    {
+      "path": "viewer.css",
+      "bytes": 10971,
+      "sha256": "6823863dc1dc72d929361743011a0a14220a5afa60620160f488b3f1dc05db0b"
+    },
+    {
+      "path": "viewer.js",
+      "bytes": 1048,
+      "sha256": "fec75f893e18e0f75d1f75bc75dfb1066cd8a1a51b161ca6e911bdd65432f55b"
+    }
+  ]
+}

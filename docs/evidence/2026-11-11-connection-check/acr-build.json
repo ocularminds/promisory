@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "promisory.acr-build.v1",
+  "recordedAt": "2026-11-11T01:46:44.201Z",
+  "registry": "decionisacr",
+  "repository": "promisory/executor",
+  "tag": "962d3e4369a5",
+  "sourceSha256": "962d3e4369a52e9e20f732b1827460b8489dcf387ff7dd382d9f19d311f48cba",
+  "archiveSha256": "18574fc62fec8d9e4e072924bb20f28bd03611780aceebf89b0c5e0e5bbeb163",
+  "initialCliRunIdUnavailable": true,
+  "buildRecoveredWithoutResubmission": true,
+  "createTime": "2026-11-11T01:44:37.525358+00:00",
+  "finishTime": "2026-11-11T01:46:28.896623+00:00",
+  "outputImages": [
+    {
+      "digest": "sha256:838f91d36f0fc450ee4214bccd6abf8d991d0c39d2cf5426fa069e5277f6a062",
+      "registry": "decionisacr.azurecr.io",
+      "repository": "promisory/executor",
+      "tag": "962d3e4369a5"
+    }
+  ],
+  "platform": {
+    "architecture": "amd64",
+    "os": "linux",
+    "variant": null
+  },
+  "runId": "cj48",
+  "status": "Succeeded",
+  "sourceTagVerified": true,
+  "imageDigest": "sha256:838f91d36f0fc450ee4214bccd6abf8d991d0c39d2cf5426fa069e5277f6a062",
+  "registryReadback": {
+    "recordedAt": "2026-11-11T01:50:17.027Z",
+    "command": "az acr manifest show-metadata",
+    "digest": "sha256:838f91d36f0fc450ee4214bccd6abf8d991d0c39d2cf5426fa069e5277f6a062",
+    "platformAttributes": "NOT_EXPOSED_BY_METADATA_RESPONSE"
+  },
+  "registryDigestVerified": true,
+  "buildPlatformVerified": true
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "e45ab236-9b35-4dda-84a6-18224679fb5f"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "29818620"
+  },
+  {
+    "op": "test",
+    "path": "/data/PROMISORY_AUTHORITY_POLICY_ID",
+    "value": "436f37a4-311f-4dd5-aa07-5a197ed277ed"
+  },
+  {
+    "op": "add",
+    "path": "/data/PROMISORY_EFFECT_OBSERVER_ID",
+    "value": "c97a5168-1325-487c-94e8-e3d4b06adffd"
+  }
+]

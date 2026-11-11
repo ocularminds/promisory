@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "promisory.recovery-history-fix-deployment-start.v1",
+  "recordedAt": "2026-11-11T05:38:55.228Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd",
+  "previousGeneration": 10
+}

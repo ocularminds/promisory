@@ -1,0 +1,2 @@
+invocation: 277a73b4-0707-47b3-a82b-f8ff067038da
+ERROR   19:15:02.144Z {"event":"PROMISORY_INVOCATION_FAILURE","operation":"workspace.read","kind":"ForgeSQLError","code":"SQL_EXECUTION_ERROR","sqlCode":"ER_WRONG_ARGUMENTS","sqlErrno":1210,"sqlOperation":"select","locations":["index.js:33:1"]}

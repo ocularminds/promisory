@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "promisory.installation-reapply.v1",
+  "recordedAt": "2026-11-11T02:07:43.268Z",
+  "requestedAction": "Reinstall",
+  "attempt": "Forge install --upgrade on the existing development installation",
+  "site": "decionis-promisory.atlassian.net",
+  "product": "Jira",
+  "majorVersion": 3,
+  "cliExitCode": 0,
+  "cliResult": "Site is already at the latest version",
+  "installationChanged": false,
+  "uninstallAttempted": false,
+  "policyBindingChanged": false,
+  "awaitingClarification": "Whether reinstall is a screen message or a requested full reset; a full reinstall changes the installation identity and detaches current scoped records."
+}

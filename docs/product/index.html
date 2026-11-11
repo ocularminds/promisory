@@ -1,0 +1,2606 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Promisory · Product package</title><link rel="icon" href="brand/promisory-icon.svg?v=1.1" type="image/svg+xml"><link rel="stylesheet" href="brand/tokens.css?v=1.1"><link rel="stylesheet" href="viewer.css?v=1.1"></head>
+<body><a class="skip" href="#package-main">Skip to document</a><div class="package-shell"><aside class="package-nav"><a href="#start" class="package-logo" aria-label="Promisory package overview"><img src="brand/promisory-logo.svg?v=1.1" alt="Promisory"></a><p class="nav-caption">PRODUCT & IMPLEMENTATION</p><nav aria-label="Documents"><a href="#start" data-nav="start"><span>◎</span>Start here</a><a href="#technical" data-nav="technical"><span>01</span>Technical blueprint</a><a href="#brand" data-nav="brand"><span>02</span>Brand & UX system</a><a href="#plan" data-nav="plan"><span>03</span>Implementation plan</a><a href="#codex" data-nav="codex"><span>04</span>Codex handoff</a><a href="#lifecycle" data-nav="lifecycle"><span>05</span>Full product lifecycle</a><a href="#sources" data-nav="sources"><span>06</span>Sources & decisions</a></nav><div class="nav-tools"><a href="prototype.html">Interactive UX preview ↗</a><a href="brand.html">Visual brand system ↗</a><a href="Promisory-Product-Package.zip" download>Download complete package ↓</a></div><p class="nav-note"><strong>Codegeist 2026</strong>Prepared 10 November 2026.<br>Blueprint and design prototype.<br>Built around the selected name.</p></aside>
+<main class="package-main" id="package-main" tabindex="-1"><section data-pane id="start"><div class="edition"><span>CODEGEIST 2026 / PRODUCT BLUEPRINT</span><a href="#sources">Sources checked · 10 Nov 2026 ↗</a></div><div class="hero"><div><span class="overline">PROMISORY</span><h1>Keep every commitment connected.</h1><p>Connect product intent, Confluence requirements, delivery work, and accountable people—then verify the outcome that was promised.</p><div class="hero-actions"><a class="btn primary" href="prototype.html">Try the UX preview <span>↗</span></a><a class="btn secondary" href="Promisory-Product-Package.zip" download>Download the package <span>↓</span></a></div></div><img class="hero-mark" src="brand/promisory-icon.svg?v=1.1" alt="Promisory Connected Loop app mark"></div>
+<div class="package-facts" aria-label="Package scope"><div><strong>35</strong><span>documented capabilities</span></div><div><strong>10</strong><span>connected lifecycle phases</span></div><div><strong>6</strong><span>weeks in the proposed plan</span></div></div>
+<p class="section-label">THE FOUR DELIVERABLES</p><div class="deliverables">
+<a class="deliverable" href="#technical"><span class="number">01 <span>↗</span></span><h2>Technical blueprint</h2><p>Features, workflows, roles, expected outcomes, data contracts, Forge architecture, Rovo, Teamwork Graph, and controlled actions.</p></a>
+<a class="deliverable" href="#brand"><span class="number">02 <span>↗</span></span><h2>Brand & UX system</h2><p>An original vector identity, accessible palette, local fonts, semantic tokens, controls, and a responsive interaction reference.</p></a>
+<a class="deliverable" href="#plan"><span class="number">03 <span>↗</span></span><h2>Implementation plan</h2><p>Delivery phases, acceptance gates, a bounded first workflow, pilot measures, and Marketplace and judging evidence.</p></a>
+<a class="deliverable" href="#codex"><span class="number">04 <span>↗</span></span><h2>Codex handoff</h2><p>Ready-to-use implementation instructions, a bootstrap prompt, repository guidance, and concrete completion criteria.</p></a>
+</div>
+<section class="lifecycle-feature"><div><p class="section-label">EXPANDED PRODUCT LIFECYCLE</p><h2>From product direction<br>to evidence of delivery.</h2><p>Include the work above epics and the learning after release. Connect discovery, requirements, stories, tasks, bugs, and readiness without inventing Jira parent relationships.</p><a href="#lifecycle">Read the lifecycle and Confluence blueprint →</a></div><div class="lifecycle-path" aria-label="Planning and delivery trace"><span>Vision / goal / initiative</span><i aria-hidden="true">↓</i><span>Confluence PRD / requirements</span><i aria-hidden="true">↓</i><span>Epic / story / task / bug</span><i aria-hidden="true">↓</i><span class="current">Readiness / release / verified outcome</span></div></section>
+<figure class="visual-preview"><figcaption><span>The proposed Promisory identity</span><a href="brand.html">Open the visual system ↗</a></figcaption><a href="brand.html"><img src="brand/brand-overview.png?v=1.1" alt="Promisory logo, azure blue and navy palette, typography, input states, and experience principles" loading="lazy"></a></figure>
+<footer class="package-footer"><p>The package includes editable logos, packaged fonts and licenses, design tokens, diagrams, proposed contracts, example data, and Codex templates. The prototype uses local fictional data; live Forge, Rovo, graph, policy, and Marketplace behavior remain implementation work.</p><a href="validation-report.md">Package validation</a><a href="templates/implementation-prompt.md" download>Codex bootstrap prompt ↓</a><a href="README.md" download>Package README ↓</a></footer>
+</section><section class="doc-pane" data-pane id="technical"><div class="chapter-meta"><span>01 / TECHNICAL BLUEPRINT</span><a href="01-technical-specification.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="technical--1">Promisory · Technical specification</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#technical--2">1. Product definition</a></li><li><a href="#technical--4">2. Model work and accountability accurately</a></li><li><a href="#technical--9">3. Feature catalogue</a></li><li><a href="#technical--10">4. End-to-end workflows</a></li><li><a href="#technical--18">5. Information architecture and screen contracts</a></li><li><a href="#technical--19">6. Domain model and state machines</a></li><li><a href="#technical--23">7. Impact engine</a></li><li><a href="#technical--25">8. Technical architecture</a></li><li><a href="#technical--29">9. Rovo and Teamwork Graph integration</a></li><li><a href="#technical--33">10. Decionis, AgentSafe, and Steward reuse</a></li><li><a href="#technical--36">11. Security, privacy, and operational behavior</a></li><li><a href="#technical--37">12. Failure behavior</a></li><li><a href="#technical--38">13. Definition of the release</a></li></ol></details>
+<p><strong>Version 1.0 · 10 November 2026 · Proposed product</strong></p>
+<h2 id="technical--2">1. Product definition</h2>
+<p>Promisory connects a commitment to the work, people, decisions, and evidence that determine whether it will be kept. A project manager can trace a threatened launch down to a blocking bug; the engineer working on that bug can see the commitments and stakeholders affected above them. Customer-facing promises and internal delivery commitments share this model. The scope begins above epics, with product direction, goals, initiatives, and Confluence discovery/requirements, and continues through release, operation, learning, and retirement.</p>
+<p>The primary users are engineering and product delivery teams at B2B software companies. Customer success and support participate as commitment owners and stakeholders. The first buyer is a head of delivery, engineering manager, or product operations lead. A project is the initial installation scope; cross-project portfolios expand only after access and ownership are understood.</p>
+<p><strong>Product promise:</strong> understand what is at risk, identify the responsible people, choose a permitted next action, and establish whether the promised outcome actually happened.</p>
+<h3 id="technical--3">Expected outcomes and pilot hypotheses</h3>
+<p>These are targets to validate, not measured performance claims.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Pilot measure</th>
+<th>Initial target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Useful immediately</td>
+<td>Time from authorized project selection to first evidence-linked finding</td>
+<td>Under 10 minutes for the bounded pilot dataset</td>
+</tr>
+<tr>
+<td>Fewer unowned commitments</td>
+<td>Active commitments with a confirmed accountable owner</td>
+<td>At least 95%</td>
+</tr>
+<tr>
+<td>Earlier intervention</td>
+<td>Time between an observed dependency change and a visible impact update</td>
+<td>Under 2 minutes at p95 in the test tenant</td>
+</tr>
+<tr>
+<td>Less status chasing</td>
+<td>Time spent preparing a weekly commitment review</td>
+<td>30% reduction against the team&#39;s own baseline</td>
+</tr>
+<tr>
+<td>Better follow-through</td>
+<td>Commitments fulfilled by the original agreed due date / commitments due</td>
+<td>Improve over a four-week baseline; no invented uplift</td>
+</tr>
+<tr>
+<td>Credible completion</td>
+<td>Fulfilled commitments with qualifying evidence and an attributable verification</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Trusted adoption</td>
+<td>Weekly returning pilot teams and their confirmed useful findings</td>
+<td>Track team-level retention and finding acceptance</td>
+</tr>
+</tbody></table></div>
+<p>Use the original commitment deadline as well as any agreed revised deadline when measuring outcomes. Renegotiating a deadline must not erase an earlier breach. Report cancelled, superseded, and late-fulfilled commitments separately.</p>
+<h2 id="technical--4">2. Model work and accountability accurately</h2>
+<h3 id="technical--5">Work topology</h3>
+<p>A Jira project is a container, not a work item&#39;s parent. Jira&#39;s normal work hierarchy places an epic above standard work types such as story, task, and bug; subtasks sit below a standard work item. Extra levels are tenant-dependent. Promisory must discover actual work types and parent relationships rather than infer them from names. <a href="https://support.atlassian.com/jira-cloud-administration/docs/configure-the-issue-type-hierarchy">Jira hierarchy reference</a></p>
+<pre><code class="language-text">Planning context: product vision, goals, and initiative outcome
+Confluence artifacts: discovery, PRD, release readiness, outcome review
+
+Jira project: Merchant Experience (container)
+  Program: Merchant growth (configured custom level in this example)
+    Initiative: Self-service activation (configured custom level)
+      Epic: Merchant launch
+        Story: Activate a merchant once
+        Task: Enable production onboarding
+          Subtask: Confirm tenant configuration
+        Bug: Duplicate onboarding events
+
+Bug --blocks--&gt; Task --supports--&gt; Commitment
+Task --implements--&gt; Story
+PRD requirement --defines--&gt; Story / Task acceptance
+Initiative --aligns to--&gt; Product goal
+Commitment --belongs to--&gt; Project
+Commitment --accountable to--&gt; Delivery owner
+Task/Bug --assigned to--&gt; Engineer
+Delivery owner --coordinates with--&gt; Team lead / Product owner / Scrum master
+Commitment --benefits--&gt; Customer or internal stakeholder
+</code></pre>
+<p>The user&#39;s desired project → epic → task → bug trace is supported as an <strong>impact path</strong>: a bug can block a task inside an epic without being fabricated as its child. A custom tenant hierarchy is preserved where it genuinely exists.</p>
+<p><img src="diagrams/hierarchy-and-impact.svg?v=1.1" alt="Work hierarchy, blocking dependency, and commitment accountability"></p>
+<p>Store containment, hierarchy, dependency, accountability, and evidence as different edge types. An engineering dependency is not an organizational reporting line. A Jira project and an Atlassian project/goal are different entity types with separate identifiers.</p>
+<h3 id="technical--6">Full product lifecycle and planning context</h3>
+<p>Promisory connects ten lifecycle phases: strategy and outcomes; opportunity and discovery; initiative and investment; definition and design; planning and decomposition; delivery and collaboration; validation and readiness; release and adoption; operate and learn; evolve or retire. Phases can overlap and repeat. A phase is not a Jira hierarchy level.</p>
+<p>Confluence provides the source artifacts: vision/OKRs, research, initiative charter, business case, roadmap, PRD, design and architecture decisions, epic briefs, story maps, test/UAT evidence, launch plan, runbooks, outcome reviews, retrospectives, and retirement plans. Users map existing pages to these artifact roles. Page trees organize documents; they do not create Jira parent relationships.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Planning / delivery layer</th>
+<th>Promisory behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vision, objectives, key results, themes</td>
+<td>Link intended outcomes, baselines, owners, and review horizons</td>
+</tr>
+<tr>
+<td>Portfolio, program, product, initiative</td>
+<td>Show explicit planning context; import genuine custom Jira parents where configured</td>
+</tr>
+<tr>
+<td>Opportunity, idea, PRD, capability/feature brief</td>
+<td>Keep source versions and confirmed requirement/work links</td>
+</tr>
+<tr>
+<td>Epic</td>
+<td>Connect scope and requirements to actual child work</td>
+</tr>
+<tr>
+<td>Story, task, bug, configured spike/test types</td>
+<td>Preserve standard-work peers; use implementation/blocking links to trace between them</td>
+</tr>
+<tr>
+<td>Subtask</td>
+<td>Preserve the actual standard-work parent</td>
+</tr>
+<tr>
+<td>Milestone, sprint, release/version</td>
+<td>Associate schedule and readiness without inventing parent levels</td>
+</tr>
+<tr>
+<td>Release, adoption, operation, learning</td>
+<td>Verify separate delivery and business acceptance conditions; create new improvement commitments</td>
+</tr>
+</tbody></table></div>
+<p>Native levels above Epic require the tenant&#39;s supported Jira configuration; Premium/Enterprise can provide these custom levels. Promisory reads them without modifying the site hierarchy. With no native initiative level, a Confluence initiative can still link to epics through a clearly labelled planning relationship. <a href="https://support.atlassian.com/jira-software-cloud/docs/configure-custom-hierarchy-levels-in-advanced-roadmaps/">Custom hierarchy reference</a></p>
+<p>The requested epic → story → task/bug trace is available as typed relationships. Standard Jira stories and tasks are normally peers; implementation subtasks can be real children of a story or task. A bug can block either. Do not create a false Story → Task → Bug native hierarchy.</p>
+<p>Each required PRD section receives a stable requirement reference tied to the page ID, revision, section mapping, and content fingerprint. A versioned lifecycle gate records required artifacts, conditions, and designated reviewers. Source changes can invalidate current gate applicability without rewriting historic reviews. A ready gate, a permitted external action, and a verified outcome remain distinct.</p>
+<p>P0 covers all phases as context and proves one continuous path from goal/initiative and a selected PRD through work to release readiness and a commitment. It does not automate every business process in every phase. See the <a href="#lifecycle">complete lifecycle matrix, Confluence blueprint, and traceability rules</a>.</p>
+<h3 id="technical--7">Ownership and stakeholder roles</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>View and responsibilities</th>
+<th>Authority boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sponsor / senior manager</td>
+<td>Project commitments, exceptions, business impact, unresolved tradeoffs</td>
+<td>Sees only permitted data; job title alone grants no approval power</td>
+</tr>
+<tr>
+<td>Product leader / initiative owner</td>
+<td>Strategy, product outcomes, investment decisions, requirements coverage</td>
+<td>Explicit scope and review rights; title is not execution authority</td>
+</tr>
+<tr>
+<td>Researcher / designer / architect</td>
+<td>Discovery evidence, experience/architecture decisions, requirement assumptions</td>
+<td>Contributes evidence and scoped reviews without silently changing commitments</td>
+</tr>
+<tr>
+<td>QA / release / service owner</td>
+<td>Validation, release readiness, support handover, production and adoption evidence</td>
+<td>Verifies designated conditions; a release decision does not override institutional execution policy</td>
+</tr>
+<tr>
+<td>Project / delivery manager</td>
+<td>Accountable owner, milestones, stakeholder coordination, review queue</td>
+<td>Can accept or change commitments only within configured rights</td>
+</tr>
+<tr>
+<td>Product owner</td>
+<td>Scope, acceptance criteria, outcome priorities</td>
+<td>Scope changes create a proposed revision</td>
+</tr>
+<tr>
+<td>Subteam / team lead</td>
+<td>Team dependencies, unassigned work, handoffs</td>
+<td>Owns team coordination; does not inherit all customer authority</td>
+</tr>
+<tr>
+<td>Scrum master / facilitator</td>
+<td>Sprint blockers, aging decisions, ceremonies, follow-through</td>
+<td>Facilitates action; no automatic authority to override priorities</td>
+</tr>
+<tr>
+<td>Engineer / tester</td>
+<td>Assigned work, upstream impact, evidence requests, implementation updates</td>
+<td>Changes permitted work; cannot certify unrelated business outcomes</td>
+</tr>
+<tr>
+<td>Support / account owner</td>
+<td>Customer promises, affected accounts, update drafts, recovery options</td>
+<td>External recipients and messages require separate permission checks</td>
+</tr>
+<tr>
+<td>Stakeholder / observer</td>
+<td>Subscribed, permission-filtered updates</td>
+<td>Read and comment rights remain explicit</td>
+</tr>
+<tr>
+<td>Org / site administrator</td>
+<td>Installation, scopes, project inclusion, connections, retention</td>
+<td>Administrative access does not replace institutional policy approval</td>
+</tr>
+<tr>
+<td>Designated approver</td>
+<td>Review a specific proposed action and its evidence</td>
+<td>Approval is scoped to the exact version and action</td>
+</tr>
+</tbody></table></div>
+<p>Each active commitment has exactly one accountable owner, plus zero or more delivery owners, contributors, approvers, and observers. An owner change requires the incoming owner to accept it; until then, display “Owner transfer pending” and retain the current owner. An inactive or inaccessible owner produces an ownership gap.</p>
+<p>Team membership is discovered where available and confirmed by an administrator. Reporting managers, subteam structures, scrum roles, and decision rights are never inferred from document authorship, titles, or communication frequency. Store role scope and provenance. Role changes take effect at the next authorized read and before any action.</p>
+<h3 id="technical--8">Core terminology</h3>
+<ul>
+<li><strong>Commitment:</strong> a versioned agreement about an outcome, beneficiary, deadline, owner, and acceptance conditions.</li>
+<li><strong>Work item:</strong> an external Jira record, identified by stable ID and cloud ID. Its key is a display value that may change.</li>
+<li><strong>Impact path:</strong> a typed, explainable route from changed work to an affected commitment.</li>
+<li><strong>Evidence:</strong> a source reference, observation time, source revision, applicability, and verification result.</li>
+<li><strong>Review:</strong> a person&#39;s recorded disposition on a particular proposal.</li>
+<li><strong>Execution authority:</strong> Decionis&#39;s decision and applicable execution grant for an exact action.</li>
+<li><strong>Fulfillment:</strong> the acceptance conditions were satisfied and verified; closing a Jira item is only evidence when the agreed condition explicitly says so.</li>
+</ul>
+<h2 id="technical--9">3. Feature catalogue</h2>
+<p>P0 is the hackathon release. P1 follows once P0 acceptance gates pass. P2 is the product roadmap. Priority refers to implementation sequence, not the value of the feature.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Capability</th>
+<th>Priority</th>
+<th>Acceptance outcome</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F01</td>
+<td>Project-scoped onboarding and connection diagnostics</td>
+<td>P0</td>
+<td>Admin selects scope; users see actual access, import progress, and missing capabilities</td>
+</tr>
+<tr>
+<td>F02</td>
+<td>Jira hierarchy and dependency synchronization</td>
+<td>P0</td>
+<td>Epics, standard items, subtasks, links, deletions, and moves map correctly</td>
+</tr>
+<tr>
+<td>F03</td>
+<td>Commitment capture with structured confirmation</td>
+<td>P0</td>
+<td>Every activated commitment has outcome, owner, deadline, beneficiary, and acceptance conditions</td>
+</tr>
+<tr>
+<td>F04</td>
+<td>Rovo-assisted extraction from selected sources</td>
+<td>P0</td>
+<td>AI produces candidates with citations; ambiguous dates or owners remain unresolved</td>
+</tr>
+<tr>
+<td>F05</td>
+<td>Ownership and stakeholder map</td>
+<td>P0</td>
+<td>Each displayed role has scope and provenance; unowned work is visible</td>
+</tr>
+<tr>
+<td>F06</td>
+<td>Project / epic / work-item impact explorer</td>
+<td>P0</td>
+<td>A selected bug shows a deduplicated route to each affected commitment</td>
+</tr>
+<tr>
+<td>F07</td>
+<td>Deterministic impact assessment</td>
+<td>P0</td>
+<td>Risk reasons are reproducible from versioned rules and authorized facts</td>
+</tr>
+<tr>
+<td>F08</td>
+<td>Role-specific workspaces</td>
+<td>P0</td>
+<td>Manager, team, engineer, and account views use the same underlying authorized records</td>
+</tr>
+<tr>
+<td>F09</td>
+<td>Change feed and commitment history</td>
+<td>P0</td>
+<td>Scope/date/owner changes preserve before-and-after values and source references</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>Recovery proposal comparison</td>
+<td>P0</td>
+<td>User compares repair, scope reduction, and renegotiation without silently changing a promise</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>Review and controlled action</td>
+<td>P0</td>
+<td>Exact proposal is reviewed, authorized, executed through the selected boundary, and reconciled</td>
+</tr>
+<tr>
+<td>F12</td>
+<td>Fulfillment verification and reopening</td>
+<td>P0</td>
+<td>Evidence satisfies the versioned acceptance conditions; later regressions remain visible</td>
+</tr>
+<tr>
+<td>F13</td>
+<td>Permission-aware Teamwork Graph context</td>
+<td>P0</td>
+<td>Real graph queries enrich team, work, and evidence context without access expansion</td>
+</tr>
+<tr>
+<td>F14</td>
+<td>Rovo agent with reusable tools</td>
+<td>P0</td>
+<td>Agent explains a real impact path and creates a reviewable proposal</td>
+</tr>
+<tr>
+<td>F15</td>
+<td>In-app inbox and quiet digests</td>
+<td>P0</td>
+<td>Deduplicated, role-relevant notices link to evidence; sensitive content is not leaked</td>
+</tr>
+<tr>
+<td>F16</td>
+<td>Confluence commitment and lifecycle macro</td>
+<td>P0</td>
+<td>Connected pages show authorized commitments, requirement applicability, and lifecycle readiness</td>
+</tr>
+<tr>
+<td>F17</td>
+<td>Fixture mode and judge onboarding</td>
+<td>P0</td>
+<td>Explicit example data and repeatable installation instructions support a fresh judge tenant</td>
+</tr>
+<tr>
+<td>F18</td>
+<td>Marketplace-ready distribution</td>
+<td>P0</td>
+<td>Listing materials, privacy details, support route, and a functioning test release exist</td>
+</tr>
+<tr>
+<td>F19</td>
+<td>Atlassian MCP tools</td>
+<td>P1, bonus target</td>
+<td>The Forge rovo:mcp module exposes useful read/proposal tools through Atlassian</td>
+</tr>
+<tr>
+<td>F20</td>
+<td>Cross-project portfolio and shared dependency conflicts</td>
+<td>P1</td>
+<td>A shared dependency is counted once per commitment; restricted projects remain hidden</td>
+</tr>
+<tr>
+<td>F21</td>
+<td>Sprint planning and scrum ceremony packs</td>
+<td>P1</td>
+<td>Planning, standup, review, and retrospective views summarize current commitments</td>
+</tr>
+<tr>
+<td>F22</td>
+<td>Customer update workflow</td>
+<td>P1</td>
+<td>Approved recipient and exact text are checked again before sending; no auto-send from extraction</td>
+</tr>
+<tr>
+<td>F23</td>
+<td>Capacity-aware scenario comparison</td>
+<td>P2</td>
+<td>Explicit team capacity inputs support scenarios with stated assumptions</td>
+</tr>
+<tr>
+<td>F24</td>
+<td>External CRM / deployment / service connectors</td>
+<td>P2</td>
+<td>Each connector has permission, freshness, lineage, and deletion contracts</td>
+</tr>
+<tr>
+<td>F25</td>
+<td>Delivery forecasting and trend models</td>
+<td>P2</td>
+<td>Calibrated evaluations justify uncertainty estimates before probabilities appear</td>
+</tr>
+<tr>
+<td>F26</td>
+<td>Verified customer-facing status portal</td>
+<td>P2</td>
+<td>A separate public model exposes only expressly approved information</td>
+</tr>
+<tr>
+<td>F27</td>
+<td>Reusable commitment and policy templates</td>
+<td>P1</td>
+<td>Teams can adopt templates without silently publishing institutional policy</td>
+</tr>
+<tr>
+<td>F28</td>
+<td>Billing and enterprise lifecycle controls</td>
+<td>P1</td>
+<td>Entitlements, export, uninstall, retention, and support are exercised end to end</td>
+</tr>
+<tr>
+<td>F29</td>
+<td>Strategy, initiative, and higher-level context</td>
+<td>P0</td>
+<td>Import actual higher Jira levels or show explicit planning links; never change site hierarchy</td>
+</tr>
+<tr>
+<td>F30</td>
+<td>Confluence product lifecycle workspace</td>
+<td>P0</td>
+<td>All ten phases map to selected source artifacts, owners, and evidence states</td>
+</tr>
+<tr>
+<td>F31</td>
+<td>Requirement-to-work-to-outcome traceability</td>
+<td>P0</td>
+<td>Stable PRD references connect to epics, stories, tasks/bugs, and acceptance evidence</td>
+</tr>
+<tr>
+<td>F32</td>
+<td>Versioned readiness and requirement drift</td>
+<td>P0</td>
+<td>A changed PRD or missing required evidence invalidates the applicable readiness review</td>
+</tr>
+<tr>
+<td>F33</td>
+<td>Outcome review and retrospective follow-through</td>
+<td>P1</td>
+<td>Learning produces owner-confirmed improvement commitments; adoption differs from release</td>
+</tr>
+<tr>
+<td>F34</td>
+<td>Migration, deprecation, and retirement workflows</td>
+<td>P2</td>
+<td>Affected stakeholders and completion evidence govern product retirement commitments</td>
+</tr>
+<tr>
+<td>F35</td>
+<td>Confluence artifact template preparation</td>
+<td>P1</td>
+<td>Prepare lifecycle documents and exact publication changes for an authorized workflow</td>
+</tr>
+</tbody></table></div>
+<p>P0 is feature-rich but deliberately bounded to one site, a small set of selected Jira projects, optional connected Confluence, and one real governed mutation type. No organization-wide interception or automatic engineering resource allocation is claimed.</p>
+<h2 id="technical--10">4. End-to-end workflows</h2>
+<h3 id="technical--11">A. Install and receive useful context</h3>
+<ol>
+<li>An organization administrator installs Promisory with the requested graph scopes, selects a pilot Jira project, and optionally connects Confluence.</li>
+<li>Connection diagnostics show what is authorized and available. Rovo or graph unavailability is visible; it is not represented as an empty, healthy portfolio.</li>
+<li>A bounded import discovers actual hierarchy, links, assignments, and candidate commitment sources.</li>
+<li>A manager confirms a small set of commitments and role mappings. Promisory highlights missing owners, unclear acceptance conditions, and conflicting deadlines.</li>
+<li>The first useful result is an evidence-linked finding, not a compulsory dashboard configuration exercise.</li>
+</ol>
+<p>A Jira-only installation remains useful for hierarchy and manually entered commitments. The full judged Rovo/graph experience must be demonstrated in a tenant with those capabilities and permissions.</p>
+<h3 id="technical--12">B. Manager creates a project commitment</h3>
+<ol>
+<li>Define a measurable outcome and a beneficiary, select project scope, assign an accountable owner, and set a local deadline with an explicit time zone.</li>
+<li>Link the relevant epic or standard work items. Show discovered dependency suggestions separately from confirmed dependencies.</li>
+<li>Define acceptance conditions and permitted evidence types. Choose stakeholders and review rules.</li>
+<li>The owner confirms the commitment. The system records an immutable version, the original due date, and the source references.</li>
+<li>The owner and affected team members receive permission-filtered in-app notices.</li>
+</ol>
+<p>For an external promise, record who is entitled to make it and what was actually communicated. An internal draft does not become a customer agreement merely because an AI extracted it.</p>
+<h3 id="technical--13">C. Engineer discovers a blocking bug</h3>
+<ol>
+<li>Jira reports a change; Promisory refetches the current authorized record rather than trusting a stale event payload.</li>
+<li>The impact engine traverses confirmed blocking links and support relationships.</li>
+<li>The issue panel shows the engineer which commitments are affected, why, and who should coordinate the response.</li>
+<li>Managers see the affected outcome; team leads see the dependency; the scrum facilitator sees the impediment; the account owner sees a customer communication task.</li>
+<li>One incident/change creates one review item per affected commitment and reason. Repeated events update that item instead of spamming all participants.</li>
+</ol>
+<h3 id="technical--14">D. Compare and approve a recovery proposal</h3>
+<ol>
+<li>Present explicit alternatives: resolve the blocker, reduce scope while preserving stated acceptance conditions, or propose a new date.</li>
+<li>Each alternative shows affected commitments, assumptions, the responsible person, evidence age, and the permissions needed.</li>
+<li>The owner selects a proposal. A designated approver reviews the exact proposed change where policy requires it.</li>
+<li>On apply, recheck user permissions, commitment version, live source state, policy binding, and action payload.</li>
+<li>The configured executor uses AgentSafe and Decionis. A hold or refusal leaves downstream state unchanged.</li>
+<li>A successful write is read back and recorded. An uncertain result goes to reconciliation; it is not retried blindly.</li>
+</ol>
+<p>For P0, the real downstream mutation is an approved Jira work-item due-date update. Internal commitment revision remains a separate domain event. Changing an engineering due date must not automatically change a customer promise. External email and refunds are outside P0.</p>
+<h3 id="technical--15">E. Verify fulfillment</h3>
+<ol>
+<li>The owner submits evidence or a connected source produces qualifying evidence.</li>
+<li>The verifier evaluates each acceptance condition against the agreed version.</li>
+<li>If the condition requires human acceptance, the designated person records it.</li>
+<li>The commitment becomes fulfilled only after required conditions pass. Show whether fulfillment was on time or late.</li>
+<li>Later regression evidence creates a visible regression event and a new review. Historical evidence and the original result are retained according to the retention policy.</li>
+</ol>
+<p>A signed dossier proves the provenance and integrity of a decision record; it does not, by itself, prove that the external business outcome was true.</p>
+<h3 id="technical--16">F. Ask Rovo across the delivery chain</h3>
+<p>Example request: “What threatens Merchant Launch, who needs to act, and what can we do?”</p>
+<p>Rovo calls permission-aware context and impact tools, returns a concise answer with source links, identifies unknowns, and offers a draft recovery proposal. The user opens the normal review screen to apply a change. An agent response cannot approve its own proposal.</p>
+<h3 id="technical--17">G. Follow a product from its PRD to a verified outcome</h3>
+<ol>
+<li>A product owner selects a permitted Confluence strategy/initiative brief and PRD, then confirms the outcome, artifact roles, requirement references, and accountable people.</li>
+<li>Promisory connects the initiative to native higher-level Jira work where present, or to an explicitly labelled planning record. It maps requirements to epics and standard work without inferring parentage from page layout.</li>
+<li>A requirement edit or blocking bug reveals affected commitments, linked initiative context, and readiness conditions. Relevant owners review the changed scope and evidence.</li>
+<li>A release-readiness gate records the exact document/work versions and required acceptance. A changed source invalidates its current applicability.</li>
+<li>Release evidence verifies the delivery conditions. Adoption or business metrics remain separate conditions with their own observation window.</li>
+<li>An outcome review or retrospective proposes the next improvement commitment. Retirement and migration use the same ownership and evidence principles when those workflows are enabled.</li>
+</ol>
+<p>See <a href="#lifecycle">the complete phase-by-phase workflow</a>.</p>
+<h2 id="technical--18">5. Information architecture and screen contracts</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Main content</th>
+<th>Primary action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product lifecycle</td>
+<td>Phase, goal/initiative context, Confluence artifacts, owners, readiness, outcome measures</td>
+<td>Inspect source applicability or follow the requirement trace</td>
+</tr>
+<tr>
+<td>Portfolio / overview</td>
+<td>Commitments due, changed risks, owner gaps, freshness, pending decisions</td>
+<td>Review the most consequential change</td>
+</tr>
+<tr>
+<td>Project workspace</td>
+<td>Project outcome, epics, dependencies, stakeholder map, commitment rollup</td>
+<td>Trace an affected commitment</td>
+</tr>
+<tr>
+<td>Commitment detail</td>
+<td>Versioned agreement, acceptance conditions, delivery links, history, evidence</td>
+<td>Propose a recovery or verify fulfillment</td>
+</tr>
+<tr>
+<td>Work map</td>
+<td>Expandable hierarchy plus typed dependency paths</td>
+<td>Select a blocker and inspect upstream impact</td>
+</tr>
+<tr>
+<td>Jira issue panel</td>
+<td>Upstream commitments, accountable owner, evidence requests</td>
+<td>Open the impact path</td>
+</tr>
+<tr>
+<td>My work</td>
+<td>Assigned work and the commitments it supports</td>
+<td>Update evidence or request coordination</td>
+</tr>
+<tr>
+<td>Reviews</td>
+<td>Exact before/after change, reviewers, policy response, expiry</td>
+<td>Review and apply an authorized proposal</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>References, source revisions, verification status, access, freshness</td>
+<td>Refresh or supply missing evidence</td>
+</tr>
+<tr>
+<td>Confluence macro</td>
+<td>Current authorized commitment card with a link to details</td>
+<td>Open the linked commitment</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>Scope, roles, connections, notices, retention, billing</td>
+<td>Change configuration with proper admin rights</td>
+</tr>
+</tbody></table></div>
+<p>Use counts and dates before abstract scores. Missing data has an explicit state. Each view offers a table/list alternative to graphs and retains the selected project, filters, and scroll position across navigation.</p>
+<h2 id="technical--19">6. Domain model and state machines</h2>
+<h3 id="technical--20">Main records</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Required fields and invariants</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TenantInstallation</td>
+<td>appId, environmentId, installationId, cloudId, linked products, status; server-derived scope</td>
+</tr>
+<tr>
+<td>PlanningNode</td>
+<td>Kind, stable ID, owner, source, scope, optional native-work binding; goals/products are not presumed Jira parents</td>
+</tr>
+<tr>
+<td>LifecycleArtifact</td>
+<td>Artifact role, phase, Confluence page/space ID, source revision, section mapping, review provenance</td>
+</tr>
+<tr>
+<td>RequirementRecord</td>
+<td>Stable requirement ID, artifact/version, content fingerprint, acceptance conditions, confirmed work links</td>
+</tr>
+<tr>
+<td>LifecycleGate</td>
+<td>Phase, required artifact/requirement versions, condition set, reviewers, readiness, applicability, reason</td>
+</tr>
+<tr>
+<td>WorkNode</td>
+<td>stable external ID, cloudId, external type, project ID, parent ID, display key, current status, source revision</td>
+</tr>
+<tr>
+<td>WorkEdge</td>
+<td>from/to stable IDs, typed relationship, source, confirmed/discovered state, observedAt</td>
+</tr>
+<tr>
+<td>Commitment</td>
+<td>ID, version, title, outcome, beneficiary reference, accountableOwner, project scopes, originalDueAt, agreedDueAt, timeZone, lifecycle</td>
+</tr>
+<tr>
+<td>AcceptanceCondition</td>
+<td>stable ID, version, measurable predicate, evidence type, applicability, required verifier</td>
+</tr>
+<tr>
+<td>StakeholderBinding</td>
+<td>commitment/project/team scope, accountId or team ID, role, provenance, confirmedBy, validity</td>
+</tr>
+<tr>
+<td>EvidenceReference</td>
+<td>source type, source ID, source revision, observedAt, checkedAt, freshness policy, visibility, lineage, verification</td>
+</tr>
+<tr>
+<td>ImpactAssessment</td>
+<td>commitment version, rule version, source revisions, reasons, affected paths, known/unknown coverage</td>
+</tr>
+<tr>
+<td>RecoveryProposal</td>
+<td>target commitment version, alternative, exact requested effect, creator, expiry, evidence references</td>
+</tr>
+<tr>
+<td>ReviewRecord</td>
+<td>proposal ID, proposal hash, reviewer identity, disposition, timestamp, authority role reference</td>
+</tr>
+<tr>
+<td>ActionOperation</td>
+<td>immutable intent hash, tenant/principal, idempotency key, decision/grant references, stage, external receipt</td>
+</tr>
+<tr>
+<td>OutcomeRecord</td>
+<td>commitment version, condition results, evidence references, verifier, verifiedAt, timeliness</td>
+</tr>
+<tr>
+<td>NotificationItem</td>
+<td>recipient scope, commitment, reason, severity, dedupe key, seenAt; no unrestricted source copy</td>
+</tr>
+</tbody></table></div>
+<p>A commitment can cover multiple work items and multiple stakeholders. Shared work is normalized once. The same issue key on two Jira sites represents different records.</p>
+<h3 id="technical--21">Separate lifecycle, health, and execution</h3>
+<pre><code class="language-text">Commitment:
+DRAFT → PROPOSED → ACTIVE → FULFILLED
+                   ├→ CANCELLED
+                   └→ SUPERSEDED by a new active version
+
+Health of a commitment:
+ON_TRACK | WATCH | AT_RISK | BREACHED | UNKNOWN
+
+Action operation:
+PREPARED → EVALUATED → AWAITING_REVIEW or HELD or BLOCKED
+                    → AUTHORIZED → EXECUTING → SUCCEEDED
+                                              ├→ FAILED
+                                              └→ RECONCILING
+</code></pre>
+<p>An ACTIVE commitment may be AT_RISK. A FULFILLED commitment may have been fulfilled late. A review approval is not the AUTHORIZED action state; authority is established by the configured Decionis execution contract. An unfamiliar decision, missing grant, expired grant, or shadow-mode decision cannot enter the live execution branch.</p>
+<p>Lifecycle readiness is separately recorded as UNKNOWN, NOT_READY, READY_FOR_REVIEW, ACCEPTED, HELD, SUPERSEDED, or NOT_APPLICABLE. A NOT_APPLICABLE disposition needs an authorized, recorded reason. Confluence page publication does not itself mean acceptance. A source change can supersede applicability while preserving the historic accepted gate.</p>
+<h3 id="technical--22">Date and revision rules</h3>
+<p>Store instants in UTC and preserve the IANA time zone used to agree the deadline. A date-only promise must be converted using an explicitly selected local cutoff; never silently assume midnight. Jira&#39;s date-only due date and a commitment&#39;s timestamp are distinct fields.</p>
+<p>Use optimistic concurrency on every commitment and proposal update. A changed source revision or proposed payload invalidates earlier review applicability. A source update after verification is handled as a new event, not as an edit to the historic verification.</p>
+<p>See <a href="contracts/domain-contracts.ts">the proposed contracts</a> and <a href="contracts/demo-scenario.json">example fixture</a>.</p>
+<h2 id="technical--23">7. Impact engine</h2>
+<p>Promisory computes delivery diagnostics, not institutional execution permission.</p>
+<ol>
+<li>Normalize the changed item and refetch its authoritative current state.</li>
+<li>Traverse confirmed dependency and support edges using a visited set, depth and node budgets, and stable IDs.</li>
+<li>Resolve each affected commitment once, retaining all explanatory paths.</li>
+<li>Evaluate deterministic, versioned rules against authorized evidence.</li>
+<li>Record reasons, freshness, missing evidence, and the source revisions used.</li>
+<li>Upsert the matching finding and notify only the relevant authorized audience.</li>
+</ol>
+<h3 id="technical--24">Initial rule set</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Reason</th>
+<th>Condition</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DEADLINE_PASSED</td>
+<td>Current time exceeds agreed deadline and required outcome is unverified</td>
+<td>BREACHED</td>
+</tr>
+<tr>
+<td>BLOCKING_DEFECT</td>
+<td>An unresolved confirmed blocking defect lies on a required path</td>
+<td>AT_RISK</td>
+</tr>
+<tr>
+<td>DELIVERY_AFTER_PROMISE</td>
+<td>Explicit forecast/target date exceeds the commitment deadline</td>
+<td>AT_RISK</td>
+</tr>
+<tr>
+<td>UNACCEPTED_OWNER</td>
+<td>Active commitment lacks an accepted accountable owner</td>
+<td>AT_RISK</td>
+</tr>
+<tr>
+<td>STALE_EVIDENCE</td>
+<td>A required source exceeds its permitted age</td>
+<td>UNKNOWN coverage; show the known risk separately</td>
+</tr>
+<tr>
+<td>INCOMPLETE_SCOPE</td>
+<td>Required paths cannot be inspected or import is incomplete</td>
+<td>UNKNOWN coverage</td>
+</tr>
+<tr>
+<td>REQUIREMENT_CHANGED</td>
+<td>A required accepted source/requirement revision changed</td>
+<td>Reassessment needed; WATCH unless a stronger known risk applies; gate applicability is stale</td>
+</tr>
+<tr>
+<td>GATE_NOT_READY</td>
+<td>A required readiness condition explicitly fails</td>
+<td>Explain the failed condition; AT_RISK when it threatens the commitment; absent evidence remains unknown</td>
+</tr>
+<tr>
+<td>OUTCOME_UNMEASURED</td>
+<td>The agreed business outcome has no qualifying measurement yet</td>
+<td>UNKNOWN coverage; do not infer adoption from release</td>
+</tr>
+<tr>
+<td>DUE_SOON</td>
+<td>Deadline falls inside a configured warning window, with incomplete required work</td>
+<td>WATCH</td>
+</tr>
+<tr>
+<td>VERIFIED_PROGRESS</td>
+<td>No active rule and all required coverage is current</td>
+<td>ON_TRACK</td>
+</tr>
+</tbody></table></div>
+<p>A root rollup exposes separate counts for breached, at-risk, watch, unknown, and on-track commitments. It does not average away one severe blocker. A known breach and incomplete visibility can coexist; show both.</p>
+<p>“No returned graph rows” never means “no dependencies.” It can mean missing permissions, disabled scopes, unsupported relationships, or unavailable data. Cycles are surfaced as data-quality findings and traversal terminates deterministically. User-confirmed links remain distinguishable from model-suggested links.</p>
+<h2 id="technical--25">8. Technical architecture</h2>
+<h3 id="technical--26">Selected stack</h3>
+<ul>
+<li>Forge app with TypeScript, React Custom UI, and a Vite build for the rich project workspace.</li>
+<li>Native Forge UI Kit where a small issue panel or admin surface benefits from it.</li>
+<li>Forge functions for resolvers, Rovo tools, event handling, and scheduled reconciliation.</li>
+<li>Forge SQL for normalized records and indexed queries; KVS secret storage for small per-installation secrets/configuration where required.</li>
+<li>Versioned domain and integration contracts with runtime validation.</li>
+<li>A small TypeScript remote adapter for the optional, explicitly enabled governed execution path; reuse existing Decionis and AgentSafe services.</li>
+<li>Playwright for interaction and integration evidence, with unit/contract tests for the domain and authority boundaries.</li>
+</ul>
+<p>Pin currently supported runtime and package versions in Phase 0. The existing kit uses Node 22; do not copy its runtime assumption without checking current Forge support. Avoid introducing a second language or separate agent runtime for P0.</p>
+<pre><code class="language-text">Jira / Confluence UI + Rovo / Atlassian MCP
+                  |
+             Forge functions
+                  |
+       Promisory domain + Forge storage
+          /                     \
+Teamwork Graph + Jira REST       Verified remote invocation
+(read context in Atlassian)       (approved independent action data)
+                                          |
+                               Promisory remote adapter
+                                          |
+                                  AgentSafe gateway
+                                     /         \
+                            Decionis authority  Atlassian REST
+                                     \         /
+                                    operation receipt
+                                          |
+                              reconciliation / outcome
+</code></pre>
+<h3 id="technical--27">Forge module plan</h3>
+<p><img src="diagrams/architecture.svg?v=1.1" alt="Promisory&#39;s proposed Atlassian and external execution boundaries"></p>
+<p>Use actual manifest keys supported by the current CLI, not names inferred from product marketing.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Module / mechanism</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Main workspace</td>
+<td>jira:globalPage and/or jira:projectPage</td>
+</tr>
+<tr>
+<td>Issue context</td>
+<td>jira:issuePanel</td>
+</tr>
+<tr>
+<td>Configuration</td>
+<td>jira:adminPage</td>
+</tr>
+<tr>
+<td>Confluence card</td>
+<td>macro</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>rovo:agent plus action modules</td>
+</tr>
+<tr>
+<td>Optional reusable MCP tools</td>
+<td>rovo:mcp referring to the same action keys</td>
+</tr>
+<tr>
+<td>Work updates</td>
+<td>trigger with supported Jira/Confluence events</td>
+</tr>
+<tr>
+<td>Reconciliation</td>
+<td>scheduledTrigger plus bounded asynchronous jobs</td>
+</tr>
+<tr>
+<td>External executor</td>
+<td>remote / endpoint with verified Forge invocation tokens</td>
+</tr>
+</tbody></table></div>
+<p>The Confluence macro manifest key is <strong>macro</strong>, not an invented confluence:macro key. The documented Rovo function module is <strong>action</strong>; verify the generated manifest rather than copying the rovo:action label returned as display metadata by the old Decionis route.</p>
+<h3 id="technical--28">Storage and concurrency</h3>
+<p>Keep aggregate updates safe using version-checked, single-statement writes and unique operation/event identifiers. Do not assume Forge SQL supports arbitrary multi-statement transactions. Test its current atomicity and concurrency behavior before selecting repository methods.</p>
+<p>Maintain a recoverable operation state machine: record intent before dispatch, atomically claim a local operation lease, and reconcile abandoned stages. Cross-record notifications and derived projections are recoverable jobs. No claim of exactly-once external effects is made when the target API cannot guarantee them.</p>
+<p>Default engineering bounds, to be load-tested: 1,000 work items per pilot project, 200 active commitments, 10 hops and 500 visited nodes per interactive trace, and 50 rows per page. When a bound is reached, say the trace is incomplete and offer a filtered follow-up.</p>
+<h2 id="technical--29">9. Rovo and Teamwork Graph integration</h2>
+<h3 id="technical--30">Rovo tool contract</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Behavior</th>
+<th>Side effects</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>getLifecycleContext</td>
+<td>Return permitted goal/initiative context, phases, source artifacts, owners, and readiness</td>
+<td>None</td>
+</tr>
+<tr>
+<td>traceRequirementImpact</td>
+<td>Link an exact PRD requirement/version to work and affected commitments</td>
+<td>Refreshes permitted derived state only</td>
+</tr>
+<tr>
+<td>explainGateReadiness</td>
+<td>Explain passed, failed, unknown, and stale readiness conditions</td>
+<td>None; cannot approve a gate</td>
+</tr>
+<tr>
+<td>getCommitmentContext</td>
+<td>Return authorized agreement, owners, work references, and known gaps</td>
+<td>None</td>
+</tr>
+<tr>
+<td>traceCommitmentImpact</td>
+<td>Explain stored/recomputed typed paths and rule reasons</td>
+<td>Refreshes permitted derived state only</td>
+</tr>
+<tr>
+<td>findResponsiblePeople</td>
+<td>Return confirmed scoped owners and team bindings</td>
+<td>None</td>
+</tr>
+<tr>
+<td>explainFulfillment</td>
+<td>Show which acceptance conditions passed and which remain unknown</td>
+<td>None</td>
+</tr>
+<tr>
+<td>draftRecoveryProposal</td>
+<td>Produce alternatives anchored to a current commitment version</td>
+<td>Saves an internal draft after explicit user intent</td>
+</tr>
+<tr>
+<td>proposeCommitment</td>
+<td>Extract a candidate from a selected accessible source</td>
+<td>Saves an unconfirmed candidate</td>
+</tr>
+<tr>
+<td>listMyReviews</td>
+<td>Return reviews visible to the requesting principal</td>
+<td>None</td>
+</tr>
+</tbody></table></div>
+<p>Derive the acting account from trusted invocation context. Tool inputs cannot choose a tenant, approver, or effective identity. Source content is untrusted evidence; instructions embedded in Jira comments, Confluence pages, or retrieved text cannot alter tool policy. The agent returns evidence references, unknowns, and the proposed next action.</p>
+<p>Rovo uses the same typed domain services as the UI. Prompt changes cannot weaken validation or execution rules. The app must use a real rovo:agent integration in the judged flow; the supplied UX prototype&#39;s sample response is not evidence of that integration. <a href="https://developer.atlassian.com/platform/forge/manifest-reference/modules/rovo-agent/">Rovo agent</a> · <a href="https://developer.atlassian.com/platform/forge/manifest-reference/modules/rovo-action/">Action module</a></p>
+<h3 id="technical--31">Graph queries and responsibilities</h3>
+<p>Use the graph to discover context the product otherwise makes people assemble manually. Examples include teams linked to a Jira space, members of the relevant team, linked deployment evidence, and the goals attached to a work item.</p>
+<p>Start with documented curated fields such as atlassianTeamsBySpace, atlassianTeamMembers, jiraWorkItemGoals, and jiraWorkItemLinkedExternalDeployments. Verify the tenant&#39;s schema, exact return types, scopes, pagination, and coverage; otherwise use a registered persisted query. New apps must not depend on raw cypherQuery. <a href="https://developer.atlassian.com/platform/teamwork-graph/curated-queries/">Curated queries</a></p>
+<p>Execute graph reads as the current user. Scope every intermediate object type. Graph access is read-only through this API; Promisory&#39;s custom commitment relationships live in Promisory storage unless a separate, supported connector is deliberately implemented. Jira REST remains the authoritative source for hierarchy details and current work-item values. <a href="https://developer.atlassian.com/platform/teamwork-graph/call-the-teamwork-graph-api/">Graph invocation</a> · <a href="https://developer.atlassian.com/platform/teamwork-graph/scopes/">Graph scopes</a></p>
+<p>Graph results are permission-sensitive and may lag the source. Cache only within a tenant/principal/permission context and revalidate before display. Sensitive source snippets are not retained in shared rollup caches. Never widen visibility to make a manager&#39;s chart appear complete.</p>
+<h3 id="technical--32">Data egress boundary</h3>
+<p>Treat graph results and their derived content as confined to Atlassian. Atlassian documents graph egress controls and a Runs on Atlassian recommendation. Promisory&#39;s graph reads, enrichment, and agent context remain inside Forge/Rovo. <a href="https://developer.atlassian.com/platform/teamwork-graph/limitations-and-considerations/">Graph limitations</a></p>
+<p>The remote executor receives only independently supplied user action intent and permitted, separately fetched REST evidence under an explicit data-handling policy. Copying a graph result into a differently named field or refetching it solely to evade a restriction is not acceptable. Maintain data lineage and block restricted provenance from external serialization. If a required decision depends on facts that cannot be exported, retain a proposal-only path until a compliant architecture is verified.</p>
+<h2 id="technical--33">10. Decionis, AgentSafe, and Steward reuse</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Foundation</th>
+<th>Reuse</th>
+<th>New Promisory work</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Decionis</td>
+<td>Tenant policy binding, deterministic evaluation, signed decision records, grant lifecycle where supported</td>
+<td>Delivery-action policy mapping and an adapter with verified execution semantics</td>
+</tr>
+<tr>
+<td>AgentSafe</td>
+<td>Exact request enforcement and downstream relay</td>
+<td>An authenticated Atlassian invocation adapter, destination allowlist, and tenant-safe configuration</td>
+</tr>
+<tr>
+<td>Steward</td>
+<td>Evidence provenance, review queue patterns, deliberate hold/no-action states</td>
+<td>Project/work hierarchy, role-specific impact views, commitment lifecycle, and fulfillment conditions</td>
+</tr>
+<tr>
+<td>Existing Forge kit</td>
+<td>Integration reference and early installation experience</td>
+<td>New app registration, hardened configuration, new UI, graph and agent modules</td>
+</tr>
+</tbody></table></div>
+<h3 id="technical--34">Findings from the local code review</h3>
+<p>The existing POST /v1/atlassian/forge/action-gate route returns evaluation metadata, a dossier reference, mode, and continue/hold/escalation indicators. It does not expose an execution grant in the reviewed response. Therefore, its continue_execution field alone is insufficient to dispatch a live action.</p>
+<p>The starter resolver also returns configuration containing apiKey and accepts browser-provided risk/action fields. Promisory must replace that pattern: secret values remain server-only, administration is checked server-side, downstream intent is reconstructed and allowlisted, and source facts are validated. Omit absent optional properties; the existing strict route rejects null where only an optional string is allowed.</p>
+<p>The reviewed AgentSafe deployment guide describes the managed gateway as shadow-only at that revision. Use a verified enforcement-capable release/configuration for the live path. Do not infer hosted enforcement from a marketing name or successful evaluation call. See <a href="#sources">source audit</a>.</p>
+<h3 id="technical--35">Execution sequence</h3>
+<ol>
+<li>Persist an immutable, versioned proposed effect and show its exact diff.</li>
+<li>Authenticate the current user and check their Promisory and native Jira permissions.</li>
+<li>Validate remote invocation against the configured app ID, trusted keys, issuer, audience, expiry, environment, installation, and cloud binding.</li>
+<li>Refetch permitted current source values and compare the reviewed version, target, and payload.</li>
+<li>Resolve institutional policy in Decionis. The browser or LLM cannot select a weaker mode, policy version, workflow, or organization.</li>
+<li>Route the exact allowed downstream request through AgentSafe. Require the supported bound-grant claim/finalization path; block when unavailable.</li>
+<li>Write using the user&#39;s authorized Atlassian context. A delayed request with an expired user token requires a fresh authorized invocation.</li>
+<li>Read back the affected Jira field and attach the observed result to the operation.</li>
+<li>Reconcile uncertain outcomes before permitting another attempt.</li>
+</ol>
+<p>Forge Remote supplies a user OAuth token only in a supported active-user context. Never persist it for background replay or replace it with a broader system token to avoid a failure. The trusted invocation&#39;s API base URL identifies the Atlassian API destination; the user payload cannot supply an arbitrary host. <a href="https://developer.atlassian.com/platform/forge/remote/essentials/">Remote authentication</a> · <a href="https://developer.atlassian.com/platform/forge/remote/calling-product-apis/">Remote API calls</a></p>
+<p>Native Jira changes made outside Promisory remain governed by Jira permissions. Promisory&#39;s enforcement claim covers its own configured execution path.</p>
+<p><strong>Source concurrency limit:</strong> verify whether the chosen Jira endpoint supports an atomic conditional update. A fresh read alone cannot prevent a native Jira edit between the check and the write. If an atomic precondition is unavailable, use narrow set-field semantics, detect observable conflicts during read-back, and disclose the remaining race exposure. Read-back confirms the observed final value; it does not prove that no intervening edit occurred. Do not claim a global lock or race-free invalidation of external state.</p>
+<h2 id="technical--36">11. Security, privacy, and operational behavior</h2>
+<ul>
+<li><strong>Isolation:</strong> all persistent keys, queries, jobs, receipts, and remote bindings include server-derived installation and cloud scope. Reinstallation is a new installation identity.</li>
+<li><strong>Authorization:</strong> recheck source access for every view, graph answer, export, and write. A stakeholder label does not bypass a source ACL.</li>
+<li><strong>Event ingestion:</strong> events from restricted sources are not automatically readable by every app user. Persist the minimum necessary metadata and filter all projections.</li>
+<li><strong>Secrets:</strong> use a secret API or secret manager; return configuration status only. Strip tokens, headers, raw source content, and keys from logs.</li>
+<li><strong>Retention proposal:</strong> cache source snapshots for at most 24 hours; keep commitments/operational history for 180 days by default, configurable by the authorized admin. Signed Decionis records follow a separately disclosed policy. Confirm retention before launch.</li>
+<li><strong>Deletion:</strong> uninstall disables jobs and remote execution; disconnect removes accessible caches and derived relationships; account deletion anonymizes profile fields while preserving only legally/contractually justified minimal records. Test the platform lifecycle and remote cleanup contract.</li>
+<li><strong>Notification discipline:</strong> aggregate related changes, respect quiet hours, and recheck audience access when notices are read. External sending is a separately enabled feature.</li>
+<li><strong>Reliability:</strong> use bounded exponential retry for reads and ingestion, respect Retry-After, and keep dead-letter/replay controls. Do not blindly retry writes after a network timeout.</li>
+<li><strong>Observability:</strong> track import lag, graph coverage, rule latency, denied actions, reconciliation age, source errors, and cost. Correlation IDs must not encode personal data.</li>
+<li><strong>Human impact:</strong> report commitments and process bottlenecks. Do not rank employees, infer effort from activity, or use sparse signals as performance judgments.</li>
+<li><strong>Accessibility:</strong> target WCAG 2.2 AA, full keyboard use, non-color status cues, reduced motion, and usable 200% zoom.</li>
+</ul>
+<h2 id="technical--37">12. Failure behavior</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>User experience</th>
+<th>System response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Graph unavailable or partially scoped</td>
+<td>“Context incomplete” with a source-specific explanation</td>
+<td>Preserve permitted local/Jira functions; disable claims of complete graph coverage</td>
+</tr>
+<tr>
+<td>Jira source unavailable</td>
+<td>Last checked time and stale state</td>
+<td>Hold dependent writes and fulfillment verification</td>
+</tr>
+<tr>
+<td>Decionis unreachable</td>
+<td>“Authorization unavailable”</td>
+<td>Fail closed on governed mutation</td>
+</tr>
+<tr>
+<td>Shadow gateway</td>
+<td>“Assessment only”</td>
+<td>No live enforcement claim or automatic dispatch</td>
+</tr>
+<tr>
+<td>Owner loses access</td>
+<td>“Owner needs reassignment” without leaking restricted details</td>
+<td>Require valid ownership transfer</td>
+</tr>
+<tr>
+<td>Proposal changes during review</td>
+<td>“This proposal changed; review the new version”</td>
+<td>Reject stale applicability</td>
+</tr>
+<tr>
+<td>Write timeout</td>
+<td>“Checking whether the change completed”</td>
+<td>RECONCILING; query target before retry</td>
+</tr>
+<tr>
+<td>Source deleted</td>
+<td>“Source unavailable”</td>
+<td>Remove cached content, retain minimal permitted historical reference</td>
+</tr>
+<tr>
+<td>No qualifying evidence</td>
+<td>“Outcome not yet verified”</td>
+<td>Keep fulfillment pending</td>
+</tr>
+<tr>
+<td>Trial/license expires</td>
+<td>Explain entitlement and export options</td>
+<td>Apply declared license behavior; never remove source Jira data</td>
+</tr>
+</tbody></table></div>
+<h2 id="technical--38">13. Definition of the release</h2>
+<p>The release is complete only when a fresh installation can connect the selected Jira scope and Confluence lifecycle/PRD context, show an initiative above an epic using a real hierarchy or labelled planning link, demonstrate requirement/gate drift, confirm a commitment, trace a changed bug upward, identify the accountable people, obtain a real Rovo explanation using real graph context, review one supported change, observe a correctly held and a correctly completed governed action, and verify the resulting outcome.</p>
+<p>The deployment must provide real evidence for every claimed integration. Separate demo fixtures from live mode, and separate API contract tests from installed-tenant evidence. Marketplace submission and judge distribution are distinct release artifacts; see the <a href="#plan">implementation plan</a>.</p>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section><section class="doc-pane" data-pane id="brand"><div class="chapter-meta"><span>02 / BRAND & UX SYSTEM</span><a href="02-brand-and-ux-system.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="brand--1">Promisory · Brand and UX system</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#brand--2">1. Brand direction</a></li><li><a href="#brand--4">2. Logo system</a></li><li><a href="#brand--7">3. Color palette</a></li><li><a href="#brand--9">4. Typography</a></li><li><a href="#brand--11">5. Layout and spacing</a></li><li><a href="#brand--14">6. Form and input controls</a></li><li><a href="#brand--16">7. Component specifications</a></li><li><a href="#brand--23">8. Accessibility and responsive behavior</a></li><li><a href="#brand--24">9. Interactive prototype</a></li><li><a href="#brand--25">10. Design handoff</a></li></ol></details>
+<p><strong>Version 1.1 · 10 November 2026 · Proposed identity</strong></p>
+<h2 id="brand--2">1. Brand direction</h2>
+<p><strong>Name:</strong> Promisory<br><strong>Positioning:</strong> Connected commitments for teams that deliver together.<br><strong>Tagline:</strong> Keep every commitment connected.</p>
+<p>The visual character is calm, precise, and collaborative. Promisory should help people understand a change and decide what to do next without turning delivery work into a wall of alarms.</p>
+<p>Use azure blue (#0078D4) as the primary brand and action color, supported by deep navy and cool neutral surfaces. The product should feel at home beside Jira while remaining recognizable. Atlassian&#39;s host navigation and native UI Kit components keep their platform styling; Promisory styles apply inside its Custom UI surfaces.</p>
+<h3 id="brand--3">Voice</h3>
+<p>State the observed change, its consequence, and the next available action. Prefer “The launch depends on a bug that is still open” to an unexplained risk score. Use “Outcome not yet verified” when evidence is absent. Attribute decisions and acknowledge unknowns.</p>
+<p>Avoid blame, individual performance rankings, false certainty, and theatrical alerts. Never translate missing data into a reassuring green state. Technical grant IDs and trace details belong behind “View evidence,” except when a user needs them to resolve a problem.</p>
+<h2 id="brand--4">2. Logo system</h2>
+<h3 id="brand--5">Connected Loop</h3>
+<p>The proposed mark is a geometric P built around a continuous delivery loop and a distinct endpoint. The loop represents a commitment moving through linked work; the endpoint represents an observable outcome. The construction uses clean, deliberate geometry that remains legible in a Jira issue panel and app directory.</p>
+<p>This is an original editable vector identity. The SVG files are the source of truth; PNG files are deterministic exports. It is not an AI-generated bitmap or a placeholder for a later mark.</p>
+<h3 id="brand--6">Files and usage</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>brand/promisory-logo.svg</td>
+<td>Primary horizontal mark and outlined wordmark on light backgrounds</td>
+</tr>
+<tr>
+<td>brand/promisory-logo-reversed.svg</td>
+<td>Light lockup on dark ink</td>
+</tr>
+<tr>
+<td>brand/promisory-mark.svg</td>
+<td>App icon, compact navigation, profile-sized contexts</td>
+</tr>
+<tr>
+<td>brand/promisory-mark-mono.svg</td>
+<td>Single-color printing, small utility placement</td>
+</tr>
+<tr>
+<td>brand/promisory-icon-512.png</td>
+<td>Square app icon export</td>
+</tr>
+<tr>
+<td>brand/promisory-logo-preview.png</td>
+<td>Review preview of the primary lockup</td>
+</tr>
+<tr>
+<td>brand/brand-overview.png</td>
+<td>Overview of the proposed visual system</td>
+</tr>
+</tbody></table></div>
+<p>Maintain clear space equal to the width of the mark&#39;s stem on every side. Minimum mark size is 20 CSS pixels in dense navigation and 24 pixels for standalone use. Use the simplified monochrome mark below 24 pixels. The full horizontal lockup should be at least 132 pixels wide.</p>
+<p>Keep proportions fixed. Do not add shadows, rotation, extra nodes, gradients, outlines, or status badges inside the mark. A risk state is a product signal, not a change to the identity. Avoid placing the warm endpoint accent on a similar warm background.</p>
+<p>The final Marketplace upload sizes and file limits must be checked against the current listing form. The provided exports are reusable source assets, not a claim of compliance with every future marketplace placement.</p>
+<h2 id="brand--7">3. Color palette</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Hex</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color.ink</td>
+<td>#102D46</td>
+<td>Headings, dark navigation, reversed brand backgrounds</td>
+</tr>
+<tr>
+<td>color.primary</td>
+<td>#0078D4</td>
+<td>Azure blue: primary buttons, app icon, selected actions, and brand mark</td>
+</tr>
+<tr>
+<td>color.primaryHover</td>
+<td>#0063B1</td>
+<td>Hover and pressed emphasis</td>
+</tr>
+<tr>
+<td>color.link</td>
+<td>#0067B8</td>
+<td>Accessible link and selected text on white or pale blue surfaces</td>
+</tr>
+<tr>
+<td>color.canvas</td>
+<td>#F5F8FC</td>
+<td>Workspace canvas</td>
+</tr>
+<tr>
+<td>color.surface</td>
+<td>#FFFFFF</td>
+<td>Cards, dialogs, input surfaces</td>
+</tr>
+<tr>
+<td>color.subtle</td>
+<td>#EBF4FC</td>
+<td>Soft grouping and selected surface</td>
+</tr>
+<tr>
+<td>color.textSecondary</td>
+<td>#4B6177</td>
+<td>Supporting text and metadata</td>
+</tr>
+<tr>
+<td>color.border</td>
+<td>#CFDBE6</td>
+<td>Nonessential dividers and surface edges</td>
+</tr>
+<tr>
+<td>color.borderStrong</td>
+<td>#71869A</td>
+<td>Required control boundaries</td>
+</tr>
+<tr>
+<td>color.accentWarm</td>
+<td>#EEA28B</td>
+<td>Brand endpoint and small decorative accents</td>
+</tr>
+<tr>
+<td>color.info</td>
+<td>#3154B5</td>
+<td>Information and navigation context</td>
+</tr>
+<tr>
+<td>color.focus</td>
+<td>#0078D4</td>
+<td>Keyboard focus ring</td>
+</tr>
+<tr>
+<td>color.success</td>
+<td>#15724A</td>
+<td>Verified / on-track text and icon</td>
+</tr>
+<tr>
+<td>color.successSurface</td>
+<td>#E9F5ED</td>
+<td>Verified / on-track background</td>
+</tr>
+<tr>
+<td>color.warning</td>
+<td>#8A5600</td>
+<td>Watch / needs-attention text and icon</td>
+</tr>
+<tr>
+<td>color.warningSurface</td>
+<td>#FFF4D6</td>
+<td>Watch background</td>
+</tr>
+<tr>
+<td>color.danger</td>
+<td>#B42318</td>
+<td>At-risk / breach text and icon</td>
+</tr>
+<tr>
+<td>color.dangerSurface</td>
+<td>#FFF0EE</td>
+<td>At-risk / breach background</td>
+</tr>
+<tr>
+<td>color.unknown</td>
+<td>#535E76</td>
+<td>Incomplete / unknown text and icon</td>
+</tr>
+<tr>
+<td>color.unknownSurface</td>
+<td>#EEF1F6</td>
+<td>Unknown background</td>
+</tr>
+</tbody></table></div>
+<p>White text is used on azure primary buttons and deep navy surfaces. Use color.link for blue text on pale surfaces; the primary blue is reserved for fills, the mark, and foregrounds on white that meet the documented contrast threshold. Warm accent is decorative and must not carry small text. Light divider color is not sufficient for an essential input boundary; use borderStrong. Status chips always combine a label and icon with color.</p>
+<p>Contrast calculations are included in brand/contrast-report.json. Check normal text against 4.5:1 and essential non-text control boundaries/focus indicators against 3:1. Verify actual rendered combinations, including hover, selection, and dark surfaces.</p>
+<h3 id="brand--8">Meaning of states</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Label and visual treatment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ON_TRACK</td>
+<td>Green outline/check icon with “On track”; describes current known conditions</td>
+</tr>
+<tr>
+<td>WATCH</td>
+<td>Amber clock icon with “Watch”; future attention window</td>
+</tr>
+<tr>
+<td>AT_RISK</td>
+<td>Red outlined alert icon with “At risk”; specific current blocker</td>
+</tr>
+<tr>
+<td>BREACHED</td>
+<td>Red filled alert icon with “Deadline missed”; distinguish from predicted risk</td>
+</tr>
+<tr>
+<td>UNKNOWN</td>
+<td>Slate question/partial-circle icon with “Context incomplete”</td>
+</tr>
+<tr>
+<td>FULFILLED</td>
+<td>Green check and “Outcome verified”; show verified time and timeliness</td>
+</tr>
+<tr>
+<td>HELD ACTION</td>
+<td>Amber pause icon and the exact missing requirement</td>
+</tr>
+<tr>
+<td>RECONCILING</td>
+<td>Neutral progress icon and “Checking result”; do not offer a blind retry</td>
+</tr>
+</tbody></table></div>
+<h2 id="brand--9">4. Typography</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Application</th>
+<th>Weights</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Manrope</td>
+<td>Wordmark and prominent page headings</td>
+<td>600, 700, 800</td>
+</tr>
+<tr>
+<td>Inter</td>
+<td>Product UI, body, forms, tables, documentation</td>
+<td>400, 500, 600, 700</td>
+</tr>
+<tr>
+<td>IBM Plex Mono</td>
+<td>Evidence identifiers, dates in dense diagnostics, technical excerpts</td>
+<td>400</td>
+</tr>
+</tbody></table></div>
+<p>The supplied fonts come from the Google Fonts open-source repository and include their SIL Open Font License files. Self-host the packaged assets; do not make customer browsers fetch fonts from a third-party CDN. Preserve license notices in distributed source/assets. <a href="https://github.com/google/fonts">Font sources</a></p>
+<h3 id="brand--10">Type scale</h3>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Size / line height</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>display</td>
+<td>44 / 52 px</td>
+<td>Brand cover and documentation overview</td>
+</tr>
+<tr>
+<td>h1</td>
+<td>30 / 38 px</td>
+<td>Main workspace heading</td>
+</tr>
+<tr>
+<td>h2</td>
+<td>22 / 30 px</td>
+<td>Section heading</td>
+</tr>
+<tr>
+<td>h3</td>
+<td>17 / 24 px</td>
+<td>Card and dialog heading</td>
+</tr>
+<tr>
+<td>body</td>
+<td>15 / 23 px</td>
+<td>Explanations and document text</td>
+</tr>
+<tr>
+<td>ui</td>
+<td>14 / 20 px</td>
+<td>Controls, navigation, standard rows</td>
+</tr>
+<tr>
+<td>label</td>
+<td>12 / 18 px</td>
+<td>Metadata and field labels</td>
+</tr>
+<tr>
+<td>micro</td>
+<td>11 / 16 px</td>
+<td>Supplemental diagnostic labels only</td>
+</tr>
+</tbody></table></div>
+<p>Use tabular numbers for dates, counts, and durations. Avoid all-caps paragraphs, thin weights, or condensed fonts for dense data. Limit long reading text to about 70–80 characters per line.</p>
+<h2 id="brand--11">5. Layout and spacing</h2>
+<p>Base spacing unit: 4 px. The standard scale is 4, 8, 12, 16, 24, 32, 48, and 64 px.</p>
+<ul>
+<li>Main application navigation: approximately 224 px wide on desktop, collapsible where space is limited.</li>
+<li>Page padding: 32 px desktop, 20 px tablet, 16 px mobile.</li>
+<li>Cards: 16 or 24 px padding; 12 px corner radius; a subtle border, not a heavy shadow.</li>
+<li>Inputs and buttons: 8 px corner radius; default 44 px height.</li>
+<li>Tables: 52–56 px standard rows; 40 px compact rows only with a user-selected density mode.</li>
+<li>Detail panel: 360–440 px wide on desktop; full-screen dialog on narrow screens.</li>
+<li>Reading views: central column with stable navigation and clear source links.</li>
+</ul>
+<p>Use a responsive two-column workspace for the commitment list and current evidence/review panel. At narrow widths, keep the main action and essential columns visible and move supplementary information into the detail view. Do not reduce type to squeeze in a desktop table.</p>
+<h3 id="brand--12">Lifecycle and hierarchy interaction</h3>
+<p>Add a <strong>Product lifecycle</strong> workspace before the work-level view. Its breadcrumb can show Product → Initiative → Epic, with relationship labels indicating whether each step is planning context or a native work parent. Display the current phase, accountable owner, linked Confluence artifact, source version, readiness, and next evidence needed.</p>
+<p>Use a compact phase rail for strategy → discovery → initiative → definition → planning → delivery → validation → release → learning → evolution/retirement. On narrow screens, show an accessible list or selected-phase picker. Several phases may be active simultaneously; avoid a progress bar that falsely implies a single mandatory sequence.</p>
+<p>The work map explicitly includes stories alongside tasks and bugs, with real subtasks underneath. Custom program/initiative parents appear only when configured; otherwise show a labelled planning connector. Milestones, sprints, releases, goals, and Confluence page nesting have distinct visual treatments.</p>
+<p>A requirement card shows its stable ID, current source revision, reviewed revision, linked work, and acceptance evidence. When the PRD changes, show “Requirement changed; review applicability” and the affected paths. Keep readiness badges separate from delivery health and fulfillment badges. A ready release gate does not look like an executed deployment.</p>
+<h3 id="brand--13">Information order</h3>
+<ol>
+<li>Which commitment or project is being discussed.</li>
+<li>What changed and when.</li>
+<li>Which outcome and people are affected.</li>
+<li>What evidence supports that conclusion and what is unknown.</li>
+<li>The next available action.</li>
+</ol>
+<h2 id="brand--14">6. Form and input controls</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Behavior and states</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Text input</td>
+<td>Persistent visible label; hint; empty, filled, hover, focus, error, disabled, read-only</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Search icon, clear control, debounced filtering, visible result count, no search-as-submit surprise</td>
+</tr>
+<tr>
+<td>Owner / work picker</td>
+<td>Accessible combobox with keyboard results, source type, account/work ID disambiguation, and empty/error states</td>
+</tr>
+<tr>
+<td>Select</td>
+<td>Native or tested accessible select; no custom clickable div masquerading as a dropdown</td>
+</tr>
+<tr>
+<td>Text area</td>
+<td>Visible label, purpose-specific hint, character count when limited, preserved draft after errors</td>
+</tr>
+<tr>
+<td>Date and time</td>
+<td>Separate date/time and IANA zone; explicit date-only cutoff; localized display plus exact review value</td>
+</tr>
+<tr>
+<td>Checkbox</td>
+<td>Independent options with full-label click target; clear indeterminate state for tree selection</td>
+</tr>
+<tr>
+<td>Radio group</td>
+<td>Mutually exclusive options, group label, keyboard arrow navigation</td>
+</tr>
+<tr>
+<td>Switch</td>
+<td>Immediate reversible preference only; never an undisclosed policy publication or external action</td>
+</tr>
+<tr>
+<td>Segmented control</td>
+<td>View/filter choice with selected state and tab semantics where appropriate</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>One clear primary action per region; loading label; disabled reason nearby</td>
+</tr>
+<tr>
+<td>Destructive action</td>
+<td>Explicit object and effect, narrow confirmation when warranted, safe focus return</td>
+</tr>
+<tr>
+<td>File/source attachment</td>
+<td>Source, permitted type/size, processing state, error, and removal; no false verification badge</td>
+</tr>
+</tbody></table></div>
+<h3 id="brand--15">Commitment form</h3>
+<p>Required fields: outcome/title, project scope, accountable owner, beneficiary, deadline with time zone, and acceptance conditions. Optional fields: delivery contributors, stakeholder watchers, linked work, policy template, and source reference.</p>
+<p>Suggested microcopy:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Outcome hint</td>
+<td>“Describe what must be true when this commitment is fulfilled.”</td>
+</tr>
+<tr>
+<td>Acceptance condition hint</td>
+<td>“Add evidence someone can check, such as a production release and customer acceptance.”</td>
+</tr>
+<tr>
+<td>Missing owner</td>
+<td>“Choose one accountable owner.”</td>
+</tr>
+<tr>
+<td>Ambiguous deadline</td>
+<td>“Choose a date, cutoff time, and time zone.”</td>
+</tr>
+<tr>
+<td>Source changed</td>
+<td>“The source changed after this review. Refresh the proposal before applying it.”</td>
+</tr>
+<tr>
+<td>Restricted source</td>
+<td>“Some context is unavailable with your current access.”</td>
+</tr>
+<tr>
+<td>Missing authority</td>
+<td>“This action needs an authorized review.”</td>
+</tr>
+<tr>
+<td>Uncertain write</td>
+<td>“We are checking whether the change completed.”</td>
+</tr>
+</tbody></table></div>
+<p>Validate on submit and, after the first error, as the user corrects that field. On failure, preserve values, announce an error summary, and focus the first invalid field. Do not require users to re-enter a large draft.</p>
+<h2 id="brand--16">7. Component specifications</h2>
+<h3 id="brand--17">Commitment row/card</h3>
+<p>Show title, stable short ID, accountable owner, agreed due date and time zone, health label, evidence freshness, and the number of relevant open findings. The row opens details; secondary actions have separate accessible buttons. Do not nest interactive controls inside an inaccessible whole-row click target.</p>
+<h3 id="brand--18">Impact explorer</h3>
+<p>Render hierarchy as an expandable list or tree and dependencies as clearly labelled edges. Selecting a bug reveals its path to commitments. Distinguish “contains,” “blocks,” “supports,” “owns,” and “verifies.” Provide a flat path table for keyboard and screen-reader use. Display incomplete traversal limits.</p>
+<h3 id="brand--19">Stakeholder strip</h3>
+<p>Show the accountable owner first, then scoped contributors and observers. Hover/focus reveals role provenance and scope. Avoid implying that avatar order is a reporting hierarchy.</p>
+<h3 id="brand--20">Evidence card</h3>
+<p>Include source name, source revision, observed/checked time, verification result, applicability, and a permitted source link. “Signed record available” and “Outcome verified” are separate labels.</p>
+<h3 id="brand--21">Review panel</h3>
+<p>Display before/after values, exact target, proposed effect, current evidence, required reviewers, source freshness, and the next action. “Approve review” records a review; “Apply authorized change” is a separate, clearly explained operation where the flow requires it. An inaccessible or stale proposal has no enabled execution button.</p>
+<h3 id="brand--22">Rovo entry point</h3>
+<p>Use “Ask about this commitment” or “Explain this impact.” Open the real Rovo surface in the implemented app. The prototype explicitly labels its deterministic response as a sample. Answers follow: finding → evidence → uncertainty → available next action.</p>
+<h2 id="brand--23">8. Accessibility and responsive behavior</h2>
+<p>Target WCAG 2.2 AA. Provide visible focus, meaningful labels, accessible names for icon-only controls, 44 px preferred touch targets, a skip link, and logical heading order.</p>
+<p>Dialogs trap focus, close with Escape when safe, and restore focus to their trigger. Toasts use a polite live region and do not steal focus. Errors are not communicated by color alone. Long operations report progress without rapid repeated announcements.</p>
+<p>Test 200% zoom, a 390 px viewport, keyboard-only navigation, screen-reader names, and reduced-motion preference. Motion is limited to 120–180 ms transitions for state changes; remove nonessential transitions under reduced motion.</p>
+<p>A future dark mode must have its own verified semantic tokens. The reversed logo is provided now; the first product release should ship one thoroughly tested light theme before claiming complete dark-theme support.</p>
+<h2 id="brand--24">9. Interactive prototype</h2>
+<p>Open <a href="prototype.html">the UX prototype</a>. It demonstrates a product lifecycle with ten phases and Confluence artifacts, a project overview, a typed work/impact map including higher-level context and stories, role views, a commitment form, an evidence panel, a review interaction, and a sample Rovo explanation.</p>
+<p>The “Simulate dependency delay” control changes fictional work evidence and recomputes visible example states. The “Add example commitment” action affects only in-memory prototype data. The prototype is a design reference; it is not a working Forge app, AI integration, or authorization engine.</p>
+<h2 id="brand--25">10. Design handoff</h2>
+<p>Use brand/tokens.json as the source for semantic names and brand/tokens.css as the implementation reference. Maintain the same state vocabulary as the technical specification. Prefer tested platform components where they satisfy the design.</p>
+<p>Acceptance requires readable 100% and 200% views, visible keyboard focus, error recovery without data loss, correct status labels, explicit unknown states, and a clear distinction between reviewing a proposal and completing an external action. Check the actual rendered UI rather than approving screenshots alone.</p>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section><section class="doc-pane" data-pane id="plan"><div class="chapter-meta"><span>03 / IMPLEMENTATION PLAN</span><a href="03-implementation-plan.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="plan--1">Promisory · Implementation plan</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#plan--2">1. Delivery objective</a></li><li><a href="#plan--3">2. Scope and sequencing rules</a></li><li><a href="#plan--4">3. Schedule and acceptance gates</a></li><li><a href="#plan--5">4. Phase 0 spike checklist</a></li><li><a href="#plan--6">5. Work packages and dependencies</a></li><li><a href="#plan--7">6. Proposed repository layout</a></li><li><a href="#plan--8">7. Test and verification plan</a></li><li><a href="#plan--12">8. Marketplace and judging strategy</a></li><li><a href="#plan--15">9. Demonstration story</a></li><li><a href="#plan--16">10. Adoption and commercial plan</a></li><li><a href="#plan--17">11. Risks, contingencies, and cut order</a></li><li><a href="#plan--18">12. Final release checklist</a></li></ol></details>
+<p><strong>Version 1.0 · 10 November 2026</strong></p>
+<h2 id="plan--2">1. Delivery objective</h2>
+<p>Ship one complete installed workflow: a product goal and initiative connect through a selected Confluence PRD to a project commitment and real Jira work; a changed bug exposes its impact and responsible people; Rovo explains the situation with Teamwork Graph context; a reviewed action follows a verified authority path; the resulting outcome is checked.</p>
+<p>Use <strong>Apps for Software Teams</strong> as the primary Codegeist category because the expanded product centers on project, epic, work-item, and engineering-team delivery. Preserve the customer commitment use case as the business consequence.</p>
+<p>The schedule assumes an experienced primary builder, access to the existing platforms, and a person available for product/policy reviews. It is a planning hypothesis. Capability checks in Phase 0 determine whether additional help or scope adjustment is required. Do not promise all roadmap features inside six weeks.</p>
+<h2 id="plan--3">2. Scope and sequencing rules</h2>
+<ol>
+<li>Deliver all P0 features in the technical specification at the stated bounded scale.</li>
+<li>Use one Jira project and connected Confluence in the main demonstration; support a second project for a meaningful access test.</li>
+<li>Implement one real governed mutation: change a Jira work item&#39;s due date after the required review and authority checks.</li>
+<li>Keep the original external promise unchanged unless its own revision workflow is explicitly completed.</li>
+<li>Build Rovo and graph connectivity at the start. They are architectural dependencies, not decoration added before submission.</li>
+<li>Add MCP only after the full workflow and judge installation are reliable.</li>
+<li>Begin Marketplace preparation early; actual review duration is outside the team&#39;s control.</li>
+<li>Preserve truthful capability labels. Simulated data is acceptable as clearly identified example data; simulated integrations do not establish bonus eligibility.</li>
+</ol>
+<p>The expanded lifecycle remains bounded: all ten phases are represented, but the P0 demonstration uses one initiative, a small selected Confluence artifact set, stable PRD requirement references, and one versioned release-readiness gate. Automated template publication, portfolio optimization, external adoption analytics, and retirement automation follow after the core path works.</p>
+<h2 id="plan--4">3. Schedule and acceptance gates</h2>
+<p>All dates are in Europe/Stockholm. The final competition deadline is <strong>22 December 2026, 21:00 Stockholm time</strong>. Set an internal submission cutoff at <strong>12:00 on 22 December</strong>. <a href="https://codegeist2026.devpost.com/rules">Official rules</a></p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Dates</th>
+<th>Work</th>
+<th>Exit evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0 · Prove integration contracts</td>
+<td>Nov 10–12</td>
+<td>Register fresh app identities; validate Forge compatibility, Rovo action, graph query, native user permissions, Decionis evaluation, grant/claim execution path, and data egress boundary</td>
+<td>Capability matrix, installed hello-world tools, tested auth path, recorded contract decisions</td>
+</tr>
+<tr>
+<td>1 · Establish the model and workspace</td>
+<td>Nov 13–19</td>
+<td>Tenant storage, actual higher-level hierarchy, story/task/bug peers, Confluence artifact mapping, requirement references, commitment/owner flow, role views, design tokens</td>
+<td>F01–F06/F08 exercised against a seeded Jira project; access tests pass</td>
+</tr>
+<tr>
+<td>2 · Detect and explain impact</td>
+<td>Nov 20–26</td>
+<td>Versioned impact rules, deduplication, event handling, evidence freshness, work map, history, inbox, initial Rovo explanations</td>
+<td>Real bug and PRD changes yield the correct initiative/requirement/commitment paths and stakeholder views</td>
+</tr>
+<tr>
+<td>3 · Close the action loop</td>
+<td>Nov 27–Dec 3</td>
+<td>Recovery proposals, reviews, remote adapter, AgentSafe enforcement, result reconciliation, release-readiness gate, fulfillment verification, Confluence lifecycle card</td>
+<td>One held action and one verified successful action with receipts; no duplicate write on replay</td>
+</tr>
+<tr>
+<td>4 · Pilot and prepare distribution</td>
+<td>Dec 4–10</td>
+<td>Pilot usability, load/cost checks, privacy review, graph/agent evaluations, MCP tools if ready, listing materials</td>
+<td>End-to-end pilot evidence; Marketplace candidate ready; target submission by Dec 8 if checks pass</td>
+</tr>
+<tr>
+<td>5 · Harden and package</td>
+<td>Dec 11–17</td>
+<td>Fresh-tenant installation, judge clone, accessibility, hostile-input cases, uninstall/export, release notes, support instructions</td>
+<td>Release candidate accepted; independent judge walkthrough works</td>
+</tr>
+<tr>
+<td>6 · Freeze and submit</td>
+<td>Dec 18–21</td>
+<td>Fix release blockers, record video, verify links, complete Devpost text, preserve release evidence</td>
+<td>Frozen release and complete submission package</td>
+</tr>
+<tr>
+<td>Buffer / final check</td>
+<td>Dec 22 before 12:00</td>
+<td>Recheck availability and submit if not already completed</td>
+<td>Submission receipt and working install/video links</td>
+</tr>
+</tbody></table></div>
+<p>“Marketplace candidate ready” and “Marketplace approved” are different milestones. Codegeist accepts a listing or a Marketplace review-ticket link for that bonus, subject to the rules and judges&#39; review.</p>
+<h2 id="plan--5">4. Phase 0 spike checklist</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Required evidence</th>
+<th>Decision if unresolved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Does the tenant support actual levels above Epic?</td>
+<td>Imported configured parent metadata, plus a planning-link fallback case</td>
+<td>Preserve native configuration; never create site hierarchy levels automatically</td>
+</tr>
+<tr>
+<td>Can a PRD requirement be bound to a stable source version?</td>
+<td>Two page revisions, a confirmed section mapping, and scoped access results</td>
+<td>Use explicit mapping; unresolved sections cannot pass readiness</td>
+</tr>
+<tr>
+<td>Can a fresh Forge app read the intended Jira/Confluence sources?</td>
+<td>Two users with different permissions receive different authorized results</td>
+<td>Fix the access model before building rollups</td>
+</tr>
+<tr>
+<td>Can the chosen graph fields provide useful context?</td>
+<td>Captured real query shape, scopes, pagination, and returned entity links</td>
+<td>Select another supported real traversal; do not fabricate graph relationships</td>
+</tr>
+<tr>
+<td>Can a Rovo action call the same domain service as the UI?</td>
+<td>Installed agent tool output tied to a real commitment ID</td>
+<td>Resolve invocation context and permissions early</td>
+</tr>
+<tr>
+<td>Does the selected AgentSafe deployment enforce?</td>
+<td>A denied request does not reach an instrumented test destination</td>
+<td>Use a verified enforcement-capable release; shadow is insufficient</td>
+</tr>
+<tr>
+<td>How is a grant claimed and finalized?</td>
+<td>Version-pinned provider/SDK contract and replay/expiry results</td>
+<td>Do not dispatch from the existing action-gate Boolean</td>
+</tr>
+<tr>
+<td>Can the chosen Jira write check a source precondition atomically?</td>
+<td>Endpoint-specific test of supported conditional update behavior</td>
+<td>Document residual race exposure; do not claim race-free source invalidation</td>
+</tr>
+<tr>
+<td>Is the remote action data allowed to leave Atlassian?</td>
+<td>Data lineage allowlist and prohibited graph-egress test</td>
+<td>Keep restricted content inside Forge and redesign that decision path</td>
+</tr>
+<tr>
+<td>Can licensed Marketplace and judge builds be kept equivalent?</td>
+<td>Build profile diff limited to app identity, licensing, and environment binding</td>
+<td>Establish the split before listing submission</td>
+</tr>
+</tbody></table></div>
+<p>No credentials, customer data, or raw OAuth tokens belong in spike evidence files. Record hashes, IDs where appropriate, sanitized results, and exact versions.</p>
+<h2 id="plan--6">5. Work packages and dependencies</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Depends on</th>
+<th>Deliverables</th>
+<th>Acceptance criteria</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WP01 Repository and release profiles</td>
+<td>Phase 0</td>
+<td>TypeScript workspace, lockfile, CI, Forge development/judge/marketplace profiles</td>
+<td>Build repeatable; no reused Decionis app ID</td>
+</tr>
+<tr>
+<td>WP02 Contracts and repositories</td>
+<td>WP01</td>
+<td>Runtime schemas, single-aggregate concurrency, installation scope, migrations</td>
+<td>Tenant collision and stale update rejected</td>
+</tr>
+<tr>
+<td>WP03 Source adapters</td>
+<td>WP02</td>
+<td>Jira import, actual hierarchy, links, current-value fetch, access filter</td>
+<td>Tasks and bugs remain peers unless tenant metadata says otherwise</td>
+</tr>
+<tr>
+<td>WP04 Commitment lifecycle</td>
+<td>WP02/WP03</td>
+<td>Capture, owner acceptance, versioning, acceptance conditions</td>
+<td>Incomplete/ambiguous candidate cannot activate</td>
+</tr>
+<tr>
+<td>WP05 Graph and ownership</td>
+<td>WP03/WP04</td>
+<td>Real graph context, team mapping, permission-aware cache</td>
+<td>Missing graph results do not imply full coverage</td>
+</tr>
+<tr>
+<td>WP13 Product lifecycle and requirements</td>
+<td>WP03/WP04/WP05</td>
+<td>Planning nodes, ten phases, versioned artifact/requirement mappings, readiness contracts</td>
+<td>Real higher levels or labelled fallback; material PRD change invalidates the applicable review</td>
+</tr>
+<tr>
+<td>WP06 Impact engine</td>
+<td>WP04/WP05/WP13</td>
+<td>Rule evaluation, typed paths, dedupe, incomplete-state handling</td>
+<td>Shared blocker counted once per commitment; cycles terminate</td>
+</tr>
+<tr>
+<td>WP07 Product UI</td>
+<td>WP04/WP06</td>
+<td>Overview, issue panel, role views, detail, reviews, evidence</td>
+<td>User can follow a path and understand the next action with keyboard alone</td>
+</tr>
+<tr>
+<td>WP08 Reviews and execution</td>
+<td>WP02/WP04/WP06</td>
+<td>Immutable intent, review applicability, verified remote/gateway adapter, reconciliation</td>
+<td>Held, unauthorized, expired, replayed, or changed actions do not write</td>
+</tr>
+<tr>
+<td>WP09 Rovo</td>
+<td>WP04/WP05/WP06</td>
+<td>Agent prompt, shared tools, grounded replies, proposal creation</td>
+<td>Agent cannot self-approve or select another tenant</td>
+</tr>
+<tr>
+<td>WP10 Fulfillment and notifications</td>
+<td>WP06/WP08</td>
+<td>Condition verifier, late outcome history, quiet inbox</td>
+<td>Closed ticket alone does not verify a different agreed condition</td>
+</tr>
+<tr>
+<td>WP11 MCP and Confluence</td>
+<td>WP07/WP09</td>
+<td>Macro, optional rovo:mcp tools, connection documentation</td>
+<td>Real supported modules work in the installed release</td>
+</tr>
+<tr>
+<td>WP12 Distribution</td>
+<td>All P0 packages</td>
+<td>Listing dossier, judge app, video, instructions, release evidence</td>
+<td>Fresh install reproduces the demonstration</td>
+</tr>
+</tbody></table></div>
+<p>Use IDs F01–F35 from the specification in issues, acceptance records, and release evidence. An implementation ticket is complete when its behavior and evidence are present, not when a screen exists.</p>
+<h2 id="plan--7">6. Proposed repository layout</h2>
+<pre><code class="language-text">promisory/
+  apps/
+    forge/
+      manifest.yml
+      src/resolvers/
+      src/events/
+      src/rovo/
+      src/schedules/
+      static/workspace/
+    remote/
+      src/auth/
+      src/execution/
+      src/reconciliation/
+  packages/
+    domain/
+    contracts/
+    integrations-atlassian/
+    integrations-decionis/
+    design-system/
+    test-fixtures/
+  docs/
+    product/
+    architecture/
+    decisions/
+    runbooks/
+    submission/
+    evidence/
+  scripts/
+    build-release-profiles.*
+    verify-release-equivalence.*
+  AGENTS.md
+  package.json
+  pnpm-lock.yaml
+</code></pre>
+<p>The remote package is an adapter, not a second policy engine. AgentSafe remains an independently versioned gateway dependency. Avoid copying entire Steward or Decionis repositories into the app.</p>
+<h2 id="plan--8">7. Test and verification plan</h2>
+<h3 id="plan--9">Domain and integration tests</h3>
+<ul>
+<li>Product lifecycle: no higher levels versus configured program/initiative parents; Confluence page organization differs from work hierarchy; source version drift; ready gate versus authorized action; release versus adoption.</li>
+<li>Actual hierarchy: story/task/bug peers, subtasks, custom type names, project moves, renamed issue keys, deleted sources.</li>
+<li>Graph: partial permissions, missing scopes, unsupported relation, pagination, stale results, team membership changes, cross-site ID collisions.</li>
+<li>Impact: duplicate edges, shared blockers, cycles, depth limits, overdue vs predicted risk, simultaneous known risk and unknown coverage.</li>
+<li>Commitments: missing owner, pending transfer, revised deadlines, acceptance changes, superseded versions, late fulfillment.</li>
+<li>Authority: wrong tenant/principal, forged review, stale intent, changed payload, missing/expired/reused grant, policy unavailable, shadow mode.</li>
+<li>Execution: target unavailable before send, timeout after send, duplicate retry, lost acknowledgment, failed finalization, reconciled success/failure.</li>
+<li>Rovo/MCP: prompt injection in source content, forged identity inputs, unsupported IDs, inaccessible evidence, proposed write without review.</li>
+<li>Privacy: graph-derived data rejected by remote serializer; no secret/source-body leakage in logs; filtered rollups and notifications.</li>
+<li>Lifecycle: disconnect, uninstall, reinstallation, license expiry, data export, deletion/retention jobs.</li>
+</ul>
+<h3 id="plan--10">Product verification</h3>
+<p>Use a real installed Forge app and a fresh test tenant. Record one manager and one restricted engineer journey. Exercise both UI and Rovo entry points against the same commitment. Check 390 px width, desktop, 200% zoom, keyboard navigation, accessible dialog behavior, and visible form errors.</p>
+<p>Performance targets from the specification are hypotheses. Measure import duration, event lag, context query latency, graph coverage, request count, remote failures, and cost per active project. A screenshot or a mocked HTTP success is not proof that the external integration works.</p>
+<h3 id="plan--11">Release evidence folder</h3>
+<pre><code class="language-text">docs/evidence/&lt;release-id&gt;/
+  capability-matrix.md
+  versions-and-build-hashes.json
+  installation-walkthrough.md
+  permission-test-results.md
+  hierarchy-and-impact-results.md
+  lifecycle-requirement-and-gate-results.md
+  graph-query-evidence.json
+  rovo-evaluation-results.md
+  execution-and-reconciliation-results.md
+  accessibility-results.md
+  data-egress-review.md
+  judge-marketplace-equivalence.md
+  submission-links.md
+</code></pre>
+<p>Store only sanitized evidence. Actual record IDs may be useful in a private test tenant; credentials never are.</p>
+<h2 id="plan--12">8. Marketplace and judging strategy</h2>
+<p>The competition&#39;s five core criteria—implementation, design, potential impact, innovation, and presentation—are equally weighted. Bonus tracks are additional award opportunities; adding modules does not automatically increase a core score. <a href="https://codegeist2026.devpost.com/">Codegeist overview</a></p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Opportunity</th>
+<th>Concrete implementation</th>
+<th>Evidence to submit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core implementation</td>
+<td>Installed Forge workflow with real Jira data and an operational action loop</td>
+<td>Fresh install and end-to-end video</td>
+</tr>
+<tr>
+<td>Design</td>
+<td>Role-relevant views, accessible controls, explicit unknowns and errors</td>
+<td>Demonstrated task completion and UI walkthrough</td>
+</tr>
+<tr>
+<td>Impact</td>
+<td>Specific delivery team and measurable promise outcomes</td>
+<td>Pilot observations with method and sample size</td>
+</tr>
+<tr>
+<td>Innovation</td>
+<td>Typed promise-to-work impact, exact review applicability, verified fulfillment</td>
+<td>A before/after scenario ordinary status rollups cannot explain</td>
+</tr>
+<tr>
+<td>Presentation</td>
+<td>One understandable story with visible results</td>
+<td>Public YouTube video under five minutes</td>
+</tr>
+<tr>
+<td>Best Agents</td>
+<td>rovo:agent with useful shared action tools</td>
+<td>Agent answering from real data and creating a valid draft</td>
+</tr>
+<tr>
+<td>Teamwork Graph</td>
+<td>Supported context traversal materially used in the workflow</td>
+<td>Real query, returned objects, source links, and visible consequence</td>
+</tr>
+<tr>
+<td>Marketplace</td>
+<td>Published listing or submitted listing</td>
+<td>Actual listing/review-ticket URL</td>
+</tr>
+<tr>
+<td>Atlassian MCP</td>
+<td>rovo:mcp exposes the same safe tools</td>
+<td>Tool discovered and invoked through the Atlassian integration</td>
+</tr>
+</tbody></table></div>
+<p>The MCP bonus requires the Forge rovo:mcp path specified by the rules; a separate existing Decionis MCP server alone does not establish eligibility. <a href="https://codegeist2026.devpost.com/rules">Official bonus requirements</a></p>
+<h3 id="plan--13">Installation and licensing profiles</h3>
+<p>Choose Jira as required and Confluence as optional on the same site. The current required-app compatibility model supports paid Marketplace listings; free multi-app listings are not supported. Plan an evaluation/trial experience rather than advertising a permanent free multi-app listing. Validate actual billing terms before setting prices. <a href="https://developer.atlassian.com/platform/forge/app-compatibility/">App compatibility</a></p>
+<p>Keep two registered app identities derived from one release:</p>
+<ol>
+<li><strong>Marketplace app:</strong> production identity, declared remote domains, licensing and listing configuration, real privacy/support materials.</li>
+<li><strong>Judge app:</strong> separate unlicensed identity, equivalent features and code, isolated test binding, and a shareable installation link.</li>
+</ol>
+<p>Once a Forge app is listed/submitted or licensed, its installation-link sharing is unavailable; the documented path is an unlicensed copy. Verify equivalence by source/build hashes and a small allowed configuration diff. <a href="https://developer.atlassian.com/platform/forge/distribute-your-apps/">Distribution rules</a></p>
+<p>The hybrid external authority path is not represented as “Runs on Atlassian.” Only use that badge if the actual manifest and behavior meet Atlassian&#39;s eligibility checks. Analytics labeling is not a workaround for business-data egress. <a href="https://developer.atlassian.com/platform/forge/runs-on-atlassian/">Badge requirements</a></p>
+<h3 id="plan--14">Marketplace preparation</h3>
+<p>Prepare the exact product description, supported scope, screenshots from the real app, app icon, privacy and data-handling statements, support and documentation URLs, license behavior, remote provider/subprocessor details, uninstall behavior, and reviewer instructions. Validate requested scopes and all currently required Marketplace fields.</p>
+<p>Do not invent a listing link, approval status, certification, company endorsement, or support address. Use verified existing business details when the submission is actually prepared. <a href="https://developer.atlassian.com/platform/marketplace/listing-forge-apps/">Forge listing guide</a></p>
+<h2 id="plan--15">9. Demonstration story</h2>
+<p>Use fictional Northstar Retail and a “Merchant Launch” commitment.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Demonstration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0:00–0:25</td>
+<td>Show product goal, initiative, Confluence PRD, and the measurable launch commitment</td>
+</tr>
+<tr>
+<td>0:25–1:00</td>
+<td>Trace initiative → epic → story/task; show a blocking bug, PRD requirement, and responsible team</td>
+</tr>
+<tr>
+<td>1:00–1:40</td>
+<td>Change the bug&#39;s delivery context; Promisory exposes the affected commitment and stakeholder views</td>
+</tr>
+<tr>
+<td>1:40–2:20</td>
+<td>Ask Rovo what changed; show a real Teamwork Graph-derived context link and the source evidence</td>
+</tr>
+<tr>
+<td>2:20–3:25</td>
+<td>Compare recovery, show one held action, then an authorized exact action and its read-back result</td>
+</tr>
+<tr>
+<td>3:25–4:00</td>
+<td>Show readiness/source applicability, verify delivery evidence, and keep adoption measurement separate</td>
+</tr>
+<tr>
+<td>4:00–4:30</td>
+<td>Show installation availability and actual bonus artifacts; close with a measured pilot observation if available</td>
+</tr>
+</tbody></table></div>
+<p>Use the real app for the submission video. This package&#39;s design prototype is not the submission demo. Do not publish a made-up ROI figure; if no pilot result exists, clearly state the test outcome and the proposed measure.</p>
+<h2 id="plan--16">10. Adoption and commercial plan</h2>
+<p>Begin with one delivery team and a bounded project. Installation must explain the data scope and show useful findings before asking users to configure every stakeholder relationship. Avoid requiring a separate Decionis account for basic context exploration; the commercial/authority connection becomes relevant when the customer enables that capability.</p>
+<p>Recruit three design-partner teams with different perspectives: engineering delivery, product operations, and customer success. Recruitment and external messages require explicit authorization when performed; this document does not send them.</p>
+<p>Measure activation as a confirmed commitment plus a viewed evidence-linked finding. Measure engagement by team-level weekly use, accepted findings, and completed review/verification loops. Collect why a finding was dismissed to improve rules. Measure costs per active project before choosing the paid plan structure. Avoid seat-price or savings claims before validation.</p>
+<h2 id="plan--17">11. Risks, contingencies, and cut order</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Graph coverage or scopes differ from examples</td>
+<td>Phase 0 schema inspection; supported queries; visible incomplete state</td>
+</tr>
+<tr>
+<td>External execution adapter is more work than expected</td>
+<td>Prove one allowlisted action first; defer additional mutation types</td>
+</tr>
+<tr>
+<td>Current hosted gateway cannot enforce</td>
+<td>Use a verified enforcement-capable deployment; do not label shadow as protected</td>
+</tr>
+<tr>
+<td>Source API lacks atomic conditional writes</td>
+<td>Narrow operation semantics, fresh review/read-back, reconciliation, explicit residual-risk documentation</td>
+</tr>
+<tr>
+<td>Marketplace review outlasts the schedule</td>
+<td>Submit early and retain the review-ticket evidence</td>
+</tr>
+<tr>
+<td>Multi-app licensing changes install behavior</td>
+<td>Independent judge identity and reproducible release profiles</td>
+</tr>
+<tr>
+<td>Rovo answers are plausible but incorrect</td>
+<td>Shared domain tools, citations, abstention cases, and evaluation fixtures</td>
+</tr>
+<tr>
+<td>Scope grows toward portfolio planning or HR analytics</td>
+<td>Defer forecasting, capacity optimization, broad CRM connectors, and individual analytics</td>
+</tr>
+</tbody></table></div>
+<p>Cut P2 first. Then defer P1 external messaging, advanced portfolios, and optional MCP if necessary. Do not cut access checks, source freshness, review applicability, truthful live/demo labeling, installation reliability, or evidence for a claimed core integration.</p>
+<h2 id="plan--18">12. Final release checklist</h2>
+<ul>
+<li>All P0 acceptance outcomes are met or the scope/claims are explicitly revised before submission.</li>
+<li>Fresh installation works with documented capabilities and isolated credentials.</li>
+<li>The lifecycle/Confluence, requirement, hierarchy, stakeholder, Rovo, graph, governed action, and verification story is reproducible.</li>
+<li>Marketplace and judge builds have matching source behavior.</li>
+<li>Video is public, under five minutes, understandable, and consistent with the installed app.</li>
+<li>Listing or review-ticket link, installation link, and all required materials are verified.</li>
+<li>Production/public publishing is performed only with the owner&#39;s authorization; prepare the complete reviewable candidate before requesting any missing final approval.</li>
+</ul>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section><section class="doc-pane" data-pane id="codex"><div class="chapter-meta"><span>04 / CODEX HANDOFF</span><a href="04-codex-implementation-instructions.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="codex--1">Promisory · Codex implementation instructions</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#codex--2">1. Mission</a></li><li><a href="#codex--3">2. Read before editing</a></li><li><a href="#codex--4">3. First implementation turn</a></li><li><a href="#codex--5">4. Architecture rules</a></li><li><a href="#codex--11">5. Contracts and command surface</a></li><li><a href="#codex--13">6. Implementation slices</a></li><li><a href="#codex--20">7. Design implementation rules</a></li><li><a href="#codex--21">8. Verification discipline</a></li><li><a href="#codex--22">9. Working style and change control</a></li><li><a href="#codex--23">10. Completion report</a></li><li><a href="#codex--24">11. Ready-to-use bootstrap prompt</a></li></ol></details>
+<p><strong>Version 1.0 · 10 November 2026</strong></p>
+<p>This is a handoff for implementation in a dedicated Promisory repository. The current package contains specifications and a design prototype, not a deployed product. Use the included <a href="templates/implementation-prompt.md">bootstrap prompt</a> and <a href="templates/AGENTS.md">AGENTS.md template</a> when starting the implementation chat.</p>
+<h2 id="codex--2">1. Mission</h2>
+<p>Build Promisory as an installable Forge app that connects commitments to project work, accountable people, and verifiable outcomes. Implement the bounded P0 release in the technical specification and complete the phase acceptance gates in the plan.</p>
+<p>Represent the complete product lifecycle, including Confluence strategy/discovery/PRD/release/learning artifacts and initiative context above epics. Use the real configured Jira hierarchy: optional higher work levels → epic → story/task/bug → subtask, with project as a container. Represent a bug blocking a task through an explicit dependency relationship. Never create a false parent relationship to match a diagram.</p>
+<p>Rovo must use the same tested domain tools as the UI. Teamwork Graph must supply real, permission-filtered context. Decionis owns institutional execution authority; AgentSafe enforces the configured external action boundary. Promisory owns delivery diagnostics, user experience, and commitment records.</p>
+<h2 id="codex--3">2. Read before editing</h2>
+<p>Read in this order:</p>
+<ol>
+<li>The user&#39;s current instructions and all applicable repository AGENTS.md files.</li>
+<li>docs/product/01-technical-specification.md.</li>
+<li>docs/product/02-brand-and-ux-system.md and the packaged assets/tokens.</li>
+<li>docs/product/03-implementation-plan.md.</li>
+<li>docs/product/05-sources-and-decisions.md.</li>
+<li>docs/product/06-product-lifecycle-and-traceability.md.</li>
+<li>Relevant live code and contracts in Decionis, AgentSafe, and Steward.</li>
+</ol>
+<p>Copy the package into docs/product as an initial reference, preserving links and supporting folders or updating them consistently. Keep an architecture decision log for choices that depart from the specification. Recheck official Atlassian documentation before implementing Preview modules, scopes, installation behavior, or remote authentication.</p>
+<p>Do not reinterpret a design proposal or example schema as an existing platform API. Confirm the actual contract and write an adapter.</p>
+<h2 id="codex--4">3. First implementation turn</h2>
+<p>Complete useful work before requesting nonessential preferences.</p>
+<ul>
+<li>Inspect the repository, branch status, local changes, and applicable instructions.</li>
+<li>Inventory the Forge CLI/runtime, authenticated developer access, relevant installed app capabilities, and existing SDK/gateway versions without printing secrets.</li>
+<li>Create a concise capability matrix covering Jira access, Confluence connection, graph queries, Rovo actions, user-context remote calls, Decionis evaluation, grant execution, and distribution.</li>
+<li>Establish the workspace, typed contracts, source adapters, and CI skeleton in a scoped branch.</li>
+<li>Run the Phase 0 integration checks. Record unavailable prerequisites truthfully and continue independent implementation work.</li>
+<li>Do not register or publish to the user&#39;s existing Decionis app identity by copying its manifest ID.</li>
+</ul>
+<p>If credentials or an external decision are genuinely necessary, identify the exact missing item and which test depends on it. Do not repeatedly ask for authority already supplied in the session.</p>
+<h2 id="codex--5">4. Architecture rules</h2>
+<h3 id="codex--6">Keep authority boundaries explicit</h3>
+<p>The impact engine can say why delivery appears at risk. It cannot issue institutional permission. Rovo can explain, retrieve, and draft; it cannot override the impact rules or approve its own operation.</p>
+<p>Use one shared prepare/review/execute service for the controlled mutation. UI and agent entry points must not grow separate execution paths.</p>
+<p>The reviewed Decionis Forge action-gate response does not contain an execution grant. Never implement “if continue_execution then requestJira.” Integrate the supported bound-grant/claim/finalization path through AgentSafe and test it.</p>
+<p>If the selected gateway is shadow-only, show “Assessment only.” Do not forward a consequential action and label it blocked, governed, or protected.</p>
+<h3 id="codex--7">Handle identity and tenant scope on the server</h3>
+<p>Derive app, environment, installation, cloud, and principal from trusted Forge context. Validate remote FITs against trusted configured identity and key sources. Bind the authenticated installation to its Decionis organization in server-controlled configuration.</p>
+<p>Never accept an effective accountId, organization ID, approver role, API destination, or execution mode from a model/browser input as authority. A model-supplied ID is a lookup candidate, not a permission grant.</p>
+<p>Use the native user&#39;s authorized API context for the supported write. A missing/expired user token is a reason to obtain a fresh authorized invocation, not to use a broader app token. Never persist OAuth tokens in a retry queue.</p>
+<h3 id="codex--8">Preserve data boundaries</h3>
+<p>Keep Teamwork Graph results and derived context inside Atlassian. Validate every field at the remote serializer against provenance and the explicit data-sharing contract. Do not relabel graph data as ordinary metadata to export it.</p>
+<p>Use per-principal permission-aware views. Background app events may carry context unavailable to a viewer; do not expose it through cached rollups, notifications, or agent answers.</p>
+<p>Secrets stay in a secret API/manager. Runtime config endpoints return flags such as “configured,” never key values. Avoid copying the old starter&#39;s configuration resolver.</p>
+<h3 id="codex--9">Model the lifecycle without inventing platform semantics</h3>
+<p>Use the lifecycle supplement as the contract for ten phases, planning nodes, artifact roles, requirement references, and readiness. Import native above-epic work levels if configured. Otherwise connect Confluence/Promisory initiatives through explicit planning relationships. Never modify the customer&#39;s site-wide work hierarchy to satisfy the design.</p>
+<p>Keep stories, tasks, and bugs as peers under the normal Epic level. A story can have real subtasks or an implementation link to a separate task. Confluence page parents, release versions, sprints, goals, and idea references do not become Jira parents.</p>
+<p>Bind requirements to source IDs, revisions, section mappings, and content fingerprints. A changed required version must invalidate current gate/review applicability. A Confluence document status is not a built-in policy approval; a ready lifecycle gate is not permission to execute.</p>
+<p>P0 maps existing pages and demonstrates one release-readiness gate. Prepare template publication as a later explicit command; do not create a Confluence space tree during onboarding without the user&#39;s authorization.</p>
+<h3 id="codex--10">Preserve truthful state</h3>
+<p>A review, authority decision, write attempt, external receipt, and verified outcome are separate records. No success toast before the relevant stage has succeeded.</p>
+<p>Do not convert UNKNOWN to ON_TRACK. Do not mark fulfillment from Jira status unless that status is the exact agreed acceptance condition. Do not hide a breached original deadline behind a later revised date.</p>
+<h2 id="codex--11">5. Contracts and command surface</h2>
+<p>Implement runtime-validated commands rather than allowing arbitrary field mutation. Suggested internal resolver names:</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Required behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lifecycle.mapArtifact</td>
+<td>Confirm page/version, artifact role, phase, scope, and owner</td>
+</tr>
+<tr>
+<td>requirement.linkWork</td>
+<td>Confirm stable requirement mapping and typed work relationships</td>
+</tr>
+<tr>
+<td>lifecycle.assessReadiness</td>
+<td>Evaluate versioned artifact and evidence conditions without granting execution authority</td>
+</tr>
+<tr>
+<td>lifecycle.reviewGate</td>
+<td>Record a designated review against exact versions; preserve stale historic reviews</td>
+</tr>
+<tr>
+<td>commitment.createDraft</td>
+<td>Validate scope and candidate fields; no external effect</td>
+</tr>
+<tr>
+<td>commitment.confirm</td>
+<td>Require complete fields and owner acceptance; create an immutable active version</td>
+</tr>
+<tr>
+<td>commitment.proposeRevision</td>
+<td>Preserve existing agreement and prepare a new version for review</td>
+</tr>
+<tr>
+<td>commitment.transferOwner</td>
+<td>Record incoming-owner acceptance separately</td>
+</tr>
+<tr>
+<td>impact.trace</td>
+<td>Return typed paths, reasons, limits, and visibility coverage</td>
+</tr>
+<tr>
+<td>evidence.refresh</td>
+<td>Refetch permitted sources and update freshness</td>
+</tr>
+<tr>
+<td>proposal.prepare</td>
+<td>Freeze exact effect, expected versions, recipients if any, and evidence references</td>
+</tr>
+<tr>
+<td>review.record</td>
+<td>Check review role and exact proposal applicability</td>
+</tr>
+<tr>
+<td>action.apply</td>
+<td>Recheck current source/permissions; use verified authority and executor</td>
+</tr>
+<tr>
+<td>action.reconcile</td>
+<td>Resolve uncertain external results before another attempt</td>
+</tr>
+<tr>
+<td>outcome.verify</td>
+<td>Evaluate versioned acceptance conditions and any required human acceptance</td>
+</tr>
+</tbody></table></div>
+<p>These names describe proposed Promisory services; they are not claimed to be existing Atlassian endpoints. Adapt them to the actual Forge resolver mechanism without changing their semantics.</p>
+<p>Use the proposed types in contracts/domain-contracts.ts as a starting point. Add runtime schemas, parsers, repository codecs, and version migration tests. Validate bounded lengths, permitted enums, stable identifiers, date/time behavior, and unknown fields.</p>
+<h3 id="codex--12">Mutation behavior</h3>
+<p>Require an idempotency key and an immutable action intent. Canonicalize the exact request before hashing; version the canonicalization method. Do not include secret/token values in logs or the public digest material.</p>
+<p>Use conditional updates if the target endpoint supports them. If a native Jira change can race the app between precheck and write, document that limitation and design narrow set-field semantics with read-back/conflict handling. Do not claim a global lock across native Jira activity.</p>
+<p>A timeout after dispatch becomes RECONCILING. Query the target/receipt using the operation identity before deciding whether a retry is safe. Finalize claims according to the actual provider contract; do not leave permanent claimed grants after successful or failed attempts.</p>
+<h2 id="codex--13">6. Implementation slices</h2>
+<h3 id="codex--14">Slice A · A useful installed shell</h3>
+<p>Deliver a real Forge workspace, project selection, a truthful connection screen, actual work-type discovery, and a deterministic example-data mode. Prove installation and user-context access before building a large dashboard.</p>
+<h3 id="codex--15">Slice B · Commitments and people</h3>
+<p>Implement planning/initiative context, ten lifecycle phases, selected Confluence artifacts and stable PRD references, creation/confirmation, exact deadlines and time zones, owner acceptance, stakeholder bindings, linked work, and the issue panel. Use the packaged design tokens and accessible controls.</p>
+<h3 id="codex--16">Slice C · Impact in both directions</h3>
+<p>Implement typed graph traversal and current-value rule evaluation. A bug can reveal its affected commitments; a commitment can reveal its blockers. Include initiative/requirement context, story/task/bug links, shared dependencies, missing access, cycles, stale evidence, requirement drift, and ownership gaps.</p>
+<h3 id="codex--17">Slice D · Review and verified execution</h3>
+<p>Implement one real due-date action through the supported remote and AgentSafe path. Demonstrate held, denied, expired, duplicate, success, and uncertain-result cases. Keep promise renegotiation separate from Jira date mutation. Add versioned release-readiness conditions without making gate acceptance an execution grant.</p>
+<h3 id="codex--18">Slice E · Rovo and graph</h3>
+<p>Connect the already-proven graph and Rovo primitives to the complete domain flow. Add grounded answers and internal proposal creation. Measure tool correctness, permission behavior, and abstention cases.</p>
+<h3 id="codex--19">Slice F · Fulfillment and distribution</h3>
+<p>Verify acceptance evidence, show late/regressed outcomes, complete notifications, Confluence, installation/lifecycle behavior, and the Marketplace/judge release split. Add safe MCP tools only after core acceptance passes.</p>
+<p>At each slice, update the feature-to-evidence matrix. Do not advance a slice based only on mocked services if the slice&#39;s purpose is a live integration.</p>
+<h2 id="codex--20">7. Design implementation rules</h2>
+<p>Use the real SVG identity and local fonts, preserve font licenses, and implement semantic tokens rather than hardcoded colors scattered through components. Keep Atlassian chrome and native component behavior intact.</p>
+<p>The UX prototype illustrates layouts and interactions. Its local state, example values, and sample Rovo response must not become production evidence, business rules, credentials, or hidden API substitutes.</p>
+<p>Required user states include loading, empty, partial access, unavailable connection, stale source, invalid form, pending review, held action, reconciling action, verified result, and no matching search results.</p>
+<p>Keyboard, focus restoration, meaningful accessible names, visible error summaries, status text, reduced motion, and responsive layout are part of completion. Do not add fake buttons or links that merely look interactive.</p>
+<h2 id="codex--21">8. Verification discipline</h2>
+<p>Add tests where they prove meaningful behavior, especially access boundaries, hierarchy semantics, impact rules, version applicability, and execution recovery. Do not spend the schedule on tests that merely mirror rendering code.</p>
+<p>Run the relevant checks after each slice. At release, complete the acceptance suite from the plan, including an installed-tenant walkthrough. Record commands, versions, sanitized results, and remaining concerns.</p>
+<p>Keep fixture, adapter-contract, and live-tenant evidence separate. Use names that reveal the mode. Never silently fall back to fixtures when live calls fail.</p>
+<p>Use static checking and a build to validate contracts. Use browser interaction checks for forms, filters, role views, graph alternatives, and review flows. Inspect screenshots at desktop and narrow widths; use screenshots to verify visual layout, not to substitute for behavioral checks.</p>
+<h2 id="codex--22">9. Working style and change control</h2>
+<p>Proceed autonomously with reversible implementation, local validation, and routine fixes within the authorized task. Preserve unrelated local edits and staging. Keep upstream integration changes minimal and separately reviewable.</p>
+<p>Use the configured runtime and repository conventions. Do not change models, create additional chats, configure automations, or spawn agents unless the user or applicable instructions authorize it.</p>
+<p>Prepare complete release and submission artifacts before asking for any missing final authorization. Production deployment, public Marketplace/Devpost publication, videos, customer messages, and paid infrastructure follow the user&#39;s actual session authorization; this document alone does not authorize them.</p>
+<p>If a required platform capability is unavailable, state what failed, what is still possible, and which claims or phases depend on the missing capability. Continue independent work. Do not fabricate a successful external result.</p>
+<h2 id="codex--23">10. Completion report</h2>
+<p>The final implementation report must state:</p>
+<ul>
+<li>Which P0 features are complete, with relevant source and evidence links.</li>
+<li>Which app/version was installed and which integrations were tested live.</li>
+<li>The real hierarchy and permission behavior.</li>
+<li>Which mutations are actually enforced and any residual concurrency limits.</li>
+<li>What Rovo and Teamwork Graph do in the working release.</li>
+<li>Marketplace status and judge installation status, with real URLs if available.</li>
+<li>Tests performed, failures resolved, and remaining limitations.</li>
+<li>The exact next action, only if something genuinely remains.</li>
+</ul>
+<p>Do not mark the overall product complete while required live capabilities are simulated, installation is unverified, or a claimed governed write can bypass the configured authority path.</p>
+<h2 id="codex--24">11. Ready-to-use bootstrap prompt</h2>
+<p>The standalone file templates/implementation-prompt.md contains the prompt for the next Codex implementation chat. It references this package and instructs the agent to begin with the integration checks and the first useful vertical slice. The AGENTS.md template can be placed in the new Promisory repository after checking it against the user&#39;s existing repository instructions.</p>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section><section class="doc-pane" data-pane id="lifecycle"><div class="chapter-meta"><span>05 / FULL PRODUCT LIFECYCLE</span><a href="06-product-lifecycle-and-traceability.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="lifecycle--1">Promisory · Product lifecycle and traceability</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#lifecycle--2">1. The complete model above and below epics</a></li><li><a href="#lifecycle--3">2. Lifecycle phases, artifacts, people, and exit evidence</a></li><li><a href="#lifecycle--4">3. Confluence space blueprint</a></li><li><a href="#lifecycle--5">4. Requirement-to-outcome traceability</a></li><li><a href="#lifecycle--6">5. Versioned lifecycle readiness</a></li><li><a href="#lifecycle--7">6. Expanded workflows</a></li><li><a href="#lifecycle--8">7. Bounded implementation and acceptance</a></li></ol></details>
+<p><strong>Version 1.0 · 10 November 2026 · Expanded product scope</strong></p>
+<p>Promisory follows a product from its intended outcome to the evidence that the outcome was achieved. Confluence holds the reasoning, requirements, decisions, and learning; Jira holds the work; Promisory connects the agreements and responsible people across both.</p>
+<p>Lifecycle phase, planning context, work hierarchy, and execution permission are separate dimensions. Discovery can continue during delivery. A product can have initiatives in several phases at once. These phases guide visibility and evidence; they do not impose a mandatory waterfall process.</p>
+<h2 id="lifecycle--2">1. The complete model above and below epics</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Examples</th>
+<th>Representation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Direction</td>
+<td>Product vision, strategic objective, OKR/key result, theme</td>
+<td>Confluence strategy/OKR reference, supported Atlassian goal, or explicit Promisory planning node</td>
+</tr>
+<tr>
+<td>Investment and coordination</td>
+<td>Portfolio, program, product, initiative</td>
+<td>Planning relationships; genuine Jira custom parents only where the tenant has configured them</td>
+</tr>
+<tr>
+<td>Discovery and definition</td>
+<td>Opportunity, idea, experiment, business case, PRD, capability/feature brief, design decision</td>
+<td>Versioned source artifacts and typed links to outcomes and work</td>
+</tr>
+<tr>
+<td>Delivery hierarchy</td>
+<td>Configured levels above epic → epic → story/task/bug → subtask</td>
+<td>Native Jira hierarchy discovered from metadata</td>
+</tr>
+<tr>
+<td>Scheduling</td>
+<td>Roadmap horizon, milestone, sprint, release/version</td>
+<td>Scheduling associations; not fabricated parent levels</td>
+</tr>
+<tr>
+<td>Verification and operation</td>
+<td>Test evidence, UAT, deployment, service runbook, adoption measure, incident, retrospective</td>
+<td>Evidence, readiness criteria, and follow-up commitments</td>
+</tr>
+<tr>
+<td>Renewal or retirement</td>
+<td>Improvement, migration, deprecation, end-of-life</td>
+<td>New scoped commitments with explicit beneficiaries and acceptance conditions</td>
+</tr>
+</tbody></table></div>
+<p>The default native Jira hierarchy is <strong>Epic → Story / Task / Bug → Subtask</strong>. A story, task, and bug are normally peers. A story can have implementation subtasks; a separate task can implement a story through a confirmed link; a bug can block either. A test or spike uses its actual configured work type. Do not assume test-management plugins or invent a native “test” hierarchy.</p>
+<p>Above epics, an organization might configure <strong>Program → Initiative → Epic</strong> or another naming scheme. Those higher native levels depend on Jira Premium/Enterprise and administrator configuration. Promisory reads that configuration and never changes the site&#39;s hierarchy during installation. A product, goal, portfolio, feature, or initiative is not automatically a Jira parent simply because its name sounds larger. <a href="https://support.atlassian.com/jira-software-cloud/docs/configure-custom-hierarchy-levels-in-advanced-roadmaps/">Official custom hierarchy guidance</a></p>
+<p>Without native higher levels, use explicit <strong>planning links</strong> from a Confluence initiative or a Promisory planning record to an epic. Label the link “supports initiative”; do not draw it as a native parent. This preserves useful top-level context for Jira Standard installations.</p>
+<p><img src="diagrams/product-lifecycle.svg?v=1.1" alt="Product direction, Confluence lifecycle, Jira delivery, and verified outcomes"></p>
+<h2 id="lifecycle--3">2. Lifecycle phases, artifacts, people, and exit evidence</h2>
+<p>Every phase has a named coordinator, permitted contributors, source references, and a visible state. The designated reviewer comes from an explicit role binding; a document owner or senior title is not sufficient authority.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Confluence artifacts and connected work</th>
+<th>Accountable / participating roles</th>
+<th>Evidence needed to move forward</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Strategy and outcomes</td>
+<td>Product vision, strategy brief, goals/OKRs, baseline and target measures; optional Atlassian goal link</td>
+<td>Product leader or sponsor; product manager, business stakeholders</td>
+<td>Named outcome, baseline or explicit baseline gap, target, beneficiary, owner, and review horizon</td>
+</tr>
+<tr>
+<td>2. Opportunity and discovery</td>
+<td>Opportunity brief, customer research, problem statement, assumptions, experiments; linked discovery idea where available</td>
+<td>Product manager; researcher, designer, customer/account representative, engineer</td>
+<td>Supported problem, recorded assumptions, evidence quality, alternatives, and a proceed/hold decision</td>
+</tr>
+<tr>
+<td>3. Initiative and investment</td>
+<td>Initiative charter, business case, scope boundaries, stakeholder map, roadmap hypothesis; portfolio/program context where used</td>
+<td>Sponsor / initiative owner; finance, delivery manager, product owner, team leads</td>
+<td>Explicit investment/scope decision and owners; tentative roadmap dates remain distinct from accepted commitments</td>
+</tr>
+<tr>
+<td>4. Definition and design</td>
+<td>PRD, numbered requirements, user journeys, design references, architecture decisions, nonfunctional requirements, dependency assumptions</td>
+<td>Product owner; designer, architect, security/reliability representatives, QA lead</td>
+<td>Reviewed requirements and measurable acceptance conditions, with source versions and unresolved questions</td>
+</tr>
+<tr>
+<td>5. Planning and decomposition</td>
+<td>Project plan, epic brief, story map, release plan, sprint goals; configured program/initiative → epic → story/task/bug</td>
+<td>Delivery manager / product owner; subteam leads, scrum facilitator, engineers, testers</td>
+<td>Required work linked to requirements, dependencies confirmed, ownership accepted, scope/date assumptions visible</td>
+</tr>
+<tr>
+<td>6. Delivery and collaboration</td>
+<td>Sprint notes, decision log, impediments, technical notes; stories, tasks, bugs, subtasks and spikes as configured</td>
+<td>Team lead; engineers, testers, scrum participants, product owner</td>
+<td>Current progress evidence, resolved blockers or explicit exceptions, decisions applied to the correct versions</td>
+</tr>
+<tr>
+<td>7. Validation and readiness</td>
+<td>Test strategy/results, UAT record, acceptance checklist, release readiness review, rollout/rollback and support handover</td>
+<td>QA / release owner; product owner, service owner, authorized approvers</td>
+<td>Required tests and human acceptance, current PRD applicability, known defects, service readiness; a documented go/hold decision</td>
+</tr>
+<tr>
+<td>8. Release and adoption</td>
+<td>Launch plan, release notes, deployment reference, stakeholder/customer communication plan, adoption baseline</td>
+<td>Release / product owner; engineering, support, account owner, marketing where relevant</td>
+<td>Actual release evidence plus the separately agreed customer/business acceptance; communications require their own authorization</td>
+</tr>
+<tr>
+<td>9. Operate and learn</td>
+<td>Runbook, service measures, feedback, incident/postmortem, retrospective, outcome review</td>
+<td>Service / product owner; support, engineers, scrum facilitator, stakeholders</td>
+<td>Observed outcome against target, remaining gaps, and assigned improvement commitments; release alone does not prove adoption</td>
+</tr>
+<tr>
+<td>10. Evolve or retire</td>
+<td>Improvement roadmap, migration plan, deprecation notice, end-of-life checklist, archival decision</td>
+<td>Product / service owner; customer owner, engineering, data owner</td>
+<td>Migration/retirement criteria, affected stakeholder agreement, verified completion, and retention/disposal decisions</td>
+</tr>
+</tbody></table></div>
+<p>The artifact names are recommended templates, not claims that Confluence provides a built-in approval engine or universal lifecycle schema. Promisory records its own versioned review and gate state and links to any supported native status as context. <a href="https://www.atlassian.com/software/confluence/templates/collections/product-managers">Confluence product-management templates</a> · <a href="https://www.atlassian.com/software/confluence/templates/collections/project-management">Project lifecycle templates</a></p>
+<h2 id="lifecycle--4">3. Confluence space blueprint</h2>
+<p>The following page tree is a reusable organization pattern. Existing spaces can map their own pages to the same roles without moving or renaming content.</p>
+<pre><code class="language-text">Product home: Merchant Experience
+  Strategy and outcomes
+    Vision, goals, and measures
+    Portfolio / program context
+  Discovery and opportunities
+    Research and problem evidence
+    Assumptions, experiments, and decisions
+  Initiatives and roadmap
+    Initiative charter and business case
+    Roadmap and investment decisions
+  Requirements and design
+    Product requirements document
+    Experience and architecture decisions
+  Delivery
+    Project and epic briefs
+    Story map, sprint goals, and decision log
+  Validation and release
+    Test / UAT evidence
+    Release readiness and rollout plan
+    Release notes and stakeholder updates
+  Operate and learn
+    Runbooks and support handover
+    Outcome review, incidents, and retrospective
+  Evolution and retirement
+    Improvement, migration, and deprecation plans
+</code></pre>
+<p>A Confluence page tree is document organization. It is not imported as Jira work-item ancestry. A PRD can define several epics, and several source documents can support one initiative. Preserve these many-to-many relationships.</p>
+<p>P0 lets an authorized user select existing pages and map their artifact roles. P1 can prepare these templates for a separately authorized page-creation workflow. Do not automatically publish a new document tree into a customer&#39;s space.</p>
+<h2 id="lifecycle--5">4. Requirement-to-outcome traceability</h2>
+<p>Use stable Promisory requirement IDs attached to a page ID, source revision, section reference, and content fingerprint. A heading name alone is not stable enough. If editing makes a section ambiguous, ask for a new confirmed mapping before using it as evidence.</p>
+<p>Example trace:</p>
+<pre><code class="language-text">Product objective: merchants can onboard without duplicate events
+  Initiative: self-service merchant activation
+    PRD v3 / REQ-07: one activation per merchant request
+      defines → Epic MX-100
+      implemented by → Story MX-110
+      implemented by → Task MX-121
+      blocked by ← Bug MX-137
+      decomposed into → Subtask MX-122 (native child of Task MX-121)
+      verified by → acceptance test + production evidence
+    supports → Commitment PM-101, due 20 November
+  measured by → post-launch activation / duplication measure
+</code></pre>
+<p>The indentation above groups the trace for reading. Only the explicitly labelled native child is a task parent relationship; source, implementation, blocking, and verification links have their own types. A confirmed task-to-story relationship can provide the requested epic → story → task → bug trace without falsely making standard Jira tasks children of standard stories.</p>
+<p>Useful relationship types include ALIGNS_TO, DEFINES, IMPLEMENTS, BLOCKS, SUPPORTS, SCHEDULED_FOR, VERIFIES, MEASURED_BY, and INFORMS. Native PARENT_OF is reserved for relationships Jira actually reports. Every inferred relationship is a suggestion until confirmed or established by an authoritative source.</p>
+<p>Rovo should answer both directions: “Which initiative and requirements does this bug threaten?” and “Which evidence proves this product outcome?” Teamwork Graph supplies permitted team/goal/work context where supported; Confluence/Jira APIs and explicit mappings supply the artifact and requirement details. Do not assume every conceptual relationship exists in Teamwork Graph&#39;s public schema.</p>
+<h2 id="lifecycle--6">5. Versioned lifecycle readiness</h2>
+<p>A LifecycleGate links a phase, its required artifacts, acceptance conditions, named reviewers, and the exact versions reviewed. Its state is UNKNOWN, NOT_READY, READY_FOR_REVIEW, ACCEPTED, HELD, SUPERSEDED, or NOT_APPLICABLE. NOT_APPLICABLE requires a recorded authorized reason; it cannot be a silent bypass.</p>
+<p>A release-readiness gate might require PRD REQ-07 v3, a passing test reference, current owner acceptance, a support handover, and a rollback plan. Those are configurable criteria, not universal requirements for every team.</p>
+<p>When the PRD changes, Promisory compares the referenced version and content fingerprint. A material change, unresolved section mapping, removed acceptance condition, or changed linked work creates a reassessment. Keep the historic review intact; mark its applicability stale. A previously accepted document or ready gate does not authorize a deployment or Jira mutation.</p>
+<p>Show <strong>delivery health</strong> and <strong>lifecycle readiness</strong> separately. A release can have no overdue engineering tasks while still lacking required product acceptance. A strategic outcome can remain unmeasured even when all related epics are closed.</p>
+<p>Roll up deduplicated commitments and explicit requirement/gate coverage. Do not add story-point totals to adoption percentages, treat “90% of tasks closed” as “90% of the outcome achieved,” or expose restricted issue counts through a higher-level overview.</p>
+<h2 id="lifecycle--7">6. Expanded workflows</h2>
+<p><strong>Product manager begins with a PRD.</strong> Select a permitted Confluence page and its relevant version. Confirm the outcome, requirements, initiative context, responsible people, acceptance conditions, and proposed commitments. Link existing work. Owner acceptance activates a commitment; extraction alone does not.</p>
+<p><strong>A requirement changes after planning.</strong> Observe the source change, identify the confirmed references affected, flag their requirement and gate applicability, and show the epic/story/task/bug paths. The product owner reviews scope; the delivery owner assesses the promise impact. Keep the previous agreed promise until a separate revision is accepted.</p>
+<p><strong>An engineer reopens a bug.</strong> Trace from the bug through the blocked story/task and supporting commitment to the initiative and product goal. Show the relevant PRD section, responsible team, and release gate affected. Each audience receives only the permitted explanation and the action relevant to its role.</p>
+<p><strong>A release ships.</strong> Attach actual release evidence, evaluate the agreed conditions, and obtain any required customer acceptance. Start or update an outcome-measurement window when appropriate. A release may fulfill a delivery promise while a separate adoption commitment remains active.</p>
+<p><strong>A retrospective creates follow-through.</strong> Capture a reviewable improvement candidate linked to the incident, outcome gap, or retrospective decision. Confirm the owner and acceptance conditions before activation. New learning informs the next discovery cycle without rewriting historic outcomes.</p>
+<h2 id="lifecycle--8">7. Bounded implementation and acceptance</h2>
+<p>All ten phases belong in the product model and navigation. P0 demonstrates one continuous trace: <strong>goal → initiative → Confluence PRD → epic → story / task / bug → release-readiness evidence → commitment</strong>. Use one project, one configured initiative level or explicit planning-link alternative, a handful of selected pages, and one versioned release-readiness gate.</p>
+<p>P0 includes requirement/source mapping, actual hierarchy discovery, phase context, basic gate readiness, and the impact of a changed requirement or bug. It does not require a complete portfolio-planning engine, external analytics connector, automated funding decision, or production deployment integration. Expanded gate templates and retrospective follow-through are P1; predictive planning and automated retirement are P2.</p>
+<p>Acceptance evidence must demonstrate:</p>
+<ul>
+<li>Native higher levels when present, and a clearly labelled planning-link path when absent.</li>
+<li>A story, task, and bug as standard work peers, plus a real subtask.</li>
+<li>A Confluence page version tied to a stable requirement and Jira work references.</li>
+<li>A changed requirement invalidating the appropriate current gate applicability.</li>
+<li>A bug affecting a commitment and its initiative without duplicate rollups.</li>
+<li>A ready/accepted gate remaining distinct from execution authority and verified business outcomes.</li>
+<li>Restricted Confluence content omitted from Jira views, Rovo answers, counts, and external serialization.</li>
+<li>Release evidence and a later adoption/outcome measure remaining independently assessable.</li>
+</ul>
+<p>See the <a href="#technical">technical specification</a>, <a href="#plan">implementation plan</a>, and <a href="#codex">Codex instructions</a> for the shared contracts and delivery gates.</p>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section><section class="doc-pane" data-pane id="sources"><div class="chapter-meta"><span>06 / SOURCES & DECISIONS</span><a href="05-sources-and-decisions.md" download>Download Markdown source ↓</a></div><article class="document"><h1 id="sources--1">Promisory · Sources, assumptions, and decisions</h1><details class="toc"><summary>On this page</summary><ol><li><a href="#sources--2">How to read this record</a></li><li><a href="#sources--3">Official references</a></li><li><a href="#sources--4">Existing project audit</a></li><li><a href="#sources--5">Architecture decisions</a></li><li><a href="#sources--6">Open questions for Phase 0</a></li><li><a href="#sources--7">Visual asset provenance</a></li><li><a href="#sources--8">Additional lifecycle decisions</a></li></ol></details>
+<p><strong>Reviewed 10 November 2026</strong></p>
+<h2 id="sources--2">How to read this record</h2>
+<p>Platform facts below were checked against official Atlassian/Devpost sources. Product features, targets, architecture choices, schedules, and prices not established by those sources are proposals. Live tenant availability and actual deployed gateway behavior were not tested during this documentation task.</p>
+<p>The supplied contracts are proposed Promisory contracts. They are not representations of undiscovered Atlassian or Decionis endpoints. The documentation and visual prototype are deliverables; no product implementation, Marketplace publication, or external message sending was performed.</p>
+<h2 id="sources--3">Official references</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Source</th>
+<th>Design implication</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S01</td>
+<td><a href="https://codegeist2026.devpost.com/rules">Codegeist rules</a></td>
+<td>Forge requirement, current dates, new/existing project conditions, installation/video requirements, and bonus eligibility</td>
+</tr>
+<tr>
+<td>S02</td>
+<td><a href="https://codegeist2026.devpost.com/">Codegeist overview</a></td>
+<td>Five equally weighted core judging criteria and three category choices</td>
+</tr>
+<tr>
+<td>S03</td>
+<td><a href="https://support.atlassian.com/jira-cloud-administration/docs/configure-the-issue-type-hierarchy">Jira work hierarchy</a></td>
+<td>Standard work types share a level; discover actual tenant hierarchy</td>
+</tr>
+<tr>
+<td>S04</td>
+<td><a href="https://developer.atlassian.com/platform/forge/app-compatibility/">App compatibility</a></td>
+<td>Required Jira / optional Confluence, same-site operation, current paid-listing constraint</td>
+</tr>
+<tr>
+<td>S05</td>
+<td><a href="https://developer.atlassian.com/platform/forge/distribute-your-apps/">Forge distribution</a></td>
+<td>Separate unlicensed judge copy once Marketplace submission/licensing affects sharing</td>
+</tr>
+<tr>
+<td>S06</td>
+<td><a href="https://developer.atlassian.com/platform/forge/manifest-reference/modules/rovo-agent/">Rovo agent</a></td>
+<td>Implement a real agent module and supported access pattern</td>
+</tr>
+<tr>
+<td>S07</td>
+<td><a href="https://developer.atlassian.com/platform/forge/manifest-reference/modules/rovo-action/">Rovo action</a></td>
+<td>Shared function-backed tools and trusted invocation context</td>
+</tr>
+<tr>
+<td>S08</td>
+<td><a href="https://developer.atlassian.com/platform/forge/manifest-reference/modules/rovo-mcp/">Rovo MCP</a></td>
+<td>Optional rovo:mcp module, action references, admin enablement, Preview status</td>
+</tr>
+<tr>
+<td>S09</td>
+<td><a href="https://developer.atlassian.com/platform/teamwork-graph/api-reference/overview/">Graph API overview</a></td>
+<td>Preview API; use supported query mechanisms</td>
+</tr>
+<tr>
+<td>S10</td>
+<td><a href="https://developer.atlassian.com/platform/teamwork-graph/curated-queries/">Curated queries</a></td>
+<td>Discover current typed queries and paginate; no invented graph edge schema</td>
+</tr>
+<tr>
+<td>S11</td>
+<td><a href="https://developer.atlassian.com/platform/teamwork-graph/call-the-teamwork-graph-api/">Call Teamwork Graph</a></td>
+<td>User-context invocation, required object scopes, schema validation</td>
+</tr>
+<tr>
+<td>S12</td>
+<td><a href="https://developer.atlassian.com/platform/teamwork-graph/scopes/">Graph scopes</a></td>
+<td>Read-only API scopes and normal user access still apply</td>
+</tr>
+<tr>
+<td>S13</td>
+<td><a href="https://developer.atlassian.com/platform/teamwork-graph/limitations-and-considerations/">Graph limitations</a></td>
+<td>Supported installations, org-admin graph access, egress considerations</td>
+</tr>
+<tr>
+<td>S14</td>
+<td><a href="https://developer.atlassian.com/platform/forge/remote/essentials/">Forge Remote essentials</a></td>
+<td>Verify FIT identity and never disclose OAuth tokens</td>
+</tr>
+<tr>
+<td>S15</td>
+<td><a href="https://developer.atlassian.com/platform/forge/remote/calling-product-apis/">Remote API calls</a></td>
+<td>Use supported user/system context and trusted API base URL</td>
+</tr>
+<tr>
+<td>S16</td>
+<td><a href="https://developer.atlassian.com/platform/forge/manifest-reference/remotes/">Remote manifest reference</a></td>
+<td>Token configuration differs by invocation surface</td>
+</tr>
+<tr>
+<td>S17</td>
+<td><a href="https://developer.atlassian.com/platform/marketplace/listing-forge-apps/">Forge listing guide</a></td>
+<td>Prepare actual Marketplace fields, reviewer access, and license behavior</td>
+</tr>
+<tr>
+<td>S18</td>
+<td><a href="https://developer.atlassian.com/platform/forge/runs-on-atlassian/">Runs on Atlassian</a></td>
+<td>Do not claim a no-egress badge for a hybrid business-data path</td>
+</tr>
+<tr>
+<td>S19</td>
+<td><a href="https://support.atlassian.com/jira-service-management-cloud/docs/assess-potential-risks-to-your-changes-with-rovo-ops/">Native change-risk assessment</a></td>
+<td>Differentiate through commitment applicability and verified outcomes</td>
+</tr>
+<tr>
+<td>S20</td>
+<td><a href="https://www.atlassian.com/collections/service/guides/customer-service-management">Customer service context</a></td>
+<td>Differentiate explicit commitments and their fulfillment beyond shared context</td>
+</tr>
+<tr>
+<td>S21</td>
+<td><a href="https://github.com/google/fonts">Google Fonts repository</a></td>
+<td>Source for packaged Manrope, Inter, and IBM Plex Mono fonts and licenses</td>
+</tr>
+<tr>
+<td>S22</td>
+<td><a href="https://support.atlassian.com/jira-software-cloud/docs/configure-custom-hierarchy-levels-in-advanced-roadmaps/">Custom hierarchy levels</a></td>
+<td>Native above-epic configuration depends on Jira Premium/Enterprise and admin setup</td>
+</tr>
+<tr>
+<td>S23</td>
+<td><a href="https://www.atlassian.com/software/confluence/templates/product-requirements?category=services">Product requirements template</a></td>
+<td>PRD source structure, objectives, requirements, and linked Jira work</td>
+</tr>
+<tr>
+<td>S24</td>
+<td><a href="https://www.atlassian.com/software/confluence/templates/product-roadmap/">Product roadmap template</a></td>
+<td>Roadmap context and schedule associations are distinct from work hierarchy</td>
+</tr>
+<tr>
+<td>S25</td>
+<td><a href="https://www.atlassian.com/software/confluence/templates/collections/project-management">Project lifecycle templates</a></td>
+<td>Project plans, decision records, delivery updates, and retrospectives</td>
+</tr>
+<tr>
+<td>S26</td>
+<td><a href="https://www.atlassian.com/software/confluence/templates/collections/product-managers">Product management templates</a></td>
+<td>Recommended Confluence artifacts spanning product discovery through launch</td>
+</tr>
+</tbody></table></div>
+<p>When current documentation, the live schema, and an old example disagree, record the discrepancy and use the supported current behavior. Do not rely on old community answers that say all multi-product Marketplace apps are unsupported.</p>
+<h2 id="sources--4">Existing project audit</h2>
+<p>Source files were read from the user&#39;s local repositories. The exact file hashes, observed repository HEAD values, and modified-file flags are recorded in <a href="contracts/source-audit.json">source-audit.json</a>. A HEAD value is context; the file hash identifies the actual working-tree text read.</p>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>Foundation</th>
+<th>Reviewed source</th>
+<th>Finding</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Decionis</td>
+<td>README.md</td>
+<td>Policy/authority and signed-record responsibilities</td>
+</tr>
+<tr>
+<td>Decionis</td>
+<td>apps/api/src/routes/AtlassianRoutes.ts</td>
+<td>Evaluation route returns decision metadata and dossier links; no grant field in the reviewed response</td>
+</tr>
+<tr>
+<td>Decionis</td>
+<td>docs/marketplace/atlassian/forge-starter-kit/src/index.js</td>
+<td>Existing resolver passes request fields and returns configuration including the API key; do not carry that pattern into Promisory</td>
+</tr>
+<tr>
+<td>Decionis</td>
+<td>docs/marketplace/atlassian/forge-starter-kit/manifest.yml</td>
+<td>Existing app identity and runtime; create a distinct Promisory app identity</td>
+</tr>
+<tr>
+<td>AgentSafe</td>
+<td>README.md</td>
+<td>Exact-request boundary and authority-provider separation</td>
+</tr>
+<tr>
+<td>AgentSafe</td>
+<td>docs/gateway/deployment.md</td>
+<td>That guide&#39;s reviewed deployment revision describes the managed gateway as shadow-only; verify current runtime before enforcing</td>
+</tr>
+<tr>
+<td>Steward</td>
+<td>README.md and Architecture.md</td>
+<td>Evidence collection, scoped review, and presentation boundary</td>
+</tr>
+<tr>
+<td>Steward</td>
+<td>domain/opportunities/CustomerOpportunity.ts</td>
+<td>Useful typed review/evidence patterns; customer account types need a new delivery domain</td>
+</tr>
+</tbody></table></div>
+<p>No edits were made to these repositories during this task.</p>
+<h2 id="sources--5">Architecture decisions</h2>
+<div class="table-scroll" tabindex="0" aria-label="Scrollable reference table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Decision</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-001</td>
+<td>Preserve Jira hierarchy; add typed dependencies</td>
+<td>Matches real platform semantics and the desired top-down/bottom-up trace</td>
+</tr>
+<tr>
+<td>ADR-002</td>
+<td>One accountable owner, multiple explicit stakeholders</td>
+<td>Avoid ambiguous responsibility and accidental authority inheritance</td>
+</tr>
+<tr>
+<td>ADR-003</td>
+<td>Separate agreement lifecycle, health, action execution, and fulfillment</td>
+<td>A green ticket or approved review does not prove a delivered promise</td>
+</tr>
+<tr>
+<td>ADR-004</td>
+<td>Forge-first UI, storage, Rovo, and graph</td>
+<td>Platform integration is central to the product and competition</td>
+</tr>
+<tr>
+<td>ADR-005</td>
+<td>Keep graph results and derived context within Atlassian</td>
+<td>Respect access/egress boundaries and avoid a duplicate unrestricted corpus</td>
+</tr>
+<tr>
+<td>ADR-006</td>
+<td>Reuse external authority only through a verified adapter</td>
+<td>Existing evaluation output alone is insufficient for live execution</td>
+</tr>
+<tr>
+<td>ADR-007</td>
+<td>One governed mutation in P0</td>
+<td>Prove the complete loop before adding external communications and commercial remedies</td>
+</tr>
+<tr>
+<td>ADR-008</td>
+<td>Two app identities from one release</td>
+<td>Preserve judge installation alongside Marketplace submission/licensing</td>
+</tr>
+<tr>
+<td>ADR-009</td>
+<td>Azure blue and navy vector identity with locally packaged fonts</td>
+<td>Consistent, editable, accessible design across small product surfaces</td>
+</tr>
+<tr>
+<td>ADR-010</td>
+<td>No employee ranking or inferred management authority</td>
+<td>Keep the product focused on commitments, evidence, and process</td>
+</tr>
+<tr>
+<td>ADR-011</td>
+<td>Explicit unknown and reconciliation states</td>
+<td>Avoid false health and duplicate external writes</td>
+</tr>
+<tr>
+<td>ADR-012</td>
+<td>Core criterion quality before additional bonus modules</td>
+<td>Bonus eligibility does not guarantee an award or compensate for an unreliable product</td>
+</tr>
+</tbody></table></div>
+<h2 id="sources--6">Open questions for Phase 0</h2>
+<ol>
+<li>Which exact Jira scopes, graph object scopes, and Rovo entitlements are available in the development and judge tenants?</li>
+<li>Which curated graph fields return useful team/work evidence in those tenants?</li>
+<li>Which version-pinned AgentSafe deployment supports the required enforcement behavior?</li>
+<li>What exact Decionis provider contract returns, claims, and finalizes the grant for the Jira request?</li>
+<li>Does the selected Jira endpoint support a usable atomic source precondition? If not, what residual race behavior must be disclosed and tested?</li>
+<li>Which independent action fields and REST evidence can be sent to the remote authority under the declared data policy?</li>
+<li>Which Forge storage operations provide the required single-aggregate concurrency guarantees?</li>
+<li>Which existing support, privacy, and legal business details should be used in the real listing?</li>
+<li>Which test team will provide the first measured baseline and usability evidence?</li>
+</ol>
+<p>These are implementation validation tasks. The specification deliberately does not invent credentials, unavailable endpoints, guaranteed API consistency, or business results.</p>
+<h2 id="sources--7">Visual asset provenance</h2>
+<p>The Connected Loop logo is an original geometric SVG identity created for this package. PNG previews derive from those vector files. The wordmark is based on the packaged Manrope font; font licenses are included. The connected image-generation service returned an unavailable-tool error, so no generated-image output is claimed.</p>
+<p>The interface prototype is locally authored HTML/CSS/JavaScript using fictional fixtures. Its Rovo response and review interaction are explicitly identified as examples. It makes no network calls to Atlassian or Decionis.</p>
+<h2 id="sources--8">Additional lifecycle decisions</h2>
+<ul>
+<li><strong>ADR-013:</strong> Product lifecycle phases, planning relationships, document organization, and native Jira ancestry are independent dimensions.</li>
+<li><strong>ADR-014:</strong> Read existing above-epic configuration; use labelled planning links when it is absent. Never alter site-wide hierarchy during installation.</li>
+<li><strong>ADR-015:</strong> Bind Confluence requirements and readiness reviews to exact source versions. A changed requirement triggers reassessment; readiness never replaces execution authority.</li>
+<li><strong>ADR-016:</strong> Treat delivery, release, adoption, operation, and retirement outcomes as separately evidenced agreements. Roll up unique commitments and coverage, not incompatible units.</li>
+</ul>
+</article><footer>Proposed product · Local design prototype · Live integrations must be verified in Phase 0.</footer></section></main></div><script src="viewer.js"></script></body></html>

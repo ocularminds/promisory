@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.forge/
+test-results/
+playwright-report/
+coverage/
+.DS_Store
+apps/forge/manifest.local.yml
+/release/
+.playwright-mcp/
+release-identities.local.json

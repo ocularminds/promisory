@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.authority-recovery-route-observation.v1",
+  "recordedAt": "2026-11-11T05:54:35.344766+00:00",
+  "source": "Known authority route templates during the native result-check minute; logs omit caller and grant identity",
+  "exactGrantCorrelated": false,
+  "records": [
+    {
+      "at": "2026-11-11T05:46:52.953000+00:00",
+      "requestId": "req-826",
+      "route": "/v1/authority/grants/:grantId/reconciliations",
+      "status": null
+    },
+    {
+      "at": "2026-11-11T05:46:52.957000+00:00",
+      "requestId": "req-826",
+      "route": "/v1/authority/grants/:grantId/reconciliations",
+      "status": 400
+    }
+  ]
+}

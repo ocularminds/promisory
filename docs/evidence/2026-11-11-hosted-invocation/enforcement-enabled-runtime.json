@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "promisory.enforcement-runtime.v1",
+  "recordedAt": "2026-11-11T03:01:53.016Z",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "serverSha256": "9443e31f8b66a0fd6eba38aa599b3072dc3c4edb51d7f7a37abb4ddd9fbe513b",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "true",
+  "shareIntent": "true",
+  "shareSnapshot": "true",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "operationRecords": 0,
+  "claimRecords": 0,
+  "checks": {
+    "sameVerifiedImage": true,
+    "oneReadyReplica": true,
+    "enforcementActive": true,
+    "sharingEnabled": true,
+    "exactApprovedPolicy": true,
+    "healthy": true,
+    "unauthenticatedWriteStillRefused": true,
+    "noGovernedOperationYet": true
+  },
+  "statuses": {
+    "health": 200,
+    "unauthenticatedApply": 400
+  },
+  "authenticatedConnectionReference": "2dcf449e-b24b-41ae-8220-9995c2f94f4e",
+  "governedJiraWriteOccurred": false,
+  "passed": true
+}

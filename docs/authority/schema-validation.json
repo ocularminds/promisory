@@ -1,0 +1,13 @@
+{
+  "mode": "LOCAL_SCHEMA_VALIDATION",
+  "observedAt": "2026-11-10T21:48:17.758Z",
+  "schemaSource": "/Users/bonus/develop/products/Decionis/docs/decionis.protocol.schemas/v1/policy-bundle.schema.json",
+  "schemaSha256": "b4b0cc8e8985227f945dacfc691ba795cc0a84c7d83b685a48ccf13c2994900d",
+  "schemaValid": true,
+  "requiresApproval": true,
+  "approvedByPresent": false,
+  "unresolvedTrustedBindings": [],
+  "runtimeRuleEvaluation": "NOT_RUN",
+  "published": false,
+  "issues": []
+}

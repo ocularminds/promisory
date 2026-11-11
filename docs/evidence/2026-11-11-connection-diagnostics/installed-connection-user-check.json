@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v2",
+  "recordedAt": "2026-11-11T02:37:31.765Z",
+  "environment": "development",
+  "expectedAppVersion": "3.2.0",
+  "source": "Forge CLI and the owned test executor logs; only strict connection-check events retained",
+  "failedChecks": 3,
+  "failureEvents": [
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK_FAILED",
+      "schemaVersion": "promisory.remote-connection-diagnostic.v1",
+      "recordedAt": "2026-11-11T02:37:06.959Z",
+      "origin": "FORGE",
+      "stage": "REMOTE_RESPONSE",
+      "code": "REMOTE_INVOCATION_FAILED",
+      "httpStatus": 400
+    },
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK_FAILED",
+      "schemaVersion": "promisory.remote-connection-diagnostic.v1",
+      "recordedAt": "2026-11-11T02:33:21.737Z",
+      "origin": "EXECUTOR",
+      "stage": "REQUEST",
+      "code": "INVALID_INVOCATION"
+    },
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK_FAILED",
+      "schemaVersion": "promisory.remote-connection-diagnostic.v1",
+      "recordedAt": "2026-11-11T02:37:06.898Z",
+      "origin": "EXECUTOR",
+      "stage": "FIT_BINDING",
+      "code": "INVALID_INVOCATION",
+      "binding": {
+        "enabled": true,
+        "appMatches": true,
+        "environmentMatches": true,
+        "installationMatches": true,
+        "cloudMatches": true,
+        "moduleMatches": false,
+        "environmentForm": "ARI_WITH_APP",
+        "module": "OTHER"
+      }
+    }
+  ],
+  "rejectedEventCount": 0,
+  "verifiedConnections": [],
+  "verifiedConnectionSources": [],
+  "authenticatedForgeInvocationVerified": false,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "CHECK_FAILED"
+}

@@ -1,0 +1,8 @@
+
+> promisory@0.1.0 forge:lint
+> cd apps/forge && forge lint
+
+The linter checks the app code for known errors. Warnings are issues you should fix, but they won't stop the app code from building.
+Press Ctrl+C to cancel.
+
+No issues found.

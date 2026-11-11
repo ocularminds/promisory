@@ -1,0 +1,407 @@
+{
+  "schemaVersion": "promisory.policy-check.v1",
+  "mode": "LIVE_AUTHORITY_SYNTHETIC_SHADOW_POLICY_CASES",
+  "observedAt": "2026-11-10T23:56:52.260Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policySelector": "promisory-test-jira-due-date",
+  "requestedMode": "SHADOW",
+  "sourceSnapshot": "EXPLICITLY_SYNTHETIC_NOT_READ_FROM_JIRA",
+  "noJiraReadOrWrite": true,
+  "noGrantClaimAttempted": true,
+  "passed": true,
+  "results": [
+    {
+      "case": "approved-effect",
+      "expected": "ALLOW",
+      "verdict": "ALLOW",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "720e0c77-e77b-47e1-aed6-b0c7b6670d04",
+      "dossierId": "f875cfb8-39ad-4b9b-8640-7302bd629153",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ALLOW",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-date-same-year",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "27b3f604-5e60-4dbf-9f4f-fe0649100307",
+      "dossierId": "23226b5d-094d-4787-b4ae-f64ed6af9e5f",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-existing-date",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "4cd1ae66-4376-47e2-aee9-04f18595caf5",
+      "dossierId": "0308af69-41fd-4ede-a4d1-4cd84c4fda7c",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-issue-same-numeric-prefix",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "44ecd273-06f2-4b3c-83ae-bf3efdce07b8",
+      "dossierId": "073e0022-92e2-43d1-900a-86f69312ba6b",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-principal-same-numeric-prefix",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "53ff7b6e-7980-4877-b6e9-37fde581952b",
+      "dossierId": "31175e46-3dfa-48d3-b0dd-5bce06d175af",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "secondary-test-account",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "ca0f10fb-d553-43e9-b38b-7bab9ba020cb",
+      "dossierId": "b315b93e-7a72-419c-82b5-a215237a5a94",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-action",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "af60a24b-a1f9-4f45-90e8-bebcc7f1d40a",
+      "dossierId": "23fb2ebe-4582-4902-857a-16fa34591964",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-resource",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "b4ff494c-6a04-4fb7-a7e4-8c3820996448",
+      "dossierId": "3ba12544-e05f-44a8-a161-04956007cf77",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-cloud",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "4c353628-7efb-4ed8-a362-7865235c29e2",
+      "dossierId": "0e17d725-5cb6-4f4d-aac9-de76f68c4173",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-actor-type",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "594f7085-0ea7-4723-bb8c-22e49d34edc5",
+      "dossierId": "2afff61c-432f-4b1b-aebd-f3298469409a",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-runtime",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "d6fef2f4-f05a-4eca-9432-c4cc929c70f5",
+      "dossierId": "63874257-e99d-4fac-889e-d09bfdac50a4",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-system",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "c6443959-f314-4c4a-b38d-b0a993eb6fd3",
+      "dossierId": "48fc4c7b-1262-4986-b4ee-c7ecedaf52be",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-operation",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "d6d00e11-1306-4933-b892-319298666a6f",
+      "dossierId": "f9ceaed0-5650-4443-906f-4c0e728432ca",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-environment",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "1804789a-3a75-490c-9189-2cdcd2b824a9",
+      "dossierId": "d657443b-c08f-4397-977c-1a7cf3588abd",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "different-installation",
+      "expected": "NO_ALLOW",
+      "verdict": "BLOCK",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "108ee349-6db4-4a2f-9909-ec8a9d9f06ab",
+      "dossierId": "c9f44702-e86e-407b-9329-b4b8d9c05f9a",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "BLOCK",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "missing-source-version",
+      "expected": "NO_ALLOW",
+      "verdict": "ESCALATE",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "fc5104fa-66ec-4f64-90b0-d2156a45ebf1",
+      "dossierId": "b2f97f3a-ea17-4912-9cfd-3a368709f7e2",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_ESCALATE",
+        "MISSING_REQUIRED_SIGNALS"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ESCALATE",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "missing-operation-id",
+      "expected": "NO_ALLOW",
+      "verdict": "ESCALATE",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "b599b890-9cd1-4d1e-a848-ebe2e499f1ba",
+      "dossierId": "63adc4b3-4e8b-49d6-8359-39de8234b689",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_ESCALATE",
+        "MISSING_REQUIRED_SIGNALS"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ESCALATE",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    },
+    {
+      "case": "missing-proposal-hash",
+      "expected": "NO_ALLOW",
+      "verdict": "ESCALATE",
+      "passed": true,
+      "failClosed": false,
+      "authorizationPresent": false,
+      "decisionId": "82a3a8fb-342f-4c3f-90d9-5e23172381b9",
+      "dossierId": "7993dd5a-bfc5-44bb-8f95-a94eb6eba9c1",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_ESCALATE",
+        "MISSING_REQUIRED_SIGNALS"
+      ],
+      "wire": {
+        "httpStatus": 200,
+        "status": "ESCALATE",
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      }
+    }
+  ]
+}

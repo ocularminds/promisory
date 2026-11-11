@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "promisory.observer-rollout.v1",
+  "recordedAt": "2026-11-11T00:52:10.026Z",
+  "approval": "call_jkKzus5S8rhsJZf1EfAr2uxp:1",
+  "deployment": "decionis-api",
+  "oldGeneration": 196,
+  "newGeneration": 197,
+  "previousIds": [],
+  "configuredIds": [
+    "c97a5168-1325-487c-94e8-e3d4b06adffd"
+  ],
+  "effectiveIds": [
+    "c97a5168-1325-487c-94e8-e3d4b06adffd"
+  ],
+  "readyReplicas": 1,
+  "desiredReplicas": 1,
+  "imageTag": "decionisacr.azurecr.io/decionis/decionis-api:e73a528",
+  "imageDigests": [
+    "decionisacr.azurecr.io/decionis/decionis-api@sha256:47298917876071909982ca0d9f11a6da34a394aea5db25f05aa182c76b4ebfdc"
+  ],
+  "expectedImageDigest": "sha256:47298917876071909982ca0d9f11a6da34a394aea5db25f05aa182c76b4ebfdc",
+  "publicReadyStatus": 200,
+  "applied": true,
+  "passed": true
+}

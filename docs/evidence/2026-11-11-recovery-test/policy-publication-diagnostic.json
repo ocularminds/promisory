@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "promisory.recovery-policy-publication-diagnostic.v1",
+  "recordedAt": "2026-11-11T04:40:29.072Z",
+  "absentBeforeRequest": true,
+  "httpStatus": 400,
+  "error": "VALIDATION_ERROR",
+  "message": "policy_bundle failed schema validation",
+  "errors": null,
+  "accepted": false
+}

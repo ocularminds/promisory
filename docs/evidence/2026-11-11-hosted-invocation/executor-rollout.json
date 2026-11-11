@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "promisory.executor-image-rollout.v1",
+  "recordedAt": "2026-11-11T02:52:35.364Z",
+  "context": "decionis-aks",
+  "namespace": "decionis",
+  "deployment": "promisory-test-executor",
+  "uid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:36e40b3d1d8a83b136058969f73cc53cb72d953e46912a65a1d7007226d6d7df",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "sourceSha256": "a443a6da5c7fea6237bcf1e899071b990642000163e297afdc8b4dda17d674c1",
+  "guardedResourceVersion": "29764050",
+  "previousGeneration": 5,
+  "generation": 6,
+  "serverDryRunPassed": true,
+  "imageOnlyPatch": true,
+  "configurationBefore": {
+    "PROMISORY_MODE": "ENFORCEMENT",
+    "PROMISORY_ENFORCEMENT_VERIFIED": "false",
+    "PROMISORY_AUTHORITY_POLICY_ID": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+    "PROMISORY_SHARE_DUE_DATE_INTENT": "true",
+    "PROMISORY_SHARE_JIRA_DATE_SNAPSHOT": "true",
+    "PROMISORY_APP_ID": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+    "PROMISORY_ENVIRONMENT_ID": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+    "PROMISORY_INSTALLATION_ID": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "PROMISORY_CLOUD_ID": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+  },
+  "rollout": "VERIFIED",
+  "verifiedAt": "2026-11-11T02:53:34.413Z"
+}

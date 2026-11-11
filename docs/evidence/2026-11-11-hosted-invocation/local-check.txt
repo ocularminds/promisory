@@ -1,0 +1,104 @@
+
+> promisory@0.1.0 check
+> npm run typecheck && npm test && npm run build && npm run remote:build && npm run manifest:check && npm run forge:bundle && npm run release:check
+
+
+> promisory@0.1.0 typecheck
+> tsc --noEmit
+
+
+> promisory@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 /Users/bonus/develop/products/promisory
+
+
+ Test Files  16 passed (16)
+      Tests  116 passed (116)
+   Start at  03:46:09
+   Duration  784ms (import 50%, tests 40%, transform 9%, worker 2%)
+
+
+> promisory@0.1.0 build
+> tsc --noEmit && vite build --config apps/forge/static/workspace/vite.config.ts
+
+vite v8.3.7 building client environment for production...
+transforming...
+✓ 261 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/forge/static/workspace/dist/index.html                                   0.63 kB │ gzip:   0.37 kB
+apps/forge/static/workspace/dist/assets/IBMPlexMono-Regular-DL0wTxaS.woff2   39.17 kB
+apps/forge/static/workspace/dist/assets/Manrope-Variable-DVlWBiPz.woff2      53.82 kB
+apps/forge/static/workspace/dist/assets/Inter-Variable-C9pUGi00.woff2       350.36 kB
+apps/forge/static/workspace/dist/assets/index-ChpXY3q2.css                   22.48 kB │ gzip:   5.23 kB
+apps/forge/static/workspace/dist/assets/rolldown-runtime-BWaJ3C7D.js          0.91 kB │ gzip:   0.51 kB
+apps/forge/static/workspace/dist/assets/src-CLCjX8IC.js                      11.28 kB │ gzip:   4.56 kB
+apps/forge/static/workspace/dist/assets/iframe-resizer-C-5li8o0.js           29.19 kB │ gzip:  10.28 kB
+apps/forge/static/workspace/dist/assets/out-g2SA9zh7.js                      60.87 kB │ gzip:  17.92 kB
+apps/forge/static/workspace/dist/assets/index-D-BNqAN9.js                   526.74 kB │ gzip: 152.90 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 179ms
+
+> promisory@0.1.0 remote:build
+> vite build --config apps/remote/vite.config.ts
+
+vite v8.3.7 building ssr environment for production...
+transforming...
+✓ 17 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/remote/dist/server.js  59.35 kB │ gzip: 16.34 kB │ map: 205.41 kB
+
+✓ built in 19ms
+
+> promisory@0.1.0 manifest:check
+> tsx scripts/validate-manifest.ts
+
+{
+  "mode": "OFFLINE_MANIFEST",
+  "success": true,
+  "errors": [],
+  "registration": "NOT_VERIFIED",
+  "installation": "NOT_VERIFIED"
+}
+
+> promisory@0.1.0 forge:bundle
+> node scripts/check-forge-bundle.cjs
+
+{
+  "mode": "FORGE_BUNDLE_ONLY",
+  "success": true,
+  "cliVersion": "15.1.0",
+  "bundlerVersion": "7.3.2",
+  "runtimeWrapper": {
+    "version": "/assets/loader.2026-11-08T22%3A06%3A08.489Z--19176--01e47014f8ce2cc2a05fdc6c6c6fb5451c5cb7aa.js"
+  },
+  "entryPoints": [
+    {
+      "name": "index",
+      "sha256": "e7c386fa8f76e3f89e48611a671784051f0483a1360223fe804c9f5545ed18fc"
+    },
+    {
+      "name": "events",
+      "sha256": "51b2cbca59daa34cdb1f51066ee91a71f04bf2960357e0a4859a4db35f3da9f0"
+    },
+    {
+      "name": "rovo",
+      "sha256": "7b156211d3cf2dfc3aae6e87316bcabbdf659f7fde277510236e85a40eedccfb"
+    }
+  ],
+  "installation": "NOT_VERIFIED",
+  "recordedAt": "2026-11-11T02:46:21.198Z"
+}
+
+> promisory@0.1.0 release:check
+> tsx scripts/verify-release-equivalence.ts
+
+Offline release equivalence passed. Real app identities and generated/installable profiles are still pending; no distribution claim is made.

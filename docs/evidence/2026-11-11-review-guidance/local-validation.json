@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "promisory.review-guidance-validation.v1",
+  "recordedAt": "2026-11-11T03:28:30.606Z",
+  "scope": "Review-list order, author label, and accessible disabled reasons; execution eligibility unchanged",
+  "typecheck": {
+    "passed": true
+  },
+  "workspaceBuild": {
+    "passed": true
+  },
+  "domainTests": {
+    "command": "vitest run tests/domain/execution.test.ts",
+    "passed": 3,
+    "failed": 0
+  },
+  "browserTest": {
+    "command": "PROMISORY_BROWSER_CHANNEL=chrome PROMISORY_EVIDENCE_DIRECTORY=docs/evidence/2026-11-11-review-guidance npm run test:e2e -- --grep \"review is independent\"",
+    "passed": 1,
+    "failed": 0,
+    "mode": "EXAMPLE",
+    "freshTestBrowser": true,
+    "externalRequests": 0,
+    "atlassianSessionAccessed": false,
+    "initialAttempt": "Bundled browser absent; official download failed with ECONNRESET; configured installed Chrome channel passed"
+  },
+  "screenshot": {
+    "path": "held-review.png",
+    "visuallyInspected": true,
+    "mode": "EXAMPLE"
+  },
+  "forgeBundle": {
+    "passed": true,
+    "checkedAt": "2026-11-11T03:22:45.470Z",
+    "sameEntryPointBytesAs330": true,
+    "entryPoints": [
+      {
+        "name": "index",
+        "sha256": "e7c386fa8f76e3f89e48611a671784051f0483a1360223fe804c9f5545ed18fc"
+      },
+      {
+        "name": "events",
+        "sha256": "51b2cbca59daa34cdb1f51066ee91a71f04bf2960357e0a4859a4db35f3da9f0"
+      },
+      {
+        "name": "rovo",
+        "sha256": "7b156211d3cf2dfc3aae6e87316bcabbdf659f7fde277510236e85a40eedccfb"
+      }
+    ]
+  },
+  "formattingPassed": true,
+  "diffCheckPassed": true,
+  "sourceFiles": [
+    {
+      "path": "apps/forge/static/workspace/src/workspace.tsx",
+      "sha256": "796f3af6eab1c2b25f26451c90e745e9945b6196bd6ed0a8ead881e363d70e38"
+    },
+    {
+      "path": "tests/e2e/workspace.spec.ts",
+      "sha256": "bd38e12abe9a5c406fd55020c8648bf9d4a608ec04d436d83dfefedf94598d2e"
+    }
+  ],
+  "liveReviewVerified": false,
+  "liveGovernedWriteVerified": false
+}

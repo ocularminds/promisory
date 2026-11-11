@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "promisory.artifact-review.v1",
+  "recordedAt": "2026-11-11T03:21:02.251Z",
+  "scannedFiles": 56,
+  "credentialSources": [
+    "Ignored local .env",
+    "Owned immutable runtime Secret"
+  ],
+  "rawAndBase64ValuesChecked": true,
+  "credentialValuesRecorded": false,
+  "filesWithCredentialMatches": [],
+  "documentsChecked": 8,
+  "localLinksChecked": 95,
+  "missingLocalLinks": [],
+  "evidenceJsonFilesParsed": 20,
+  "passed": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@promisory/test-fixtures",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@promisory/contracts": "0.1.0",
+    "@promisory/domain": "0.1.0",
+    "@promisory/integrations-atlassian": "0.1.0"
+  }
+}

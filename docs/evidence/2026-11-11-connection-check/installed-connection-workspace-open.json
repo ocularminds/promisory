@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v1",
+  "recordedAt": "2026-11-11T02:14:17.966Z",
+  "environment": "development",
+  "expectedAppVersion": "3.1.0",
+  "source": "Forge CLI logs; only strict connection-check events retained",
+  "failedChecks": 1,
+  "rejectedEventCount": 0,
+  "verifiedConnections": [],
+  "authenticatedForgeInvocationVerified": false,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "CHECK_FAILED"
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "promisory.reconciliation-forge-diagnostics.v1",
+  "observedAt": "2026-11-11T05:02:57.093Z",
+  "environment": "development",
+  "reconciliationFailureCount": 0,
+  "failures": [],
+  "sourceDataOrProviderTextRetained": false,
+  "actionInvoked": false
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "promisory.recovery-effect-runtime.v1",
+  "recordedAt": "2026-11-11T06:13:46.471Z",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "previousImage": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b",
+  "serverSha256": "be2b685d5d1853cfb85fa019eb152614bce2be6961dbad3383be61e6b8ab82e5",
+  "sourceSha256": "c70bff275dfa43fa951ef72058e2f10c6245edf408b20609acd27acfe7316d05",
+  "buildRunId": "cj4c",
+  "buildSucceeded": true,
+  "registryDigestMatches": true,
+  "platform": "linux/amd64",
+  "nativeReceiptRule": "EXACT_OPERATION_TAG_STABLE_FIELD_ID_RAW_ISO_DATES",
+  "effectCommitmentSchema": "promisory.jira-date-effect.v1",
+  "effectObserverId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+  "liveRecoveryVerified": false
+}

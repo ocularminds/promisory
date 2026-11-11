@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "promisory.authority-dossier-observation.v1",
+  "recordedAt": "2026-11-11T04:57:50.177Z",
+  "source": "Approved DCI organization API, GET protocol dossier",
+  "httpStatus": 200,
+  "readOnly": true,
+  "dossierId": "ce216c34-5e22-4274-800a-54ebcd40bafe",
+  "decisionId": "ca997e3a-1cf8-4a3a-86b0-f5c0d04155e7",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "checks": {
+    "requestSucceeded": true,
+    "dossierMatches": true,
+    "organizationMatches": true,
+    "decisionMatches": false
+  },
+  "dossierPayloadRetained": false,
+  "executionCredentialRetained": false,
+  "passed": false
+}

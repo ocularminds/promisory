@@ -1,0 +1,27 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d2900804-2853-4318-8aa7-488c4d9a5fb0"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "29818675"
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/spec/containers/0/image",
+    "value": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a"
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/metadata/annotations/promisory.decionis.com~1recovery-probe",
+    "value": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4"
+  },
+  {
+    "op": "add",
+    "path": "/spec/template/metadata/annotations/kubectl.kubernetes.io~1restartedAt",
+    "value": "2026-11-11T04:55:50.290Z"
+  }
+]

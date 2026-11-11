@@ -1,0 +1,23 @@
+{
+  "name": "@promisory/forge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@forge/api": "8.5.0",
+    "@forge/bridge": "7.3.0",
+    "@forge/resolver": "2.0.2",
+    "@forge/sql": "4.0.10",
+    "@js-temporal/polyfill": "0.5.1",
+    "@promisory/contracts": "0.1.0",
+    "@promisory/design-system": "0.1.0",
+    "@promisory/domain": "0.1.0",
+    "@promisory/integrations-atlassian": "0.1.0",
+    "@promisory/integrations-decionis": "0.1.0",
+    "@promisory/test-fixtures": "0.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zod": "4.6.7"
+  }
+}

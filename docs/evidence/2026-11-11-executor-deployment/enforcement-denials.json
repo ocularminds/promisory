@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "promisory.enforcement-denials.v1",
+  "recordedAt": "2026-11-11T01:02:56.829Z",
+  "mode": "LIVE_AUTHORITY_ENFORCEMENT_WITH_SYNTHETIC_INPUTS",
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "sourceSnapshot": "EXPLICITLY_SYNTHETIC_NOT_READ_FROM_JIRA",
+  "downstream": "INERT_CANARY_NO_JIRA_CLIENT",
+  "noGrantClaimAttempted": true,
+  "noJiraReadOrWrite": true,
+  "authenticatedForgeInvocationVerified": false,
+  "results": [
+    {
+      "name": "different-date",
+      "expected": "BLOCK",
+      "verdict": "BLOCK",
+      "wire": {
+        "httpStatus": 200,
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      },
+      "executionOutcome": "BLOCKED",
+      "canaryDispatches": 0,
+      "verifierRequests": 0,
+      "authorizationPresent": false,
+      "decisionId": "83dbd29f-f401-4d75-8134-cc02beeb51cd",
+      "dossierId": "7e0b635b-eb1a-4e4f-be74-a5c80e67f87b",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "passed": true
+    },
+    {
+      "name": "different-principal",
+      "expected": "BLOCK",
+      "verdict": "BLOCK",
+      "wire": {
+        "httpStatus": 200,
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      },
+      "executionOutcome": "BLOCKED",
+      "canaryDispatches": 0,
+      "verifierRequests": 0,
+      "authorizationPresent": false,
+      "decisionId": "369a6c05-ad1a-4743-8f63-e233a1c90fc5",
+      "dossierId": "b7bf525c-4353-456c-8372-9e270a495464",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_REJECT",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_REJECT"
+      ],
+      "passed": true
+    },
+    {
+      "name": "missing-evidence",
+      "expected": "ESCALATE",
+      "verdict": "ESCALATE",
+      "wire": {
+        "httpStatus": 200,
+        "policyVersion": "promisory-test-v3",
+        "tokenPresent": false,
+        "grantPresent": false
+      },
+      "executionOutcome": "BLOCKED",
+      "canaryDispatches": 0,
+      "verifierRequests": 0,
+      "authorizationPresent": false,
+      "decisionId": "7abfee68-00d2-4330-96aa-8c56d7698ca1",
+      "dossierId": "fbd09b0f-2aca-498c-be65-23683722d01b",
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_ESCALATE",
+        "MISSING_REQUIRED_SIGNALS"
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

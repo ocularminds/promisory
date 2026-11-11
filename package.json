@@ -1,0 +1,58 @@
+{
+  "name": "promisory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4 <23"
+  },
+  "packageManager": "npm@10.9.9",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "vite --config apps/forge/static/workspace/vite.config.ts --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build --config apps/forge/static/workspace/vite.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm test && npm run build && npm run remote:build && npm run manifest:check && npm run forge:bundle && npm run release:check",
+    "release:profiles": "tsx scripts/build-release-profiles.ts",
+    "release:check": "tsx scripts/verify-release-equivalence.ts",
+    "forge:lint": "cd apps/forge && forge lint",
+    "phase0": "tsx scripts/phase0.ts",
+    "manifest:check": "tsx scripts/validate-manifest.ts",
+    "remote:build": "vite build --config apps/remote/vite.config.ts",
+    "remote:start": "node apps/remote/dist/server.js",
+    "remote:package": "tsx scripts/package-remote-build.ts",
+    "remote:render:test": "tsx scripts/render-azure-test.ts",
+    "policy:check:test": "tsx scripts/check-dci-test-policy.ts",
+    "manifest:configure": "tsx scripts/configure-development.ts",
+    "forge:bundle": "node scripts/check-forge-bundle.cjs"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "0.5.1",
+    "zod": "4.6.7",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@forge/cli": "15.1.0",
+    "@playwright/test": "1.65.0",
+    "@types/node": "22.19.0",
+    "@types/react": "18.3.27",
+    "@types/react-dom": "18.3.7",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vite": "8.3.7",
+    "vitest": "5.1.0",
+    "yaml": "2.9.1",
+    "@forge/manifest": "13.9.0"
+  },
+  "overrides": {
+    "prosemirror-view": "1.42.3"
+  }
+}

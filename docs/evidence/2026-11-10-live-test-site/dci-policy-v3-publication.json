@@ -1,0 +1,45 @@
+{
+  "mode": "LIVE_POLICY_TECHNICAL_REPAIR_PUBLICATION",
+  "recordedAt": "2026-11-10T23:54:48.801Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policyId": "promisory-test-jira-due-date",
+  "bundleId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "version": "promisory-test-v3",
+  "replacesHistoricalBundleId": "98d2c263-3673-405b-aa6c-67325e41ee78",
+  "approvalReference": "call_cdszgGZuZnAOg42LHgkhxzgh:0",
+  "approvedBy": "Festus Jejelowo",
+  "technicalRepairPreservesApprovedBusinessEffect": true,
+  "newHumanApprovalClaimed": false,
+  "approvalRequirementRetained": true,
+  "expiresAt": "2026-11-12T00:00:00.000Z",
+  "requestSha256": "6623e3f91b267d20c7bff56cfbc2c0348471164e3013a484d73f7debd6b6ccff",
+  "validationStatus": 200,
+  "valid": true,
+  "httpStatus": 400,
+  "accepted": false,
+  "responseKeys": [
+    "error",
+    "message",
+    "issues"
+  ],
+  "readBackStatus": 200,
+  "exactPayloadVerified": false,
+  "readBackAt": "2026-11-10T23:54:50.433Z",
+  "publication": "REJECTED_SCHEMA",
+  "failure": {
+    "error": "VALIDATION_ERROR",
+    "message": "policy_bundle failed schema validation",
+    "issues": [
+      {
+        "path": "/metadata",
+        "keyword": "additionalProperties",
+        "message": "must NOT have additional properties"
+      },
+      {
+        "path": "/metadata",
+        "keyword": "additionalProperties",
+        "message": "must NOT have additional properties"
+      }
+    ]
+  }
+}

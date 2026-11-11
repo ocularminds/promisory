@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "promisory.effect-binding-forge-deployment.v1",
+  "recordedAt": "2026-11-11T06:16:43.285Z",
+  "appId": "6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "environment": "development",
+  "manifestSha256": "63b037d8877cc0bdbecddab19e972a7d1bc8fcdf62347a5c187fb2c7b61d2162",
+  "remoteContractChanged": false,
+  "scopesChanged": false,
+  "completed": false
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.recovery-history-preparation.v1",
+  "recordedAt": "2026-11-11T05:17:57.680Z",
+  "status": "PREPARED_NOT_APPLIED",
+  "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+  "sourcePath": "scripts/live/recovery-history-observer.ts",
+  "sourceSha256": "a8f8017395c2629e1b1b6f4c10d263b7d1a0b47b39f536b306ad2c7a49c97281",
+  "compiledSha256": "3d06fe1f531558986c97981af37e6c4ce0f81db3d5d566edc8f3494b42da7d40",
+  "configMapName": "promisory-history-3d06fe1f5315",
+  "originalProbeSha256": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4",
+  "previousGeneration": 9,
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "beforeEvidence": "before-history-observer.json",
+  "serverDryRunsPassed": 2,
+  "addsNativeRequests": false,
+  "altersNativeResponses": false,
+  "policyChanged": false,
+  "claimContentsRead": false,
+  "resourcesApplied": false
+}

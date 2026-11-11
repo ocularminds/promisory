@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "promisory.release-dossier-review.v1",
+  "recordedAt": "2026-11-11T04:34:37.196Z",
+  "file": "docs/submission/release-dossier.md",
+  "sha256": "b237279d114ad19a1dd8e81f0ccb59ba6d6bb1b807d299e76ba992ee5dd8120e",
+  "localLinksChecked": 14,
+  "credentialRawAndBase64Matches": 0,
+  "publicationPerformed": false,
+  "judgeInstallationVerified": false,
+  "marketplaceInstallationVerified": false,
+  "normalDevelopmentWriteVerified": true,
+  "liveLostResponseRecoveryVerified": false,
+  "passed": true
+}

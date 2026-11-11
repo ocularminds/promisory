@@ -1,0 +1,125 @@
+{
+  "standard": "WCAG 2.x contrast calculation",
+  "pairs": [
+    {
+      "foreground": "ink",
+      "background": "surface",
+      "use": "normal text",
+      "ratio": 14.13,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "textSecondary",
+      "background": "surface",
+      "use": "normal text",
+      "ratio": 6.41,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "surface",
+      "background": "primary",
+      "use": "button text",
+      "ratio": 4.53,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "surface",
+      "background": "ink",
+      "use": "reversed text",
+      "ratio": 14.13,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "link",
+      "background": "canvas",
+      "use": "link text",
+      "ratio": 5.43,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "success",
+      "background": "successSurface",
+      "use": "status text",
+      "ratio": 5.3,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "warning",
+      "background": "warningSurface",
+      "use": "status text",
+      "ratio": 5.62,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "danger",
+      "background": "dangerSurface",
+      "use": "status text",
+      "ratio": 5.93,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "unknown",
+      "background": "unknownSurface",
+      "use": "status text",
+      "ratio": 5.74,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "borderStrong",
+      "background": "surface",
+      "use": "essential control boundary",
+      "ratio": 3.76,
+      "minimum": 3,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "surface",
+      "use": "focus indicator",
+      "ratio": 4.53,
+      "minimum": 3,
+      "pass": true
+    },
+    {
+      "foreground": "focus",
+      "background": "ink",
+      "use": "navigation focus indicator",
+      "ratio": 3.12,
+      "minimum": 3,
+      "pass": true
+    },
+    {
+      "foreground": "surface",
+      "background": "primaryHover",
+      "use": "hover button text",
+      "ratio": 6.14,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "link",
+      "background": "subtle",
+      "use": "selected text",
+      "ratio": 5.2,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "primary",
+      "background": "surface",
+      "use": "primary on white",
+      "ratio": 4.53,
+      "minimum": 4.5,
+      "pass": true
+    }
+  ]
+}

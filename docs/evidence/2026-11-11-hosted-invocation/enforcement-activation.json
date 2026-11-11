@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "promisory.enforcement-activation.v1",
+  "recordedAt": "2026-11-11T02:59:42.970Z",
+  "context": "decionis-aks",
+  "namespace": "decionis",
+  "deployment": "promisory-test-executor",
+  "deploymentUid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "configMapUid": "e45ab236-9b35-4dda-84a6-18224679fb5f",
+  "guardedConfigResourceVersion": "29727820",
+  "guardedDeploymentResourceVersion": "29772464",
+  "previousGeneration": 6,
+  "generation": 7,
+  "policyId": "457e04a4-0a1d-4f18-8bca-7a9a5df2adc8",
+  "policyExpiresAt": "2026-11-12T00:00:00Z",
+  "verifiedConnectionRequestId": "2dcf449e-b24b-41ae-8220-9995c2f94f4e",
+  "verifiedConnectionAt": "2026-11-11T02:57:28.877Z",
+  "verifiedAppVersion": "3.3.0",
+  "verificationSources": [
+    "FORGE",
+    "EXECUTOR"
+  ],
+  "verificationFlagBefore": false,
+  "verificationFlagAfter": true,
+  "serverDryRunsPassed": true,
+  "onlyVerificationFlagAndRestartAnnotationChanged": true,
+  "status": "VERIFIED",
+  "governedJiraWriteOccurred": false,
+  "verifiedAt": "2026-11-11T03:01:53.016Z",
+  "runtimeEnforcementActive": true
+}

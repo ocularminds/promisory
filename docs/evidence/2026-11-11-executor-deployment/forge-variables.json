@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "promisory.forge-remote-variables.v1",
+  "recordedAt": "2026-11-11T00:53:38.940982+00:00",
+  "environment": "development",
+  "appId": "6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "configuredKeys": [
+    "PROMISORY_REMOTE_SIGNING_KEY",
+    "PROMISORY_REMOTE_ENABLED",
+    "PROMISORY_SHARE_DUE_DATE_INTENT",
+    "PROMISORY_SHARE_JIRA_DATE_SNAPSHOT"
+  ],
+  "signingKeyEncrypted": true,
+  "signingKeySource": "Kubernetes promisory-test-secrets",
+  "credentialValueRecorded": false,
+  "passed": true
+}

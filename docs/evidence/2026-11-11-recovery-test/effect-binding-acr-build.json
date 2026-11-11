@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "promisory.recovery-effect-binding-build.v1",
+  "recordedAt": "2026-11-11T06:13:46.452Z",
+  "buildRunId": "cj4c",
+  "status": "Succeeded",
+  "createdAt": "2026-11-11T06:10:30.976776+00:00",
+  "finishedAt": "2026-11-11T06:12:23.435106+00:00",
+  "repository": "promisory/executor",
+  "tag": "c70bff275dfa",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b",
+  "sourceSha256": "c70bff275dfa43fa951ef72058e2f10c6245edf408b20609acd27acfe7316d05",
+  "archiveSha256": "79e7ffbed738635f35a8496c7c5133964b9b79367f37aef0427de425e4095ad6",
+  "platform": "linux/amd64",
+  "registryDigestMatches": true
+}

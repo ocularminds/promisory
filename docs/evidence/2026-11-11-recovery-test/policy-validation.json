@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "promisory.recovery-policy-validation.v1",
+  "recordedAt": "2026-11-11T04:38:03.978Z",
+  "httpStatus": 200,
+  "valid": true,
+  "errorCount": 0,
+  "warningCount": 0,
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "passed": true
+}

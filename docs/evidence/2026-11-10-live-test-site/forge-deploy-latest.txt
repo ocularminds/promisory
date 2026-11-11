@@ -1,0 +1,20 @@
+Deploying your app to the development environment.
+Press Ctrl+C to cancel.
+
+Running forge lint...
+No issues found.
+
+Deploying Promisory to development...
+
+ℹ Packaging app files
+ℹ Uploading app
+ℹ Validating manifest
+ℹ Deploying to environment
+
+✔ Deployed
+
+Deployed Promisory to the development environment.
+
+ℹ The version of your app [2.14.0] that was just deployed to [development] is eligible for the Runs on Atlassian program.
+
+To know more about Runs on Atlassian, go to https://go.atlassian.com/runs-on-atlassian.

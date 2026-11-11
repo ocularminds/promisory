@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.deployment-authorization.v1",
+  "recordedAt": "2026-11-11T00:47:12.150Z",
+  "deployment": {
+    "reference": "call_jkKzus5S8rhsJZf1EfAr2uxp:0",
+    "answer": "Approve the test deployment and listed costs",
+    "scope": "Existing AKS/ACR; test HTTPS host; ACR build/storage; one retained 4 GiB Premium_ZRS disk"
+  },
+  "observer": {
+    "reference": "call_jkKzus5S8rhsJZf1EfAr2uxp:1",
+    "answer": "Approve the scoped observer change and rollout",
+    "apiKeyId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+    "deployment": "decionis-api"
+  },
+  "enforcement": {
+    "answer": "turn on enforcement",
+    "scope": "Promisory approved KAN-2 due-date test action",
+    "prerequisite": "Verify the deployed authority boundary before the Jira write"
+  }
+}

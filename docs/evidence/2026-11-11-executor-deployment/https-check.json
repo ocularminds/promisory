@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "promisory.https-check.v1",
+  "recordedAt": "2026-11-11T00:50:33.167Z",
+  "url": "https://promisory-test.decionis.com/healthz",
+  "status": 200,
+  "authorized": true,
+  "issuer": "Let's Encrypt",
+  "subject": "promisory-test.decionis.com",
+  "validTo": "Feb  8 23:51:36 2027 GMT",
+  "body": "{\"status\":\"ok\"}",
+  "dns": [
+    "52.143.254.111"
+  ],
+  "passed": true
+}

@@ -1,0 +1,68 @@
+{
+  "reviewedOn": "2026-11-10",
+  "files": [
+    {
+      "repository": "Decionis",
+      "source": "README.md",
+      "head": "8f654c3ee9b6b0aeabd6d5872358060a94be5ca3",
+      "workingTreeModified": false,
+      "sha256": "12268ebedba1c48544067798a7932ee78fdf016dd4b64048df2f42a088a1ce2e"
+    },
+    {
+      "repository": "Decionis",
+      "source": "apps/api/src/routes/AtlassianRoutes.ts",
+      "head": "8f654c3ee9b6b0aeabd6d5872358060a94be5ca3",
+      "workingTreeModified": false,
+      "sha256": "76607d5468207681cbd77c9b7fb0f98ae6ba484ada8087f356a28da41b389836"
+    },
+    {
+      "repository": "Decionis",
+      "source": "docs/marketplace/atlassian/forge-starter-kit/src/index.js",
+      "head": "8f654c3ee9b6b0aeabd6d5872358060a94be5ca3",
+      "workingTreeModified": false,
+      "sha256": "29fa921e94ad84178c26046ed8778918b1aced0a1b9a94614281769faae3122a"
+    },
+    {
+      "repository": "Decionis",
+      "source": "docs/marketplace/atlassian/forge-starter-kit/manifest.yml",
+      "head": "8f654c3ee9b6b0aeabd6d5872358060a94be5ca3",
+      "workingTreeModified": false,
+      "sha256": "cc2447c5fc609566f924c812e97a237e69032f1d03ec57d1df2de8e0615a33bb"
+    },
+    {
+      "repository": "AgentSafe",
+      "source": "README.md",
+      "head": "88226b85dfbae80115f15caf0614fd1b06961013",
+      "workingTreeModified": false,
+      "sha256": "de5d9564a919edb413e30743df7189bec3ce34f3fd96c04b60c081f65e3e6e69"
+    },
+    {
+      "repository": "AgentSafe",
+      "source": "docs/gateway/deployment.md",
+      "head": "88226b85dfbae80115f15caf0614fd1b06961013",
+      "workingTreeModified": false,
+      "sha256": "490912a118df0df0f817451ddbd12b91bbce197384665689feade39d45c97d9b"
+    },
+    {
+      "repository": "Steward",
+      "source": "README.md",
+      "head": "110b3d61a589313d4253c98330c3227b3495dd0b",
+      "workingTreeModified": false,
+      "sha256": "198f02bd2a7fceb7323297efecc015859b6c68db99edb73cedafaa99ea0f5c70"
+    },
+    {
+      "repository": "Steward",
+      "source": "Architecture.md",
+      "head": "110b3d61a589313d4253c98330c3227b3495dd0b",
+      "workingTreeModified": false,
+      "sha256": "e868fb981f53d2b58e128d3da621539af8878c4d18a1a7286df319706ab97236"
+    },
+    {
+      "repository": "Steward",
+      "source": "domain/opportunities/CustomerOpportunity.ts",
+      "head": "110b3d61a589313d4253c98330c3227b3495dd0b",
+      "workingTreeModified": false,
+      "sha256": "c7d832b9fbff509032dd34d50dbf057ea0d2135a98065e1ebaa902aad98284bc"
+    }
+  ]
+}

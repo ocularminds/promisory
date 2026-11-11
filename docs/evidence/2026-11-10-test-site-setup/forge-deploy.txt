@@ -1,0 +1,20 @@
+Command: forge deploy --environment development
+Forge CLI: 15.1.0
+
+Deploying your app to the development environment.
+Running forge lint...
+No issues found.
+Packaging app files
+Uploading app
+Validating manifest
+Deploying to environment
+✔ Deployed
+
+Deployed Promisory to the development environment.
+
+We've detected new scopes or egress URLs in your app.
+Run forge install --upgrade and restart your tunnel to put them into effect.
+
+ℹ The version of your app [2.0.0] that was just deployed to [development] is eligible for the Runs on Atlassian program.
+
+To know more about Runs on Atlassian, go to https://go.atlassian.com/runs-on-atlassian.

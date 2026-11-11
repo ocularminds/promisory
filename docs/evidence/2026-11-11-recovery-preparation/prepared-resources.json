@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "promisory.recovery-test-preparation.v1",
+  "recordedAt": "2026-11-11T04:28:54.691Z",
+  "status": "PREPARED_NOT_APPROVED_NOT_APPLIED",
+  "output": "/Users/bonus/develop/products/promisory/release/recovery-test-final-review",
+  "policyPath": "docs/authority/promisory-dci-recovery-policy.draft.json",
+  "policyId": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "policySha256": "61590396cf26069719e25a2fde662c730446f37bf04859232ba7797e4b047418",
+  "sourcePath": "scripts/live/recovery-probe.ts",
+  "sourceSha256": "19cc11e1894208e666d0fa64b58e64e8cd55c67ce7e71717bc2621e9112ec0e1",
+  "compiledSha256": "7bc064bc5e9a1ca07cd6c0bfc3296ad29d1ad41c987618cd49d2d64462acd2b4",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a",
+  "configMapName": "promisory-recovery-7bc064bc5e9a",
+  "deploymentGeneration": 7,
+  "observedState": {
+    "operationCount": 1,
+    "pendingOperationCount": 0,
+    "claimFileCount": 0,
+    "runtimeMatches": true,
+    "serverSha256": "9443e31f8b66a0fd6eba38aa599b3072dc3c4edb51d7f7a37abb4ddd9fbe513b",
+    "node": "v22.23.4",
+    "uid": 1000,
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "serverDryRunsPassed": 3,
+  "policiesPublished": false,
+  "resourcesApplied": false,
+  "grantsRequested": false,
+  "jiraRequestsMade": false,
+  "newPaidResources": false,
+  "cleanup": "Restore the original policy binding, remove only this probe's command/args/env/mount/volume/annotation using fresh concurrency guards, then remove the unused immutable probe ConfigMap. Preserve operation, claim and probe evidence; never erase the one-use marker to retry."
+}

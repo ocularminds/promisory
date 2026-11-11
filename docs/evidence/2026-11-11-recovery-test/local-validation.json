@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.recovery-live-preparation-validation.v1",
+  "recordedAt": "2026-11-11T04:53:08.872Z",
+  "typecheckPassed": true,
+  "probeSourceMatchesReviewedAndDeployedHash": true,
+  "priorRegressionEvidence": "../2026-11-11-recovery-preparation/local-validation.json",
+  "liveSyntheticShadowCasesPassed": 18,
+  "newCollectorBaselinePassed": true,
+  "installedNativeConnectionPassed": true,
+  "retirementScriptPreparedOnly": true,
+  "retirementApplied": false,
+  "liveRecoveryVerified": false
+}

@@ -1,0 +1,196 @@
+{
+  "recordedAt": "2026-11-10T14:11:17.815Z",
+  "node": "22.23.4",
+  "npm": "10.9.9",
+  "chrome": "157.0.8103.40",
+  "packages": {
+    "typescript": "6.0.3",
+    "vite": "8.3.7",
+    "vitest": "5.1.0",
+    "@playwright/test": "1.65.0",
+    "@forge/cli": "15.1.0",
+    "@forge/api": "8.5.0",
+    "@forge/bridge": "7.3.0",
+    "@forge/resolver": "2.0.2",
+    "@forge/sql": "4.0.10",
+    "@forge/manifest": "13.9.0",
+    "@decionis/agent-safe-pipeline": "0.5.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zod": "4.6.7",
+    "prosemirror-view": "1.42.3"
+  },
+  "lockSha256": "d5127a2b513c6bfd3f90e44a4d5b372fc8ec920d3a070f873fd4420a41869044",
+  "assets": [
+    {
+      "path": "apps/forge/static/workspace/dist/assets/IBMPlexMono-Regular-DL0wTxaS.woff2",
+      "bytes": 39172,
+      "sha256": "4732ea624a65569a8345a638202e4d29dc48beb0b4c7918243f19f209420ec18"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/Inter-Variable-C9pUGi00.woff2",
+      "bytes": 350364,
+      "sha256": "37afcdf38540bfe8145cfb69b845fb07346364c590837cc4388f2023416067dd"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/Manrope-Variable-DVlWBiPz.woff2",
+      "bytes": 53820,
+      "sha256": "971ec0a330f549a614fad8358ff68d959e444ad0dfe291cab3e52be4c0c422b7"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/iframe-resizer-C-5li8o0.js",
+      "bytes": 29197,
+      "sha256": "57576e129ff62c662b52e7aa68ac0d92f32fe4bcf56cf487fb49b1219e6abe08"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/index-CT99HCkJ.css",
+      "bytes": 22361,
+      "sha256": "30967e95b34c0ee1ab34fad1fd0d78786af57aa488d4229e45695315228c1cd4"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/index-r5IH_D3C.js",
+      "bytes": 522540,
+      "sha256": "f094347096fa51541ebd03b6b1dbb518679be32d1ee7f05d074acc3f15f8794b"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/out-C_9IWo3k.js",
+      "bytes": 60878,
+      "sha256": "ee31edc54e307febda42d7a2ae063a6ece94907bda1333d0a24f6a37457e04a8"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/rolldown-runtime-BWaJ3C7D.js",
+      "bytes": 911,
+      "sha256": "d0e9044430006c5bb48f477501a5af465f0a6377d2fcd7495aa215b8b75aaee3"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/assets/src-IJLeehLa.js",
+      "bytes": 11234,
+      "sha256": "1ac4053fd4b01aaa95e0132b93a6c8156605cdf21cdde236891be2d2ba4056cb"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/brand-overview.png",
+      "bytes": 156713,
+      "sha256": "00b249a987ab14abfeeaa621c5e525881701550e1b72a4aee32333c22ae22bcf"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/contrast-report.json",
+      "bytes": 2601,
+      "sha256": "547075bfe1a125ac2e384d2dbf6868ee5bcb4c863039c04227006c493e0ab2cd"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/IBMPlexMono-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/IBMPlexMono-Regular.ttf",
+      "bytes": 135580,
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/IBMPlexMono-Regular.woff2",
+      "bytes": 39172,
+      "sha256": "4732ea624a65569a8345a638202e4d29dc48beb0b4c7918243f19f209420ec18"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Inter-Variable.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Inter-Variable.woff2",
+      "bytes": 350364,
+      "sha256": "37afcdf38540bfe8145cfb69b845fb07346364c590837cc4388f2023416067dd"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Manrope-Variable.ttf",
+      "bytes": 164700,
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/fonts/Manrope-Variable.woff2",
+      "bytes": 53820,
+      "sha256": "971ec0a330f549a614fad8358ff68d959e444ad0dfe291cab3e52be4c0c422b7"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/index.html",
+      "bytes": 632,
+      "sha256": "c8329556ec9366b2e24e683b1da96f46a6464aa43fd05377739fadb47578c32d"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-icon-256.png",
+      "bytes": 6251,
+      "sha256": "f9bbb8851421983550c72a96a3c937fa376031874a6480a20d48bbe797ed7b73"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-icon-512.png",
+      "bytes": 15853,
+      "sha256": "83dad2d7d548f90a5647157f616f12ae3767538c337ecd38feec0fff681de6eb"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-icon.svg",
+      "bytes": 504,
+      "sha256": "45f0313d1329e2527f2620764f211176900e6ecdd1eb7f0b2c1b650f3cc14b21"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-logo-preview.png",
+      "bytes": 25277,
+      "sha256": "b994cae6e359b093ff46eec34a2a6efb2ecd3503905c29deb18668dfc9a3f2a9"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-logo-reversed.svg",
+      "bytes": 11399,
+      "sha256": "a16fde2ce04c2aed31930ef250ec0a3637f3a93b3f87509d000fc318d5420560"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-logo.svg",
+      "bytes": 11399,
+      "sha256": "14bf363be6912a37ab9bd286d8a9c6cc4af6ea912cd39310580a06815a0a38f5"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-mark-1024.png",
+      "bytes": 25113,
+      "sha256": "d4916509561bf0ebaf8b11849aa668327d2fc1c210bbce504d02dcf2afde7117"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-mark-mono.svg",
+      "bytes": 435,
+      "sha256": "e85d5f33ca2d41b2e2c543352601c33ab8af75c66d1a725005742548a6bf9882"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/promisory-mark.svg",
+      "bytes": 439,
+      "sha256": "c5ff8e78c444ab2b4d01c619cd7607d7e94e51298b43c8f2666ec5a9a37cb475"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/tokens.css",
+      "bytes": 1116,
+      "sha256": "f931ca96abd030aa12393ecc7ca4ebeeaf73ebd2ecea623433a3a29a03061585"
+    },
+    {
+      "path": "apps/forge/static/workspace/dist/tokens.json",
+      "bytes": 1353,
+      "sha256": "f5e0ff44fecc678ce99e2a6744a07411656088d5dd17d488eced541a51769c3e"
+    },
+    {
+      "path": "apps/remote/dist/server.js",
+      "bytes": 48858,
+      "sha256": "7513690b3c4afa2888365e154660f5ad59ecc64a96e4dbd4992754cf3ee18686"
+    },
+    {
+      "path": "apps/remote/dist/server.js.map",
+      "bytes": 183847,
+      "sha256": "f8ab92e47f96a4a9b6ad9ea9d9549d82909f48c4f00df72797d2507714e735f6"
+    }
+  ]
+}

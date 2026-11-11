@@ -1,0 +1,33 @@
+[
+  {
+    "op": "test",
+    "path": "/metadata/uid",
+    "value": "d2900804-2853-4318-8aa7-488c4d9a5fb0"
+  },
+  {
+    "op": "test",
+    "path": "/metadata/resourceVersion",
+    "value": "29832747"
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/spec/containers/0/image",
+    "value": "decionisacr.azurecr.io/promisory/executor@sha256:a387bebb193e4ad99e8fe0d10808a73bae875e6198202b95d77a4da48169bc4a"
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/spec/containers/0/args",
+    "value": [
+      "--import",
+      "/app/recovery-probe.mjs",
+      "--import",
+      "/app/recovery-history-observer.mjs",
+      "/app/server.js"
+    ]
+  },
+  {
+    "op": "replace",
+    "path": "/spec/template/spec/containers/0/image",
+    "value": "decionisacr.azurecr.io/promisory/executor@sha256:37ba069148a4ac4ffbf346d888094b13abcb07f2d449449952472ff4efc030fd"
+  }
+]

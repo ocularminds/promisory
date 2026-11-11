@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-11-10T14:17:03.202Z",
+  "mode": "LOCAL_AND_SYNTHETIC_CONTRACTS",
+  "checks": [
+    {
+      "command": "npm ci",
+      "status": "PASS",
+      "evidence": "Clean lockfile install completed before this verification run."
+    },
+    {
+      "command": "npm run check",
+      "status": "PASS",
+      "durationMs": 15814,
+      "output": "check-output.txt"
+    },
+    {
+      "command": "npm run test:e2e",
+      "status": "PASS",
+      "durationMs": 10166,
+      "output": "browser-output.txt"
+    },
+    {
+      "command": "npm run phase0",
+      "status": "PASS",
+      "durationMs": 3484,
+      "output": "phase0-output.txt"
+    },
+    {
+      "command": "node apps/remote/dist/server.js (isolated environment with no credentials)",
+      "status": "PASS",
+      "expectedExitCode": 1,
+      "evidence": "Startup refused missing server-controlled identity, authority and secret configuration before listening."
+    }
+  ],
+  "liveInstallation": "NOT_RUN",
+  "liveGovernedAction": "NOT_RUN",
+  "distribution": "NOT_RUN",
+  "browserEvidenceRefreshedAt": "2026-11-10T14:17:03.218Z",
+  "browserEvidenceRefresh": "All eight browser scenarios passed after normalizing full-page screenshot scroll/focus."
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@promisory/domain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "@js-temporal/polyfill": "0.5.1",
+    "@promisory/contracts": "0.1.0",
+    "zod": "4.6.7"
+  }
+}

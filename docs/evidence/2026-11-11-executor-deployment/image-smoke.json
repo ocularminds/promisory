@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "promisory.image-smoke.v1",
+  "recordedAt": "2026-11-11T00:38:16.385Z",
+  "fixture": "EXPLICITLY_SYNTHETIC",
+  "credentials": "SYNTHETIC_ONLY",
+  "checks": [
+    {
+      "name": "Linux amd64 Node 22.23.4",
+      "passed": true
+    },
+    {
+      "name": "UID 1000",
+      "passed": true
+    },
+    {
+      "name": "read-only root filesystem",
+      "passed": true
+    },
+    {
+      "name": "private writable state",
+      "passed": true
+    },
+    {
+      "name": "health response",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated /v1/actions/apply",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated /v1/actions/reconcile",
+      "passed": true
+    },
+    {
+      "name": "unknown route refused",
+      "passed": true
+    },
+    {
+      "name": "oversize body refused",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "podUid": "7b2687d0-66d9-4c6b-b273-334c7c501d3a",
+  "phase": "Succeeded",
+  "exitCode": 0,
+  "imageId": "decionisacr.azurecr.io/promisory/executor@sha256:a1de435f15a591c86fd14332fd99be9257ace62a84dd5b7cc263428086bdf4da"
+}

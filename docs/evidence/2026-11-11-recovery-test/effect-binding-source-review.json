@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "promisory.recovery-effect-binding-source-review.v1",
+  "recordedAt": "2026-11-11T06:10:03.657Z",
+  "directory": "release/remote-build-c70bff275dfa-JugsQ1",
+  "sourceSha256": "c70bff275dfa43fa951ef72058e2f10c6245edf408b20609acd27acfe7316d05",
+  "archiveSha256": "79e7ffbed738635f35a8496c7c5133964b9b79367f37aef0427de425e4095ad6",
+  "fileCount": 31,
+  "archiveBytes": 186816,
+  "serverSha256": "be2b685d5d1853cfb85fa019eb152614bce2be6961dbad3383be61e6b8ab82e5",
+  "changedFiles": [
+    "apps/remote/src/index.ts",
+    "apps/remote/src/server.ts",
+    "packages/integrations-decionis/src/effects.ts",
+    "packages/integrations-decionis/src/index.ts",
+    "packages/integrations-decionis/src/recovery.ts"
+  ],
+  "inputsMatch": true,
+  "credentialMatches": 0,
+  "operatorProbesIncluded": false,
+  "evidenceIncluded": false,
+  "lockfileChanged": false,
+  "passed": true
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.acr-build-submission.v1",
+  "recordedAt": "2026-11-11T02:50:36.973Z",
+  "runId": "cj4a",
+  "registry": "decionisacr",
+  "repository": "promisory/executor",
+  "tag": "a443a6da5c7f",
+  "sourceSha256": "a443a6da5c7fea6237bcf1e899071b990642000163e297afdc8b4dda17d674c1",
+  "platform": "linux/amd64",
+  "previousRunId": "cj49",
+  "submissionCount": 1,
+  "secretValuesRecorded": false
+}

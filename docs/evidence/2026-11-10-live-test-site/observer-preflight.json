@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "promisory.observer-preflight.v1",
+  "recordedAt": "2026-11-11T00:23:15.833Z",
+  "context": "decionis-aks",
+  "namespace": "decionis",
+  "deployment": "decionis-api",
+  "container": "api",
+  "environmentVariable": "DECIONIS_TRUSTED_EFFECT_OBSERVER_API_KEY_IDS",
+  "appendApiKeyId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+  "previousIds": [],
+  "proposedIds": [
+    "c97a5168-1325-487c-94e8-e3d4b06adffd"
+  ],
+  "changeNeeded": true,
+  "concurrencyGuards": [
+    "deployment-uid",
+    "resource-version",
+    "container-name"
+  ],
+  "serverDryRunAccepted": true,
+  "realDeploymentUnchanged": true,
+  "applied": false,
+  "sharedApiRollout": false,
+  "requiresOwnerAuthorization": true
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "promisory.browser-access.v1",
+  "recordedAt": "2026-11-11T01:18:17.970Z",
+  "userReportedEnabled": true,
+  "newComputerControlSessionAttempted": true,
+  "freshBrowserInventoryAttempted": true,
+  "laterAvailabilityCheck": "cua.listBrowsers()",
+  "result": "Local browser use is disabled in Work settings",
+  "browserAccessAvailable": false,
+  "effectivePolicySourceEstablished": false,
+  "noBrowserWorkaroundUsed": true,
+  "blockedVerification": [
+    "Installed Forge 3.0.0 workspace",
+    "Actual FIT app, module, environment, installation, cloud and principal binding",
+    "Current-user OAuth and source access",
+    "Fresh independent action review and governed execution"
+  ],
+  "existingAuthorizationStillValidForSameScope": true,
+  "enforcementVerificationHoldRetained": true,
+  "officialTroubleshootingReferences": [
+    "https://learn.chatgpt.com/docs/browser",
+    "https://learn.chatgpt.com/docs/enterprise/chatgpt-work-local-security"
+  ],
+  "troubleshootingLimit": "The tool result confirms access is disabled; it does not identify the effective configuration source or prove that an app restart will resolve it."
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.runtime-preflight.v1",
+  "recordedAt": "2026-11-11T00:46:45.281Z",
+  "uid": 1000,
+  "healthStatus": 200,
+  "stateFileMode": "600",
+  "stateFileOwner": 1000,
+  "probeSha256": "7fabc4cb74db46eed652cccfb88dfad6886a6f2534819e8f14b80ebe325943f4",
+  "mode": "SHADOW",
+  "enforcementVerified": "false",
+  "sharingIntent": "false",
+  "sharingSnapshot": "false",
+  "authorityStatus": 200,
+  "authorityOrgId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "authorityApiKeyId": "c97a5168-1325-487c-94e8-e3d4b06adffd",
+  "jwksStatus": 200,
+  "atlassianUnauthenticatedStatus": 401,
+  "distinctSigningAndEncryptionKeys": true,
+  "passed": true
+}
