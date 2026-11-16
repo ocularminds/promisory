@@ -7,7 +7,7 @@ Mode: **local contract and fixture tests only**. No live tenant observation is c
 | Change signals | `tests/domain/changes.test.ts`: metadata-only parsing (no values, summaries or actors), nested and top-level issue-link shapes, hostile IDs rejected, coalescing, 7-day pruning, 200-signal cap, restricted link non-disclosure, change→commitment join, a single inbox `CHANGE` notice, closed commitments excluded |
 | Graph relations | `tests/contracts/graph-relations.test.ts`: tier fallback and recording, member ARI mapping, hostile issue IDs never queried, explicit FAILED and coverage notes. `tests/domain/graph-relations.test.ts`: access-checked command; a restricted supporting item makes the commitment unavailable |
 | MCP | `tests/contracts/mcp.test.ts`: one `rovo:mcp` server exposing only `GET` tools on `rovo.mcp*` handlers, and an external projection that removes graph data, graph sources and Rovo-origin proposals |
-| Suite | `npm run check`: **157 tests in 26 files**, builds, manifest validation, Forge bundle, offline release equivalence. `forge lint` (CLI 15.1.0): no errors; one expected `MAJOR_VERSION_RULE` approval for the added graph scopes |
+| Suite | `npm run check`: **157 tests in 25 files**, builds, manifest validation, Forge bundle, offline release equivalence. `forge lint` (CLI 15.1.0): no errors; one expected `MAJOR_VERSION_RULE` approval for the added graph scopes |
 
 ## Live acceptance still required
 1. `forge deploy -e development`, then an administrator approves the upgrade (new scopes and MCP module).
