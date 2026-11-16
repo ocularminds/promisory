@@ -915,7 +915,10 @@ export function App() {
                         <div className="detail-badges">
                           <Badge
                             state={
-                              assessment(current.value.id)?.health ?? "UNKNOWN"
+                              current.value.closure
+                                ? `COMMITMENT_${current.value.closure.kind}`
+                                : (assessment(current.value.id)?.health ??
+                                  "UNKNOWN")
                             }
                           />
                           <Badge
@@ -959,7 +962,12 @@ export function App() {
                             )}
                         </dl>
                         <h3>What the evidence says</h3>
-                        {assessment(current.value.id)?.reasons.length ? (
+                        {current.value.closure ? (
+                          <p className="muted">
+                            This commitment is closed, so it no longer receives
+                            a delivery-health assessment.
+                          </p>
+                        ) : assessment(current.value.id)?.reasons.length ? (
                           <ul className="reason-list">
                             {assessment(current.value.id)!.reasons.map((r) => (
                               <li key={r.code}>{r.explanation}</li>
@@ -1046,16 +1054,14 @@ export function App() {
                               {current.value.closure.reason}
                             </p>
                             <small>
-                              Recorded by{" "}
-                              {person(current.value.closure.closedByAccountId)}{" "}
-                              ·{" "}
-                              <DateDisplay
-                                instant={current.value.closure.closedAt}
-                                zone={active?.timeZone ?? "UTC"}
-                              />
-                              . Agreement versions, the original deadline and
-                              any earlier breach remain on record.
+                              Agreement versions, the original deadline and any
+                              earlier breach remain on record. Recorded by{" "}
+                              {person(current.value.closure.closedByAccountId)}:
                             </small>
+                            <DateDisplay
+                              instant={current.value.closure.closedAt}
+                              zone={active?.timeZone ?? "UTC"}
+                            />
                           </div>
                         )}
                         {active && !current.value.closure && (
@@ -1115,7 +1121,7 @@ export function App() {
                             Teamwork Graph relations
                             {relations?.commitmentId === current.value.id &&
                               relations.value &&
-                              ` · ${relations.value.deployments.length} deployments · ${relations.value.goals.length} goals`}
+                              ` · ${relations.value.deployments.length} ${relations.value.deployments.length === 1 ? "deployment" : "deployments"} · ${relations.value.goals.length} ${relations.value.goals.length === 1 ? "goal" : "goals"}`}
                           </summary>
                           {relations?.commitmentId !== current.value.id ||
                           relations.state === "LOADING" ? (

@@ -29,7 +29,8 @@
     "remote:render:test": "tsx scripts/render-azure-test.ts",
     "policy:check:test": "tsx scripts/check-dci-test-policy.ts",
     "manifest:configure": "tsx scripts/configure-development.ts",
-    "forge:bundle": "node scripts/check-forge-bundle.cjs"
+    "forge:bundle": "node scripts/check-forge-bundle.cjs",
+    "evidence:check": "tsx scripts/check-release-evidence.ts"
   },
   "dependencies": {
     "@js-temporal/polyfill": "0.5.1",
