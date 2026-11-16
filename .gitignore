@@ -12,3 +12,23 @@ apps/forge/manifest.local.yml
 /release/
 .playwright-mcp/
 release-identities.local.json
+# Unpacked product-package copies at the repository root. The tracked source of
+# truth is docs/product/; these duplicates must never be committed by `git add -A`.
+/Promisory-Product-Package.zip
+/0[1-6]-*.md
+/brand.css
+/brand.html
+/brand/
+/contracts/
+/diagrams/
+/index.html
+/package-manifest.json
+/previews/
+/prototype-data.js
+/prototype.css
+/prototype.html
+/prototype.js
+/templates/
+/validation-report.md
+/viewer.css
+/viewer.js

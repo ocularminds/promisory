@@ -33,6 +33,8 @@ const statusLabels: Record<string, string> = {
   EXPIRED: "Expired",
   ACCEPTED: "Gate accepted",
   SUPERSEDED: "Source changed",
+  COMMITMENT_CANCELLED: "Cancelled",
+  COMMITMENT_SUPERSEDED: "Superseded",
   NOT_READY: "Not ready",
   NOT_APPLICABLE: "Not applicable",
   CURRENT: "Current",

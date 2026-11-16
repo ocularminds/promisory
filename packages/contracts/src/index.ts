@@ -538,6 +538,24 @@ export const commitmentRecordSchema = z.strictObject({
   pendingOwner: z
     .strictObject({ accountId: id, proposedBy: id, at: instant })
     .optional(),
+  /** Terminal disposition. Versions, history, breaches and outcomes are retained. */
+  closure: z
+    .strictObject({
+      kind: z.enum(["CANCELLED", "SUPERSEDED"]),
+      reason: longText,
+      closedByAccountId: id,
+      closedAt: instant,
+      closedVersion: z.number().int().positive(),
+      successorCommitmentId: id.optional(),
+    })
+    .superRefine((c, ctx) => {
+      if ((c.kind === "SUPERSEDED") !== Boolean(c.successorCommitmentId))
+        ctx.addIssue({
+          code: "custom",
+          message: "Only a superseded commitment names its successor.",
+        });
+    })
+    .optional(),
 });
 export type CommitmentRecord = z.infer<typeof commitmentRecordSchema>;
 export const projectRecordSchema = z.strictObject({
@@ -633,6 +651,15 @@ export const commands = {
     incomingOwnerAccountId: id,
   }),
   "commitment.acceptOwner": z.strictObject(entityCommand),
+  "commitment.cancel": z.strictObject({
+    ...entityCommand,
+    reason: longText,
+  }),
+  "commitment.supersede": z.strictObject({
+    ...entityCommand,
+    successorCommitmentId: id,
+    reason: longText,
+  }),
   "planning.create": z.strictObject({
     projectId: externalId,
     expectedRevision: z.number().int().nonnegative(),
