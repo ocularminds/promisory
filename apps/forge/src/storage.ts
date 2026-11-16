@@ -110,6 +110,24 @@ export class ForgeSqlStore implements RawStore {
       );
     }
   }
+  async remove(
+    scope: string,
+    kind: RecordKind,
+    id: string,
+    expectedRevision: number,
+  ) {
+    const result = await sql
+      .prepare<UpdateQueryResponse>(
+        "DELETE FROM promisory_records WHERE scope_hash = ? AND record_kind = ? AND record_id = ? AND revision = ?",
+      )
+      .bindParams(scope, kind, id, expectedRevision)
+      .execute();
+    ensure(
+      result.rows.affectedRows === 1,
+      "CONFLICT",
+      "This record changed. Refresh before trying again.",
+    );
+  }
   async deleteScope(scope: string) {
     await sql
       .prepare("DELETE FROM promisory_records WHERE scope_hash = ?")

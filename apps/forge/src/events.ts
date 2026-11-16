@@ -1,4 +1,4 @@
-import { getAppContext } from "@forge/api";
+import { getAppContext, privacy } from "@forge/api";
 import {
   CHANGE_FEED_ID,
   changeFeedSchema,
@@ -7,7 +7,15 @@ import {
   commitmentRecordSchema,
   type TrustedContext,
 } from "@promisory/contracts";
-import { appendChange, DomainError, Repository, hash } from "@promisory/domain";
+import {
+  anonymizeClosedAccounts,
+  appendChange,
+  collectAccounts,
+  DomainError,
+  purgeExpired,
+  Repository,
+  hash,
+} from "@promisory/domain";
 import { parseSourceEvent } from "@promisory/integrations-atlassian";
 import { ForgeSqlStore, migrate } from "./storage";
 
@@ -101,5 +109,34 @@ export async function reconcileSchedule() {
       changed++;
     }
   }
-  return { changed };
+  // Retention: delete closed or fulfilled records past the configured period.
+  const { deleted } = await purgeExpired(repo, new Date().toISOString());
+  return { changed, deleted };
+}
+
+/**
+ * Daily personal-data reporting. Closed Atlassian accounts are replaced by a
+ * stable pseudonym in stored records, and their inbox state is deleted.
+ */
+export async function privacySchedule() {
+  await migrate();
+  const runtime = getAppContext(),
+    cloudId = runtime.installation?.contexts.find((c) => c.cloudId)?.cloudId;
+  if (!cloudId) return { reported: 0, closed: 0 };
+  const repo = new Repository(new ForgeSqlStore(), {
+    appId: runtime.appAri.toString(),
+    environmentId: runtime.environmentAri.toString(),
+    installationId: runtime.installationAri.toString(),
+    cloudId,
+    principalAccountId: "system-privacy",
+  });
+  const accounts = await collectAccounts(repo, new Date().toISOString());
+  const closed: string[] = [];
+  for (let i = 0; i < accounts.length; i += 90) {
+    const updates = await privacy.reportPersonalData(accounts.slice(i, i + 90));
+    for (const update of updates ?? [])
+      if (update.status === "closed") closed.push(update.accountId);
+  }
+  const { changed } = await anonymizeClosedAccounts(repo, closed);
+  return { reported: accounts.length, closed: closed.length, changed };
 }
