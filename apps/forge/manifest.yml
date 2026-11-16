@@ -56,7 +56,63 @@ modules:
         - promisory-my-reviews
         - promisory-propose
         - promisory-recovery
+  rovo:mcp:
+    - key: promisory-mcp
+      name: Promisory
+      tools:
+        - promisory-mcp-commitments
+        - promisory-mcp-people
+        - promisory-mcp-lifecycle
   action:
+    - key: promisory-mcp-commitments
+      name: commitment context
+      function: mcp-commitments
+      actionVerb: GET
+      description: Read-only. Return permitted commitments, delivery-health
+        reasons, typed impact paths, fulfillment state or your pending reviews
+        for a Jira project. Set view to context, impact, fulfillment or
+        reviews. Teamwork Graph context is omitted.
+      inputs: &mcp
+        projectId:
+          title: Stable numeric Jira project ID
+          type: string
+          required: true
+          description: Stable numeric Jira project ID
+        view:
+          title: View
+          type: string
+          required: false
+          description: One of the views named in the tool description
+        commitmentId:
+          title: Promisory commitment ID
+          type: string
+          required: false
+          description: Promisory commitment ID
+        workId:
+          title: Stable work ID from a previous tool result
+          type: string
+          required: false
+          description: Stable work ID from a previous tool result
+        requirementId:
+          title: Mapped requirement ID
+          type: string
+          required: false
+          description: Mapped requirement ID
+    - key: promisory-mcp-people
+      name: responsible people
+      function: mcp-people
+      actionVerb: GET
+      description: Read-only. Return confirmed, scoped owner and role bindings
+        for a Jira project or commitment. Never inferred reporting lines.
+      inputs: *mcp
+    - key: promisory-mcp-lifecycle
+      name: lifecycle context
+      function: mcp-lifecycle
+      actionVerb: GET
+      description: Read-only. Return initiative, lifecycle artifacts, readiness
+        and exact requirement-to-work links. Set view to lifecycle or
+        requirement. Does not approve a gate.
+      inputs: *mcp
     - key: promisory-get-context
       name: get context
       function: rovo-get-context
@@ -192,6 +248,8 @@ modules:
         - avi:jira:created:issue
         - avi:jira:updated:issue
         - avi:jira:deleted:issue
+        - avi:jira:created:issuelink
+        - avi:jira:deleted:issuelink
         - avi:confluence:updated:page
   scheduledTrigger:
     - key: promisory-reconcile
@@ -206,6 +264,12 @@ modules:
       handler: events.sourceChanged
     - key: reconciliation
       handler: events.reconcileSchedule
+    - key: mcp-commitments
+      handler: rovo.mcpCommitments
+    - key: mcp-people
+      handler: rovo.mcpPeople
+    - key: mcp-lifecycle
+      handler: rovo.mcpLifecycle
     - key: rovo-get-context
       handler: rovo.getCommitmentContext
     - key: rovo-trace-impact
@@ -244,6 +308,10 @@ permissions:
     - storage:app
     - read:graph:issue:jira
     - read:graph:user:atlassian
+    - read:graph:project:jira
+    - read:graph:team:atlassian
+    - read:graph:goal:atlassian
+    - read:graph:deployment:external
     - read:app-user-token
   content:
     styles:

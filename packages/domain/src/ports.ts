@@ -40,6 +40,30 @@ export interface GraphContext {
   unknowns: string[];
   sources: SourceReference[];
 }
+/**
+ * Permission-filtered Teamwork Graph relations for selected visible work. Each
+ * entry is context or candidate evidence; none grants a role or verifies an outcome.
+ */
+export interface GraphRelations {
+  deployments: Array<{
+    workId: string;
+    id: string;
+    name?: string;
+    environment?: string;
+    state?: string;
+    updatedAt?: string;
+  }>;
+  goals: Array<{ workId: string; id: string; name?: string }>;
+  teams: Array<{ id: string; name?: string; memberAccountIds: string[] }>;
+  /** Which selection tier each curated field answered with, for schema evidence. */
+  selections: Record<
+    string,
+    "DETAILED" | "IDENTIFIERS" | "TYPENAMES" | "FAILED"
+  >;
+  coverage: Coverage;
+  unknowns: string[];
+  sources: SourceReference[];
+}
 export interface SourcePort {
   projects(): Promise<Project[]>;
   project(projectId: string): Promise<Project>;
@@ -54,6 +78,11 @@ export interface SourcePort {
     versionId: string,
   ): Promise<{ released: boolean; projectId: string; source: SourceReference }>;
   graph(): Promise<GraphContext>;
+  /** Optional: absent adapters report graph relations as not checked. */
+  graphRelations?(input: {
+    projectId: string;
+    issueIds: string[];
+  }): Promise<GraphRelations>;
   capabilities(): Promise<Capability[]>;
 }
 export interface ExecutionResult {

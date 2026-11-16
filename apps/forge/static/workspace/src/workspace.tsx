@@ -13,6 +13,8 @@ import {
 import {
   activeVersion,
   commitmentLifecycle,
+  describeChange,
+  type GraphRelations,
   type Stored,
   type Workspace,
 } from "@promisory/domain";
@@ -77,12 +79,19 @@ export function App() {
     [inbox, setInbox] = useState<
       Array<{
         id: string;
+        kind?: "CHANGE" | "FINDING";
         commitmentId: string;
         reason: string;
         severity: string;
+        changedAt?: string;
         seen: boolean;
       }>
     >([]);
+  const [relations, setRelations] = useState<{
+    commitmentId: string;
+    state: "LOADING" | "READY" | "UNAVAILABLE";
+    value?: GraphRelations;
+  }>();
   const initial = useRef(false),
     loadSequence = useRef(0),
     connectionCheckSequence = useRef(0);
@@ -219,6 +228,27 @@ export function App() {
       active = false;
     };
   }, [page, client, projectId, workspace]);
+  useEffect(() => {
+    if (!client || !projectId || !selected) return;
+    let active = true;
+    setRelations({ commitmentId: selected, state: "LOADING" });
+    client
+      .run<GraphRelations>("graph.relations", {
+        projectId,
+        commitmentId: selected,
+      })
+      .then((value) => {
+        if (active)
+          setRelations({ commitmentId: selected, state: "READY", value });
+      })
+      .catch(() => {
+        if (active)
+          setRelations({ commitmentId: selected, state: "UNAVAILABLE" });
+      });
+    return () => {
+      active = false;
+    };
+  }, [client, projectId, selected]);
   async function command<T = unknown>(
     name: CommandName,
     input: unknown,
@@ -584,6 +614,47 @@ export function App() {
                       <small>Evidence against agreed conditions</small>
                     </div>
                   </div>
+                  {workspace.changeImpacts.length > 0 && (
+                    <section className="card" aria-labelledby="changes-title">
+                      <h2 id="changes-title">What changed</h2>
+                      <p className="muted">
+                        Recent Jira and Confluence changes on paths to open
+                        commitments you can access. Values are re-read from the
+                        source; nothing here is copied from the change event.
+                      </p>
+                      <ul className="change-list">
+                        {workspace.changeImpacts.slice(0, 5).map((impact) => (
+                          <li
+                            key={`${impact.commitmentId}-${impact.signal.id}`}
+                          >
+                            <button
+                              className="text-button title-link"
+                              onClick={() =>
+                                selectCommitment(impact.commitmentId)
+                              }
+                            >
+                              {activeVersion(
+                                workspace.commitments.find(
+                                  (c) => c.value.id === impact.commitmentId,
+                                )!.value,
+                              )?.title ?? "Commitment"}
+                            </button>
+                            <p>{describeChange(impact, workspace)}</p>
+                            <small>
+                              Observed{" "}
+                              <DateDisplay
+                                instant={impact.signal.observedAt}
+                                zone={
+                                  Intl.DateTimeFormat().resolvedOptions()
+                                    .timeZone
+                                }
+                              />
+                            </small>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
                   <div
                     className={`overview-grid ${current ? "with-detail" : ""}`}
                   >
@@ -944,6 +1015,81 @@ export function App() {
                             </button>
                           </div>
                         )}
+                        <details>
+                          <summary>
+                            Teamwork Graph relations
+                            {relations?.commitmentId === current.value.id &&
+                              relations.value &&
+                              ` · ${relations.value.deployments.length} deployments · ${relations.value.goals.length} goals`}
+                          </summary>
+                          {relations?.commitmentId !== current.value.id ||
+                          relations.state === "LOADING" ? (
+                            <p role="status">
+                              Reading permitted graph context…
+                            </p>
+                          ) : relations.state === "UNAVAILABLE" ||
+                            !relations.value ? (
+                            <p>
+                              Teamwork Graph is unavailable with your current
+                              access. Missing context is not evidence of no
+                              relations.
+                            </p>
+                          ) : (
+                            <div className="graph-relations">
+                              <h3>Linked deployments</h3>
+                              {relations.value.deployments.length ? (
+                                <ul>
+                                  {relations.value.deployments.map((d) => (
+                                    <li key={`${d.workId}-${d.id}`}>
+                                      {workspace.work.work.find(
+                                        (w) => w.id === d.workId,
+                                      )?.displayKey ?? "Supporting work"}
+                                      : {d.name ?? "Deployment"}
+                                      {d.environment && ` · ${d.environment}`}
+                                      {d.state && ` · ${d.state}`}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="muted">None returned.</p>
+                              )}
+                              <h3>Linked goals</h3>
+                              {relations.value.goals.length ? (
+                                <ul>
+                                  {relations.value.goals.map((g) => (
+                                    <li key={`${g.workId}-${g.id}`}>
+                                      {g.name ?? "Goal"}{" "}
+                                      <small>
+                                        planning context, not a parent
+                                      </small>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="muted">None returned.</p>
+                              )}
+                              <h3>Teams linked to this project</h3>
+                              {relations.value.teams.length ? (
+                                <ul>
+                                  {relations.value.teams.map((t) => (
+                                    <li key={t.id}>
+                                      {t.name ?? "Team"} ·{" "}
+                                      {t.memberAccountIds.length} members
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="muted">None returned.</p>
+                              )}
+                              <p className="footnote">
+                                Deployments are candidate evidence; the agreed
+                                verifier still decides fulfillment. Team
+                                membership grants no role.{" "}
+                                {relations.value.unknowns.join(" ")}
+                              </p>
+                            </div>
+                          )}
+                        </details>
                         <details>
                           <summary>
                             Agreement history · {current.value.history.length}{" "}
@@ -1913,6 +2059,17 @@ export function App() {
                                 "Commitment unavailable"}
                             </button>
                             <p>{n.reason}</p>
+                            {n.kind === "CHANGE" && n.changedAt && (
+                              <small>
+                                Change observed{" "}
+                                <DateDisplay
+                                  instant={n.changedAt}
+                                  zone={
+                                    inboxMeta?.preferences.timeZone ?? "UTC"
+                                  }
+                                />
+                              </small>
+                            )}
                           </div>
                           <button
                             disabled={n.seen}

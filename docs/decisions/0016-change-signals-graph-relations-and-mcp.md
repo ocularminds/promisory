@@ -1,0 +1,19 @@
+# ADR 0016: Metadata change signals, tiered Teamwork Graph relations, and graph-free MCP tools
+
+Status: accepted for implementation; live installed evidence pending (requires deploying the new major version and administrator re-consent for added scopes).
+
+## Change signals (gap G5)
+
+The Jira/Confluence triggers previously upserted an `event` marker that nothing read. Now `sourceChanged` reduces each event to a **metadata-only** `ChangeSignal`: source, kind, stable numeric IDs, changed field *names*. It drops field values, summaries, bodies and actor identities. The signal is appended to one per-installation `change-feed` aggregate with a single-statement compare-and-set and bounded retry. Repeated deliveries for the same source and kind within two minutes are merged into one signal. Signals older than seven days are pruned, and at most 200 are kept. `avi:jira:created:issuelink` and `avi:jira:deleted:issuelink` are added, so a new or removed Blocks link is observed.
+
+Visibility is decided at read time, never at ingestion. `workspace.read` keeps only signals whose referenced sources are in the reader's current authorized work or mapped pages. A link with any non-visible end is dropped entirely, so restricted IDs are not disclosed. Visible changes are joined to **open** commitments: supporting work, dependency-path nodes, or mapped source artifacts. Each (commitment, source) pair gets one current item. The inbox adds one `CHANGE` notice per item, and the overview shows a "What changed" card. Health still comes from re-reading current source values with the versioned rules; a change signal never sets health. With the existing 60-second visible-page refresh, a change is surfaced within one refresh of Forge event delivery. That targets the spec's < 2 min p95 intervention measure, still to be measured live.
+
+## Teamwork Graph relations (gap G4)
+
+New read command `graph.relations` (on demand, per commitment, not in the 60 s poll). It runs as the current user, checks commitment access and the selected project, and limits the query to at most five visible supporting work items. It reads curated `jiraWorkItemLinkedExternalDeployments`, `jiraWorkItemGoals`, `atlassianTeamsBySpace` and `atlassianTeamMembers`. Curated node type names are not documented on the curated-query page. Each field therefore tries a detailed selection, then identifiers only, then `__typename`, and records which tier answered (`selections`). Live evidence will then establish the tenant schema instead of the code guessing silently. The coverage note always says an empty result does not prove absence, because missing scopes return empty results. Added scopes: `read:graph:project:jira`, `read:graph:team:atlassian`, `read:graph:goal:atlassian`, `read:graph:deployment:external`. This is a major-version change that an administrator must approve.
+
+How the relations may be used: deployments are **candidate evidence** only, and fulfillment still requires the agreed verifier (Phase 3 builds on this). Goals are labelled planning context, not Jira parents. Team membership is shown as discovered context and creates no role binding.
+
+## Atlassian MCP (gap G7)
+
+A `rovo:mcp` module exposes three read-only `GET` tools: `promisory-mcp-commitments` (views: context, impact, fulfillment, reviews), `promisory-mcp-people` and `promisory-mcp-lifecycle`. They use the same `tool()` service path as the Rovo actions. MCP clients can sit outside Atlassian, for example an IDE connected to `mcp.atlassian.com/forge/<appId>`. The MCP handlers therefore skip graph-relation reads and apply `externalProjection`, which removes every graph field, every `TEAMWORK_GRAPH` source reference and every non-user-authored proposal before serialization. Proposal-creating actions are not exposed through MCP. External exposure stays disabled until a site administrator enables it under Connected apps.

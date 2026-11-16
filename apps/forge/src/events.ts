@@ -1,22 +1,23 @@
 import { getAppContext } from "@forge/api";
-import { z } from "zod";
 import {
+  CHANGE_FEED_ID,
+  changeFeedSchema,
+  changeSignalSchema,
   configSchema,
   commitmentRecordSchema,
   type TrustedContext,
 } from "@promisory/contracts";
-import { Repository, hash } from "@promisory/domain";
+import { appendChange, DomainError, Repository, hash } from "@promisory/domain";
+import { parseSourceEvent } from "@promisory/integrations-atlassian";
 import { ForgeSqlStore, migrate } from "./storage";
 
 export const installed = async () => ({ migrations: await migrate() });
-/** Events never make source bodies, author identities, or issue counts available to a viewer. */
+/**
+ * Record a metadata-only change signal. Events never make source bodies,
+ * field values, author identities, or issue counts available to a viewer:
+ * each reader's notices are joined against their own current access.
+ */
 export async function sourceChanged(event: unknown) {
-  const value = z
-    .object({
-      issue: z.object({ id: z.string() }).optional(),
-      content: z.object({ id: z.string() }).optional(),
-    })
-    .parse(event);
   const runtime = getAppContext(),
     cloudId = runtime.installation?.contexts.find((c) => c.cloudId)?.cloudId;
   if (!cloudId) return { queued: false, reason: "NO_INSTALLATION_CONTEXT" };
@@ -30,28 +31,31 @@ export async function sourceChanged(event: unknown) {
   const repo = new Repository(new ForgeSqlStore(), ctx),
     config = await repo.get("config", "installation", configSchema);
   if (!config?.value.enabled) return { queued: false, reason: "DISCONNECTED" };
-  const id = await hash([
-    value.issue ? "JIRA" : "CONFLUENCE",
-    value.issue?.id ?? value.content?.id ?? "unknown",
-  ]);
-  const schema = z.strictObject({
-    source: z.enum(["JIRA", "CONFLUENCE"]),
-    sourceId: z.string(),
-    observedAt: z.string(),
+  const now = new Date().toISOString();
+  const parsed = parseSourceEvent(event, now);
+  if (!parsed) return { queued: false, reason: "UNSUPPORTED_EVENT" };
+  const signal = changeSignalSchema.parse({
+    ...parsed,
+    id: await hash([parsed.source, parsed.sourceId, parsed.kind, now]),
   });
-  const old = await repo.get("event", id, schema);
-  await repo.save(
-    "event",
-    id,
-    old?.revision ?? 0,
-    {
-      source: value.issue ? "JIRA" : "CONFLUENCE",
-      sourceId: value.issue?.id ?? value.content?.id ?? "unknown",
-      observedAt: new Date().toISOString(),
-    },
-    schema,
-  );
-  return { queued: true };
+  // Single-aggregate compare-and-set; concurrent deliveries retry on conflict.
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const stored = await repo.get("event", CHANGE_FEED_ID, changeFeedSchema);
+    try {
+      await repo.save(
+        "event",
+        CHANGE_FEED_ID,
+        stored?.revision ?? 0,
+        appendChange(stored?.value, signal, now),
+        changeFeedSchema,
+      );
+      return { queued: true, source: signal.source, kind: signal.kind };
+    } catch (error) {
+      if (!(error instanceof DomainError) || error.code !== "CONFLICT")
+        throw error;
+    }
+  }
+  return { queued: false, reason: "CONTENDED" };
 }
 /** An expired local lease becomes explicit uncertainty. No user OAuth token is stored or replayed. */
 export async function reconcileSchedule() {

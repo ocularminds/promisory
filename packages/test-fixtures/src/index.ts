@@ -265,6 +265,52 @@ export class ExampleSources implements SourcePort {
       source: exampleSource(`version:${versionId}`),
     };
   }
+  async graphRelations(input: { projectId: string; issueIds: string[] }) {
+    if (!this.graphAvailable)
+      throw new DomainError("GRAPH_UNAVAILABLE", "Graph unavailable.");
+    const visible = input.issueIds.filter((i) => !this.hiddenWork.has(i));
+    return {
+      deployments: visible.includes("121")
+        ? [
+            {
+              workId: workId(EXAMPLE_CLOUD, "121"),
+              id: "example-deployment-1",
+              name: "Example onboarding service",
+              environment: "staging",
+              state: "successful",
+              updatedAt: "2026-11-15T09:00:00.000Z",
+            },
+          ]
+        : [],
+      goals: visible.includes("121")
+        ? [
+            {
+              workId: workId(EXAMPLE_CLOUD, "121"),
+              id: "example-goal-activation",
+              name: "Example goal: self-service activation",
+            },
+          ]
+        : [],
+      teams: [
+        {
+          id: "example-team-merchant",
+          name: "Example team: merchant platform",
+          memberAccountIds: ["maya", "owen"],
+        },
+      ],
+      selections: {
+        deployments: "DETAILED" as const,
+        goals: "DETAILED" as const,
+        teams: "DETAILED" as const,
+        members: "IDENTIFIERS" as const,
+      },
+      coverage: "INCOMPLETE" as const,
+      unknowns: [
+        "Illustrative graph relations; no live Teamwork Graph request was made.",
+      ],
+      sources: [],
+    };
+  }
   async graph() {
     if (!this.graphAvailable)
       throw new DomainError("GRAPH_UNAVAILABLE", "Graph unavailable.");
