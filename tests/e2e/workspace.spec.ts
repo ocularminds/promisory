@@ -331,3 +331,80 @@ test("200 percent equivalent viewport keeps the form and its submit control reac
   await page.screenshot({ path: resolve(evidence, "zoom-200-form.png") });
   await context.close();
 });
+const axe = (page: Page) =>
+  new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+    .analyze();
+test("promise ledger states counts truthfully and Graph relations are labelled as candidate evidence", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  const ledger = page.getByRole("region", { name: "Promise ledger" });
+  await expect(ledger).toBeVisible();
+  await expect(ledger.getByText("Kept by the original date")).toBeVisible();
+  // Fewer than five due commitments: counts, never a percentage.
+  await expect(ledger.getByText(/%/)).toHaveCount(0);
+  await expect(ledger.getByText("None stated")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Launch merchant onboarding", exact: true })
+    .click();
+  await page.getByText("Teamwork Graph relations").click();
+  await expect(page.getByText("Example onboarding service")).toBeVisible();
+  await expect(
+    page.getByText("Deployments are candidate evidence", { exact: false }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("planning context, not a parent", { exact: false }),
+  ).toBeVisible();
+  expect((await axe(page)).violations).toEqual([]);
+  await captureTop(page, "ledger-and-graph-relations.png");
+});
+test("an owner cancels a commitment with a reason; history and the original deadline remain", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("button", { name: "Launch merchant onboarding", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Cancel or supersede", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.getByLabel("Replaced by")).toHaveValue("");
+  expect((await axe(page)).violations).toEqual([]);
+  await dialog
+    .getByLabel("Reason")
+    .fill("Northstar withdrew the launch request.");
+  await dialog.getByRole("button", { name: "Record closure" }).click();
+  await expect(
+    page.locator('.callout[role="status"]').getByText("Cancelled", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Northstar withdrew the launch request.").first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Compare recovery options" }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByText("original deadline and any earlier breach remain", {
+      exact: false,
+    }),
+  ).toBeVisible();
+  await captureTop(page, "commitment-cancelled.png");
+});
+test("the commitment form offers an optional stated value and slip budget with accessible labels", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("button", { name: "+ New commitment", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.getByLabel("Value at stake (optional)")).toBeVisible();
+  await expect(
+    dialog.getByLabel("Slip budget in days (optional)"),
+  ).toHaveAttribute("max", "30");
+  expect((await axe(page)).violations).toEqual([]);
+});
