@@ -1,0 +1,133 @@
+{
+  "protocol_version": "1.0",
+  "bundle_id": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "policy_id": "promisory-test-reusable-due-date",
+  "org_id": "124e5022-6eee-4717-ab65-a03899db6237",
+  "version": "promisory-reusable-v1",
+  "effective_from": "2026-11-16T20:10:00.000Z",
+  "effective_to": "2027-01-31T23:59:59.000Z",
+  "required_signals": [
+    "agent_safe.action.type",
+    "agent_safe.action.resource",
+    "agent_safe.action.parameters.cloudId",
+    "agent_safe.action.parameters.issueId",
+    "agent_safe.action.parameters.expectedUpdatedAt",
+    "agent_safe.action.parameters.expectedDueDate",
+    "agent_safe.action.parameters.desiredDueDate",
+    "agent_safe.action.parameters.operationId",
+    "agent_safe.actor.id",
+    "agent_safe.downstream_target.environment",
+    "context.installation_id",
+    "context.proposal_hash"
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_reviewed_promisory_due_date_change",
+      "name": "Allow a reviewed Jira due-date change from the bound Promisory installation",
+      "decision_domain": "*",
+      "priority": 100,
+      "enabled": true,
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "MATCHES",
+            "value": "^jira\\.issue\\.set_due_date$"
+          },
+          {
+            "field": "agent_safe.action.resource",
+            "operator": "MATCHES",
+            "value": "^jira:e207942a-9edf-4952-b945-2ed6ed3707a7:[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.cloudId",
+            "operator": "MATCHES",
+            "value": "^e207942a-9edf-4952-b945-2ed6ed3707a7$"
+          },
+          {
+            "field": "agent_safe.action.parameters.issueId",
+            "operator": "MATCHES",
+            "value": "^[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.expectedDueDate",
+            "operator": "MATCHES",
+            "value": "^20[2-3][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.action.parameters.desiredDueDate",
+            "operator": "MATCHES",
+            "value": "^202[6-7]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.actor.id",
+            "operator": "MATCHES",
+            "value": "^([0-9]{6}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{24})$"
+          },
+          {
+            "field": "agent_safe.actor.type",
+            "operator": "MATCHES",
+            "value": "^atlassian_user$"
+          },
+          {
+            "field": "agent_safe.actor.runtime",
+            "operator": "MATCHES",
+            "value": "^promisory-forge$"
+          },
+          {
+            "field": "agent_safe.downstream_target.system",
+            "operator": "MATCHES",
+            "value": "^jira$"
+          },
+          {
+            "field": "agent_safe.downstream_target.operation",
+            "operator": "MATCHES",
+            "value": "^set_due_date$"
+          },
+          {
+            "field": "agent_safe.downstream_target.environment",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866$"
+          },
+          {
+            "field": "context.installation_id",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8$"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_APPROVE",
+        "severity": "routine"
+      },
+      "rationale": "Reusable test policy for the bound Promisory development installation. It admits any Jira due-date change on the dedicated test site, by an Atlassian user acting through Promisory's Forge runtime, while the policy is effective. Promisory still checks current source access, the commitment owner and an exact independent review before preparing the intent. AgentSafe must obtain and claim a supported bound grant before one narrow Jira PUT. Changing an issue that has no existing due date, another site, another installation or environment, another action or a non-user actor is rejected. Anchored MATCHES avoids Decionis EQ numeric-prefix coercion."
+    },
+    {
+      "rule_id": "reject_other_actions",
+      "name": "Reject every other execution action",
+      "decision_domain": "*",
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "EXISTS"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_REJECT",
+        "severity": "elevated"
+      },
+      "priority": 0,
+      "enabled": true,
+      "rationale": "This reusable test policy grants no other action, site, installation, environment, runtime or actor type."
+    }
+  ],
+  "metadata": {
+    "author": "promisory-policy-authoring",
+    "requires_approval": true,
+    "source": "promisory-dci-test-setup",
+    "approved_by": "Festus Jejelowo",
+    "change_ticket": "Reusable Promisory due-date policy for Codegeist judging; owner-approved 2026-11-16. Supersedes expired 457e04a4 and 436f37a4 for new operations; both retained."
+  }
+}

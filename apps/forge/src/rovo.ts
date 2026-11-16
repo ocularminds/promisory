@@ -2,6 +2,7 @@ import { z } from "zod";
 import { id, externalId, SCHEMA_VERSION } from "@promisory/contracts";
 import {
   activeVersion,
+  commitmentLifecycle,
   bindingApplies,
   DomainError,
   ensure,
@@ -224,6 +225,9 @@ async function tool(
                       agreementState: activeVersion(c.value)
                         ? "ACCEPTED"
                         : "DRAFT",
+                      // Separate from delivery health; closed commitments carry no health.
+                      lifecycle: commitmentLifecycle(c.value),
+                      ...(c.value.closure ? { closure: c.value.closure } : {}),
                       commitment: activeVersion(c.value) ?? c.value.draft,
                       assessment: assessments.find(
                         (a) => a.commitmentId === c.value.id,

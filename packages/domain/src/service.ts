@@ -91,6 +91,26 @@ export function activeVersion(
 ): CommitmentVersion | undefined {
   return record.versions.at(-1);
 }
+/** Commitment lifecycle is separate from health, review, execution and outcome state. */
+export function commitmentLifecycle(
+  record: CommitmentRecord,
+): "DRAFT" | "ACTIVE" | "FULFILLED" | "CANCELLED" | "SUPERSEDED" {
+  if (record.closure) return record.closure.kind;
+  const version = activeVersion(record);
+  if (!version) return "DRAFT";
+  return record.outcomes
+    .filter((o) => o.commitmentVersion === version.version)
+    .at(-1)?.status === "VERIFIED"
+    ? "FULFILLED"
+    : "ACTIVE";
+}
+const OPEN_OPERATION_STAGES = new Set([
+  "PREPARED",
+  "EVALUATED",
+  "AUTHORIZED",
+  "EXECUTING",
+  "RECONCILING",
+]);
 function emptyProject(id: string): ProjectRecord {
   return {
     schemaVersion: SCHEMA_VERSION,
@@ -388,6 +408,15 @@ export class PromisoryService {
     // A mutation receipt does not export unrelated project aggregates. Views
     // refresh through the same permission-filtered workspace query.
     return { revision: saved.revision, value: { id: saved.value.id } };
+  }
+  private assertOpen(record: CommitmentRecord) {
+    ensure(
+      !record.closure,
+      "COMMITMENT_CLOSED",
+      record.closure?.kind === "SUPERSEDED"
+        ? "This commitment was superseded. Work on its successor instead."
+        : "This commitment was cancelled. Its history is retained, but it accepts no further changes.",
+    );
   }
   private async requireOwnerOrAdmin(record: CommitmentRecord) {
     const version = activeVersion(record);
@@ -765,7 +794,8 @@ export class PromisoryService {
       }
     base.assessments = base.commitments.flatMap((record) => {
       const c = activeVersion(record.value);
-      if (!c) return [];
+      // Closed commitments keep their history but no longer carry delivery health.
+      if (!c || record.value.closure) return [];
       const lastOutcome = record.value.outcomes
         .filter((o) => o.commitmentVersion === c.version)
         .at(-1);
@@ -960,6 +990,7 @@ export class PromisoryService {
       case "commitment.confirm": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         ensure(
           stored.value.draft,
@@ -1044,6 +1075,7 @@ export class PromisoryService {
       case "commitment.proposeRevision": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         await this.requireOwnerOrAdmin(stored.value);
         await this.assertAgreementAccess(input.draft);
@@ -1065,6 +1097,7 @@ export class PromisoryService {
       case "commitment.transferOwner": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         await this.requireOwnerOrAdmin(stored.value);
         const version = activeVersion(stored.value);
@@ -1094,6 +1127,7 @@ export class PromisoryService {
       case "commitment.acceptOwner": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         ensure(
           stored.value.pendingOwner?.accountId === this.ctx.principalAccountId,
@@ -1121,6 +1155,82 @@ export class PromisoryService {
           stored.value,
           "OWNER_TRANSFER_ACCEPTED",
           "The incoming owner accepted accountability.",
+        );
+        return this.repo.save(
+          "commitment",
+          stored.value.id,
+          stored.revision,
+          stored.value,
+          commitmentRecordSchema,
+        );
+      }
+      case "commitment.cancel":
+      case "commitment.supersede": {
+        const input =
+          name === "commitment.cancel"
+            ? {
+                ...parseCommand("commitment.cancel", raw),
+                successorCommitmentId: undefined,
+              }
+            : parseCommand("commitment.supersede", raw);
+        const stored = await this.record(input.commitmentId);
+        this.assertRevision(stored, input.expectedRevision);
+        this.assertOpen(stored.value);
+        await this.requireOwnerOrAdmin(stored.value);
+        const version = activeVersion(stored.value);
+        ensure(
+          version,
+          "NO_AGREEMENT",
+          "Only an accepted commitment can be cancelled or superseded. Discard the draft instead.",
+        );
+        ensure(
+          !stored.value.operations.some((o) =>
+            OPEN_OPERATION_STAGES.has(o.stage),
+          ),
+          "OPERATION_IN_PROGRESS",
+          "A governed change is still in progress or being reconciled. Resolve it before closing this commitment.",
+        );
+        ensure(
+          !stored.value.pendingOwner,
+          "OWNER_TRANSFER_PENDING",
+          "An owner transfer is pending. Resolve it before closing this commitment.",
+        );
+        if (input.successorCommitmentId) {
+          ensure(
+            input.successorCommitmentId !== stored.value.id,
+            "INVALID_SUCCESSOR",
+            "A commitment cannot supersede itself.",
+          );
+          const successor = await this.record(input.successorCommitmentId);
+          this.assertOpen(successor.value);
+          const next = activeVersion(successor.value);
+          ensure(
+            next,
+            "INVALID_SUCCESSOR",
+            "The successor must be an accepted commitment.",
+          );
+          ensure(
+            next.projectIds.some((p) => version.projectIds.includes(p)),
+            "INVALID_SUCCESSOR",
+            "The successor must share a project scope with this commitment.",
+          );
+        }
+        stored.value.closure = {
+          kind: input.successorCommitmentId ? "SUPERSEDED" : "CANCELLED",
+          reason: input.reason,
+          closedByAccountId: this.ctx.principalAccountId,
+          closedAt: this.now,
+          closedVersion: version.version,
+          ...(input.successorCommitmentId
+            ? { successorCommitmentId: input.successorCommitmentId }
+            : {}),
+        };
+        const breached =
+          Date.parse(version.originalDueAt) < Date.parse(this.now);
+        this.history(
+          stored.value,
+          input.successorCommitmentId ? "SUPERSEDED" : "CANCELLED",
+          `${input.successorCommitmentId ? `Superseded by ${input.successorCommitmentId}` : "Cancelled"}: ${input.reason}${breached ? " The original deadline had already passed; that breach remains on record." : ""}`,
         );
         return this.repo.save(
           "commitment",
@@ -1473,6 +1583,7 @@ export class PromisoryService {
       case "proposal.prepare": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         await this.requireOwnerOrAdmin(stored.value);
         const c = activeVersion(stored.value);
@@ -1539,6 +1650,7 @@ export class PromisoryService {
       case "review.record": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         const c = activeVersion(stored.value);
         ensure(c, "NO_AGREEMENT", "No accepted agreement exists.");
@@ -1612,6 +1724,7 @@ export class PromisoryService {
       case "outcome.verify": {
         const input = parseCommand(name, raw);
         const stored = await this.record(input.commitmentId);
+        this.assertOpen(stored.value);
         this.assertRevision(stored, input.expectedRevision);
         const c = activeVersion(stored.value);
         ensure(c, "NO_AGREEMENT", "No accepted agreement exists.");
@@ -1931,6 +2044,7 @@ export class PromisoryService {
       return existing;
     }
     this.assertRevision(stored, input.expectedRevision);
+    this.assertOpen(record);
     await this.requireOwnerOrAdmin(record);
     const c = activeVersion(record);
     ensure(c, "NO_AGREEMENT", "No accepted agreement exists.");

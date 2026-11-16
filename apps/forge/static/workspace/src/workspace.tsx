@@ -10,7 +10,12 @@ import {
   type WorkNode,
   type Capability,
 } from "@promisory/contracts";
-import { activeVersion, type Stored, type Workspace } from "@promisory/domain";
+import {
+  activeVersion,
+  commitmentLifecycle,
+  type Stored,
+  type Workspace,
+} from "@promisory/domain";
 import {
   Badge,
   DateDisplay,
@@ -51,6 +56,7 @@ type Form =
   | "planning"
   | "role"
   | "gate"
+  | "close"
   | null;
 export function App() {
   const [client, setClient] = useState<Client>(),
@@ -308,7 +314,8 @@ export function App() {
     ),
     verified: shown.filter((c) => resultState(c.value) === "VERIFIED").length,
     unknown: shown.filter(
-      (c) => assessment(c.value.id)?.coverage !== "COMPLETE",
+      (c) =>
+        !c.value.closure && assessment(c.value.id)?.coverage !== "COMPLETE",
     ).length,
   };
   function selectCommitment(id: string) {
@@ -661,6 +668,8 @@ export function App() {
                                         {activeVersion(c.value)
                                           ? `Version ${activeVersion(c.value)!.version}`
                                           : "Draft · needs owner acceptance"}
+                                        {c.value.closure &&
+                                          ` · ${c.value.closure.kind === "CANCELLED" ? "Cancelled" : "Superseded"}`}
                                       </small>
                                       <div className="mobile-commitment-meta">
                                         <span>
@@ -699,15 +708,23 @@ export function App() {
                                       )}
                                     </td>
                                     <td>
-                                      <Badge
-                                        state={
-                                          assessment(c.value.id)?.health ??
-                                          "UNKNOWN"
-                                        }
-                                      />
-                                      {assessment(c.value.id)?.coverage !==
-                                        "COMPLETE" && (
-                                        <small>Coverage incomplete</small>
+                                      {c.value.closure ? (
+                                        <Badge
+                                          state={`COMMITMENT_${commitmentLifecycle(c.value)}`}
+                                        />
+                                      ) : (
+                                        <>
+                                          <Badge
+                                            state={
+                                              assessment(c.value.id)?.health ??
+                                              "UNKNOWN"
+                                            }
+                                          />
+                                          {assessment(c.value.id)?.coverage !==
+                                            "COMPLETE" && (
+                                            <small>Coverage incomplete</small>
+                                          )}
+                                        </>
                                       )}
                                     </td>
                                   </tr>
@@ -851,7 +868,31 @@ export function App() {
                             </button>
                           </div>
                         )}
-                        {active && (
+                        {current.value.closure && (
+                          <div className="callout" role="status">
+                            <Badge
+                              state={`COMMITMENT_${current.value.closure.kind}`}
+                            />
+                            <p>
+                              {current.value.closure.kind === "SUPERSEDED"
+                                ? `Superseded by ${current.value.closure.successorCommitmentId}. `
+                                : "Cancelled. "}
+                              {current.value.closure.reason}
+                            </p>
+                            <small>
+                              Recorded by{" "}
+                              {person(current.value.closure.closedByAccountId)}{" "}
+                              ·{" "}
+                              <DateDisplay
+                                instant={current.value.closure.closedAt}
+                                zone={active?.timeZone ?? "UTC"}
+                              />
+                              . Agreement versions, the original deadline and
+                              any earlier breach remain on record.
+                            </small>
+                          </div>
+                        )}
+                        {active && !current.value.closure && (
                           <div className="button-stack">
                             <button
                               className="primary"
@@ -873,6 +914,9 @@ export function App() {
                               </button>
                               <button onClick={() => setForm("transfer")}>
                                 Transfer owner
+                              </button>
+                              <button onClick={() => setForm("close")}>
+                                Cancel or supersede
                               </button>
                             </div>
                           </div>
@@ -2230,6 +2274,61 @@ export function App() {
             This proposal changes only the Jira date after review and authority.
             The commitment deadline remains{" "}
             {new Date(active.agreedDueAt).toLocaleDateString("en-GB")}.
+          </p>
+        </CommandForm>
+      )}
+      {form === "close" && current && active && (
+        <CommandForm
+          title="Close this commitment"
+          button="Record closure"
+          onClose={() => setForm(null)}
+          onSubmit={(data) => {
+            const successor = textValue(data, "successor");
+            return command(
+              successor ? "commitment.supersede" : "commitment.cancel",
+              {
+                commitmentId: current.value.id,
+                expectedRevision: current.revision,
+                reason: textValue(data, "reason"),
+                ...(successor ? { successorCommitmentId: successor } : {}),
+              },
+              successor
+                ? "Commitment superseded. Its history is retained."
+                : "Commitment cancelled. Its history is retained.",
+            ).then(() => {});
+          }}
+        >
+          <FormField
+            name="successor"
+            label="Replaced by"
+            hint="Choose a successor to record a supersession, or leave empty to cancel."
+          >
+            <select name="successor" id="successor" defaultValue="">
+              <option value="">No successor: cancel this commitment</option>
+              {workspace.commitments
+                .filter(
+                  (c) =>
+                    c.value.id !== current.value.id &&
+                    !c.value.closure &&
+                    activeVersion(c.value),
+                )
+                .map((c) => (
+                  <option key={c.value.id} value={c.value.id}>
+                    {activeVersion(c.value)!.title}
+                  </option>
+                ))}
+            </select>
+          </FormField>
+          <FormField
+            name="reason"
+            label="Reason"
+            hint="Explain why the promise no longer applies. Beneficiaries may see this reason."
+          >
+            <textarea name="reason" id="reason" required maxLength={4000} />
+          </FormField>
+          <p>
+            Closing keeps every agreement version, the original deadline and any
+            breach already recorded. It does not change Jira work.
           </p>
         </CommandForm>
       )}

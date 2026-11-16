@@ -1,0 +1,22 @@
+{
+  "mode": "LIVE_POLICY_PUBLICATION",
+  "recordedAt": "2026-11-16T20:10:14.867Z",
+  "organizationId": "124e5022-6eee-4717-ab65-a03899db6237",
+  "policyFile": "docs/authority/promisory-dci-policy.reusable-v1.json",
+  "policyId": "promisory-test-reusable-due-date",
+  "bundleId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "version": "promisory-reusable-v1",
+  "effectiveFrom": "2026-11-16T20:10:00.000Z",
+  "expiresAt": "2027-01-31T23:59:59.000Z",
+  "requestSha256": "66e58dadf6a43ff02a603067fd8b77f3ff292d050a3232f74233218384700f3a",
+  "httpStatus": 400,
+  "accepted": false,
+  "responseKeys": [
+    "error",
+    "issues",
+    "message"
+  ],
+  "artifactId": null,
+  "error": "VALIDATION_ERROR",
+  "validationErrors": null
+}
