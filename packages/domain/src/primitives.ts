@@ -89,6 +89,13 @@ export interface RawStore {
     expectedRevision: number,
     body: unknown,
   ): Promise<number>;
+  /** Delete one record only if it is still at the expected revision. */
+  remove(
+    scope: string,
+    kind: RecordKind,
+    id: string,
+    expectedRevision: number,
+  ): Promise<void>;
   deleteScope(scope: string): Promise<void>;
 }
 export class Repository {
@@ -137,6 +144,28 @@ export class Repository {
     );
     return { revision, value: parsed };
   }
+  /** Like list, but keeps each record's key (for records keyed by account). */
+  async listKeyed<T>(
+    kind: RecordKind,
+    schema: z.ZodType<T>,
+    limit = 200,
+  ): Promise<Array<Stored<T> & { key: string }>> {
+    return (await this.raw.list(await scopeKey(this.context), kind, limit)).map(
+      (row) => ({
+        key: row.id,
+        revision: row.revision,
+        value: schema.parse(row.body),
+      }),
+    );
+  }
+  async remove(kind: RecordKind, key: string, expectedRevision: number) {
+    await this.raw.remove(
+      await scopeKey(this.context),
+      kind,
+      key,
+      expectedRevision,
+    );
+  }
   async clear() {
     await this.raw.deleteScope(await scopeKey(this.context));
   }
@@ -180,6 +209,20 @@ export class MemoryStore implements RawStore {
     const revision = expected + 1;
     this.rows.set(key, { id, revision, body: structuredClone(body) });
     return revision;
+  }
+  async remove(
+    scope: string,
+    kind: RecordKind,
+    id: string,
+    expectedRevision: number,
+  ) {
+    const key = this.key(scope, kind, id);
+    ensure(
+      this.rows.get(key)?.revision === expectedRevision,
+      "CONFLICT",
+      "This record changed. Refresh before trying again.",
+    );
+    this.rows.delete(key);
   }
   async deleteScope(scope: string) {
     for (const key of this.rows.keys())

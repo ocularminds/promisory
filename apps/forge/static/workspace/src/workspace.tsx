@@ -2213,6 +2213,9 @@ export function App() {
                               ],
                               confluenceConnected:
                                 data.get("confluence") === "on",
+                              retentionDays: Number(
+                                textValue(data, "retentionDays"),
+                              ),
                             },
                             "Project scope saved.",
                           );
@@ -2248,12 +2251,54 @@ export function App() {
                           Pages are mapped explicitly. This setting does not
                           publish or move documents.
                         </p>
+                        <FormField
+                          name="retentionDays"
+                          label="Keep closed and fulfilled commitments (days)"
+                          hint="Closed, cancelled, superseded and verified commitments are deleted after this period. Active commitments and unresolved governed changes are always kept."
+                        >
+                          <input
+                            id="retentionDays"
+                            name="retentionDays"
+                            type="number"
+                            min="30"
+                            max="365"
+                            defaultValue={
+                              workspace.config?.value.retentionDays ?? 180
+                            }
+                          />
+                        </FormField>
                         <button
                           className="primary"
                           disabled={!workspace.canConfigure}
                         >
                           Save project scope
                         </button>
+                        {workspace.canAdmin && projectId && (
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              const exported = await client!.run(
+                                "data.export",
+                                { projectId },
+                              );
+                              const url = URL.createObjectURL(
+                                new Blob([JSON.stringify(exported, null, 2)], {
+                                  type: "application/json",
+                                }),
+                              );
+                              const link = document.createElement("a");
+                              link.href = url;
+                              link.download = `promisory-export-${projectId}.json`;
+                              link.click();
+                              URL.revokeObjectURL(url);
+                              setNotice(
+                                "Export prepared from records you can currently access.",
+                              );
+                            }}
+                          >
+                            Export project records (JSON)
+                          </button>
+                        )}
                         {!workspace.canAdmin && (
                           <p>
                             A current site administrator must choose the project

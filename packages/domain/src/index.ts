@@ -6,3 +6,4 @@ export * from "./service";
 export * from "./changes";
 export * from "./metrics";
 export * from "./sections";
+export * from "./retention";

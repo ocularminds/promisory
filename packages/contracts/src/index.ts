@@ -697,7 +697,9 @@ export const commands = {
     expectedRevision: z.number().int().nonnegative(),
     projectIds: z.array(externalId).min(1).max(5),
     confluenceConnected: z.boolean(),
+    retentionDays: z.number().int().min(30).max(365).optional(),
   }),
+  "data.export": z.strictObject({ projectId: externalId }),
   "settings.disconnect": z.strictObject({
     expectedRevision: z.number().int().positive(),
   }),
