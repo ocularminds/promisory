@@ -558,6 +558,31 @@ export const commitmentRecordSchema = z.strictObject({
     .optional(),
 });
 export type CommitmentRecord = z.infer<typeof commitmentRecordSchema>;
+/**
+ * Metadata-only record of an observed Jira or Confluence change. Field names are
+ * kept; field values, summaries, bodies and actor identities are never stored.
+ * Visibility is decided when a principal reads, against their current access.
+ */
+export const changeSignalSchema = z.strictObject({
+  id,
+  source: z.enum(["JIRA_ISSUE", "JIRA_LINK", "CONFLUENCE_PAGE"]),
+  kind: z.enum(["CREATED", "UPDATED", "DELETED"]),
+  sourceId: externalId,
+  relatedSourceIds: z.array(externalId).max(2).default([]),
+  fields: z
+    .array(z.string().regex(/^[A-Za-z0-9_.:-]{1,64}$/))
+    .max(20)
+    .default([]),
+  observedAt: instant,
+});
+export type ChangeSignal = z.infer<typeof changeSignalSchema>;
+export const changeFeedSchema = z.strictObject({
+  schemaVersion: z.literal(SCHEMA_VERSION),
+  signals: z.array(changeSignalSchema).max(200),
+});
+export type ChangeFeed = z.infer<typeof changeFeedSchema>;
+export const CHANGE_FEED_ID = "change-feed";
+export const CHANGE_RETENTION_MS = 7 * 24 * 60 * 60 * 1000;
 export const projectRecordSchema = z.strictObject({
   schemaVersion: z.literal(SCHEMA_VERSION),
   id: externalId,
@@ -651,6 +676,10 @@ export const commands = {
     incomingOwnerAccountId: id,
   }),
   "commitment.acceptOwner": z.strictObject(entityCommand),
+  "graph.relations": z.strictObject({
+    projectId: externalId,
+    commitmentId: id,
+  }),
   "commitment.cancel": z.strictObject({
     ...entityCommand,
     reason: longText,

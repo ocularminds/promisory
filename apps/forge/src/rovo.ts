@@ -3,6 +3,8 @@ import { id, externalId, SCHEMA_VERSION } from "@promisory/contracts";
 import {
   activeVersion,
   commitmentLifecycle,
+  describeChange,
+  type GraphRelations,
   bindingApplies,
   DomainError,
   ensure,
@@ -71,6 +73,7 @@ async function tool(
     | "requirement"
     | "fulfillment"
     | "reviews",
+  channel: "ROVO" | "MCP" = "ROVO",
 ) {
   let phase = "input";
   try {
@@ -127,11 +130,53 @@ async function tool(
             person.displayName.trim().toLowerCase(),
         ).length > 1,
     }));
+    const relations =
+      channel === "ROVO" &&
+      input.commitmentId &&
+      (kind === "impact" || kind === "people")
+        ? await (
+            service.run("graph.relations", {
+              projectId: input.projectId,
+              commitmentId: input.commitmentId,
+            }) as Promise<GraphRelations>
+          ).catch((): Pick<GraphRelations, "coverage" | "unknowns"> => ({
+            coverage: "UNKNOWN",
+            unknowns: ["Teamwork Graph relations are unavailable."],
+          }))
+        : undefined;
     const result =
       kind === "impact"
-        ? { assessments, graph: workspace.graph }
+        ? {
+            assessments,
+            graph: workspace.graph,
+            recentChanges: workspace.changeImpacts
+              .filter((i) =>
+                commitments.some((c) => c.value.id === i.commitmentId),
+              )
+              .slice(0, 10)
+              .map((i) => ({
+                commitmentId: i.commitmentId,
+                relation: i.relation,
+                observedAt: i.signal.observedAt,
+                explanation: describeChange(i, workspace),
+              })),
+            ...(relations
+              ? {
+                  graphRelations: relations,
+                  graphRelationsNote:
+                    "Deployments and goals are Teamwork Graph context and candidate evidence. They do not verify an acceptance condition without the agreed verifier.",
+                }
+              : {}),
+          }
         : kind === "people"
           ? {
+              ...(relations && "teams" in relations
+                ? {
+                    graphTeams: relations.teams,
+                    graphTeamsNote:
+                      "Teams and members discovered through Teamwork Graph. Membership is not a role binding, ownership or approval authority.",
+                  }
+                : {}),
               people,
               bindings: workspace.projectState?.value.bindings.map(
                 (binding) => ({
@@ -279,6 +324,84 @@ async function tool(
     };
   }
 }
+const GRAPH_KEYS = new Set([
+  "graph",
+  "graphRelations",
+  "graphRelationsNote",
+  "graphTeams",
+  "graphTeamsNote",
+]);
+/**
+ * Projection for MCP clients, which may be outside Atlassian. Teamwork Graph
+ * results, their derivatives and Rovo-origin proposals (whose fields may derive
+ * from graph context) are removed before serialization. Exported for tests.
+ */
+export function externalProjection(value: unknown): unknown {
+  if (Array.isArray(value))
+    return value
+      .filter(
+        (item) =>
+          !(
+            item &&
+            typeof item === "object" &&
+            (("effectOrigin" in item &&
+              (item as { effectOrigin: unknown }).effectOrigin !==
+                "USER_AUTHORED") ||
+              ("source" in item &&
+                (item as { source: unknown }).source === "TEAMWORK_GRAPH") ||
+              ("lineage" in item &&
+                (item as { lineage: unknown }).lineage !== "ATLASSIAN_ONLY" &&
+                (item as { lineage: unknown }).lineage !==
+                  "PERMITTED_REST_EVIDENCE"))
+          ),
+      )
+      .map(externalProjection);
+  if (value && typeof value === "object")
+    return Object.fromEntries(
+      Object.entries(value)
+        .filter(([key]) => !GRAPH_KEYS.has(key))
+        .map(([key, child]) => [key, externalProjection(child)]),
+    );
+  return value;
+}
+const mcpViews = {
+  commitments: ["context", "impact", "fulfillment", "reviews"],
+  people: ["people"],
+  lifecycle: ["lifecycle", "requirement"],
+} as const;
+async function mcpTool(
+  payload: unknown,
+  context: unknown,
+  group: keyof typeof mcpViews,
+) {
+  const requested =
+    payload && typeof payload === "object" && "view" in payload
+      ? (payload as { view: unknown }).view
+      : undefined;
+  const allowed: readonly string[] = mcpViews[group];
+  const kind = (
+    typeof requested === "string" && allowed.includes(requested)
+      ? requested
+      : allowed[0]
+  ) as Parameters<typeof tool>[2];
+  const response = (await tool(payload, context, kind, "MCP")) as {
+    unknowns: string[];
+  };
+  return externalProjection({
+    ...response,
+    unknowns: [
+      ...response.unknowns,
+      "Teamwork Graph context is omitted from MCP responses because graph data stays inside Atlassian. Use the Promisory Rovo agent or app for that context.",
+    ],
+    egress: "MCP_GRAPH_EXCLUDED",
+  });
+}
+export const mcpCommitments = (payload: unknown, context: unknown) =>
+  mcpTool(payload, context, "commitments");
+export const mcpPeople = (payload: unknown, context: unknown) =>
+  mcpTool(payload, context, "people");
+export const mcpLifecycle = (payload: unknown, context: unknown) =>
+  mcpTool(payload, context, "lifecycle");
 export const getCommitmentContext = (payload: unknown, context: unknown) =>
   tool(payload, context, "context");
 export const traceCommitmentImpact = (payload: unknown, context: unknown) =>

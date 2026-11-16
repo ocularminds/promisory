@@ -15,6 +15,7 @@ import {
   ensure,
   validateNativeHierarchy,
   type GraphContext,
+  type GraphRelations,
   type Person,
   type Project,
   type SourcePage,
@@ -171,6 +172,81 @@ const fields =
   "summary,updated,project,issuetype,status,resolution,assignee,duedate,parent,issuelinks";
 
 /** No caller chooses a URL or execution context; every read uses the injected native current-user client. */
+type Tier = "DETAILED" | "IDENTIFIERS" | "TYPENAMES";
+/**
+ * Selection tiers for curated Teamwork Graph fields whose node types are not
+ * documented. The first tier that validates is used, and the tier is recorded so
+ * live evidence shows which schema the tenant actually served.
+ */
+export const GRAPH_SELECTIONS: Record<
+  "deployments" | "goals" | "teams" | "members",
+  { field: string; arg: string; tiers: Array<[Tier, string]> }
+> = {
+  deployments: {
+    field: "jiraWorkItemLinkedExternalDeployments",
+    arg: "id",
+    tiers: [
+      [
+        "DETAILED",
+        "__typename ... on ExternalDeployment { id displayName environmentType state lastUpdated }",
+      ],
+      ["IDENTIFIERS", "__typename ... on ExternalDeployment { id }"],
+      ["TYPENAMES", "__typename"],
+    ],
+  },
+  goals: {
+    field: "jiraWorkItemGoals",
+    arg: "id",
+    tiers: [
+      ["DETAILED", "__typename ... on AtlassianGoal { id name }"],
+      ["IDENTIFIERS", "__typename ... on AtlassianGoal { id }"],
+      ["TYPENAMES", "__typename"],
+    ],
+  },
+  teams: {
+    field: "atlassianTeamsBySpace",
+    arg: "spaceAri",
+    tiers: [
+      ["DETAILED", "__typename ... on AtlassianTeam { id displayName }"],
+      ["IDENTIFIERS", "__typename ... on AtlassianTeam { id }"],
+      ["TYPENAMES", "__typename"],
+    ],
+  },
+  members: {
+    field: "atlassianTeamMembers",
+    arg: "teamAri",
+    tiers: [
+      ["IDENTIFIERS", "__typename ... on AtlassianUser { id }"],
+      ["TYPENAMES", "__typename"],
+    ],
+  },
+};
+export const curatedQuery = (field: string, arg: string, selection: string) =>
+  `query Promisory_${field}($value: ID!) {
+  ${field}(${arg}: $value, first: 25) {
+    edges { node { ${selection} } }
+    pageInfo { hasNextPage endCursor }
+  }
+}`;
+const graphText = z
+  .string()
+  .max(300)
+  .transform((v) => v.trim())
+  .optional()
+  .catch(undefined);
+const graphNode = z
+  .object({
+    __typename: z.string().optional(),
+    id: z.string().max(500).optional(),
+    displayName: graphText,
+    name: graphText,
+    state: graphText,
+    environmentType: graphText,
+    lastUpdated: graphText,
+  })
+  .passthrough();
+type GraphNode = z.infer<typeof graphNode>;
+
 export class AtlassianSources implements SourcePort {
   // An adapter is constructed per Forge invocation and principal. This cache
   // never survives an invocation or becomes a shared permission projection.
@@ -622,6 +698,142 @@ export class AtlassianSources implements SourcePort {
       unknowns,
     };
   }
+  /** One curated field, trying selection tiers until one validates. */
+  private async curated(
+    key: keyof typeof GRAPH_SELECTIONS,
+    value: string,
+  ): Promise<{ tier: Tier | "FAILED"; nodes: GraphNode[]; more: boolean }> {
+    const spec = GRAPH_SELECTIONS[key];
+    for (const [tier, selection] of spec.tiers) {
+      let raw: unknown;
+      try {
+        raw = await this.read(() =>
+          this.api.graph(curatedQuery(spec.field, spec.arg, selection), {
+            value,
+          }),
+        );
+      } catch {
+        return { tier: "FAILED", nodes: [], more: false };
+      }
+      const envelope = z
+        .object({
+          errors: z.array(z.unknown()).optional(),
+          data: z.record(z.string(), z.unknown()).nullable().optional(),
+        })
+        .safeParse(raw);
+      if (!envelope.success) return { tier: "FAILED", nodes: [], more: false };
+      const connection = z
+        .object({
+          edges: z.array(z.object({ node: graphNode.nullable() })).max(25),
+          pageInfo: z.object({ hasNextPage: z.boolean() }).optional(),
+        })
+        .safeParse(envelope.data.data?.[spec.field]);
+      // A validation error returns no data; try the next, smaller selection.
+      if (!connection.success) continue;
+      return {
+        tier,
+        nodes: connection.data.edges.flatMap((e) => (e.node ? [e.node] : [])),
+        more: connection.data.pageInfo?.hasNextPage ?? false,
+      };
+    }
+    return { tier: "FAILED", nodes: [], more: false };
+  }
+  async graphRelations(input: {
+    projectId: string;
+    issueIds: string[];
+  }): Promise<GraphRelations> {
+    const now = this.clock();
+    const unknowns: string[] = [];
+    const selections: GraphRelations["selections"] = {};
+    const sources: SourceReference[] = [];
+    const note = (key: string, tier: Tier | "FAILED") => {
+      const prior = selections[key];
+      const rank = ["DETAILED", "IDENTIFIERS", "TYPENAMES", "FAILED"];
+      if (!prior || rank.indexOf(tier) > rank.indexOf(prior))
+        selections[key] = tier;
+    };
+    const issueAri = (issueId: string) =>
+      `ari:cloud:jira:${this.ctx.cloudId}:issue/${issueId}`;
+    const deployments: GraphRelations["deployments"] = [];
+    const goals: GraphRelations["goals"] = [];
+    const issueIds = input.issueIds
+      .filter((i) => externalId.safeParse(i).success)
+      .slice(0, 5);
+    await Promise.all(
+      issueIds.map(async (issueId) => {
+        const workId = `jira:${this.ctx.cloudId}:${issueId}`;
+        const [d, g] = await Promise.all([
+          this.curated("deployments", issueAri(issueId)),
+          this.curated("goals", issueAri(issueId)),
+        ]);
+        note("deployments", d.tier);
+        note("goals", g.tier);
+        if (d.more || g.more)
+          unknowns.push("More than 25 graph relations exist for some work.");
+        d.nodes.forEach((n, index) =>
+          deployments.push({
+            workId,
+            id: n.id ?? `${issueId}-deployment-${index}`,
+            ...(n.displayName ? { name: n.displayName } : {}),
+            ...(n.environmentType ? { environment: n.environmentType } : {}),
+            ...(n.state ? { state: n.state } : {}),
+            ...(n.lastUpdated ? { updatedAt: n.lastUpdated } : {}),
+          }),
+        );
+        g.nodes.forEach((n, index) =>
+          goals.push({
+            workId,
+            id: n.id ?? `${issueId}-goal-${index}`,
+            ...(n.name ? { name: n.name } : {}),
+          }),
+        );
+      }),
+    );
+    for (const item of [...deployments, ...goals])
+      if (item.id.startsWith("ari:"))
+        sources.push(source(this.ctx, "TEAMWORK_GRAPH", item.id, now, now));
+    const teams: GraphRelations["teams"] = [];
+    const t = await this.curated(
+      "teams",
+      `ari:cloud:jira:${this.ctx.cloudId}:project/${input.projectId}`,
+    );
+    note("teams", t.tier);
+    for (const team of t.nodes.slice(0, 5)) {
+      if (!team.id) continue;
+      const m = await this.curated("members", team.id);
+      note("members", m.tier);
+      if (m.more) unknowns.push("Some team membership lists exceed 25 people.");
+      teams.push({
+        id: team.id,
+        ...(team.displayName ? { name: team.displayName } : {}),
+        memberAccountIds: m.nodes.flatMap((n) => {
+          const match = n.id?.match(/^ari:cloud:identity::user\/(.+)$/);
+          return match && id.safeParse(match[1]).success ? [match[1]!] : [];
+        }),
+      });
+      sources.push(source(this.ctx, "TEAMWORK_GRAPH", team.id, now, now));
+    }
+    if (Object.values(selections).includes("FAILED"))
+      unknowns.push("Some Teamwork Graph relations could not be read.");
+    if (Object.values(selections).includes("TYPENAMES"))
+      unknowns.push(
+        "Some graph relations returned only their type; identifiers and details are unavailable.",
+      );
+    unknowns.push(
+      "Missing graph scopes return empty results, so an empty relation list does not prove that none exist.",
+    );
+    return {
+      deployments,
+      goals,
+      teams,
+      selections,
+      coverage: Object.values(selections).some((v) => v !== "DETAILED")
+        ? "INCOMPLETE"
+        : "COMPLETE",
+      unknowns: [...new Set(unknowns)],
+      sources,
+    };
+  }
   async capabilities(): Promise<Capability[]> {
     const checks = await Promise.allSettled([
       this.read(() => this.api.jira("/rest/api/3/myself")),
@@ -670,3 +882,122 @@ export const ASSIGNED_WORK_QUERY = `query Promisory_AssignedWork($userId: ID!, $
     pageInfo { hasNextPage endCursor }
   }
 }`;
+
+const fieldName = z.string().regex(/^[A-Za-z0-9_.:-]{1,64}$/);
+/**
+ * Reduce a Forge product event to metadata: stable IDs, change kind and the
+ * names of changed fields. Values, summaries, bodies and actors are dropped.
+ * Unknown shapes return undefined rather than guessing.
+ */
+export function parseSourceEvent(
+  event: unknown,
+  observedAt: string,
+):
+  | {
+      source: "JIRA_ISSUE" | "JIRA_LINK" | "CONFLUENCE_PAGE";
+      kind: "CREATED" | "UPDATED" | "DELETED";
+      sourceId: string;
+      relatedSourceIds: string[];
+      fields: string[];
+      observedAt: string;
+    }
+  | undefined {
+  const parsed = z
+    .object({
+      eventType: z.string().optional(),
+      issue: z.object({ id: z.coerce.string() }).optional(),
+      changelog: z
+        .object({
+          items: z
+            .array(
+              z.object({
+                fieldId: z.string().optional(),
+                field: z.string().optional(),
+              }),
+            )
+            .max(200)
+            .optional(),
+        })
+        .optional(),
+      issueLink: z
+        .object({
+          id: z.coerce.string(),
+          sourceIssueId: z.coerce.string(),
+          destinationIssueId: z.coerce.string(),
+        })
+        .optional(),
+      id: z.coerce.string().optional(),
+      sourceIssueId: z.coerce.string().optional(),
+      destinationIssueId: z.coerce.string().optional(),
+      content: z.object({ id: z.coerce.string() }).optional(),
+    })
+    .safeParse(event);
+  if (!parsed.success) return undefined;
+  const e = parsed.data;
+  const type = e.eventType ?? "";
+  const kind = /:created:/.test(type)
+    ? "CREATED"
+    : /:deleted:/.test(type)
+      ? "DELETED"
+      : "UPDATED";
+  const numeric = (v: string | undefined) =>
+    v && /^\d{1,20}$/.test(v) ? v : undefined;
+  const link =
+    e.issueLink ??
+    (e.sourceIssueId && e.destinationIssueId && e.id
+      ? {
+          id: e.id,
+          sourceIssueId: e.sourceIssueId,
+          destinationIssueId: e.destinationIssueId,
+        }
+      : undefined);
+  if (/issuelink/.test(type) && link) {
+    const ends = [
+      numeric(link.sourceIssueId),
+      numeric(link.destinationIssueId),
+    ];
+    const linkId = numeric(link.id);
+    if (!linkId || ends.some((x) => !x)) return undefined;
+    return {
+      source: "JIRA_LINK",
+      kind,
+      sourceId: linkId,
+      relatedSourceIds: ends as string[],
+      fields: [],
+      observedAt,
+    };
+  }
+  if (e.issue) {
+    const issueId = numeric(e.issue.id);
+    if (!issueId) return undefined;
+    const fields = [
+      ...new Set(
+        (e.changelog?.items ?? []).flatMap((i) => {
+          const name = fieldName.safeParse(i.fieldId ?? i.field);
+          return name.success ? [name.data] : [];
+        }),
+      ),
+    ].slice(0, 20);
+    return {
+      source: "JIRA_ISSUE",
+      kind,
+      sourceId: issueId,
+      relatedSourceIds: [],
+      fields,
+      observedAt,
+    };
+  }
+  if (e.content) {
+    const pageId = numeric(e.content.id);
+    if (!pageId) return undefined;
+    return {
+      source: "CONFLUENCE_PAGE",
+      kind,
+      sourceId: pageId,
+      relatedSourceIds: [],
+      fields: [],
+      observedAt,
+    };
+  }
+  return undefined;
+}

@@ -1579,3 +1579,18 @@ dd {
 .embedded-view .button-row {
   flex-wrap: wrap;
 }
+
+.change-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.change-list li {
+  border-left: 3px solid var(--info);
+  padding-left: 12px;
+}
+.change-list p {
+  margin: 4px 0;
+}

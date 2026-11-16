@@ -18,6 +18,9 @@ import {
   type CommitmentVersion,
   type AcceptanceCondition,
   type ImpactAssessment,
+  type ChangeSignal,
+  CHANGE_FEED_ID,
+  changeFeedSchema,
   type InstallationConfig,
   type LifecycleGate,
   type ProjectRecord,
@@ -34,6 +37,7 @@ import {
   type Stored,
 } from "./primitives";
 import { assessImpact } from "./impact";
+import { changeImpacts, visibleChanges, type ChangeImpact } from "./changes";
 import {
   assessGate,
   bindingApplies,
@@ -41,6 +45,7 @@ import {
   type GateAssessment,
 } from "./lifecycle";
 import type {
+  GraphRelations,
   ExecutorPort,
   GraphContext,
   Person,
@@ -61,6 +66,10 @@ export interface Workspace {
   graph: GraphContext;
   commitments: Array<Stored<CommitmentRecord>>;
   assessments: ImpactAssessment[];
+  /** Recent metadata-only source changes visible to this principal. */
+  changes: ChangeSignal[];
+  /** Visible changes joined to the open commitments they can affect. */
+  changeImpacts: ChangeImpact[];
   gates: GateAssessment[];
   people: Person[];
   capabilities: Awaited<ReturnType<SourcePort["capabilities"]>>;
@@ -90,6 +99,29 @@ export function activeVersion(
   record: CommitmentRecord,
 ): CommitmentVersion | undefined {
   return record.versions.at(-1);
+}
+const relationText: Record<ChangeImpact["relation"], string> = {
+  SUPPORTING_WORK: "It is confirmed supporting work for this commitment.",
+  DEPENDENCY_PATH: "It lies on a confirmed dependency path to this commitment.",
+  SOURCE_ARTIFACT: "It is a mapped source artifact for this commitment.",
+};
+/** Plain-language change notice built only from IDs, keys and field names. */
+export function describeChange(
+  impact: ChangeImpact,
+  workspace: Pick<Workspace, "work" | "projectState">,
+): string {
+  const key = (id: string) =>
+    workspace.work.work.find((w) => w.externalId === id)?.displayKey ??
+    `item ${id}`;
+  const s = impact.signal;
+  const verb = s.kind.toLowerCase();
+  const what =
+    s.source === "JIRA_LINK"
+      ? `A dependency link between ${s.relatedSourceIds.map(key).join(" and ")} was ${verb}.`
+      : s.source === "CONFLUENCE_PAGE"
+        ? `${workspace.projectState?.value.artifacts.find((a) => a.pageId === s.sourceId)?.title ?? "A mapped Confluence page"} was ${verb}.`
+        : `${key(s.sourceId)} was ${verb}${s.fields.length ? ` (${s.fields.slice(0, 5).join(", ")})` : ""}.`;
+  return `${what} ${relationText[impact.relation]} The assessment below reflects current source values.`;
 }
 /** Commitment lifecycle is separate from health, review, execution and outcome state. */
 export function commitmentLifecycle(
@@ -589,6 +621,8 @@ export class PromisoryService {
       graph: emptyGraph(),
       commitments: [],
       assessments: [],
+      changes: [],
+      changeImpacts: [],
       gates: [],
       people: [],
       capabilities,
@@ -835,6 +869,22 @@ export class PromisoryService {
           ),
         }),
       ];
+    });
+    const feed = await this.repo.get("event", CHANGE_FEED_ID, changeFeedSchema);
+    base.changes = visibleChanges(
+      feed?.value,
+      new Set(work.work.map((w) => w.externalId)),
+      new Set(state.artifacts.map((a) => a.pageId)),
+    );
+    base.changeImpacts = changeImpacts({
+      changes: base.changes,
+      commitments: base.commitments.flatMap((r) => {
+        const v = activeVersion(r.value);
+        return v && !r.value.closure ? [v] : [];
+      }),
+      assessments: base.assessments,
+      cloudId: this.ctx.cloudId,
+      artifactPageIds: new Map(state.artifacts.map((a) => [a.id, a.pageId])),
     });
     base.unknowns = [...new Set(base.unknowns)];
     return base;
@@ -1163,6 +1213,42 @@ export class PromisoryService {
           stored.value,
           commitmentRecordSchema,
         );
+      }
+      case "graph.relations": {
+        const input = parseCommand(name, raw);
+        await this.requireProject(input.projectId);
+        const stored = await this.record(input.commitmentId);
+        await this.assertRecordAccess(stored.value);
+        const agreement = activeVersion(stored.value) ?? stored.value.draft;
+        ensure(
+          agreement && agreement.projectIds.includes(input.projectId),
+          "NOT_FOUND",
+          "This commitment is unavailable in the selected project.",
+        );
+        const visible = new Set(
+          (await this.sources.importWork(input.projectId)).work.map(
+            (w) => w.id,
+          ),
+        );
+        // Bounded: graph context for at most five visible supporting items.
+        const issueIds = (agreement.supportingWorkIds ?? [])
+          .filter((w) => visible.has(w))
+          .map((w) => w.split(":").at(-1)!)
+          .slice(0, 5);
+        if (!this.sources.graphRelations)
+          return {
+            deployments: [],
+            goals: [],
+            teams: [],
+            selections: {},
+            coverage: "UNKNOWN",
+            unknowns: ["Graph relations are not available in this mode."],
+            sources: [],
+          } satisfies GraphRelations;
+        return this.sources.graphRelations({
+          projectId: input.projectId,
+          issueIds,
+        });
       }
       case "commitment.cancel":
       case "commitment.supersede": {
@@ -1930,6 +2016,26 @@ export class PromisoryService {
               ),
             );
           if (!related) continue;
+          for (const impact of workspace.changeImpacts.filter(
+            (i) => i.commitmentId === assessment.commitmentId,
+          )) {
+            const id = await hash([
+              "CHANGE",
+              impact.commitmentId,
+              impact.signal.id,
+              impact.signal.observedAt,
+            ]);
+            notices.push({
+              id,
+              kind: "CHANGE" as const,
+              commitmentId: assessment.commitmentId,
+              reason: describeChange(impact, workspace),
+              evidenceSourceIds: [],
+              severity: assessment.health,
+              changedAt: impact.signal.observedAt,
+              seen: pref?.value.seen.includes(id) ?? false,
+            });
+          }
           for (const reason of assessment.reasons) {
             const id = await hash([
               assessment.commitmentId,
@@ -1939,6 +2045,7 @@ export class PromisoryService {
             ]);
             notices.push({
               id,
+              kind: "FINDING" as const,
               commitmentId: assessment.commitmentId,
               reason: reason.explanation,
               evidenceSourceIds: reason.evidenceSourceIds,
