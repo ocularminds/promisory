@@ -15,6 +15,7 @@ import {
   commitmentLifecycle,
   describeChange,
   type GraphRelations,
+  type PromiseLedger,
   type Stored,
   type Workspace,
 } from "@promisory/domain";
@@ -92,6 +93,7 @@ export function App() {
     state: "LOADING" | "READY" | "UNAVAILABLE";
     value?: GraphRelations;
   }>();
+  const [ledger, setLedger] = useState<PromiseLedger>();
   const initial = useRef(false),
     loadSequence = useRef(0),
     connectionCheckSequence = useRef(0);
@@ -228,6 +230,17 @@ export function App() {
       active = false;
     };
   }, [page, client, projectId, workspace]);
+  useEffect(() => {
+    if (!client || !projectId || !workspace) return;
+    let active = true;
+    client
+      .run<PromiseLedger>("metrics.read", { projectId })
+      .then((value) => active && setLedger(value))
+      .catch(() => active && setLedger(undefined));
+    return () => {
+      active = false;
+    };
+  }, [client, projectId, workspace]);
   useEffect(() => {
     if (!client || !projectId || !selected) return;
     let active = true;
@@ -614,6 +627,71 @@ export function App() {
                       <small>Evidence against agreed conditions</small>
                     </div>
                   </div>
+                  {ledger && (
+                    <section className="card" aria-labelledby="ledger-title">
+                      <h2 id="ledger-title">Promise ledger</h2>
+                      <div className="ledger-grid">
+                        <div>
+                          <small>Stated value exposed</small>
+                          <strong>
+                            {ledger.exposure.length
+                              ? ledger.exposure
+                                  .map((e) =>
+                                    new Intl.NumberFormat(undefined, {
+                                      style: "currency",
+                                      currency: e.currency,
+                                      maximumFractionDigits: 0,
+                                    }).format(e.amount),
+                                  )
+                                  .join(" + ")
+                              : "None stated"}
+                          </strong>
+                          <small>
+                            {ledger.counts.atRisk + ledger.counts.breachedOpen}{" "}
+                            at risk or missed
+                            {ledger.exposureValueNotStated > 0 &&
+                              ` · ${ledger.exposureValueNotStated} without a stated value`}
+                          </small>
+                        </div>
+                        <div>
+                          <small>Kept by the original date</small>
+                          <strong>
+                            {ledger.reliability.value === null
+                              ? `${ledger.reliability.numerator} of ${ledger.reliability.denominator}`
+                              : `${Math.round(ledger.reliability.value * 100)}%`}
+                          </strong>
+                          <small>
+                            {ledger.counts.fulfilledLate} late ·{" "}
+                            {ledger.counts.cancelled} cancelled ·{" "}
+                            {ledger.counts.superseded} superseded
+                          </small>
+                        </div>
+                        <div>
+                          <small>Notice before a slip</small>
+                          <strong>
+                            {ledger.noticeLeadTimeDays.median === null
+                              ? "No renegotiations"
+                              : `${ledger.noticeLeadTimeDays.median} days`}
+                          </strong>
+                          <small>
+                            Median days a new date was agreed before the
+                            original deadline
+                          </small>
+                        </div>
+                        <div>
+                          <small>Owned and available</small>
+                          <strong>
+                            {ledger.ownedRate.numerator} of{" "}
+                            {ledger.ownedRate.denominator}
+                          </strong>
+                          <small>
+                            Open commitments with an available owner
+                          </small>
+                        </div>
+                      </div>
+                      <p className="footnote">{ledger.notes.join(" ")}</p>
+                    </section>
+                  )}
                   {workspace.changeImpacts.length > 0 && (
                     <section className="card" aria-labelledby="changes-title">
                       <h2 id="changes-title">What changed</h2>
@@ -914,6 +992,23 @@ export function App() {
                               Owner acceptance creates a new immutable agreement
                               version.
                             </p>
+                            {current.value.candidateSource && (
+                              <p>
+                                <small>
+                                  Proposed
+                                  {current.value.candidateSource.proposedBy ===
+                                  "ROVO"
+                                    ? " by Rovo"
+                                    : ""}{" "}
+                                  from the PRD section “
+                                  {current.value.candidateSource.heading}” at
+                                  page revision{" "}
+                                  {current.value.candidateSource.sourceRevision}
+                                  . The page text is a citation; it sets no
+                                  owner, deadline or acceptance.
+                                </small>
+                              </p>
+                            )}
                             <button
                               className="primary"
                               onClick={() =>

@@ -4,3 +4,5 @@ export * from "./impact";
 export * from "./lifecycle";
 export * from "./service";
 export * from "./changes";
+export * from "./metrics";
+export * from "./sections";

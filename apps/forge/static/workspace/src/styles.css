@@ -1594,3 +1594,19 @@ dd {
 .change-list p {
   margin: 4px 0;
 }
+
+.ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.ledger-grid > div {
+  display: grid;
+  gap: 4px;
+}
+.ledger-grid strong {
+  font-size: 22px;
+  line-height: 30px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}

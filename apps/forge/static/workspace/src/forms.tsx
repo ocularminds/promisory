@@ -117,6 +117,18 @@ export function CommitmentForm({
         requirementIds: data.getAll("requirement").map(String),
         requiredGateIds: data.getAll("gate").map(String),
         phase: textValue(data, "phase"),
+        ...(textValue(data, "valueAmount")
+          ? {
+              valueAtStake: {
+                amount: Number(textValue(data, "valueAmount")),
+                currency: textValue(data, "valueCurrency").toUpperCase(),
+                basis: textValue(data, "valueBasis"),
+              },
+            }
+          : {}),
+        ...(textValue(data, "slipBudget")
+          ? { slipBudgetDays: Number(textValue(data, "slipBudget")) }
+          : {}),
       });
       await onSave(draft);
       onClose();
@@ -256,6 +268,59 @@ export function CommitmentForm({
             </datalist>
           </FormField>
         </div>
+        <div className="form-grid three">
+          <FormField
+            name="valueAmount"
+            label="Value at stake (optional)"
+            hint="Only a value someone has actually stated. Leave empty if unknown."
+          >
+            <input
+              id="valueAmount"
+              name="valueAmount"
+              type="number"
+              min="0"
+              step="any"
+              inputMode="decimal"
+              defaultValue={existing?.valueAtStake?.amount}
+            />
+          </FormField>
+          <FormField name="valueCurrency" label="Currency">
+            <input
+              id="valueCurrency"
+              name="valueCurrency"
+              maxLength={3}
+              defaultValue={existing?.valueAtStake?.currency ?? "EUR"}
+            />
+          </FormField>
+          <FormField name="valueBasis" label="Value basis">
+            <select
+              id="valueBasis"
+              name="valueBasis"
+              defaultValue={existing?.valueAtStake?.basis ?? "CONTRACT_PENALTY"}
+            >
+              <option value="ARR">Annual recurring revenue</option>
+              <option value="CONTRACT_PENALTY">Contract penalty</option>
+              <option value="LAUNCH_REVENUE">Launch revenue</option>
+              <option value="INTERNAL_COST">Internal cost</option>
+              <option value="OTHER">Other stated value</option>
+            </select>
+          </FormField>
+        </div>
+        <FormField
+          name="slipBudget"
+          label="Slip budget in days (optional)"
+          hint="Supporting Jira dates may move later by up to this many days, without passing the promise date, before a change needs escalation."
+        >
+          <input
+            id="slipBudget"
+            name="slipBudget"
+            type="number"
+            min="0"
+            max="30"
+            step="1"
+            defaultValue={existing?.slipBudgetDays}
+          />
+        </FormField>
         <FormField
           name="acceptance"
           label="Acceptance condition"

@@ -1,0 +1,226 @@
+{
+  "protocol_version": "1.0",
+  "bundle_id": "REPLACE-WITH-NEW-UUID-AT-PUBLICATION",
+  "policy_id": "promisory-test-slip-budget-due-date",
+  "org_id": "124e5022-6eee-4717-ab65-a03899db6237",
+  "version": "promisory-slip-budget-v1",
+  "effective_from": "REPLACE-AT-PUBLICATION",
+  "effective_to": "2027-01-31T23:59:59.000Z",
+  "required_signals": [
+    "agent_safe.action.type",
+    "agent_safe.action.resource",
+    "agent_safe.action.parameters.cloudId",
+    "agent_safe.action.parameters.issueId",
+    "agent_safe.action.parameters.expectedUpdatedAt",
+    "agent_safe.action.parameters.expectedDueDate",
+    "agent_safe.action.parameters.desiredDueDate",
+    "agent_safe.action.parameters.operationId",
+    "agent_safe.actor.id",
+    "agent_safe.downstream_target.environment",
+    "context.installation_id",
+    "context.proposal_hash",
+    "agent_safe.action.parameters.delayDays",
+    "agent_safe.action.parameters.withinSlipBudget"
+  ],
+  "rules": [
+    {
+      "rule_id": "allow_within_agreed_slip_budget",
+      "name": "Allow a reviewed due-date change inside the commitment's agreed slip budget",
+      "decision_domain": "*",
+      "priority": 100,
+      "enabled": true,
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "MATCHES",
+            "value": "^jira\\.issue\\.set_due_date$"
+          },
+          {
+            "field": "agent_safe.action.resource",
+            "operator": "MATCHES",
+            "value": "^jira:e207942a-9edf-4952-b945-2ed6ed3707a7:[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.cloudId",
+            "operator": "MATCHES",
+            "value": "^e207942a-9edf-4952-b945-2ed6ed3707a7$"
+          },
+          {
+            "field": "agent_safe.action.parameters.issueId",
+            "operator": "MATCHES",
+            "value": "^[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.expectedDueDate",
+            "operator": "MATCHES",
+            "value": "^20[2-3][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.action.parameters.desiredDueDate",
+            "operator": "MATCHES",
+            "value": "^202[6-7]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.actor.id",
+            "operator": "MATCHES",
+            "value": "^([0-9]{6}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{24})$"
+          },
+          {
+            "field": "agent_safe.actor.type",
+            "operator": "MATCHES",
+            "value": "^atlassian_user$"
+          },
+          {
+            "field": "agent_safe.actor.runtime",
+            "operator": "MATCHES",
+            "value": "^promisory-forge$"
+          },
+          {
+            "field": "agent_safe.downstream_target.system",
+            "operator": "MATCHES",
+            "value": "^jira$"
+          },
+          {
+            "field": "agent_safe.downstream_target.operation",
+            "operator": "MATCHES",
+            "value": "^set_due_date$"
+          },
+          {
+            "field": "agent_safe.downstream_target.environment",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866$"
+          },
+          {
+            "field": "context.installation_id",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8$"
+          },
+          {
+            "field": "agent_safe.action.parameters.withinSlipBudget",
+            "operator": "MATCHES",
+            "value": "^true$"
+          },
+          {
+            "field": "agent_safe.action.parameters.delayDays",
+            "operator": "LTE",
+            "value": 14
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_APPROVE",
+        "severity": "routine"
+      },
+      "rationale": "Promisory computes withinSlipBudget server-side from the owner-accepted agreement and the current Jira date; the executor computes delayDays from the bound dates. Changes inside the agreed envelope and an institutional 14-day cap proceed with the normal review, grant and claim."
+    },
+    {
+      "rule_id": "escalate_outside_slip_budget",
+      "name": "Escalate a reviewed due-date change outside the agreed slip budget",
+      "decision_domain": "*",
+      "priority": 50,
+      "enabled": true,
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "MATCHES",
+            "value": "^jira\\.issue\\.set_due_date$"
+          },
+          {
+            "field": "agent_safe.action.resource",
+            "operator": "MATCHES",
+            "value": "^jira:e207942a-9edf-4952-b945-2ed6ed3707a7:[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.cloudId",
+            "operator": "MATCHES",
+            "value": "^e207942a-9edf-4952-b945-2ed6ed3707a7$"
+          },
+          {
+            "field": "agent_safe.action.parameters.issueId",
+            "operator": "MATCHES",
+            "value": "^[0-9]{1,18}$"
+          },
+          {
+            "field": "agent_safe.action.parameters.expectedDueDate",
+            "operator": "MATCHES",
+            "value": "^20[2-3][0-9]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.action.parameters.desiredDueDate",
+            "operator": "MATCHES",
+            "value": "^202[6-7]-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          {
+            "field": "agent_safe.actor.id",
+            "operator": "MATCHES",
+            "value": "^([0-9]{6}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|[0-9a-f]{24})$"
+          },
+          {
+            "field": "agent_safe.actor.type",
+            "operator": "MATCHES",
+            "value": "^atlassian_user$"
+          },
+          {
+            "field": "agent_safe.actor.runtime",
+            "operator": "MATCHES",
+            "value": "^promisory-forge$"
+          },
+          {
+            "field": "agent_safe.downstream_target.system",
+            "operator": "MATCHES",
+            "value": "^jira$"
+          },
+          {
+            "field": "agent_safe.downstream_target.operation",
+            "operator": "MATCHES",
+            "value": "^set_due_date$"
+          },
+          {
+            "field": "agent_safe.downstream_target.environment",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866$"
+          },
+          {
+            "field": "context.installation_id",
+            "operator": "MATCHES",
+            "value": "^ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8$"
+          }
+        ]
+      },
+      "then": {
+        "action": "ESCALATE",
+        "severity": "elevated"
+      },
+      "rationale": "Same scope as the allow rule, but outside the agreed envelope or the 14-day cap. A designated sponsor must approve in Decionis before any grant; Promisory shows the exact reason."
+    },
+    {
+      "rule_id": "reject_other_actions",
+      "name": "Reject every other execution action",
+      "decision_domain": "*",
+      "when": {
+        "all": [
+          {
+            "field": "agent_safe.action.type",
+            "operator": "EXISTS"
+          }
+        ]
+      },
+      "then": {
+        "action": "AUTO_REJECT",
+        "severity": "elevated"
+      },
+      "priority": 0,
+      "enabled": true,
+      "rationale": "This reusable test policy grants no other action, site, installation, environment, runtime or actor type."
+    }
+  ],
+  "metadata": {
+    "author": "promisory-policy-authoring",
+    "requires_approval": true,
+    "source": "promisory-dci-test-setup",
+    "approved_by": "PENDING",
+    "change_ticket": "DRAFT slip-budget policy (Phase 3). Not published; requires executor image with delayDays/withinSlipBudget and a separate owner approval."
+  }
+}
