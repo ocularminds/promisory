@@ -9,6 +9,7 @@ import {
 } from "@decionis/agent-safe-pipeline/testing";
 import {
   AgentSafeExecutor,
+  calendarDelayDays,
   jiraEffectDigest,
   dueDateLineage,
   serializeRemoteIntent,
@@ -81,9 +82,12 @@ afterEach(async () => {
   vi.restoreAllMocks();
   await Promise.all(servers.splice(0).map((s) => s.stop()));
 });
-async function setup(verdict: "ALLOW" | "BLOCK" | "ESCALATE" = "ALLOW") {
+type Verdict = "ALLOW" | "BLOCK" | "ESCALATE";
+async function setup(
+  verdict: Verdict | ((request: unknown) => Verdict) = "ALLOW",
+) {
   const local = new LocalAuthority({
-    policy: () => verdict,
+    policy: typeof verdict === "function" ? verdict : () => verdict,
     addressableGrants: true,
   });
   await local.start();
@@ -482,5 +486,66 @@ describe("external data contract", () => {
         policy,
       ),
     ).toThrow();
+  });
+});
+
+describe("slip-budget intent signals", () => {
+  // Simulates the prepared slip-budget policy: approve inside the agreed
+  // envelope and a 14-day institutional cap, escalate otherwise.
+  const slipPolicy = (request: unknown): Verdict => {
+    const p = (request as { action: { parameters: Record<string, unknown> } })
+      .action.parameters;
+    return p.withinSlipBudget === "true" &&
+      typeof p.delayDays === "number" &&
+      p.delayDays <= 14
+      ? "ALLOW"
+      : "ESCALATE";
+  };
+  it("computes calendar delay from the bound dates only", () => {
+    expect(calendarDelayDays("2026-11-20", "2026-11-23")).toBe(3);
+    expect(calendarDelayDays("2026-11-20", "2026-11-18")).toBe(-2);
+    expect(calendarDelayDays(null, "2026-11-23")).toBeUndefined();
+    expect(calendarDelayDays("2026-11-20", "not-a-date")).toBeUndefined();
+  });
+  it("dispatches a change inside the agreed envelope and holds one outside it", async () => {
+    const f = await setup(slipPolicy);
+    const inside = {
+      ...envelope(),
+      slip: { withinBudget: true, budgetDays: 5 },
+    };
+    const insideJira = testJira(inside).jira;
+    expect(await f.executor.execute(inside, insideJira)).toMatchObject({
+      stage: "SUCCEEDED",
+    });
+    expect(f.local.requests[0]!.body).toMatchObject({
+      action: { parameters: { delayDays: 3, withinSlipBudget: "true" } },
+    });
+    const outside = {
+      ...envelope(),
+      slip: { withinBudget: false, budgetDays: 1 },
+    };
+    const outsideJira = testJira(outside).jira;
+    expect((await f.executor.execute(outside, outsideJira)).stage).toBe("HELD");
+    expect(outsideJira.setDueDate).not.toHaveBeenCalled();
+  });
+  it("admits the slip field only with trusted-context lineage", () => {
+    const request = { ...envelope(), slip: { withinBudget: true } };
+    expect(() =>
+      serializeRemoteIntent(request, dueDateLineage, policy),
+    ).toThrow("restricted provenance");
+    expect(
+      serializeRemoteIntent(
+        request,
+        { ...dueDateLineage, slip: "TRUSTED_CONTEXT" },
+        policy,
+      ),
+    ).toEqual(request);
+    expect(() =>
+      serializeRemoteIntent(
+        request,
+        { ...dueDateLineage, slip: "ATLASSIAN_ONLY" },
+        policy,
+      ),
+    ).toThrow("restricted provenance");
   });
 });
