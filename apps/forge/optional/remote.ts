@@ -183,8 +183,20 @@ export async function configuredExecutor(): Promise<ExecutorPort> {
             Math.min(Date.now() + 60_000, Date.parse(proposal.expiresAt)),
           ).toISOString(),
           effect: proposal.effect,
+          ...(proposal.slip
+            ? {
+                slip: {
+                  withinBudget: proposal.slip.withinBudget,
+                  ...(proposal.slip.budgetDays !== undefined
+                    ? { budgetDays: proposal.slip.budgetDays }
+                    : {}),
+                },
+              }
+            : {}),
         },
-        dueDateLineage,
+        proposal.slip
+          ? { ...dueDateLineage, slip: "TRUSTED_CONTEXT" }
+          : dueDateLineage,
         policy,
       );
       return executionResultSchema.parse(

@@ -15,6 +15,8 @@ const readCommands = new Set<CommandName>([
   "inbox.read",
   "lifecycle.assessReadiness",
   "graph.relations",
+  "metrics.read",
+  "page.sections",
 ]);
 for (const name of Object.keys(commands) as CommandName[])
   resolver.define(name, async ({ payload, context }) => {

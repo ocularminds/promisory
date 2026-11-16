@@ -78,6 +78,16 @@ export const remoteEnvelopeSchema = z.strictObject({
   idempotencyKey: id,
   expiresAt: instant,
   effect: effectSchema,
+  /**
+   * Promisory's server-side comparison with the owner-accepted slip budget.
+   * Optional so earlier journal records still parse.
+   */
+  slip: z
+    .strictObject({
+      withinBudget: z.boolean(),
+      budgetDays: z.number().int().min(0).max(30).optional(),
+    })
+    .optional(),
 });
 export type RemoteEnvelope = z.infer<typeof remoteEnvelopeSchema>;
 export type RemoteFieldLineage =
@@ -115,6 +125,7 @@ export function serializeRemoteIntent(
     "effect.desiredDueDate": "INDEPENDENT_INTENT",
     "effect.expectedUpdatedAt": "PERMITTED_REST_EVIDENCE",
     "effect.expectedDueDate": "PERMITTED_REST_EVIDENCE",
+    ...(value.slip ? { slip: "TRUSTED_CONTEXT" as const } : {}),
   };
   ensure(
     Object.keys(lineage).length === Object.keys(expected).length &&
@@ -141,6 +152,17 @@ export const dueDateLineage: Record<string, RemoteFieldLineage> = {
   "effect.expectedUpdatedAt": "PERMITTED_REST_EVIDENCE",
   "effect.expectedDueDate": "PERMITTED_REST_EVIDENCE",
 };
+/** Whole calendar days between two YYYY-MM-DD dates, or undefined when unknown. */
+export function calendarDelayDays(
+  expected: string | null,
+  desired: string,
+): number | undefined {
+  const parse = (d: string) =>
+    /^\d{4}-\d{2}-\d{2}$/.test(d) ? Date.parse(`${d}T00:00:00Z`) : NaN;
+  if (!expected) return undefined;
+  const days = (parse(desired) - parse(expected)) / 86_400_000;
+  return Number.isInteger(days) ? days : undefined;
+}
 export const executionResultSchema = z.strictObject({
   stage: z.enum(["HELD", "BLOCKED", "SUCCEEDED", "FAILED", "RECONCILING"]),
   mode: z.enum(["UNKNOWN", "SHADOW", "ENFORCEMENT"]),
@@ -332,6 +354,11 @@ export class AgentSafeExecutor {
         ),
       ),
     });
+    // Computed here from the bound dates; never accepted from the caller.
+    const delayDays = calendarDelayDays(
+      envelope.effect.expectedDueDate,
+      envelope.effect.desiredDueDate,
+    );
     const parameters = {
       policy_id: this.binding.policyId,
       issueId: envelope.effect.issueId,
@@ -340,6 +367,10 @@ export class AgentSafeExecutor {
       desiredDueDate: envelope.effect.desiredDueDate,
       operationId: envelope.operationId,
       cloudId: envelope.effect.cloudId,
+      ...(delayDays !== undefined ? { delayDays } : {}),
+      ...(envelope.slip
+        ? { withinSlipBudget: envelope.slip.withinBudget ? "true" : "false" }
+        : {}),
     };
     const captured = capture.capture(
       {
@@ -378,6 +409,8 @@ export class AgentSafeExecutor {
       expectedDueDate: z.string().nullable(),
       desiredDueDate: z.string(),
       operationId: id,
+      delayDays: z.number().int().optional(),
+      withinSlipBudget: z.enum(["true", "false"]).optional(),
       cloudId: z.uuid(),
     });
     const registry = new ActionRegistry()

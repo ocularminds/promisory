@@ -243,6 +243,11 @@ export const requirementSchema = z.strictObject({
   sourceRevision: id,
   sectionReference: shortText,
   contentFingerprint: digest,
+  /**
+   * Fingerprint of only this section's normalized text. When present, an edit
+   * elsewhere on the page does not invalidate the mapping.
+   */
+  sectionFingerprint: digest.optional(),
   mappingState: z.enum(["CONFIRMED", "AMBIGUOUS", "STALE"]),
   description: shortText,
   ownerAccountId: id,
@@ -381,6 +386,28 @@ const agreementFields = {
   requirementIds: ids,
   requiredGateIds: ids,
   phase: phaseSchema,
+  /**
+   * Explicitly stated value exposed if this promise is missed. Accepted with the
+   * agreement by the owner; never inferred. Absent means "value not stated".
+   */
+  valueAtStake: z
+    .strictObject({
+      amount: z.number().nonnegative().max(1_000_000_000_000),
+      currency: z.string().regex(/^[A-Z]{3}$/),
+      basis: z.enum([
+        "ARR",
+        "CONTRACT_PENALTY",
+        "LAUNCH_REVENUE",
+        "INTERNAL_COST",
+        "OTHER",
+      ]),
+    })
+    .optional(),
+  /**
+   * Pre-agreed envelope: supporting Jira dates may move later by up to this many
+   * calendar days without leaving the agreement. Larger moves need escalation.
+   */
+  slipBudgetDays: z.number().int().min(0).max(30).optional(),
 };
 export const agreementSchema = z
   .strictObject(agreementFields)
@@ -441,6 +468,15 @@ export const proposalSchema = z.strictObject({
   effectOrigin: z
     .enum(["USER_AUTHORED", "ATLASSIAN_ONLY"])
     .default("ATLASSIAN_ONLY"),
+  /** Server-computed comparison with the agreed slip budget, hashed into the intent. */
+  slip: z
+    .strictObject({
+      delayDays: z.number().int().min(-3660).max(3660),
+      budgetDays: z.number().int().min(0).max(30).optional(),
+      withinBudget: z.boolean(),
+      exceedsCommitmentDeadline: z.boolean(),
+    })
+    .optional(),
 });
 export type RecoveryProposal = z.infer<typeof proposalSchema>;
 export const reviewSchema = z.strictObject({
@@ -537,6 +573,18 @@ export const commitmentRecordSchema = z.strictObject({
   history: z.array(historySchema).max(2000),
   pendingOwner: z
     .strictObject({ accountId: id, proposedBy: id, at: instant })
+    .optional(),
+  /** Where an unconfirmed candidate was proposed from; citation only, never authority. */
+  candidateSource: z
+    .strictObject({
+      kind: z.literal("CONFLUENCE_SECTION"),
+      pageId: externalId,
+      sourceRevision: id,
+      anchor: shortText,
+      heading: shortText,
+      sectionFingerprint: digest,
+      proposedBy: z.enum(["ROVO", "UI"]),
+    })
     .optional(),
   /** Terminal disposition. Versions, history, breaches and outcomes are retained. */
   closure: z
@@ -676,6 +724,19 @@ export const commands = {
     incomingOwnerAccountId: id,
   }),
   "commitment.acceptOwner": z.strictObject(entityCommand),
+  "metrics.read": z.strictObject({ projectId: externalId }),
+  "page.sections": z.strictObject({
+    projectId: externalId,
+    pageId: externalId,
+  }),
+  "commitment.proposeFromSection": z.strictObject({
+    projectId: externalId,
+    pageId: externalId,
+    expectedSourceRevision: id,
+    anchor: shortText,
+    title: shortText,
+    outcome: longText.optional(),
+  }),
   "graph.relations": z.strictObject({
     projectId: externalId,
     commitmentId: id,
