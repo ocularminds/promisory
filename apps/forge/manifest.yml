@@ -314,6 +314,9 @@ modules:
     - key: promisory-reconcile
       function: reconciliation
       interval: hour
+    - key: promisory-privacy
+      function: privacy-report
+      interval: day
   function:
     - key: promisory-resolver
       handler: index.handler
@@ -323,6 +326,8 @@ modules:
       handler: events.sourceChanged
     - key: reconciliation
       handler: events.reconcileSchedule
+    - key: privacy-report
+      handler: events.privacySchedule
     - key: mcp-commitments
       handler: rovo.mcpCommitments
     - key: mcp-people

@@ -57,4 +57,26 @@ describe("Forge SQL pagination boundary", () => {
       ).rejects.toMatchObject({ code: "INVALID_LIMIT" });
     expect(mock.prepare).not.toHaveBeenCalled();
   });
+
+  it("deletes one record only at its expected revision and reports a conflict otherwise", async () => {
+    const bind = vi.fn();
+    let affected = 1;
+    mock.prepare.mockImplementation(() => {
+      bind.mockReturnValue({
+        execute: async () => ({ rows: { affectedRows: affected } }),
+      });
+      return { bindParams: bind };
+    });
+    const store = new ForgeSqlStore();
+    await store.remove("tenant", "commitment", "PM-1", 3);
+    const query = mock.prepare.mock.calls[0]![0] as string;
+    expect(query).toBe(
+      "DELETE FROM promisory_records WHERE scope_hash = ? AND record_kind = ? AND record_id = ? AND revision = ?",
+    );
+    expect(bind).toHaveBeenCalledWith("tenant", "commitment", "PM-1", 3);
+    affected = 0;
+    await expect(
+      store.remove("tenant", "commitment", "PM-1", 3),
+    ).rejects.toMatchObject({ code: "CONFLICT" });
+  });
 });

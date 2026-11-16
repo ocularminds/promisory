@@ -977,7 +977,8 @@ export class PromisoryService {
             selectedProjectIds: input.projectIds,
             confluenceConnected: input.confluenceConnected,
             enabled: true,
-            retentionDays: 180,
+            retentionDays:
+              input.retentionDays ?? old?.value.retentionDays ?? 180,
             confirmedByAccountId: this.ctx.principalAccountId,
           },
           configSchema,
@@ -1396,6 +1397,26 @@ export class PromisoryService {
           record,
           commitmentRecordSchema,
         );
+      }
+      case "data.export": {
+        const input = parseCommand(name, raw);
+        await this.requireAdmin(input.projectId);
+        // Built from the same access-filtered read as every view.
+        const workspace = await this.workspace(input.projectId);
+        return {
+          schemaVersion: "promisory.export.v1",
+          exportedAt: this.now,
+          exportedByAccountId: this.ctx.principalAccountId,
+          project: workspace.project,
+          configuration: workspace.config?.value,
+          projectRecord: workspace.projectState?.value,
+          commitments: workspace.commitments.map((c) => c.value),
+          notes: [
+            "Only records you can currently access are included; restricted commitments are omitted.",
+            "Teamwork Graph context is not exported because graph data stays inside Atlassian.",
+            "Jira and Confluence content stays in those products; only references and Promisory records are included.",
+          ],
+        };
       }
       case "metrics.read": {
         const input = parseCommand(name, raw);
