@@ -369,6 +369,7 @@ test("an owner cancels a commitment with a reason; history and the original dead
   await page
     .getByRole("button", { name: "Launch merchant onboarding", exact: true })
     .click();
+  await page.getByText("More actions", { exact: true }).click();
   await page
     .getByRole("button", { name: "Cancel or supersede", exact: true })
     .click();
@@ -496,4 +497,140 @@ test("embedded views keep the refresh action compact", async ({ page }) => {
     await expect(refresh).toBeVisible();
     expect((await refresh.boundingBox())!.width).toBeLessThan(260);
   }
+});
+test("inbox groups findings per commitment with one action, and settings sit below", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("navigation", { name: "Workspace" })
+    .getByRole("button", { name: "Inbox" })
+    .click();
+  const items = page.locator(".inbox-item");
+  await expect(items).toHaveCount(1);
+  await expect(items.first().locator(".inbox-reasons li")).toHaveCount(3);
+  await expect(
+    items.first().getByRole("button", { name: "Mark 3 read" }),
+  ).toBeVisible();
+  const settings = page.locator("details.notification-settings");
+  await expect(settings.getByLabel("Quiet hours start")).toBeHidden();
+  await settings.getByText("Notification settings").click();
+  await expect(settings.getByLabel("Quiet hours start")).toHaveValue("18");
+  await items.first().getByRole("button", { name: "Mark 3 read" }).click();
+  await expect(
+    items.first().getByRole("button", { name: "Read" }),
+  ).toBeDisabled();
+  expect((await axe(page)).violations).toEqual([]);
+});
+test("the work map is an indented hierarchy that opens on the at-risk blocker", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("navigation", { name: "Workspace" })
+    .getByRole("button", { name: "Work map" })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "MX-137 · Commitment impact" }),
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Trace impact" })).toHaveCount(
+    0,
+  );
+  const subtask = page.getByRole("row").filter({
+    has: page.getByRole("button", { name: /^MX-122 ·/ }),
+  });
+  await expect(subtask.locator(".tree-connector")).toHaveCount(1);
+  await expect(
+    page
+      .getByRole("row")
+      .filter({ has: page.getByRole("button", { name: /^MX-137 ·/ }) })
+      .getByText("1 commitment"),
+  ).toBeVisible();
+  expect((await axe(page)).violations).toEqual([]);
+  await captureTop(page, "work-map-tree.png");
+});
+test("perspectives change the decision emphasis and incomplete context gives a reason", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await expect(
+    page.getByText("No supporting work linked").first(),
+  ).toBeVisible();
+  await expect(page.locator("th .th-note")).toHaveText("Europe/Stockholm");
+  await page.getByRole("button", { name: "Account", exact: true }).click();
+  await expect(
+    page.getByText("CUSTOMER PROMISE · NORTHSTAR RETAIL"),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Manager", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Launch merchant onboarding", exact: true })
+    .click();
+  await expect(page.locator(".candidate-evidence")).toContainText(
+    "1 linked deployment",
+  );
+  await expect(
+    page.getByRole("button", { name: "Cancel or supersede" }),
+  ).toBeHidden();
+  await page
+    .getByRole("navigation", { name: "Workspace" })
+    .getByRole("button", { name: "Evidence" })
+    .click();
+  await expect(page.getByText("Source read").first()).toBeVisible();
+  await expect(page.getByText("Not verified", { exact: true })).toHaveCount(0);
+});
+test("narrow screens use a menu instead of a clipped tab strip", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/?mode=example");
+  const menu = page.getByRole("button", { name: /Menu · Overview/ });
+  await expect(menu).toHaveAttribute("aria-expanded", "false");
+  await expect(
+    page.getByRole("navigation", { name: "Workspace" }),
+  ).toBeHidden();
+  await menu.click();
+  await expect(menu).toHaveAttribute("aria-expanded", "true");
+  await page
+    .getByRole("navigation", { name: "Workspace" })
+    .getByRole("button", { name: "Inbox" })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Only the relevant changes." }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /Menu · Inbox/ }),
+  ).toHaveAttribute("aria-expanded", "false");
+  expect((await axe(page)).violations).toEqual([]);
+});
+test("the commitment form groups sections, marks required fields and asks for a value basis", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("button", { name: "+ New commitment", exact: true })
+    .click();
+  const dialog = page.getByRole("dialog");
+  await expect(
+    dialog.getByRole("heading", { name: "How delivery is proven" }),
+  ).toBeVisible();
+  await expect(dialog.getByLabel("Value basis")).toHaveValue("");
+  await expect(dialog.getByLabel("Currency")).toHaveValue("EUR");
+  await dialog.getByLabel("Commitment title").fill("Ship the partner API");
+  await dialog
+    .getByLabel("What must be true?")
+    .fill("Partners can call the API in production.");
+  await dialog.getByLabel("Beneficiary", { exact: true }).fill("Partner team");
+  await dialog.getByLabel("Deadline date").fill("2026-12-10");
+  await dialog.getByLabel("Local cutoff time").fill("17:00");
+  await dialog
+    .getByLabel("Acceptance condition", { exact: true })
+    .fill("Partner confirms a production call.");
+  await dialog.getByLabel("Value at stake (optional)").fill("50000");
+  await dialog
+    .getByRole("button", { name: "Save draft for owner acceptance" })
+    .click();
+  await expect(
+    dialog.getByText(/choose what the stated value represents/),
+  ).toBeVisible();
+  expect((await axe(page)).violations).toEqual([]);
 });

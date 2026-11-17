@@ -100,6 +100,7 @@ export function App() {
     value?: GraphRelations;
   }>();
   const [ledger, setLedger] = useState<PromiseLedger>();
+  const [navOpen, setNavOpen] = useState(false);
   const detailHeading = useRef<HTMLHeadingElement>(null),
     detailTrigger = useRef<HTMLElement | null>(null);
   const [recoveryIssue, setRecoveryIssue] = useState<string>();
@@ -272,6 +273,32 @@ export function App() {
       active = false;
     };
   }, [client, projectId, selected]);
+  // Open the work map on the most relevant blocker instead of an empty panel.
+  useEffect(() => {
+    if (!workspace || (page !== "work" && page !== "mine")) return;
+    if (selectedWork && workspace.work.work.some((w) => w.id === selectedWork))
+      return;
+    const risky = workspace.assessments.filter((a) =>
+      ["BREACHED", "AT_RISK"].includes(a.health),
+    );
+    const onPath = (a: (typeof risky)[number]) =>
+      a.paths.flatMap((p) => p.nodeIds);
+    const candidates = workspace.work.work.filter(
+      (w) => page !== "mine" || w.assigneeAccountId === workspace.principal,
+    );
+    const pick =
+      candidates.find(
+        (w) =>
+          w.type === "BUG" &&
+          !w.resolved &&
+          risky.some((a) => onPath(a).includes(w.id)),
+      ) ??
+      candidates.find((w) => risky.some((a) => onPath(a).includes(w.id))) ??
+      candidates.find((w) =>
+        workspace.assessments.some((a) => onPath(a).includes(w.id)),
+      );
+    if (pick) setSelectedWork(pick.id);
+  }, [page, workspace]);
   // Move focus into the detail when a commitment is selected, unless a dialog owns it.
   useEffect(() => {
     if (!selected || form) return;
@@ -391,6 +418,11 @@ export function App() {
         !c.value.closure && assessment(c.value.id)?.coverage !== "COMPLETE",
     ).length,
   };
+  const shownZones = new Set(
+    shown.map((c) => (activeVersion(c.value) ?? c.value.draft)?.timeZone),
+  );
+  const sharedZone =
+    shown.length > 1 && shownZones.size === 1 ? [...shownZones][0] : undefined;
   const formatDue = (instant: string, timeZone: string) =>
     new Intl.DateTimeFormat("en-GB", {
       day: "numeric",
@@ -410,7 +442,8 @@ export function App() {
     if (!workspace) return undefined;
     const rank = (h?: string) =>
       h === "BREACHED" ? 0 : h === "AT_RISK" ? 1 : 9;
-    const candidates = workspace.commitments
+    // Follows the selected perspective, so each role sees its own most pressing promise.
+    const candidates = shown
       .filter((c) => !c.value.closure && activeVersion(c.value))
       .map((c) => ({
         record: c,
@@ -527,7 +560,22 @@ export function App() {
       <aside className="sidebar">
         <img className="brand" src="./promisory-logo.svg" alt="Promisory" />
         <div className="workspace-label">DELIVERY WORKSPACE</div>
-        <nav aria-label="Workspace">
+        <button
+          className="nav-toggle"
+          aria-expanded={navOpen}
+          aria-controls="workspace-nav"
+          onClick={() => setNavOpen((open) => !open)}
+        >
+          <span aria-hidden="true">☰</span>
+          <span>
+            Menu · {navigation.find(([id]) => id === page)?.[1] ?? "Overview"}
+          </span>
+        </button>
+        <nav
+          aria-label="Workspace"
+          id="workspace-nav"
+          className={navOpen ? "open" : undefined}
+        >
           {navigation.map(([id, label, icon]) => (
             <button
               key={id}
@@ -535,6 +583,7 @@ export function App() {
               aria-current={page === id ? "page" : undefined}
               onClick={() => {
                 setPage(id);
+                setNavOpen(false);
               }}
             >
               <span aria-hidden="true">{icon}</span>
@@ -693,7 +742,15 @@ export function App() {
                       aria-labelledby="decision-title"
                     >
                       <div className="decision-main">
-                        <p className="eyebrow">NEEDS A DECISION</p>
+                        <p className="eyebrow">
+                          {role === "Engineer"
+                            ? "YOUR WORK AFFECTS A PROMISE"
+                            : role === "Account"
+                              ? `CUSTOMER PROMISE · ${decision.version.beneficiary.reference.toUpperCase()}`
+                              : role === "Team"
+                                ? "YOUR TEAM'S PROMISE NEEDS A DECISION"
+                                : "NEEDS A DECISION"}
+                        </p>
                         <h2 id="decision-title">
                           {decision.version.title}{" "}
                           {decision.diagnostic!.health === "BREACHED"
@@ -747,7 +804,7 @@ export function App() {
                         <div className="decision-main">
                           <p className="eyebrow">NO DECISION WAITING</p>
                           <h2 id="decision-title">
-                            No known risk in the commitments you can see.
+                            No known risk in the commitments in this view.
                           </h2>
                           {counts.unknown > 0 && (
                             <p className="muted">
@@ -945,7 +1002,14 @@ export function App() {
                               <tr>
                                 <th>Commitment</th>
                                 <th>Owner</th>
-                                <th>Agreed deadline</th>
+                                <th>
+                                  Agreed deadline
+                                  {sharedZone && (
+                                    <small className="th-note">
+                                      {sharedZone}
+                                    </small>
+                                  )}
+                                </th>
                                 <th>Delivery health</th>
                               </tr>
                             </thead>
@@ -989,6 +1053,7 @@ export function App() {
                                           <DateDisplay
                                             instant={a.agreedDueAt}
                                             zone={a.timeZone ?? "UTC"}
+                                            hideZone={Boolean(sharedZone)}
                                           />
                                         ) : (
                                           <span>Deadline unresolved</span>
@@ -1012,6 +1077,7 @@ export function App() {
                                         <DateDisplay
                                           instant={a.agreedDueAt}
                                           zone={a.timeZone ?? "UTC"}
+                                          hideZone={Boolean(sharedZone)}
                                         />
                                       ) : (
                                         <span>Deadline unresolved</span>
@@ -1032,7 +1098,14 @@ export function App() {
                                           />
                                           {assessment(c.value.id)?.coverage !==
                                             "COMPLETE" && (
-                                            <small>Coverage incomplete</small>
+                                            <small>
+                                              {coverageReason(
+                                                assessment(c.value.id),
+                                                activeVersion(c.value)
+                                                  ?.supportingWorkIds.length ??
+                                                  0,
+                                              )}
+                                            </small>
                                           )}
                                         </>
                                       )}
@@ -1160,6 +1233,26 @@ export function App() {
                             </li>
                           )) ?? <li>Acceptance is unresolved.</li>}
                         </ul>
+                        {relations?.commitmentId === current.value.id &&
+                          relations.value &&
+                          relations.value.deployments.length > 0 && (
+                            <p className="candidate-evidence">
+                              <b>Candidate evidence:</b>{" "}
+                              {relations.value.deployments.length} linked{" "}
+                              {relations.value.deployments.length === 1
+                                ? "deployment"
+                                : "deployments"}{" "}
+                              from Teamwork Graph (
+                              {relations.value.deployments
+                                .slice(0, 2)
+                                .map(
+                                  (d) =>
+                                    `${workspace.work.work.find((w) => w.id === d.workId)?.displayKey ?? "work"}${d.environment ? ` · ${d.environment}` : ""}${d.state ? ` · ${d.state}` : ""}`,
+                                )
+                                .join("; ")}
+                              ). The designated verifier still decides.
+                            </p>
+                          )}
                         {current.value.draft && (
                           <div className="callout">
                             <b>
@@ -1256,10 +1349,16 @@ export function App() {
                               <button onClick={() => setForm("transfer")}>
                                 Transfer owner
                               </button>
-                              <button onClick={() => setForm("close")}>
+                            </div>
+                            <details className="more-actions">
+                              <summary>More actions</summary>
+                              <button
+                                className="quiet-danger"
+                                onClick={() => setForm("close")}
+                              >
                                 Cancel or supersede
                               </button>
-                            </div>
+                            </details>
                           </div>
                         )}
                         {current.value.pendingOwner && (
@@ -1363,7 +1462,9 @@ export function App() {
                         <details>
                           <summary>
                             Agreement history · {current.value.history.length}{" "}
-                            events
+                            {current.value.history.length === 1
+                              ? "event"
+                              : "events"}
                           </summary>
                           <ol className="timeline">
                             {current.value.history
@@ -1712,54 +1813,100 @@ export function App() {
                             <th>Jira parent</th>
                             <th>Assignee</th>
                             <th>Current state</th>
-                            <th>Upstream impact</th>
+                            <th>Affects</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {workspace.work.work
+                          {treeOrder(workspace.work.work)
                             .filter(
-                              (w) =>
+                              ({ node: w }) =>
                                 page !== "mine" ||
                                 w.assigneeAccountId === workspace.principal,
                             )
-                            .map((w) => (
-                              <tr
-                                key={w.id}
-                                className={
-                                  selectedWork === w.id ? "selected-row" : ""
-                                }
-                              >
-                                <td>
-                                  <button
-                                    className="text-button title-link"
-                                    onClick={() => setSelectedWork(w.id)}
-                                  >
-                                    {w.displayKey} · {w.title}
-                                  </button>
-                                  <small>{w.nativeTypeName}</small>
-                                </td>
-                                <td>
-                                  {workspace.work.work.find(
-                                    (x) => x.id === w.parentId,
-                                  )?.displayKey ??
-                                    (w.parentId
-                                      ? "Outside visible scope"
-                                      : "Top level")}
-                                </td>
-                                <td>{person(w.assigneeAccountId)}</td>
-                                <td>
-                                  {w.statusName}
-                                  <small>
-                                    Target: {w.targetDate ?? "Not set"}
-                                  </small>
-                                </td>
-                                <td>
-                                  <button onClick={() => setSelectedWork(w.id)}>
-                                    Trace impact
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
+                            .map(({ node: w, depth }) => {
+                              const affected = workspace.assessments.filter(
+                                (a) =>
+                                  a.paths.some((p) => p.nodeIds.includes(w.id)),
+                              );
+                              return (
+                                <tr
+                                  key={w.id}
+                                  className={`selectable-row ${
+                                    selectedWork === w.id ? "selected-row" : ""
+                                  }`}
+                                  onClick={() => setSelectedWork(w.id)}
+                                >
+                                  <td>
+                                    <div
+                                      className="tree-cell"
+                                      style={{
+                                        paddingLeft:
+                                          page === "mine" ? 0 : depth * 22,
+                                      }}
+                                    >
+                                      {depth > 0 && page !== "mine" && (
+                                        <span
+                                          className="tree-connector"
+                                          aria-hidden="true"
+                                        >
+                                          └
+                                        </span>
+                                      )}
+                                      <div>
+                                        <button
+                                          className="text-button title-link"
+                                          aria-pressed={selectedWork === w.id}
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSelectedWork(w.id);
+                                          }}
+                                        >
+                                          {w.displayKey} · {w.title}
+                                        </button>
+                                        <small>{w.nativeTypeName}</small>
+                                      </div>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    {workspace.work.work.find(
+                                      (x) => x.id === w.parentId,
+                                    )?.displayKey ??
+                                      (w.parentId
+                                        ? "Outside visible scope"
+                                        : "Top level")}
+                                  </td>
+                                  <td>{person(w.assigneeAccountId)}</td>
+                                  <td>
+                                    {w.statusName}
+                                    <small>
+                                      Target: {w.targetDate ?? "Not set"}
+                                    </small>
+                                  </td>
+                                  <td>
+                                    {affected.length ? (
+                                      <span
+                                        className={
+                                          affected.some((a) =>
+                                            ["AT_RISK", "BREACHED"].includes(
+                                              a.health,
+                                            ),
+                                          )
+                                            ? "text-danger"
+                                            : undefined
+                                        }
+                                      >
+                                        {affected.length}{" "}
+                                        {affected.length === 1
+                                          ? "commitment"
+                                          : "commitments"}
+                                      </span>
+                                    ) : (
+                                      <span className="muted">None traced</span>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })}
                         </tbody>
                       </table>
                     </div>
@@ -1859,9 +2006,8 @@ export function App() {
                               {a.reasons.map((r) => (
                                 <p key={r.code}>{r.explanation}</p>
                               ))}
-                              <small>
-                                Rule {a.ruleVersion} ·{" "}
-                                {a.coverage.toLowerCase()} coverage
+                              <small title={`Rule ${a.ruleVersion}`}>
+                                Coverage {a.coverage.toLowerCase()}
                               </small>
                             </article>
                           ))
@@ -2180,15 +2326,21 @@ export function App() {
                               </button>
                             )}
                             <small>
-                              Checked{" "}
-                              {new Date(w.source.checkedAt).toLocaleTimeString(
-                                "en-GB",
-                                { timeZone: "Europe/Stockholm" },
-                              )}{" "}
-                              Stockholm
+                              Read by Promisory{" "}
+                              {formatDue(
+                                w.source.checkedAt,
+                                Intl.DateTimeFormat().resolvedOptions()
+                                  .timeZone,
+                              )}
                             </small>
                           </div>
-                          <Badge state={w.source.verification} />
+                          <Badge
+                            state={
+                              w.source.verification === "UNVERIFIED"
+                                ? "SOURCE_READ"
+                                : w.source.verification
+                            }
+                          />
                         </article>
                       ))}
                     </section>
@@ -2249,13 +2401,105 @@ export function App() {
                     "Findings are deduplicated by commitment and reason, then filtered through your current access.",
                   )}
                   {inboxMeta && (
-                    <section className="card">
-                      <h2>Quiet digest</h2>
-                      <p>
-                        {inboxMeta.digest.state === "QUIET_HOURS"
-                          ? `Digest notifications are quiet until ${new Date(inboxMeta.digest.nextAvailableAt).toLocaleString("en-GB", { timeZone: inboxMeta.digest.timeZone })} (${inboxMeta.digest.timeZone}). The inbox remains available when you open it.`
-                          : `${inboxMeta.digest.unreadCount} unread findings are ready in this in-app digest.`}
-                      </p>
+                    <p className="digest-status" role="status">
+                      {inboxMeta.digest.state === "QUIET_HOURS"
+                        ? `Quiet hours: digest notifications resume ${new Date(inboxMeta.digest.nextAvailableAt).toLocaleString("en-GB", { timeZone: inboxMeta.digest.timeZone, day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} (${inboxMeta.digest.timeZone}). The inbox is always available here.`
+                        : `${inboxMeta.digest.unreadCount} unread ${inboxMeta.digest.unreadCount === 1 ? "finding" : "findings"} in this in-app digest.`}
+                    </p>
+                  )}
+                  <section className="card">
+                    {inboxStatus === "LOADING" ? (
+                      <div role="status">
+                        <Empty title="Checking current notices…">
+                          Rechecking your source access and saved read markers.
+                        </Empty>
+                      </div>
+                    ) : inboxStatus === "UNAVAILABLE" ? (
+                      <Empty title="Inbox unavailable">
+                        Refresh evidence to try the current access check again.
+                      </Empty>
+                    ) : inbox.length ? (
+                      groupNotices(inbox).map((group) => {
+                        const unread = group.notices.filter((n) => !n.seen);
+                        return (
+                          <article
+                            className="inbox-item"
+                            key={group.commitmentId}
+                          >
+                            <Badge state={group.severity} />
+                            <div>
+                              <button
+                                className="text-button title-link"
+                                onClick={() =>
+                                  selectCommitment(group.commitmentId)
+                                }
+                              >
+                                {workspace.commitments
+                                  .find(
+                                    (c) => c.value.id === group.commitmentId,
+                                  )
+                                  ?.value.versions.at(-1)?.title ??
+                                  "Commitment unavailable"}
+                              </button>
+                              <ul className="inbox-reasons">
+                                {group.notices.map((n) => (
+                                  <li
+                                    key={n.id}
+                                    className={n.seen ? "seen" : undefined}
+                                  >
+                                    {n.reason}
+                                    {n.kind === "CHANGE" && n.changedAt && (
+                                      <small>
+                                        {" "}
+                                        · observed{" "}
+                                        {formatDue(
+                                          n.changedAt,
+                                          inboxMeta?.preferences.timeZone ??
+                                            "UTC",
+                                        )}
+                                      </small>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <button
+                              disabled={unread.length === 0}
+                              onClick={async () => {
+                                try {
+                                  setError("");
+                                  for (const n of unread)
+                                    await client!.run("inbox.markRead", {
+                                      notificationId: n.id,
+                                    });
+                                  await load(client);
+                                } catch (e) {
+                                  setError(
+                                    e instanceof Error
+                                      ? e.message
+                                      : "The notices could not be marked read.",
+                                  );
+                                }
+                              }}
+                            >
+                              {unread.length === 0
+                                ? "Read"
+                                : unread.length === 1
+                                  ? "Mark read"
+                                  : `Mark ${unread.length} read`}
+                            </button>
+                          </article>
+                        );
+                      })
+                    ) : (
+                      <Empty title="No current notices">
+                        Refresh evidence to inspect the latest visible findings.
+                      </Empty>
+                    )}
+                  </section>
+                  {inboxMeta && (
+                    <details className="card notification-settings">
+                      <summary>Notification settings</summary>
                       <form
                         onSubmit={async (event) => {
                           event.preventDefault();
@@ -2274,98 +2518,55 @@ export function App() {
                         <div className="form-grid three">
                           <FormField
                             name="quietStart"
-                            label="Quiet hours start (0–23)"
+                            label="Quiet hours start"
                           >
-                            <input
+                            <select
                               id="quietStart"
                               name="quietStart"
-                              type="number"
-                              min="0"
-                              max="23"
                               defaultValue={inboxMeta.preferences.quietStart}
-                            />
+                            >
+                              {hours.map((h) => (
+                                <option key={h} value={h}>
+                                  {String(h).padStart(2, "0")}:00
+                                </option>
+                              ))}
+                            </select>
                           </FormField>
-                          <FormField
-                            name="quietEnd"
-                            label="Quiet hours end (0–23)"
-                          >
-                            <input
+                          <FormField name="quietEnd" label="Quiet hours end">
+                            <select
                               id="quietEnd"
                               name="quietEnd"
-                              type="number"
-                              min="0"
-                              max="23"
                               defaultValue={inboxMeta.preferences.quietEnd}
-                            />
+                            >
+                              {hours.map((h) => (
+                                <option key={h} value={h}>
+                                  {String(h).padStart(2, "0")}:00
+                                </option>
+                              ))}
+                            </select>
                           </FormField>
-                          <FormField name="quietZone" label="Digest time zone">
+                          <FormField
+                            name="quietZone"
+                            label="Time zone"
+                            hint="Start typing a city, for example Europe/Stockholm."
+                          >
                             <input
                               id="quietZone"
                               name="quietZone"
+                              list="quiet-zones"
                               defaultValue={inboxMeta.preferences.timeZone}
                             />
+                            <datalist id="quiet-zones">
+                              {timeZoneOptions().map((z) => (
+                                <option key={z} value={z} />
+                              ))}
+                            </datalist>
                           </FormField>
                         </div>
                         <button>Save quiet hours</button>
                       </form>
-                    </section>
+                    </details>
                   )}
-                  <section className="card">
-                    {inboxStatus === "LOADING" ? (
-                      <div role="status">
-                        <Empty title="Checking current notices…">
-                          Rechecking your source access and saved read markers.
-                        </Empty>
-                      </div>
-                    ) : inboxStatus === "UNAVAILABLE" ? (
-                      <Empty title="Inbox unavailable">
-                        Refresh evidence to try the current access check again.
-                      </Empty>
-                    ) : inbox.length ? (
-                      inbox.map((n) => (
-                        <article className="inbox-item" key={n.id}>
-                          <Badge state={n.severity} />
-                          <div>
-                            <button
-                              className="text-button title-link"
-                              onClick={() => selectCommitment(n.commitmentId)}
-                            >
-                              {workspace.commitments
-                                .find((c) => c.value.id === n.commitmentId)
-                                ?.value.versions.at(-1)?.title ??
-                                "Commitment unavailable"}
-                            </button>
-                            <p>{n.reason}</p>
-                            {n.kind === "CHANGE" && n.changedAt && (
-                              <small>
-                                Change observed{" "}
-                                <DateDisplay
-                                  instant={n.changedAt}
-                                  zone={
-                                    inboxMeta?.preferences.timeZone ?? "UTC"
-                                  }
-                                />
-                              </small>
-                            )}
-                          </div>
-                          <button
-                            disabled={n.seen}
-                            onClick={async () => {
-                              await action("inbox.markRead", {
-                                notificationId: n.id,
-                              });
-                            }}
-                          >
-                            {n.seen ? "Read" : "Mark read"}
-                          </button>
-                        </article>
-                      ))
-                    ) : (
-                      <Empty title="No current notices">
-                        Refresh evidence to inspect the latest visible findings.
-                      </Empty>
-                    )}
-                  </section>
                   <p className="footnote">
                     External sending is not enabled. These notices contain only
                     current authorized findings.
@@ -2449,38 +2650,43 @@ export function App() {
                             }
                           />
                         </FormField>
-                        <button
-                          className="primary"
-                          disabled={!workspace.canConfigure}
-                        >
-                          Save project scope
-                        </button>
-                        {workspace.canAdmin && projectId && (
+                        <div className="action-row">
                           <button
-                            type="button"
-                            onClick={async () => {
-                              const exported = await client!.run(
-                                "data.export",
-                                { projectId },
-                              );
-                              const url = URL.createObjectURL(
-                                new Blob([JSON.stringify(exported, null, 2)], {
-                                  type: "application/json",
-                                }),
-                              );
-                              const link = document.createElement("a");
-                              link.href = url;
-                              link.download = `promisory-export-${projectId}.json`;
-                              link.click();
-                              URL.revokeObjectURL(url);
-                              setNotice(
-                                "Export prepared from records you can currently access.",
-                              );
-                            }}
+                            className="primary"
+                            disabled={!workspace.canConfigure}
                           >
-                            Export project records (JSON)
+                            Save project scope
                           </button>
-                        )}
+                          {workspace.canAdmin && projectId && (
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                const exported = await client!.run(
+                                  "data.export",
+                                  { projectId },
+                                );
+                                const url = URL.createObjectURL(
+                                  new Blob(
+                                    [JSON.stringify(exported, null, 2)],
+                                    {
+                                      type: "application/json",
+                                    },
+                                  ),
+                                );
+                                const link = document.createElement("a");
+                                link.href = url;
+                                link.download = `promisory-export-${projectId}.json`;
+                                link.click();
+                                URL.revokeObjectURL(url);
+                                setNotice(
+                                  "Export prepared from records you can currently access.",
+                                );
+                              }}
+                            >
+                              Export project records (JSON)
+                            </button>
+                          )}
+                        </div>
                         {!workspace.canAdmin && (
                           <p>
                             A current site administrator must choose the project
@@ -3364,4 +3570,86 @@ function LedgerCell({
       {note && <small>{note}</small>}
     </div>
   );
+}
+
+const hours = Array.from({ length: 24 }, (_, h) => h);
+function timeZoneOptions(): string[] {
+  const supported = (
+    Intl as unknown as { supportedValuesOf?: (key: string) => string[] }
+  ).supportedValuesOf?.("timeZone");
+  return supported?.length
+    ? ["UTC", ...supported]
+    : ["UTC", "Europe/Stockholm", "Europe/London", "America/New_York"];
+}
+const severityRank: Record<string, number> = {
+  BREACHED: 0,
+  AT_RISK: 1,
+  WATCH: 2,
+  UNKNOWN: 3,
+  ON_TRACK: 4,
+};
+/** One inbox entry per commitment; repeated findings become its reasons. */
+function groupNotices<
+  T extends { commitmentId: string; severity: string; seen: boolean },
+>(notices: T[]) {
+  const groups = new Map<string, T[]>();
+  for (const n of notices)
+    groups.set(n.commitmentId, [...(groups.get(n.commitmentId) ?? []), n]);
+  return [...groups.entries()]
+    .map(([commitmentId, items]) => ({
+      commitmentId,
+      notices: items,
+      severity: items
+        .map((n) => n.severity)
+        .sort((a, b) => (severityRank[a] ?? 9) - (severityRank[b] ?? 9))[0]!,
+    }))
+    .sort(
+      (a, b) =>
+        (severityRank[a.severity] ?? 9) - (severityRank[b.severity] ?? 9),
+    );
+}
+
+/** Depth-first order of the visible native hierarchy; items whose parent is not visible start a branch. */
+function treeOrder(work: WorkNode[]) {
+  const ids = new Set(work.map((w) => w.id));
+  const children = new Map<string, WorkNode[]>();
+  const roots: WorkNode[] = [];
+  for (const w of work)
+    if (w.parentId && ids.has(w.parentId))
+      children.set(w.parentId, [...(children.get(w.parentId) ?? []), w]);
+    else roots.push(w);
+  const sort = (list: WorkNode[]) =>
+    [...list].sort(
+      (a, b) =>
+        b.hierarchyLevel - a.hierarchyLevel ||
+        a.displayKey.localeCompare(b.displayKey, undefined, { numeric: true }),
+    );
+  const out: Array<{ node: WorkNode; depth: number }> = [];
+  const visit = (node: WorkNode, depth: number, seen: Set<string>) => {
+    if (seen.has(node.id)) return;
+    seen.add(node.id);
+    out.push({ node, depth });
+    for (const child of sort(children.get(node.id) ?? []))
+      visit(child, depth + 1, seen);
+  };
+  const seen = new Set<string>();
+  for (const root of sort(roots)) visit(root, 0, seen);
+  return out;
+}
+
+/** A short, specific reason for incomplete context instead of a repeated label. */
+function coverageReason(
+  diagnostic:
+    | { reasons: Array<{ code: string }>; traversalTruncated: boolean }
+    | undefined,
+  supportingWork: number,
+) {
+  if (!diagnostic) return "Not assessed yet";
+  const codes = new Set(diagnostic.reasons.map((r) => r.code));
+  if (codes.has("INCOMPLETE_SCOPE")) return "Some sources could not be checked";
+  if (codes.has("STALE_EVIDENCE")) return "Evidence needs a refresh";
+  if (diagnostic.traversalTruncated) return "Trace limit reached";
+  if (supportingWork === 0) return "No supporting work linked";
+  if (codes.has("OUTCOME_UNMEASURED")) return "Outcome not yet measured";
+  return "Some context is unavailable";
 }

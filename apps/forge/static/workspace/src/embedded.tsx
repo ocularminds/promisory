@@ -121,14 +121,15 @@ export function EmbeddedView({
                 <p key={r.code}>{r.explanation}</p>
               ))}
               <p className="muted">
-                {
-                  a.paths.filter(
+                {(() => {
+                  const count = a.paths.filter(
                     (p) =>
                       surface.kind !== "ISSUE" ||
                       p.nodeIds.includes(work?.id ?? ""),
-                  ).length
-                }{" "}
-                confirmed paths · Coverage {a.coverage.toLowerCase()}
+                  ).length;
+                  return `${count} confirmed ${count === 1 ? "path" : "paths"}`;
+                })()}{" "}
+                · Coverage {a.coverage.toLowerCase()}
               </p>
             </article>
           );

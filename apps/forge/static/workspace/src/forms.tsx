@@ -100,6 +100,10 @@ export function CommitmentForm({
             }
           : {}),
       };
+      if (textValue(data, "valueAmount") && !textValue(data, "valueBasis"))
+        throw new Error(
+          "Value basis: choose what the stated value represents.",
+        );
       const draft = agreementSchema.parse({
         title,
         outcome: textValue(data, "outcome"),
@@ -159,7 +163,11 @@ export function CommitmentForm({
       </p>
       <form noValidate onSubmit={submit}>
         {error && <ErrorSummary message={error} />}
-        <FormField name="title" label="Commitment title">
+        <p className="required-legend">
+          <span aria-hidden="true">*</span> Required
+        </p>
+        <h3 className="form-section">Outcome</h3>
+        <FormField name="title" label="Commitment title" required>
           <input
             id="title"
             name="title"
@@ -173,6 +181,7 @@ export function CommitmentForm({
           name="outcome"
           label="What must be true?"
           hint="Describe the outcome someone can verify."
+          required
         >
           <textarea
             id="outcome"
@@ -182,8 +191,9 @@ export function CommitmentForm({
             required
           />
         </FormField>
+        <h3 className="form-section">Owner, beneficiary and deadline</h3>
         <div className="form-grid">
-          <FormField name="owner" label="Accountable owner">
+          <FormField name="owner" label="Accountable owner" required>
             <select
               id="owner"
               name="owner"
@@ -223,7 +233,7 @@ export function CommitmentForm({
               <option value="CUSTOMER">Customer</option>
             </select>
           </FormField>
-          <FormField name="beneficiary" label="Beneficiary">
+          <FormField name="beneficiary" label="Beneficiary" required>
             <input
               id="beneficiary"
               name="beneficiary"
@@ -234,7 +244,7 @@ export function CommitmentForm({
           </FormField>
         </div>
         <div className="form-grid three">
-          <FormField name="date" label="Deadline date">
+          <FormField name="date" label="Deadline date" required>
             <input
               type="date"
               id="date"
@@ -243,7 +253,7 @@ export function CommitmentForm({
               required
             />
           </FormField>
-          <FormField name="cutoff" label="Local cutoff time">
+          <FormField name="cutoff" label="Local cutoff time" required>
             <input
               type="time"
               id="cutoff"
@@ -252,7 +262,7 @@ export function CommitmentForm({
               required
             />
           </FormField>
-          <FormField name="zone" label="Time zone">
+          <FormField name="zone" label="Time zone" required>
             <input
               id="zone"
               name="zone"
@@ -268,60 +278,9 @@ export function CommitmentForm({
             </datalist>
           </FormField>
         </div>
-        <div className="form-grid three">
-          <FormField
-            name="valueAmount"
-            label="Value at stake (optional)"
-            hint="Only a value someone has actually stated. Leave empty if unknown."
-          >
-            <input
-              id="valueAmount"
-              name="valueAmount"
-              type="number"
-              min="0"
-              step="any"
-              inputMode="decimal"
-              defaultValue={existing?.valueAtStake?.amount}
-            />
-          </FormField>
-          <FormField name="valueCurrency" label="Currency">
-            <input
-              id="valueCurrency"
-              name="valueCurrency"
-              maxLength={3}
-              defaultValue={existing?.valueAtStake?.currency ?? "EUR"}
-            />
-          </FormField>
-          <FormField name="valueBasis" label="Value basis">
-            <select
-              id="valueBasis"
-              name="valueBasis"
-              defaultValue={existing?.valueAtStake?.basis ?? "CONTRACT_PENALTY"}
-            >
-              <option value="ARR">Annual recurring revenue</option>
-              <option value="CONTRACT_PENALTY">Contract penalty</option>
-              <option value="LAUNCH_REVENUE">Launch revenue</option>
-              <option value="INTERNAL_COST">Internal cost</option>
-              <option value="OTHER">Other stated value</option>
-            </select>
-          </FormField>
-        </div>
+        <h3 className="form-section">How delivery is proven</h3>
         <FormField
-          name="slipBudget"
-          label="Slip budget in days (optional)"
-          hint="Supporting Jira dates may move later by up to this many days, without passing the promise date, before a change needs escalation."
-        >
-          <input
-            id="slipBudget"
-            name="slipBudget"
-            type="number"
-            min="0"
-            max="30"
-            step="1"
-            defaultValue={existing?.slipBudgetDays}
-          />
-        </FormField>
-        <FormField
+          required
           name="acceptance"
           label="Acceptance condition"
           hint="Name the exact qualifying evidence. Closing an unrelated issue does not fulfill a promise."
@@ -436,6 +395,67 @@ export function CommitmentForm({
             preserved in this revision.
           </p>
         )}
+        <h3 className="form-section">Business context (optional)</h3>
+        <div className="form-grid three">
+          <FormField
+            name="valueAmount"
+            label="Value at stake (optional)"
+            hint="Only a value someone has actually stated. Leave empty if unknown."
+          >
+            <input
+              id="valueAmount"
+              name="valueAmount"
+              type="number"
+              min="0"
+              step="any"
+              inputMode="decimal"
+              defaultValue={existing?.valueAtStake?.amount}
+            />
+          </FormField>
+          <FormField name="valueCurrency" label="Currency">
+            <select
+              id="valueCurrency"
+              name="valueCurrency"
+              defaultValue={existing?.valueAtStake?.currency ?? "EUR"}
+            >
+              {currencies.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </FormField>
+          <FormField name="valueBasis" label="Value basis">
+            <select
+              id="valueBasis"
+              name="valueBasis"
+              defaultValue={existing?.valueAtStake?.basis ?? ""}
+            >
+              <option value="">Choose what the value represents</option>
+              <option value="ARR">Annual recurring revenue</option>
+              <option value="CONTRACT_PENALTY">Contract penalty</option>
+              <option value="LAUNCH_REVENUE">Launch revenue</option>
+              <option value="INTERNAL_COST">Internal cost</option>
+              <option value="OTHER">Other stated value</option>
+            </select>
+          </FormField>
+        </div>
+        <FormField
+          name="slipBudget"
+          label="Slip budget in days (optional)"
+          hint="Supporting Jira dates may move later by up to this many days, without passing the promise date, before a change needs escalation."
+        >
+          <input
+            id="slipBudget"
+            name="slipBudget"
+            type="number"
+            min="0"
+            max="30"
+            step="1"
+            defaultValue={existing?.slipBudgetDays}
+          />
+        </FormField>
+        <h3 className="form-section">Links</h3>
         <fieldset>
           <legend>Supporting work</legend>
           <div className="choice-list">
@@ -567,3 +587,17 @@ export function CommandForm({
     </Modal>
   );
 }
+
+const currencies = [
+  "EUR",
+  "USD",
+  "GBP",
+  "SEK",
+  "NOK",
+  "DKK",
+  "CHF",
+  "CAD",
+  "AUD",
+  "JPY",
+  "INR",
+];
