@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "file": "release/video-ui-retake/export/promisory-live-demo.mp4",
+  "duration_seconds": 139.0,
+  "size_bytes": 6187246,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30.0,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "checks": {
+    "duration_within_limit": true,
+    "size_within_limit": true,
+    "resolution_matches": true,
+    "frame_rate_matches": true,
+    "video_codec_h264": true,
+    "audio_present": true,
+    "audio_codec_aac": true
+  },
+  "audioMeasurements": {
+    "integratedLUFS": -16.02,
+    "truePeakDBTP": -3.99,
+    "loudnessRangeLU": 10.9
+  },
+  "visualChecks": {
+    "reviewedFramesSeconds": [
+      2,
+      10,
+      21,
+      29,
+      35,
+      44,
+      52,
+      54.5,
+      64,
+      77,
+      86,
+      94,
+      98,
+      103,
+      107,
+      116,
+      120,
+      122,
+      138
+    ],
+    "intentReadable": true,
+    "successfulVerdictReadable": true,
+    "blockedVerdictReadable": true,
+    "authorityFinalizationReadable": true,
+    "outcomeVerifiedReadable": true,
+    "testDataMarked": true,
+    "source": "continuous macOS MOV recordings",
+    "audioListeningReview": "NOT_SEPARATELY_RECORDED"
+  }
+}

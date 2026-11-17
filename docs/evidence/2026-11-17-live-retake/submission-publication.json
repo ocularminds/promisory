@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "promisory.submission-publication.v1",
+  "verifiedAt": "2026-11-17T03:52:11.531470+00:00",
+  "devpost": {
+    "url": "https://devpost.com/software/promisory",
+    "status": "SUBMITTED",
+    "confirmation": "Project submitted! Continue to edit your project until the hackathon deadline: December 22, 2026 at 03:00pm EST.",
+    "galleryCount": 7,
+    "province": "N/A",
+    "surveyAnswers": [
+      "A lot",
+      "Very likely"
+    ],
+    "rulesAndTerms": "EXPLICIT_USER_APPROVAL",
+    "eligibilityDeclarations": "EXPLICIT_USER_CONFIRMATION",
+    "proof": "devpost-submitted.png"
+  },
+  "youtube": {
+    "url": "https://www.youtube.com/watch?v=4-14LxhZySo",
+    "visibility": "UNLISTED",
+    "confirmation": "Video published",
+    "copyrightCheck": "No issues found",
+    "durationSeconds": 139,
+    "captions": "Burned in and timed English SRT uploaded",
+    "voice": "Standard synthetic Samantha",
+    "soundtrack": "Original quiet instrumental",
+    "proof": "youtube-published.png"
+  },
+  "marketplace": {
+    "appId": 261938314,
+    "status": "PENDING_REVIEW_LOCKED",
+    "reviewTicket": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-186301",
+    "replacementMedia": "PREPARED",
+    "requiredReviewActions": [
+      "Partner verification ECOHELP-186302",
+      "Privacy & Security tab",
+      "Marketplace Security questionnaire"
+    ]
+  }
+}

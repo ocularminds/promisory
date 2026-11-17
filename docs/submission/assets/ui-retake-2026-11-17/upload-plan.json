@@ -1,5 +1,5 @@
 {
-  "status": "PREPARED_NOT_UPLOADED",
+  "status": "DEVPOST_SUBMITTED_MARKETPLACE_REPLACEMENT_MEDIA_PREPARED",
   "sourceDocument": "docs/submission/devpost/submission-v2.md",
   "devpost": {
     "thumbnail": "devpost-thumbnail.png",
@@ -33,9 +33,30 @@
         "file": "lifecycle-live.png",
         "caption": "Ten lifecycle phases connect goals, initiatives and Confluence artifacts without inventing Jira parents.",
         "captionCharacters": 104
+      },
+      {
+        "file": "rovo-live.png",
+        "caption": "The installed Rovo agent cites the current Jira evidence: KAN-3 is the blocker, and KAN-2 is the affected work.",
+        "captionCharacters": 111
       }
     ],
-    "rovoCapture": "PENDING_MAC_UNLOCK"
+    "rovoCapture": "VERIFIED_CURRENT_JIRA_CITATIONS",
+    "photoIds": [
+      5936936,
+      5936937,
+      5936938,
+      5936939,
+      5936941,
+      5936942,
+      5936943
+    ],
+    "galleryVerifiedAt": "2026-11-17T03:39:05.406348+00:00",
+    "videoUrl": "https://www.youtube.com/watch?v=4-14LxhZySo",
+    "submission": "SUBMITTED",
+    "submissionVerifiedAt": "2026-11-17T03:52:11.531470+00:00",
+    "province": "N/A",
+    "learning": "A lot",
+    "forgeAgain": "Very likely"
   },
   "marketplace": {
     "sourceDocument": "docs/submission/marketplace-listing.md",

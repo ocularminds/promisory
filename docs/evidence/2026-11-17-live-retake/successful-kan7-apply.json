@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "promisory.live-retake-execution.v1",
+  "recordedAt": "2026-11-17T02:33:45.195436+00:00",
+  "testIssueKey": "KAN-7",
+  "sourceMode": "INSTALLED_TEST_SITE",
+  "forgeVersion": "4.2.0",
+  "policyId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "events": [
+    {
+      "schemaVersion": "promisory.authority-observation.v1",
+      "event": "PROMISORY_AUTHORITY_DECISION",
+      "recordedAt": "2026-11-17T02:30:51.066Z",
+      "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "httpStatus": 200,
+      "elapsedMs": 1829,
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ]
+    },
+    {
+      "schemaVersion": "promisory.execution-boundary-observation.v1",
+      "event": "PROMISORY_EXECUTION_BOUNDARY",
+      "recordedAt": "2026-11-17T02:30:53.426Z",
+      "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+      "outcome": "COMPLETED",
+      "claimHttpStatus": 200,
+      "claimReasonCodes": [
+        "EXECUTION_BINDING_VALID"
+      ],
+      "validClaimResponse": true,
+      "expectedEffectMatched": true
+    }
+  ],
+  "operation": {
+    "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+    "proposalId": "proposal-eb2d89d0-6dd4-4f7e-ab87-f928f7621902",
+    "state": "SETTLED",
+    "acknowledged": true,
+    "effect": {
+      "kind": "SET_JIRA_DUE_DATE",
+      "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+      "issueId": "10006",
+      "expectedUpdatedAt": "2026-11-17T02:19:49.177Z",
+      "expectedDueDate": "2026-11-24",
+      "desiredDueDate": "2026-11-25"
+    },
+    "authorization": {
+      "decisionId": "4e1e9c7a-5244-473e-91c4-b6bc92de90fe",
+      "dossierId": "5565fe4d-35ba-481a-99aa-483c5f267fc0",
+      "grantId": "9a0f205d-6771-80bf-ba3b-941d4ed8d8e3",
+      "intentHash": "sha256:9cb9e70ee81c4fca95b27bc9573761430a8c856680f28c277c2588bc24b65d2f",
+      "expiresAt": "2026-11-17T02:31:47.000Z"
+    },
+    "result": {
+      "stage": "SUCCEEDED",
+      "mode": "ENFORCEMENT",
+      "evaluationReference": "4e1e9c7a-5244-473e-91c4-b6bc92de90fe",
+      "grantReference": "9a0f205d-6771-80bf-ba3b-941d4ed8d8e3",
+      "observed": "MATCHED_EFFECT",
+      "finalization": "RECORDED"
+    }
+  },
+  "review": {
+    "separateAccount": true,
+    "uiConfirmed": "Review recorded. Execution has not occurred."
+  },
+  "uiIntentHash": "sha256:c845f90d76b8f7bb5d87749b1cdb11fb02beb0975fd6fc9d5219b4055c9ff180",
+  "originalRecoveryStillPending": true,
+  "sealedClaimFileCount": 1,
+  "readOnlyEvidenceCollection": true,
+  "video": "release/video-ui-retake/clips/04-governed-apply-readback.mov"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "promisory.live-outcome-verification.v1",
+  "sourceMode": "INSTALLED_TEST_SITE",
+  "jiraIssueKey": "KAN-7",
+  "jiraIssueId": "10006",
+  "commitmentTitle": "[TEST] Live governed change has verified evidence",
+  "agreementVersion": 1,
+  "originalDeadline": "2026-11-30T16:00:00.000Z",
+  "deadlineTimezone": "Europe/Stockholm",
+  "outcome": "VERIFIED",
+  "uiConfirmation": "Acceptance evidence checked. Read the recorded outcome and timeliness.",
+  "jiraStatus": "To Do",
+  "verifiedDueDate": "2026-11-25",
+  "authorityOperationId": "operation-8bc2a9ed-e52c-4533-91a9-d4d157ed649f",
+  "authorityFinalization": "RECORDED",
+  "sourceReadBack": "MATCHED_EFFECT",
+  "verificationMethod": "Designated verifier account explicitly accepted the agreed manual condition with evidence in the installed app",
+  "events": [
+    {
+      "event": "KAN-7 designated-verifier acceptance selected with recorded execution evidence",
+      "at": "2026-11-17T02:56:05.838Z"
+    },
+    {
+      "event": "KAN-7 Record verification clicked",
+      "at": "2026-11-17T02:56:06.890Z"
+    },
+    {
+      "event": "KAN-7 outcome verified; original commitment deadline 30 November remains",
+      "at": "2026-11-17T02:56:29.594Z"
+    }
+  ],
+  "proofScreenshot": "../../submission/assets/ui-retake-2026-11-17/outcome-live.png",
+  "sourceRecording": "release/video-ui-retake/clips/10-outcome-verification.mov",
+  "limitations": [
+    "Test acceptance demonstrates the governed workflow; it is not a claim of customer adoption.",
+    "Original KAN-2 unresolved authority claim was not reconciled or retried."
+  ],
+  "commitmentId": "PM-af4d46d2-4bbe-45ab-bd43-74f6cc0b9ec9"
+}

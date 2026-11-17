@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "promisory.live-retake-execution.v1",
+  "recordedAt": "2026-11-17T02:47:50.402337+00:00",
+  "testIssueKey": "KAN-7",
+  "sourceMode": "INSTALLED_TEST_SITE",
+  "forgeVersion": "4.2.0",
+  "policyId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "finalOperation": {
+    "operationId": "operation-8bc2a9ed-e52c-4533-91a9-d4d157ed649f",
+    "proposalId": "proposal-d047160c-0573-49aa-8211-46f7ababbf99",
+    "state": "SETTLED",
+    "acknowledged": true,
+    "effect": {
+      "kind": "SET_JIRA_DUE_DATE",
+      "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+      "issueId": "10006",
+      "expectedUpdatedAt": "2026-11-17T02:38:04.748Z",
+      "expectedDueDate": "2026-11-24",
+      "desiredDueDate": "2026-11-25"
+    },
+    "authorization": {
+      "decisionId": "a37100a7-4846-4c3e-895e-84051f6f5df9",
+      "dossierId": "445d3556-e46e-4790-98cf-b16203160937",
+      "grantId": "3df4aa4a-1174-8e65-ac5d-1a56f88c2e83",
+      "intentHash": "sha256:cc3cae95d608eb5e67b30909485439e3063bbf1d8c28167418adaf1bd8b7c999",
+      "expiresAt": "2026-11-17T02:42:12.000Z"
+    },
+    "result": {
+      "stage": "SUCCEEDED",
+      "mode": "ENFORCEMENT",
+      "evaluationReference": "a37100a7-4846-4c3e-895e-84051f6f5df9",
+      "grantReference": "3df4aa4a-1174-8e65-ac5d-1a56f88c2e83",
+      "observed": "MATCHED_EFFECT",
+      "finalization": "RECORDED"
+    }
+  },
+  "operations": [
+    {
+      "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+      "proposalId": "proposal-eb2d89d0-6dd4-4f7e-ab87-f928f7621902",
+      "state": "SETTLED",
+      "acknowledged": true,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10006",
+        "expectedUpdatedAt": "2026-11-17T02:19:49.177Z",
+        "expectedDueDate": "2026-11-24",
+        "desiredDueDate": "2026-11-25"
+      },
+      "authorization": {
+        "decisionId": "4e1e9c7a-5244-473e-91c4-b6bc92de90fe",
+        "dossierId": "5565fe4d-35ba-481a-99aa-483c5f267fc0",
+        "grantId": "9a0f205d-6771-80bf-ba3b-941d4ed8d8e3",
+        "intentHash": "sha256:9cb9e70ee81c4fca95b27bc9573761430a8c856680f28c277c2588bc24b65d2f",
+        "expiresAt": "2026-11-17T02:31:47.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "4e1e9c7a-5244-473e-91c4-b6bc92de90fe",
+        "grantReference": "9a0f205d-6771-80bf-ba3b-941d4ed8d8e3",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "RECORDED"
+      }
+    },
+    {
+      "operationId": "operation-8db4a0de-b6e0-434e-82e3-0dfc12a2aa80",
+      "proposalId": "proposal-fa193b52-1c12-4056-917f-efd344a662e1",
+      "state": "SETTLED",
+      "acknowledged": true,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10006",
+        "expectedUpdatedAt": "2026-11-17T02:30:52.682Z",
+        "expectedDueDate": "2026-11-25",
+        "desiredDueDate": "2026-11-24"
+      },
+      "authorization": {
+        "decisionId": "77ce75ac-031d-485d-8234-a8107c88a672",
+        "dossierId": "fecdccc9-3e85-442b-ae2d-9376bd485f8f",
+        "grantId": "ddaf5b33-055e-885d-b585-e58ca9938a45",
+        "intentHash": "sha256:c001946b2145fba59badcc270e248ba1335be53116107fe64f5257d70d3d52d6",
+        "expiresAt": "2026-11-17T02:38:59.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "77ce75ac-031d-485d-8234-a8107c88a672",
+        "grantReference": "ddaf5b33-055e-885d-b585-e58ca9938a45",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "RECORDED"
+      }
+    },
+    {
+      "operationId": "operation-8bc2a9ed-e52c-4533-91a9-d4d157ed649f",
+      "proposalId": "proposal-d047160c-0573-49aa-8211-46f7ababbf99",
+      "state": "SETTLED",
+      "acknowledged": true,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10006",
+        "expectedUpdatedAt": "2026-11-17T02:38:04.748Z",
+        "expectedDueDate": "2026-11-24",
+        "desiredDueDate": "2026-11-25"
+      },
+      "authorization": {
+        "decisionId": "a37100a7-4846-4c3e-895e-84051f6f5df9",
+        "dossierId": "445d3556-e46e-4790-98cf-b16203160937",
+        "grantId": "3df4aa4a-1174-8e65-ac5d-1a56f88c2e83",
+        "intentHash": "sha256:cc3cae95d608eb5e67b30909485439e3063bbf1d8c28167418adaf1bd8b7c999",
+        "expiresAt": "2026-11-17T02:42:12.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "a37100a7-4846-4c3e-895e-84051f6f5df9",
+        "grantReference": "3df4aa4a-1174-8e65-ac5d-1a56f88c2e83",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "RECORDED"
+      }
+    }
+  ],
+  "events": [
+    {
+      "schemaVersion": "promisory.authority-observation.v1",
+      "event": "PROMISORY_AUTHORITY_DECISION",
+      "recordedAt": "2026-11-17T02:30:51.066Z",
+      "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "httpStatus": 200,
+      "elapsedMs": 1829,
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ]
+    },
+    {
+      "schemaVersion": "promisory.execution-boundary-observation.v1",
+      "event": "PROMISORY_EXECUTION_BOUNDARY",
+      "recordedAt": "2026-11-17T02:30:53.426Z",
+      "operationId": "operation-76c3dc17-8049-4033-a03d-296c66130ba3",
+      "outcome": "COMPLETED",
+      "claimHttpStatus": 200,
+      "claimReasonCodes": [
+        "EXECUTION_BINDING_VALID"
+      ],
+      "validClaimResponse": true,
+      "expectedEffectMatched": true
+    },
+    {
+      "schemaVersion": "promisory.authority-observation.v1",
+      "event": "PROMISORY_AUTHORITY_DECISION",
+      "recordedAt": "2026-11-17T02:38:03.165Z",
+      "operationId": "operation-8db4a0de-b6e0-434e-82e3-0dfc12a2aa80",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "httpStatus": 200,
+      "elapsedMs": 1869,
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ]
+    },
+    {
+      "schemaVersion": "promisory.execution-boundary-observation.v1",
+      "event": "PROMISORY_EXECUTION_BOUNDARY",
+      "recordedAt": "2026-11-17T02:38:05.640Z",
+      "operationId": "operation-8db4a0de-b6e0-434e-82e3-0dfc12a2aa80",
+      "outcome": "COMPLETED",
+      "claimHttpStatus": 200,
+      "claimReasonCodes": [
+        "EXECUTION_BINDING_VALID"
+      ],
+      "validClaimResponse": true,
+      "expectedEffectMatched": true
+    },
+    {
+      "schemaVersion": "promisory.authority-observation.v1",
+      "event": "PROMISORY_AUTHORITY_DECISION",
+      "recordedAt": "2026-11-17T02:41:15.946Z",
+      "operationId": "operation-8bc2a9ed-e52c-4533-91a9-d4d157ed649f",
+      "verdict": "ALLOW",
+      "failClosed": false,
+      "httpStatus": 200,
+      "elapsedMs": 1752,
+      "reasonCodes": [
+        "PROTOCOL_OUTCOME_APPROVE",
+        "POLICY_MATCHED",
+        "POLICY_ACTION_AUTO_APPROVE"
+      ]
+    },
+    {
+      "schemaVersion": "promisory.execution-boundary-observation.v1",
+      "event": "PROMISORY_EXECUTION_BOUNDARY",
+      "recordedAt": "2026-11-17T02:41:17.683Z",
+      "operationId": "operation-8bc2a9ed-e52c-4533-91a9-d4d157ed649f",
+      "outcome": "COMPLETED",
+      "claimHttpStatus": 200,
+      "claimReasonCodes": [
+        "EXECUTION_BINDING_VALID"
+      ],
+      "validClaimResponse": true,
+      "expectedEffectMatched": true
+    }
+  ],
+  "uiIntentHash": "sha256:3697b0832d790bda59ffb089ff33d2526f1c5ba810951f6f4a737f49d6cad603",
+  "recordingSequence": [
+    "The first verified 24-to-25 change was not captured at the apply click because the recorder stopped early.",
+    "A separately reviewed and authorized 25-to-24 reset restored this newly created test issue only.",
+    "The final separately reviewed 24-to-25 change and verified result are captured continuously in 07-final-governed-apply.mov."
+  ],
+  "finalVideoSource": "release/video-ui-retake/clips/07-final-governed-apply.mov",
+  "originalRecoveryStillPending": true,
+  "sealedClaimFileCount": 1,
+  "readOnlyEvidenceCollection": true
+}

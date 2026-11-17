@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "promisory.devpost-gallery.v1",
+  "verifiedAt": "2026-11-17T03:52:11.531470+00:00",
+  "page": "https://devpost.com/software/promisory",
+  "gallery": [
+    {
+      "file": "overview-live.png",
+      "caption": "Live decision card and promise ledger: current risk, accepted ownership, original dates and explicit outcome verification.",
+      "captionCharacters": 122,
+      "photoLink": "/software_photos/5936589"
+    },
+    {
+      "file": "inbox-live.png",
+      "caption": "A real reopened test bug produces a notice under the affected commitment in the owner inbox.",
+      "captionCharacters": 92,
+      "photoLink": "/software_photos/5936590"
+    },
+    {
+      "file": "governed-recovery-live.png",
+      "caption": "An independently reviewed Jira date change completes, is read back, and saves its authority record.",
+      "captionCharacters": 99,
+      "photoLink": "/software_photos/5936591"
+    },
+    {
+      "file": "outcome-live.png",
+      "caption": "The designated verifier accepts the agreed evidence. Jira status and the original commitment deadline remain separate.",
+      "captionCharacters": 118,
+      "photoLink": "/software_photos/5936592"
+    },
+    {
+      "file": "requirements-readiness-live.png",
+      "caption": "Confluence PRD revision 2, requirement mapping version 2 and readiness gate version 3 stay distinct.",
+      "captionCharacters": 100,
+      "photoLink": "/software_photos/5936593"
+    },
+    {
+      "file": "lifecycle-live.png",
+      "caption": "Ten lifecycle phases connect goals, initiatives and Confluence artifacts without inventing Jira parents.",
+      "captionCharacters": 104,
+      "photoLink": "/software_photos/5936594"
+    },
+    {
+      "file": "overview-live.png",
+      "caption": "Live decision card and promise ledger: current risk, accepted ownership, original dates and explicit outcome verification.",
+      "captionCharacters": 122,
+      "photoLink": "/software_photos/5936936"
+    },
+    {
+      "file": "inbox-live.png",
+      "caption": "A real reopened test bug produces a notice under the affected commitment in the owner inbox.",
+      "captionCharacters": 92,
+      "photoLink": "/software_photos/5936937"
+    },
+    {
+      "file": "governed-recovery-live.png",
+      "caption": "An independently reviewed Jira date change completes, is read back, and saves its authority record.",
+      "captionCharacters": 99,
+      "photoLink": "/software_photos/5936938"
+    },
+    {
+      "file": "outcome-live.png",
+      "caption": "The designated verifier accepts the agreed evidence. Jira status and the original commitment deadline remain separate.",
+      "captionCharacters": 118,
+      "photoLink": "/software_photos/5936939"
+    },
+    {
+      "file": "requirements-readiness-live.png",
+      "caption": "Confluence PRD revision 2, requirement mapping version 2 and readiness gate version 3 stay distinct.",
+      "captionCharacters": 100,
+      "photoLink": "/software_photos/5936941"
+    },
+    {
+      "file": "lifecycle-live.png",
+      "caption": "Ten lifecycle phases connect goals, initiatives and Confluence artifacts without inventing Jira parents.",
+      "captionCharacters": 104,
+      "photoLink": "/software_photos/5936942"
+    },
+    {
+      "file": "rovo-live.png",
+      "caption": "The installed Rovo agent cites the current Jira evidence: KAN-3 is the blocker, and KAN-2 is the affected work.",
+      "photoLink": "/software_photos/5936943"
+    }
+  ],
+  "videoUrl": "https://www.youtube.com/watch?v=4-14LxhZySo",
+  "status": "SUBMITTED",
+  "proof": "devpost-submitted.png"
+}

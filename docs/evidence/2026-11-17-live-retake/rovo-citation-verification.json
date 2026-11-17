@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "promisory.rovo-citation-verification.v1",
+  "date": "2026-11-17",
+  "sourceCommit": "3deabe1",
+  "applicationVersion": "4.3.0",
+  "sourceMode": "INSTALLED_TEST_SITE",
+  "conversationId": "00a593c0-0102-46a0-aa50-8ecc495a9b99",
+  "question": "What threatens the commitments in Jira project 10000? Use Promisory tools and cite current evidence.",
+  "verifiedResult": {
+    "blocker": {
+      "issueId": "10002",
+      "issueKey": "KAN-3",
+      "status": "To Do",
+      "type": "Bug"
+    },
+    "blockedWork": {
+      "issueId": "10001",
+      "issueKey": "KAN-2"
+    },
+    "commitmentId": "PM-7d1b5d52-0fba-4267-aee8-71e5c297de0a",
+    "deadline": "2026-11-20"
+  },
+  "previousFailure": "Before the correction, two answers confused numeric issue ID 10002 with display key KAN-2. Raw recording 12 is retained privately and excluded from submission media.",
+  "regressionTests": 187,
+  "typecheck": "PASS",
+  "profiles": {
+    "development": "4.3.0",
+    "judgeProduction": "3.2.0",
+    "marketplaceProduction": "4.2.0"
+  },
+  "sourceDigest": "15559860acd438508d2cb6a184ea03e33c77bfa37d32c70647f677b9006a1c33",
+  "graphContextExported": false,
+  "proofScreenshot": "../../submission/assets/ui-retake-2026-11-17/rovo-live.png",
+  "sourceRecordings": [
+    "release/video-ui-retake/clips/13-rovo-corrected-evidence.mov",
+    "release/video-ui-retake/clips/15-rovo-readable-response.mov"
+  ]
+}

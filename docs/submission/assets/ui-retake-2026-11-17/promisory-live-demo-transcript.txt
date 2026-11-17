@@ -1,0 +1,25 @@
+A Jira issue can be done while the promise behind it is still at risk. Promisory connects work to an accepted owner, an agreed deadline, and evidence of the outcome.
+
+This is the installed Forge app on our test site. A reopened blocking bug appears in the owner's inbox, linked to the affected commitment.
+
+Jira's hierarchy stays intact. Stories, tasks, and bugs remain peers; blockers are dependencies.
+
+The lifecycle view connects goals, initiatives, and Confluence requirements. The PRD revision, requirement mapping, and release readiness gate have separate versions.
+
+Rovo reads the same permitted evidence and identifies the current blocker. It can explain or draft, while review and execution remain explicit steps in the app.
+
+A separate reviewer account approves this exact proposal: move test issue KAN seven from November twenty fourth to the twenty fifth. The commitment deadline stays unchanged.
+
+When we apply, the executor checks current evidence and Decionis authority before Jira receives the write. Watch the result change to Change verified.
+
+Jira is read again, and the authority record is saved. The evidence binds the action to its intent hash and reviewed source revision.
+
+This separate, existing request is blocked. An unresolved claim cannot be treated as permission to try the write again.
+
+Finally, the designated verifier accepts the agreed evidence. Only then does the outcome become verified. The original promise date remains visible when the Jira due date changes.
+
+The ledger shows three verified outcomes, including one delivered after its original date. History survives revisions.
+
+Judges can install the separate judge app. Successful governed writes run on the bound test site. Promisory: see risk, act within limits, and prove delivery.
+
+Production: Continuous macOS screen recordings of the installed app and its real test-site workflow. Standard synthetic Samantha narration at conversational pacing. Original quiet instrumental soundtrack. Edited for time; account details redacted. The successful KAN-7 write and the pre-existing blocked KAN-2 request are separate operations. The two reviewer accounts belong to the test operator. The optional slip-budget policy is not demonstrated.

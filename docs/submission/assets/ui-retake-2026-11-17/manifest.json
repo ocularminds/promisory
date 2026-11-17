@@ -1,7 +1,10 @@
 {
   "schemaVersion": "promisory.live-ui-stills.v1",
   "master": "092c2f7",
+  "releaseFixCommit": "703e217",
+  "citationFixCommit": "3deabe1",
   "applicationVersion": "4.2.0",
+  "latestApplicationVersion": "4.3.0",
   "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b",
   "source": "Native screenshots of the installed Forge development app on the Decionis Promisory test site",
   "mode": "INSTALLED_TEST_SITE",
@@ -17,11 +20,11 @@
       "file": "overview-live.png",
       "width": 1840,
       "height": 900,
-      "caption": "The installed app shows the decision card and promise ledger against original deadlines.",
-      "sourceFile": "release/video-ui-retake/stills/04-overview-ledger-live.png",
-      "capturedAt": "2026-11-17T01:46:08.909Z",
-      "sourceSha256": "8d3f3f5d115875e8b204416fc348fd901e03eab7669729a56a11589b7f2e6ba0",
-      "sha256": "a1e6548eadffc8baf6eea40dee0f955a55815b782eed8d311b2e5537f88e3f29",
+      "caption": "The installed app shows three verified outcomes and preserves the one late against its original deadline.",
+      "sourceFile": "release/video-ui-retake/stills/17-final-overview.png",
+      "capturedAt": "2026-11-17T03:14:11.244Z",
+      "sourceSha256": "06bab537d34555bcb28ff612891c3911498b9ca59934c4020305ddf33d4839ab",
+      "sha256": "acc1ed5989dcc6bab6b4a252cbdfb7ceaf76a6dd42b0e4be28bb3cd67f0d413d",
       "sourceCrop": [
         96,
         357,
@@ -59,7 +62,9 @@
           691,
           720
         ]
-      ]
+      ],
+      "applicationVersion": "4.3.0",
+      "sourceDigest": "15559860acd438508d2cb6a184ea03e33c77bfa37d32c70647f677b9006a1c33"
     },
     {
       "file": "inbox-live.png",
@@ -96,22 +101,24 @@
           98
         ]
       ],
+      "applicationVersion": "4.2.0",
       "preview": {
         "file": "inbox-live-preview.png",
         "width": 580,
         "height": 330,
         "sha256": "c853d0dd1d52621aea2b484af16d47212bd0be66db1cece8255c0c5c99d97931"
-      }
+      },
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "governed-recovery-live.png",
       "width": 1840,
       "height": 900,
-      "caption": "The independently reviewed KAN-6 date change is verified by Jira read-back; authority finalization is recorded.",
-      "sourceFile": "release/video-ui-retake/stills/08-governed-change-verified-live.png",
-      "capturedAt": "2026-11-17T01:49:09.056Z",
-      "sourceSha256": "ad8852098b64883775e60ddc3951f0295f63f3a66bcacb0697d19e4be1d6a78f",
-      "sha256": "8fce85a793649ae5e5b8bf5a4f8efbc42234f90fa4c865e89f9786de66c1a63c",
+      "caption": "The independently reviewed KAN-7 date change is verified by Jira read-back; authority finalization is recorded.",
+      "sourceFile": "release/video-ui-retake/stills/14-final-kan7-change-verified.png",
+      "capturedAt": "2026-11-17T02:46:11.016Z",
+      "sourceSha256": "502d9a095219661ddf1dd5dad5d27904bc73c1070e92c098ef9d54e027446360",
+      "sha256": "a3684c876e9c581d5977de01273a7761058e2451be178044a2aaf5403b6244e7",
       "sourceCrop": [
         96,
         357,
@@ -121,89 +128,63 @@
       "privacyMasksWithinCrop": [
         [
           469,
-          1069,
+          861,
           532,
-          1089
+          881
         ],
         [
           534,
-          1068,
+          860,
           619,
-          1093
-        ],
-        [
-          2538,
-          57,
-          2561,
-          76
-        ],
-        [
-          2591,
-          56,
-          2655,
-          76
-        ],
-        [
-          2656,
-          55,
-          2741,
-          80
+          885
         ]
       ],
+      "applicationVersion": "4.2.0",
       "preview": {
         "file": "governed-recovery-live-preview.png",
         "width": 580,
         "height": 330,
-        "sha256": "6de817f800ca7a7c9136f558177fa269841ae0d11e55fc45f74f5a621f412ae8"
-      }
+        "sha256": "db34a1b624f954705543ff342e3d4ec25006b33699c7273c704d2af71bfdbbad"
+      },
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "outcome-live.png",
       "width": 1840,
       "height": 900,
-      "caption": "Outcome acceptance is explicit and remains separate from Jira status and the agreed commitment deadline.",
-      "sourceFile": "release/video-ui-retake/stills/07-outcome-verified-live.png",
-      "capturedAt": "2026-11-17T01:48:31.136Z",
-      "sourceSha256": "c359e14c7b517c4cdab3592215c3145ceb4db58d3bbb1a5161561723d2cf9eaf",
-      "sha256": "fe39df98b564d55ce1884c931f4e31a3628588ec7da3b30ec40085ec43614e4a",
+      "caption": "The KAN-7 outcome is explicitly accepted while its original commitment deadline remains 30 November.",
+      "sourceFile": "release/video-ui-retake/stills/16-kan7-outcome-verified.png",
+      "capturedAt": "2026-11-17T02:56:29.591Z",
+      "sourceSha256": "b5f7e0132d61b8ba3a4b70c8fe5ca92f5539d978b9f662aa0dbc31696f900971",
+      "sha256": "2e16f21bc0336b6d3e2299cf96e07327a860a77eeb857828014b236c4d05c15a",
       "sourceCrop": [
-        96,
-        357,
-        2888,
-        1700
+        119,
+        408,
+        2871,
+        1698
       ],
       "privacyMasksWithinCrop": [
         [
-          2156,
-          510,
-          2224,
-          531
+          1871,
+          730,
+          1955,
+          755
         ],
         [
-          2226,
-          509,
-          2317,
-          535
-        ],
-        [
-          2265,
-          1135,
-          2328,
-          1155
-        ],
-        [
-          2329,
-          1134,
-          2414,
-          1159
+          1958,
+          729,
+          2071,
+          760
         ]
       ],
+      "applicationVersion": "4.2.0",
       "preview": {
         "file": "outcome-live-preview.png",
         "width": 580,
         "height": 330,
-        "sha256": "ef57718423f8ac3803bd44f795d749ff703036a51a59915f203601c113a213be"
-      }
+        "sha256": "98c78241158b80f7ede51f0c4070e1a0244cec99820e3c726033f8e892269f99"
+      },
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "requirements-readiness-live.png",
@@ -233,7 +214,9 @@
           702,
           346
         ]
-      ]
+      ],
+      "applicationVersion": "4.2.0",
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "lifecycle-live.png",
@@ -305,7 +288,9 @@
           2741,
           80
         ]
-      ]
+      ],
+      "applicationVersion": "4.2.0",
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "work-map-live.png",
@@ -365,17 +350,19 @@
           2741,
           80
         ]
-      ]
+      ],
+      "applicationVersion": "4.2.0",
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
     },
     {
       "file": "authority-evidence-live.png",
       "width": 1840,
       "height": 900,
-      "caption": "The exact intent hash, reviewed source revision, and recorded authority finalization are visible.",
-      "sourceFile": "release/video-ui-retake/stills/09-authority-evidence-live.png",
-      "capturedAt": "2026-11-17T01:49:34.465Z",
-      "sourceSha256": "df524a1aa4524de05463956ea6ec65fe45b46929cc2d44517e69ac6b1e8b6dc7",
-      "sha256": "24c78f928b80f8bdd67610a4821ad346fcf2a256e7917c407628ddce1fc2c217",
+      "caption": "The exact KAN-7 intent hash, reviewed source revision, and recorded authority finalization are visible.",
+      "sourceFile": "release/video-ui-retake/stills/15-final-intent-recorded.png",
+      "capturedAt": "2026-11-17T02:47:27.836Z",
+      "sourceSha256": "d861a76f9729aa651724c840fcb6064c5c5990c8b626912f2fccd18d4ebf389e",
+      "sha256": "30795633f29e1d780bea99ee3d46e70a42cc39534992a75583cb84fadc316645",
       "sourceCrop": [
         96,
         357,
@@ -385,25 +372,78 @@
       "privacyMasksWithinCrop": [
         [
           469,
-          587,
+          603,
           533,
-          607
+          623
         ],
         [
           534,
-          586,
+          602,
           619,
-          611
+          627
         ]
-      ]
+      ],
+      "applicationVersion": "4.2.0",
+      "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b"
+    },
+    {
+      "file": "rovo-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "The installed Promisory Rovo agent identifies KAN-3 as the unresolved bug blocking KAN-2 with current Jira evidence.",
+      "sourceFile": "release/video-ui-retake/stills/18-rovo-corrected-current-evidence.png",
+      "capturedAt": "2026-11-17T03:17:16.258Z",
+      "sourceSha256": "2e0a9ba5816c5f53c79f2dc9ff13fec822b186ed174d8fbec35741a62510c693",
+      "sha256": "a900e7eebe96f4412596341b36ac81f54a39e1409e78f6bff944044529ce4adf",
+      "sourceCrop": [
+        8,
+        236,
+        2945,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          593,
+          813,
+          666,
+          836
+        ],
+        [
+          668,
+          813,
+          766,
+          841
+        ],
+        [
+          1924,
+          178,
+          1947,
+          197
+        ],
+        [
+          1977,
+          177,
+          2041,
+          197
+        ],
+        [
+          2042,
+          176,
+          2127,
+          201
+        ]
+      ],
+      "applicationVersion": "4.3.0",
+      "sourceDigest": "15559860acd438508d2cb6a184ea03e33c77bfa37d32c70647f677b9006a1c33"
     }
   ],
   "thumbnail": {
     "file": "devpost-thumbnail.png",
     "width": 1200,
     "height": 800,
-    "sha256": "8cc57915d004d4a3e3b9f9eb6da5c6d31a54cb053ff192fbf1ded88be8a587f7",
+    "sha256": "036fe22354cb4f7566e80343751554f97d6fe9e2e699e03d0200af5da53e6e72",
     "source": "overview-live.png",
     "type": "Actual screenshot with an editorial brand heading"
-  }
+  },
+  "latestSourceDigest": "15559860acd438508d2cb6a184ea03e33c77bfa37d32c70647f677b9006a1c33"
 }

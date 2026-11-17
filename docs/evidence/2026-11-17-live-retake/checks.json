@@ -1,10 +1,9 @@
 {
   "schemaVersion": "promisory.ui-retake-checks.v1",
-  "checkedAt": "2026-11-17T01:36:23.277106+00:00",
-  "master": "092c2f7",
+  "checkedAt": "2026-11-17T03:52:11.531470+00:00",
   "localReleaseFixesIncluded": true,
   "unitAndContractTests": {
-    "passed": 186,
+    "passed": 187,
     "files": 30
   },
   "browserChecks": {
@@ -18,17 +17,54 @@
   "manifest": "PASS",
   "forgeBundle": "PASS",
   "profileEquivalence": "PASS",
-  "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b",
+  "sourceDigest": "15559860acd438508d2cb6a184ea03e33c77bfa37d32c70647f677b9006a1c33",
   "deployments": {
-    "development": { "version": "4.2.0", "result": "DEPLOYED" },
-    "judgeProduction": { "version": "3.1.0", "result": "DEPLOYED" },
-    "marketplaceProduction": { "version": "4.1.0", "result": "DEPLOYED" }
+    "development": {
+      "version": "4.3.0",
+      "result": "DEPLOYED"
+    },
+    "judgeProduction": {
+      "version": "3.2.0",
+      "result": "DEPLOYED"
+    },
+    "marketplaceProduction": {
+      "version": "4.2.0",
+      "result": "DEPLOYED"
+    }
   },
   "installedDevelopmentUI": {
+    "verified": true,
+    "version": "4.3.0",
+    "mode": "INSTALLED_TEST_SITE",
+    "exampleMode": false,
+    "rovoCitationProof": "rovo-citation-verification.json"
+  },
+  "liveCaptureRequired": false,
+  "uiMergeCommit": "092c2f7",
+  "releaseFixCommit": "703e217",
+  "citationFixCommit": "3deabe1",
+  "initialDeployments": {
+    "development": {
+      "version": "4.2.0",
+      "result": "DEPLOYED"
+    },
+    "judgeProduction": {
+      "version": "3.1.0",
+      "result": "DEPLOYED"
+    },
+    "marketplaceProduction": {
+      "version": "4.1.0",
+      "result": "DEPLOYED"
+    }
+  },
+  "initialInstalledDevelopmentUI": {
     "verified": true,
     "resourceId": "e34cadc2-a3b5-4d0e-907f-6d6faac9197d",
     "mode": "INSTALLED_TEST_SITE",
     "exampleMode": false
   },
-  "liveCaptureRequired": true
+  "continuousLiveCapture": "COMPLETED",
+  "videoTechnicalChecks": "video-technical-verification.json",
+  "liveGovernedAction": "successful-kan7-retake.json",
+  "outcomeVerification": "outcome-kan7-verification.json"
 }

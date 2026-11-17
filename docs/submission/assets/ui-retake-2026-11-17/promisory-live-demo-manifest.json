@@ -1,0 +1,571 @@
+{
+  "schemaVersion": "promisory.continuous-live-demo.v1",
+  "durationSeconds": 139.0,
+  "fps": 30,
+  "video": "release/video-ui-retake/export/promisory-live-demo.mp4",
+  "videoSha256": "f9c281d40881a48851a6db8d10f433a694af207717dd51e8413b31bc7ceddd9c",
+  "narration": "Standard synthetic macOS Samantha; rate 158 with 0.96 tempo adjustment; conversational pacing",
+  "music": "Original locally synthesized quiet sustained-chord instrumental, requested by the owner",
+  "sourceRecordings": [
+    {
+      "file": "release/video-ui-retake/clips/01-overview-inbox-map.mov",
+      "sha256": "7d407096ee19396af2006a2b2ed75e7cd503dc47a4cc86309e2cbce55806b1c8",
+      "capture": {
+        "startedAt": "2026-11-17T02:15:35.500999+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 100,
+        "path": "release/video-ui-retake/clips/01-overview-inbox-map.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:17:16.048266+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "5677"
+          }
+        ],
+        "format": {
+          "duration": "100.023333",
+          "size": "46245966"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/11-lifecycle-readiness.mov",
+      "sha256": "45e9d290ed73c0d2c01bc52a492bda33b0299e6e80ce3820ef211345f9bdd99c",
+      "capture": {
+        "startedAt": "2026-11-17T02:57:31.199322+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 35,
+        "path": "release/video-ui-retake/clips/11-lifecycle-readiness.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:58:06.687338+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1803"
+          }
+        ],
+        "format": {
+          "duration": "35.006667",
+          "size": "15511650"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/13-rovo-corrected-evidence.mov",
+      "sha256": "78699b88162f05a7a8d59ea1808d9df1704d9a70ccc832cc42ac91e0003e1f2f",
+      "capture": {
+        "startedAt": "2026-11-17T03:15:50.482748+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 55,
+        "path": "release/video-ui-retake/clips/13-rovo-corrected-evidence.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T03:16:25.210645+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1938"
+          }
+        ],
+        "format": {
+          "duration": "34.235000",
+          "size": "19904763"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/15-rovo-readable-response.mov",
+      "sha256": "472ea3c27e80c4d2f4ed5f84e1f62240a3d97eccaace0a097cd30ac2aac99915",
+      "capture": {
+        "startedAt": "2026-11-17T03:19:58.184155+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 16,
+        "path": "release/video-ui-retake/clips/15-rovo-readable-response.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T03:20:14.647324+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "913"
+          }
+        ],
+        "format": {
+          "duration": "15.991667",
+          "size": "8620651"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/06-final-independent-review.mov",
+      "sha256": "c954feeaa42a9433ecf53fac7c86bb1cffe022ac93715fe7497e8fdf02d82605",
+      "capture": {
+        "startedAt": "2026-11-17T02:39:38.668015+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 5591,
+        "requestedSeconds": 40,
+        "path": "release/video-ui-retake/clips/06-final-independent-review.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:40:19.146497+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3208,
+            "height": 1904,
+            "nb_frames": "2284"
+          }
+        ],
+        "format": {
+          "duration": "40.001667",
+          "size": "18194802"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/07-final-governed-apply.mov",
+      "sha256": "b17ed026d539038f142ea4c44fbcc541d6462cee756c373cc6117adfe8f3b0c0",
+      "capture": {
+        "startedAt": "2026-11-17T02:41:01.944940+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 45,
+        "path": "release/video-ui-retake/clips/07-final-governed-apply.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:41:31.557313+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1660"
+          }
+        ],
+        "format": {
+          "duration": "29.158333",
+          "size": "14721598"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/08-final-authority-evidence.mov",
+      "sha256": "503efb248bc240e58a5b6d644bcf26f9696c969cf72f3cc1d891d28346722041",
+      "capture": {
+        "startedAt": "2026-11-17T02:46:51.561138+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 25,
+        "path": "release/video-ui-retake/clips/08-final-authority-evidence.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:47:17.211500+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1418"
+          }
+        ],
+        "format": {
+          "duration": "25.056667",
+          "size": "11622205"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/09-existing-blocked-request.mov",
+      "sha256": "fdb80d1d6f9eb1972530325781b09905c79718963330683eb3cd8fc53abf59bf",
+      "capture": {
+        "startedAt": "2026-11-17T02:49:15.437358+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 20,
+        "path": "release/video-ui-retake/clips/09-existing-blocked-request.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:49:35.901365+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1139"
+          }
+        ],
+        "format": {
+          "duration": "20.003333",
+          "size": "8261071"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/10-outcome-verification.mov",
+      "sha256": "94b383eb12988544468e19a28c1f8a28b709ade5270829474ebaf08b1021207e",
+      "capture": {
+        "startedAt": "2026-11-17T02:55:53.344153+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 40,
+        "path": "release/video-ui-retake/clips/10-outcome-verification.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T02:56:33.855472+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "2273"
+          }
+        ],
+        "format": {
+          "duration": "40.000000",
+          "size": "25367591"
+        }
+      }
+    },
+    {
+      "file": "release/video-ui-retake/clips/14-final-ledger.mov",
+      "sha256": "effbc1dd02109822a75d68e6b93bc2add36177797ee89e6e09938359beba8449",
+      "capture": {
+        "startedAt": "2026-11-17T03:14:31.184730+00:00",
+        "sourceMode": "INSTALLED_TEST_SITE",
+        "captureMethod": "macOS built-in continuous window recording",
+        "microphone": false,
+        "windowId": 8684,
+        "requestedSeconds": 25,
+        "path": "release/video-ui-retake/clips/14-final-ledger.mov",
+        "authorization": "User approved the built-in Mac recording command on 2026-11-17",
+        "finishedAt": "2026-11-17T03:14:56.671215+00:00",
+        "exitCode": 0
+      },
+      "media": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "width": 3182,
+            "height": 1942,
+            "nb_frames": "1404"
+          }
+        ],
+        "format": {
+          "duration": "25.003333",
+          "size": "12465001"
+        }
+      }
+    }
+  ],
+  "scenes": [
+    [
+      {
+        "src": "01-overview-inbox-map",
+        "a": 36.5,
+        "b": 47.0,
+        "d": 10.5,
+        "crop": [
+          208,
+          469,
+          2792,
+          1342
+        ]
+      }
+    ],
+    [
+      {
+        "src": "01-overview-inbox-map",
+        "a": 59.5,
+        "b": 68.0,
+        "d": 8.5,
+        "crop": [
+          208,
+          469,
+          2792,
+          1342
+        ]
+      }
+    ],
+    [
+      {
+        "src": "01-overview-inbox-map",
+        "a": 95.0,
+        "b": 100.0,
+        "d": 8.0,
+        "crop": [
+          208,
+          469,
+          2792,
+          1342
+        ]
+      }
+    ],
+    [
+      {
+        "src": "11-lifecycle-readiness",
+        "a": 2.0,
+        "b": 8.0,
+        "d": 6.0,
+        "crop": [
+          200,
+          520,
+          2780,
+          1290
+        ]
+      },
+      {
+        "src": "11-lifecycle-readiness",
+        "a": 22.0,
+        "b": 29.5,
+        "d": 7.5,
+        "crop": [
+          200,
+          520,
+          2780,
+          1290
+        ]
+      }
+    ],
+    [
+      {
+        "src": "13-rovo-corrected-evidence",
+        "a": 10.0,
+        "b": 12.0,
+        "d": 2.0,
+        "crop": [
+          208,
+          348,
+          2848,
+          1464
+        ]
+      },
+      {
+        "src": "15-rovo-readable-response",
+        "a": 1.0,
+        "b": 11.0,
+        "d": 10.0,
+        "crop": [
+          792,
+          364,
+          2170,
+          1070
+        ]
+      }
+    ],
+    [
+      {
+        "src": "06-final-independent-review",
+        "a": 6.0,
+        "b": 19.5,
+        "d": 13.5,
+        "crop": [
+          620,
+          602,
+          2340,
+          1040
+        ]
+      }
+    ],
+    [
+      {
+        "src": "07-final-governed-apply",
+        "a": 7.0,
+        "b": 28.0,
+        "d": 21.0,
+        "crop": [
+          604,
+          469,
+          2328,
+          1100
+        ]
+      }
+    ],
+    [
+      {
+        "src": "08-final-authority-evidence",
+        "a": 14.0,
+        "b": 23.0,
+        "d": 9.0,
+        "crop": [
+          602,
+          468,
+          2340,
+          1230
+        ]
+      }
+    ],
+    [
+      {
+        "src": "09-existing-blocked-request",
+        "a": 3.0,
+        "b": 10.5,
+        "d": 7.5,
+        "crop": [
+          604,
+          515,
+          2328,
+          1030
+        ]
+      }
+    ],
+    [
+      {
+        "src": "10-outcome-verification",
+        "a": 10.0,
+        "b": 21.3,
+        "d": 11.3,
+        "crop": [
+          886,
+          562,
+          1430,
+          1200
+        ]
+      },
+      {
+        "src": "10-outcome-verification",
+        "a": 35.0,
+        "b": 39.7,
+        "d": 5.7,
+        "crop": [
+          200,
+          520,
+          2780,
+          1290
+        ]
+      }
+    ],
+    [
+      {
+        "src": "14-final-ledger",
+        "a": 1.0,
+        "b": 9.0,
+        "d": 8.0,
+        "crop": [
+          208,
+          469,
+          2792,
+          1342
+        ]
+      }
+    ],
+    [
+      {
+        "src": "14-final-ledger",
+        "a": 12.0,
+        "b": 22.5,
+        "d": 10.5,
+        "crop": [
+          208,
+          469,
+          2792,
+          1342
+        ]
+      }
+    ]
+  ],
+  "privacy": "Browser chrome and unrelated chat list cropped. Names and direct account identifiers masked. Generic avatar initials may remain. Graph context excluded from recorded framing and exports.",
+  "integrity": [
+    "All product footage is decoded from continuous macOS MOV recordings, not still-image slides.",
+    "Main KAN-7 Apply transition is retained at original speed from source 07 at 7\u201328 seconds.",
+    "Review and apply use separate test accounts; this does not claim two different human reviewers.",
+    "KAN-7 retake followed a separately reviewed and authorized reset of only that new test issue. All three operations settled with recorded authority finalization.",
+    "The existing blocked KAN-2 request is a separate operation; the original unresolved claim remains untouched.",
+    "Outcome verification waiting time is shortened with a cut to the same recording\u2019s verified state.",
+    "The failed action take 04 and incorrect Rovo response 12 are retained privately and excluded.",
+    "A wrong-foreground region probe was discarded immediately and is not a source.",
+    "Only explicitly recorded short terminal reading holds extend clips.",
+    "Rovo was corrected and verified on development 4.3.0 after the UI action captures on 4.2.0; the UI design is unchanged.",
+    "The optional slip-budget policy remains an unpublished draft."
+  ],
+  "exports": [
+    {
+      "file": "release/video-ui-retake/export/promisory-live-demo.mp4",
+      "bytes": 6187246,
+      "sha256": "f9c281d40881a48851a6db8d10f433a694af207717dd51e8413b31bc7ceddd9c"
+    },
+    {
+      "file": "docs/submission/assets/ui-retake-2026-11-17/promisory-live-demo.srt",
+      "bytes": 2776,
+      "sha256": "b79d6a8c90fbac2239db4ad29ff44d02588217874dee957456908f7c12d59a42"
+    },
+    {
+      "file": "docs/submission/assets/ui-retake-2026-11-17/promisory-live-demo-transcript.txt",
+      "bytes": 2229,
+      "sha256": "c98d687187062f6a2b3102b916ea3a5c23f5ae72fc48edd45f392c89b759b853"
+    },
+    {
+      "file": "docs/submission/assets/ui-retake-2026-11-17/promisory-live-demo-contact-sheet.jpg",
+      "bytes": 769612,
+      "sha256": "7ce2e9f1758cea862313cef3aa2d9ce853e6d80c49adc10c15618ccf9e7780a1"
+    },
+    {
+      "file": "docs/submission/assets/ui-retake-2026-11-17/video-thumbnail.png",
+      "bytes": 375856,
+      "sha256": "7bd02c3ecc1e906e1c555660195c043300a98f2e69e0b93252c4bcc99ae3037b",
+      "derivation": "Final video frame at 122 seconds; editorial header and footer updated for cover use."
+    }
+  ],
+  "publishedVideo": "https://www.youtube.com/watch?v=4-14LxhZySo",
+  "visibility": "UNLISTED"
+}

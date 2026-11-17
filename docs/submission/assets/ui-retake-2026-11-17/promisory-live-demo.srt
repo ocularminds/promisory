@@ -1,0 +1,125 @@
+1
+00:00:00,350 --> 00:00:03,834
+A Jira issue can be done while the promise behind it is still
+
+2
+00:00:03,834 --> 00:00:08,289
+at risk. Promisory connects work to an accepted owner, an agreed deadline,
+and
+
+3
+00:00:08,289 --> 00:00:09,660
+evidence of the outcome.
+
+4
+00:00:10,850 --> 00:00:13,591
+This is the installed Forge app on our test site.
+
+5
+00:00:13,591 --> 00:00:17,843
+A reopened blocking bug appears in the owner's inbox, linked to the affected
+
+6
+00:00:17,843 --> 00:00:18,458
+commitment.
+
+7
+00:00:19,350 --> 00:00:24,464
+Jira's hierarchy stays intact. Stories, tasks, and bugs remain peers;
+
+8
+00:00:24,464 --> 00:00:26,391
+blockers are dependencies.
+
+9
+00:00:27,350 --> 00:00:32,134
+The lifecycle view connects goals, initiatives, and Confluence requirements.
+
+10
+00:00:32,134 --> 00:00:37,736
+The PRD revision, requirement mapping, and release readiness gate have
+separate versions.
+
+11
+00:00:40,850 --> 00:00:45,174
+Rovo reads the same permitted evidence and identifies the current blocker.
+
+12
+00:00:45,174 --> 00:00:49,615
+It can explain or draft, while review and execution remain explicit steps in
+
+13
+00:00:49,615 --> 00:00:50,083
+the app.
+
+14
+00:00:52,850 --> 00:00:57,626
+A separate reviewer account approves this exact proposal: move test issue
+KAN seven
+
+15
+00:00:57,626 --> 00:01:00,388
+from November twenty fourth to the twenty fifth.
+
+16
+00:01:00,388 --> 00:01:02,690
+The commitment deadline stays unchanged.
+
+17
+00:01:06,350 --> 00:01:11,387
+When we apply, the executor checks current evidence and Decionis authority
+before Jira
+
+18
+00:01:11,387 --> 00:01:15,077
+receives the write. Watch the result change to Change verified.
+
+19
+00:01:27,350 --> 00:01:30,323
+Jira is read again, and the authority record is saved.
+
+20
+00:01:30,323 --> 00:01:34,616
+The evidence binds the action to its intent hash and reviewed source
+revision.
+
+21
+00:01:36,350 --> 00:01:38,793
+This separate, existing request is blocked.
+
+22
+00:01:38,793 --> 00:01:43,054
+An unresolved claim cannot be treated as permission to try the write again.
+
+23
+00:01:43,850 --> 00:01:47,543
+Finally, the designated verifier accepts the agreed evidence.
+
+24
+00:01:47,543 --> 00:01:50,146
+Only then does the outcome become verified.
+
+25
+00:01:50,146 --> 00:01:54,565
+The original promise date remains visible when the Jira due date changes.
+
+26
+00:02:00,850 --> 00:02:06,240
+The ledger shows three verified outcomes, including one delivered after its
+original date.
+
+27
+00:02:06,240 --> 00:02:07,857
+History survives revisions.
+
+28
+00:02:08,850 --> 00:02:11,480
+Judges can install the separate judge app.
+
+29
+00:02:11,480 --> 00:02:14,862
+Successful governed writes run on the bound test site.
+
+30
+00:02:14,862 --> 00:02:18,558
+Promisory: see risk, act within limits, and prove delivery.
