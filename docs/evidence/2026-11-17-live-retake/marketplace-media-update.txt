@@ -1,0 +1,14 @@
+Please use these replacement media assets for Promisory for Jira. The enhanced UI has been deployed, and all product captures come from the installed app on our test site with explicitly labelled test records.
+
+The attached ZIP contains the full screenshots, 580 by 330 highlight previews, captions, source timestamps and hashes. Replace the three highlights with:
+Highlight 1: See what a change puts at risk — inbox-live.png / inbox-live-preview.png
+Highlight 2: Recover within agreed limits — governed-recovery-live.png / governed-recovery-live-preview.png
+Highlight 3: Prove the promise was kept — outcome-live.png / outcome-live-preview.png
+
+Live screen-recorded demo (2:19): https://www.youtube.com/watch?v=4-14LxhZySo
+Immutable media package: https://github.com/ocularminds/promisory/tree/13e4ed43633ff9b0dc35ddae0d853739a9f613e3/docs/submission/assets/ui-retake-2026-11-17
+Verification evidence: https://github.com/ocularminds/promisory/tree/13e4ed43633ff9b0dc35ddae0d853739a9f613e3/docs/evidence/2026-11-17-live-retake
+
+The Marketplace Forge profile is now 4.2.0. The demo shows a separately reviewed KAN-7 date change, Jira read-back, recorded authority evidence and explicit outcome acceptance. An existing blocked KAN-2 request is shown separately; its unresolved claim was not retried.
+
+The listing editor is locked while approval is pending, so please apply these replacements or advise how to update the media within this review. Publication remains manual. Successful governed writes currently use the bound test installation; customer executor provisioning and deletion verification remain launch work. The three partner/security review requirements are separate from this media update.

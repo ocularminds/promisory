@@ -24,17 +24,31 @@
     "captions": "Burned in and timed English SRT uploaded",
     "voice": "Standard synthetic Samantha",
     "soundtrack": "Original quiet instrumental",
-    "proof": "youtube-published.png"
+    "proof": "youtube-published.png",
+    "playbackVerified": {
+      "visibility": "Unlisted",
+      "quality": "Auto (1080p HD)",
+      "duration": "2:19",
+      "subtitleMenu": "English selected; English (auto-generated) separately available"
+    }
   },
   "marketplace": {
     "appId": 261938314,
     "status": "PENDING_REVIEW_LOCKED",
     "reviewTicket": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-186301",
-    "replacementMedia": "PREPARED",
+    "replacementMedia": "POSTED_TO_EXISTING_REVIEW",
     "requiredReviewActions": [
       "Partner verification ECOHELP-186302",
       "Privacy & Security tab",
       "Marketplace Security questionnaire"
-    ]
+    ],
+    "receipt": "marketplace-media-transfer.json",
+    "proof": "marketplace-media-posted.jpg"
+  },
+  "captureSettingsRestored": {
+    "browserViewportOverride": "RESET",
+    "edgeTestSiteZoom": "100%",
+    "chromeTestSiteZoom": "100%",
+    "chromeJiraSidebar": "EXPANDED"
   }
 }

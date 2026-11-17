@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "promisory.marketplace-media-transfer.v1",
+  "preparedAt": "2026-11-17T03:57:02.949379+00:00",
+  "reviewTicket": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-186301",
+  "assetCommit": "13e4ed43633ff9b0dc35ddae0d853739a9f613e3",
+  "archive": "release/video-ui-retake/promisory-live-media-2026-11-17.zip",
+  "bytes": 5347215,
+  "sha256": "62c9177781aa2ad4cbed9a729f1b767ab63ac5b23e89ea16df0fbda9e018d540",
+  "videoUrl": "https://www.youtube.com/watch?v=4-14LxhZySo",
+  "status": "POSTED_TO_EXISTING_REVIEW",
+  "commentSource": "marketplace-media-update.txt",
+  "recordedAt": "2026-11-17T04:05:34.294416+00:00",
+  "confirmation": "A new authenticated-submitter activity entry contains the media update and an Open promisory-live-media-2026-11-17.zip control.",
+  "displayedCommentTime": "Today 9:57 PM",
+  "listingStatus": "Waiting for customer",
+  "proof": "marketplace-media-posted.jpg",
+  "proofCrop": [
+    160,
+    84,
+    1900,
+    1698
+  ],
+  "sourceScreenshotSha256": "0de5f9defe6d409761dd35cd06c79ea78a94772600abe221484f71b8331fb43d"
+}

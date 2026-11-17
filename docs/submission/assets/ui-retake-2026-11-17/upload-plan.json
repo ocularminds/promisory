@@ -1,5 +1,5 @@
 {
-  "status": "DEVPOST_SUBMITTED_MARKETPLACE_REPLACEMENT_MEDIA_PREPARED",
+  "status": "DEVPOST_SUBMITTED_MARKETPLACE_MEDIA_POSTED_TO_REVIEW",
   "sourceDocument": "docs/submission/devpost/submission-v2.md",
   "devpost": {
     "thumbnail": "devpost-thumbnail.png",
@@ -80,6 +80,10 @@
         "caption": "The designated verifier accepts the agreed evidence. Jira status and the original commitment deadline remain separate."
       }
     ],
-    "note": "Use the verified ordinary governed-change flow; separate slip-budget policy remains a draft. Marketplace listing is pending approval and locked for ordinary edits."
+    "note": "Use the verified ordinary governed-change flow; separate slip-budget policy remains a draft. Marketplace listing is pending approval and locked for ordinary edits.",
+    "replacementMedia": "POSTED_TO_EXISTING_REVIEW",
+    "reviewTicket": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-186301",
+    "archive": "release/video-ui-retake/promisory-live-media-2026-11-17.zip",
+    "listingMediaApplication": "AWAITING_ATLASSIAN_REVIEW"
   }
 }
