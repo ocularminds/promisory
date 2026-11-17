@@ -12,6 +12,7 @@ import {
 } from "@promisory/contracts";
 import {
   activeVersion,
+  assessSlip,
   commitmentLifecycle,
   describeChange,
   type GraphRelations,
@@ -38,6 +39,11 @@ import {
 } from "./client";
 import { EmbeddedView } from "./embedded";
 
+const provenanceLabels: Record<string, string> = {
+  EXPLICIT_ADMIN: "Set by an administrator",
+  OWNER_ACCEPTANCE: "Accepted by the owner",
+  CONFIRMED_TEAM_MAPPING: "Confirmed team mapping",
+};
 const navigation = [
   ["overview", "Overview", "▦"],
   ["lifecycle", "Product lifecycle", "◎"],
@@ -94,6 +100,10 @@ export function App() {
     value?: GraphRelations;
   }>();
   const [ledger, setLedger] = useState<PromiseLedger>();
+  const detailHeading = useRef<HTMLHeadingElement>(null),
+    detailTrigger = useRef<HTMLElement | null>(null);
+  const [recoveryIssue, setRecoveryIssue] = useState<string>();
+  const [recoveryDate, setRecoveryDate] = useState("");
   const initial = useRef(false),
     loadSequence = useRef(0),
     connectionCheckSequence = useRef(0);
@@ -262,6 +272,26 @@ export function App() {
       active = false;
     };
   }, [client, projectId, selected]);
+  // Move focus into the detail when a commitment is selected, unless a dialog owns it.
+  useEffect(() => {
+    if (!selected || form) return;
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && !active.closest(".detail"))
+      detailTrigger.current = active;
+    detailHeading.current?.focus();
+  }, [selected]);
+  function closeDetail() {
+    setSelected(undefined);
+    const trigger = detailTrigger.current;
+    requestAnimationFrame(() => {
+      if (trigger?.isConnected) trigger.focus();
+    });
+  }
+  useEffect(() => {
+    if (form !== "recovery") return;
+    setRecoveryIssue(undefined);
+    setRecoveryDate("");
+  }, [form]);
   async function command<T = unknown>(
     name: CommandName,
     input: unknown,
@@ -361,6 +391,60 @@ export function App() {
         !c.value.closure && assessment(c.value.id)?.coverage !== "COMPLETE",
     ).length,
   };
+  const formatDue = (instant: string, timeZone: string) =>
+    new Intl.DateTimeFormat("en-GB", {
+      day: "numeric",
+      month: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone,
+    }).format(new Date(instant));
+  const formatMoney = (amount: number, currency: string) =>
+    new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  /** The most consequential open commitment: missed before at risk, then stated value, then soonest deadline. */
+  const decision = (() => {
+    if (!workspace) return undefined;
+    const rank = (h?: string) =>
+      h === "BREACHED" ? 0 : h === "AT_RISK" ? 1 : 9;
+    const candidates = workspace.commitments
+      .filter((c) => !c.value.closure && activeVersion(c.value))
+      .map((c) => ({
+        record: c,
+        version: activeVersion(c.value)!,
+        diagnostic: assessment(c.value.id),
+      }))
+      .filter((x) => x.diagnostic && rank(x.diagnostic.health) < 9)
+      .sort(
+        (x, y) =>
+          rank(x.diagnostic!.health) - rank(y.diagnostic!.health) ||
+          (y.version.valueAtStake?.amount ?? 0) -
+            (x.version.valueAtStake?.amount ?? 0) ||
+          x.version.agreedDueAt.localeCompare(y.version.agreedDueAt),
+      );
+    const top = candidates[0];
+    if (!top) return undefined;
+    const blocking = top.diagnostic!.reasons.find(
+      (r) => r.code === "BLOCKING_DEFECT",
+    );
+    const pathNodes = top
+      .diagnostic!.paths.filter(
+        (p) => !blocking || blocking.pathIds.includes(p.id),
+      )
+      .flatMap((p) => p.nodeIds);
+    const blocker = workspace.work.work.find(
+      (w) => pathNodes.includes(w.id) && w.type === "BUG" && !w.resolved,
+    );
+    return {
+      ...top,
+      reason: (blocking ?? top.diagnostic!.reasons[0])?.explanation,
+      blocker,
+      others: candidates.length - 1,
+    };
+  })();
   function selectCommitment(id: string) {
     setSelected(id);
     setPage("overview");
@@ -603,95 +687,172 @@ export function App() {
                       </button>
                     ))}
                   </div>
-                  <div className="metrics">
-                    <div className="metric">
-                      <span>Visible commitments</span>
-                      <strong>{shown.length}</strong>
-                      <small>Within your selected scope</small>
-                    </div>
-                    <div className="metric">
-                      <span>Need attention</span>
-                      <strong className="text-danger">{counts.atRisk}</strong>
-                      <small>Known risks or missed deadlines</small>
-                    </div>
-                    <div className="metric">
-                      <span>Context incomplete</span>
-                      <strong>{counts.unknown}</strong>
-                      <small>Coverage stays explicit</small>
-                    </div>
-                    <div className="metric">
-                      <span>Outcomes verified</span>
-                      <strong className="text-success">
-                        {counts.verified}
-                      </strong>
-                      <small>Evidence against agreed conditions</small>
-                    </div>
-                  </div>
-                  {ledger && (
-                    <section className="card" aria-labelledby="ledger-title">
-                      <h2 id="ledger-title">Promise ledger</h2>
-                      <div className="ledger-grid">
-                        <div>
-                          <small>Stated value exposed</small>
-                          <strong>
-                            {ledger.exposure.length
-                              ? ledger.exposure
-                                  .map((e) =>
-                                    new Intl.NumberFormat(undefined, {
-                                      style: "currency",
-                                      currency: e.currency,
-                                      maximumFractionDigits: 0,
-                                    }).format(e.amount),
-                                  )
-                                  .join(" + ")
-                              : "None stated"}
-                          </strong>
-                          <small>
-                            {ledger.counts.atRisk + ledger.counts.breachedOpen}{" "}
-                            at risk or missed
-                            {ledger.exposureValueNotStated > 0 &&
-                              ` · ${ledger.exposureValueNotStated} without a stated value`}
-                          </small>
-                        </div>
-                        <div>
-                          <small>Kept by the original date</small>
-                          <strong>
-                            {ledger.reliability.value === null
-                              ? `${ledger.reliability.numerator} of ${ledger.reliability.denominator}`
-                              : `${Math.round(ledger.reliability.value * 100)}%`}
-                          </strong>
-                          <small>
-                            {ledger.counts.fulfilledLate} late ·{" "}
-                            {ledger.counts.cancelled} cancelled ·{" "}
-                            {ledger.counts.superseded} superseded
-                          </small>
-                        </div>
-                        <div>
-                          <small>Notice before a slip</small>
-                          <strong>
-                            {ledger.noticeLeadTimeDays.median === null
-                              ? "No renegotiations"
-                              : `${ledger.noticeLeadTimeDays.median} days`}
-                          </strong>
-                          <small>
-                            Median days a new date was agreed before the
-                            original deadline
-                          </small>
-                        </div>
-                        <div>
-                          <small>Owned and available</small>
-                          <strong>
-                            {ledger.ownedRate.numerator} of{" "}
-                            {ledger.ownedRate.denominator}
-                          </strong>
-                          <small>
-                            Open commitments with an available owner
-                          </small>
-                        </div>
+                  {decision ? (
+                    <section
+                      className="card decision"
+                      aria-labelledby="decision-title"
+                    >
+                      <div className="decision-main">
+                        <p className="eyebrow">NEEDS A DECISION</p>
+                        <h2 id="decision-title">
+                          {decision.version.title}{" "}
+                          {decision.diagnostic!.health === "BREACHED"
+                            ? "missed its deadline"
+                            : "is at risk"}
+                        </h2>
+                        <p>
+                          {decision.blocker
+                            ? `${decision.blocker.displayKey} · ${decision.blocker.title} (${decision.blocker.statusName.toLowerCase()}) blocks the delivery path.`
+                            : decision.reason}
+                        </p>
+                        <p className="muted">
+                          Owner{" "}
+                          {person(decision.version.accountableOwnerAccountId)} ·
+                          due{" "}
+                          {formatDue(
+                            decision.version.agreedDueAt,
+                            decision.version.timeZone,
+                          )}
+                          {decision.version.valueAtStake &&
+                            ` · ${formatMoney(decision.version.valueAtStake.amount, decision.version.valueAtStake.currency)} stated at stake`}
+                          {decision.others > 0 &&
+                            ` · ${decision.others} more ${decision.others === 1 ? "needs" : "need"} attention`}
+                        </p>
                       </div>
-                      <p className="footnote">{ledger.notes.join(" ")}</p>
+                      <div className="decision-actions">
+                        <button
+                          className="primary"
+                          onClick={() => {
+                            setSelected(decision.record.value.id);
+                            setForm("recovery");
+                          }}
+                        >
+                          Compare recovery options
+                        </button>
+                        <button
+                          onClick={() =>
+                            selectCommitment(decision.record.value.id)
+                          }
+                        >
+                          Open commitment
+                        </button>
+                      </div>
                     </section>
+                  ) : (
+                    workspace.commitments.length > 0 && (
+                      <section
+                        className="card decision calm"
+                        aria-labelledby="decision-title"
+                      >
+                        <div className="decision-main">
+                          <p className="eyebrow">NO DECISION WAITING</p>
+                          <h2 id="decision-title">
+                            No known risk in the commitments you can see.
+                          </h2>
+                          {counts.unknown > 0 && (
+                            <p className="muted">
+                              {counts.unknown} still{" "}
+                              {counts.unknown === 1 ? "has" : "have"} incomplete
+                              context, so this is not a guarantee.
+                            </p>
+                          )}
+                        </div>
+                      </section>
+                    )
                   )}
+                  <section
+                    className="card ledger"
+                    aria-labelledby="ledger-title"
+                  >
+                    <div className="section-heading">
+                      <h2 id="ledger-title">Promise ledger</h2>
+                      <span className="count-text">
+                        {shown.length} visible{" "}
+                        {shown.length === 1 ? "commitment" : "commitments"}
+                      </span>
+                    </div>
+                    <div className="ledger-grid">
+                      <LedgerCell
+                        label="Value at risk"
+                        tone="danger"
+                        value={
+                          ledger?.exposure.length
+                            ? ledger.exposure
+                                .map((e) => formatMoney(e.amount, e.currency))
+                                .join(" + ")
+                            : undefined
+                        }
+                        empty={ledger ? "No value stated" : "Checking…"}
+                        note={`${counts.atRisk} ${counts.atRisk === 1 ? "needs" : "need"} attention${ledger?.exposureValueNotStated ? ` · ${ledger.exposureValueNotStated} without a stated value` : ""}`}
+                      />
+                      <LedgerCell
+                        label="Kept by the original date"
+                        value={
+                          !ledger || ledger.reliability.denominator === 0
+                            ? undefined
+                            : ledger.reliability.value === null
+                              ? `${ledger.reliability.numerator} of ${ledger.reliability.denominator}`
+                              : `${Math.round(ledger.reliability.value * 100)}%`
+                        }
+                        empty={ledger ? "Nothing due yet" : "Checking…"}
+                        note={
+                          ledger
+                            ? `${ledger.counts.fulfilledLate} late · ${ledger.counts.cancelled} cancelled · ${ledger.counts.superseded} superseded`
+                            : ""
+                        }
+                      />
+                      <LedgerCell
+                        label="Notice before a slip"
+                        value={
+                          ledger?.noticeLeadTimeDays.median != null
+                            ? `${ledger.noticeLeadTimeDays.median} days`
+                            : undefined
+                        }
+                        empty={ledger ? "No renegotiations" : "Checking…"}
+                        note="Median days a new date was agreed before the original"
+                      />
+                      <LedgerCell
+                        label="Owned and available"
+                        value={
+                          ledger && ledger.ownedRate.denominator > 0
+                            ? `${ledger.ownedRate.numerator} of ${ledger.ownedRate.denominator}`
+                            : undefined
+                        }
+                        empty={ledger ? "No open commitments" : "Checking…"}
+                        note="Open commitments with an available owner"
+                      />
+                      <LedgerCell
+                        label="Context incomplete"
+                        value={
+                          counts.unknown ? String(counts.unknown) : undefined
+                        }
+                        empty="None"
+                        note="Missing access or sources stay visible"
+                      />
+                      <LedgerCell
+                        label="Outcomes verified"
+                        tone="success"
+                        value={
+                          counts.verified ? String(counts.verified) : undefined
+                        }
+                        empty="None yet"
+                        note="Against the agreed acceptance conditions"
+                      />
+                    </div>
+                    <p className="footnote">
+                      Only commitments you can access are counted.
+                    </p>
+                    {ledger && (
+                      <details className="ledger-method">
+                        <summary>How this is calculated</summary>
+                        <ul>
+                          {ledger.notes.map((n) => (
+                            <li key={n}>{n}</li>
+                          ))}
+                        </ul>
+                      </details>
+                    )}
+                  </section>
                   {workspace.changeImpacts.length > 0 && (
                     <section className="card" aria-labelledby="changes-title">
                       <h2 id="changes-title">What changed</h2>
@@ -897,18 +1058,26 @@ export function App() {
                       )}
                     </section>
                     {current && agreement && (
-                      <aside className="card detail">
+                      <aside
+                        className="card detail"
+                        aria-labelledby="detail-title"
+                        onKeyDown={(e) => {
+                          if (e.key === "Escape" && !form) closeDetail();
+                        }}
+                      >
                         <div className="section-heading">
                           <p className="eyebrow">COMMITMENT DETAIL</p>
                           <button
                             className="icon-button"
                             aria-label="Close commitment detail"
-                            onClick={() => setSelected(undefined)}
+                            onClick={closeDetail}
                           >
                             ×
                           </button>
                         </div>
-                        <h2>{agreement.title}</h2>
+                        <h2 id="detail-title" ref={detailHeading} tabIndex={-1}>
+                          {agreement.title}
+                        </h2>
                         <p>
                           {agreement.outcome ?? "Outcome needs confirmation."}
                         </p>
@@ -1250,8 +1419,8 @@ export function App() {
                         <p>{person(p.ownerAccountId)}</p>
                         <span className="relationship">
                           {p.nativeWorkNodeId
-                            ? "Bound to a configured native work level"
-                            : "Explicit planning relationship"}
+                            ? "Linked to a configured Jira level"
+                            : "Planning link · not a Jira parent"}
                         </span>
                       </article>
                     ))}
@@ -1305,11 +1474,12 @@ export function App() {
                                 </button>
                               )}
                               <p>
-                                {person(a.ownerAccountId)} · Source revision{" "}
+                                {person(a.ownerAccountId)} · page version{" "}
                                 {a.source.sourceRevision}
                               </p>
                               <p className="muted">
-                                Page {a.pageId} · document organization
+                                The page tree organizes documents; it does not
+                                create Jira parents.
                               </p>
                             </div>
                           </article>
@@ -1416,8 +1586,12 @@ export function App() {
                                 (version) => version.id === g.gateId,
                               )?.version
                             }
-                            {" · "}Applicability:{" "}
-                            {g.applicability.toLowerCase()}
+                            {" · "}
+                            {g.applicability === "CURRENT"
+                              ? "applies to the current sources"
+                              : g.applicability === "STALE"
+                                ? "sources changed since this was prepared"
+                                : "sources cannot all be checked"}
                           </p>
                           {g.conditions.map((c) => (
                             <p key={c.conditionId} className="condition-row">
@@ -1535,7 +1709,7 @@ export function App() {
                         <thead>
                           <tr>
                             <th>Work item</th>
-                            <th>Native parent</th>
+                            <th>Jira parent</th>
                             <th>Assignee</th>
                             <th>Current state</th>
                             <th>Upstream impact</th>
@@ -1562,10 +1736,7 @@ export function App() {
                                   >
                                     {w.displayKey} · {w.title}
                                   </button>
-                                  <small>
-                                    {w.nativeTypeName} · native level{" "}
-                                    {w.hierarchyLevel}
-                                  </small>
+                                  <small>{w.nativeTypeName}</small>
                                 </td>
                                 <td>
                                   {workspace.work.work.find(
@@ -1573,7 +1744,7 @@ export function App() {
                                   )?.displayKey ??
                                     (w.parentId
                                       ? "Outside visible scope"
-                                      : "No native parent")}
+                                      : "Top level")}
                                 </td>
                                 <td>{person(w.assigneeAccountId)}</td>
                                 <td>
@@ -1993,7 +2164,9 @@ export function App() {
                               {w.displayKey} · {w.title}
                             </b>
                             <small>
-                              Source revision {w.source.sourceRevision}
+                              {Number.isNaN(Date.parse(w.source.sourceRevision))
+                                ? `Jira version ${w.source.sourceRevision}`
+                                : `Updated in Jira ${formatDue(w.source.sourceRevision, Intl.DateTimeFormat().resolvedOptions().timeZone)}`}
                             </small>
                             {client.openIssue && (
                               <button
@@ -2031,7 +2204,10 @@ export function App() {
                           <div>
                             <b>{item.title}</b>
                             <small>{item.status}</small>
-                            <span className="mono muted">{item.id}</span>
+                            <details className="evidence-id">
+                              <summary>View evidence</summary>
+                              <span className="mono muted">{item.id}</span>
+                            </details>
                           </div>
                         </article>
                       ))}
@@ -2380,9 +2556,10 @@ export function App() {
                                   {b.scopeType.toLowerCase()} · {b.scopeId}
                                 </td>
                                 <td>
-                                  {b.provenance
-                                    .toLowerCase()
-                                    .replaceAll("_", " ")}
+                                  {provenanceLabels[b.provenance] ??
+                                    b.provenance
+                                      .toLowerCase()
+                                      .replaceAll("_", " ")}
                                 </td>
                               </tr>
                             ))}
@@ -2401,7 +2578,7 @@ export function App() {
                     <div className="work-chips">
                       {workspace.work.workTypes.map((type, i) => (
                         <span key={`${type.id}-${i}`}>
-                          {type.name} · native level {type.hierarchyLevel}
+                          {type.name} · hierarchy level {type.hierarchyLevel}
                         </span>
                       ))}
                     </div>
@@ -2527,39 +2704,45 @@ export function App() {
             setPage("reviews");
           }}
         >
-          <div className="option-cards">
-            <div>
-              <b>Repair the blocker</b>
-              <p>Coordinate linked work and review a delivery-date change.</p>
-            </div>
-            <div>
-              <b>Reduce scope</b>
-              <p>
-                Identify a smaller outcome, then propose a separate agreement
-                revision.
-              </p>
-            </div>
-            <div>
-              <b>Renegotiate</b>
-              <p>
-                Propose a new promise with the owner. Preserve the original
-                deadline.
-              </p>
-            </div>
-          </div>
-          <FormField name="alternative" label="Recovery approach">
-            <select id="alternative" name="alternative">
-              <option value="REPAIR">Repair the blocker</option>
-              <option value="REDUCE_SCOPE">
-                Reduce scope — engineering date only
-              </option>
-              <option value="RENEGOTIATE">
-                Renegotiate — engineering date only
-              </option>
-            </select>
-          </FormField>
+          <fieldset className="option-cards">
+            <legend>Recovery approach</legend>
+            {(
+              [
+                [
+                  "REPAIR",
+                  "Repair the blocker",
+                  "Coordinate linked work and review a delivery-date change.",
+                ],
+                [
+                  "REDUCE_SCOPE",
+                  "Reduce scope",
+                  "Change the engineering date now; propose a smaller outcome as a separate agreement revision.",
+                ],
+                [
+                  "RENEGOTIATE",
+                  "Renegotiate",
+                  "Change the engineering date now; agree a new promise with the owner. The original deadline stays on record.",
+                ],
+              ] as const
+            ).map(([value, title, text], index) => (
+              <label key={value} className="option-card">
+                <input
+                  type="radio"
+                  name="alternative"
+                  value={value}
+                  defaultChecked={index === 0}
+                />
+                <b>{title}</b>
+                <span>{text}</span>
+              </label>
+            ))}
+          </fieldset>
           <FormField name="issue" label="Exact Jira target">
-            <select id="issue" name="issue">
+            <select
+              id="issue"
+              name="issue"
+              onChange={(e) => setRecoveryIssue(e.target.value)}
+            >
               {workspace.work.work
                 .filter((w) => active.supportingWorkIds.includes(w.id))
                 .map((w) => (
@@ -2571,13 +2754,84 @@ export function App() {
             </select>
           </FormField>
           <FormField name="newdate" label="Proposed Jira due date">
-            <input id="newdate" name="newdate" type="date" required />
+            <input
+              id="newdate"
+              name="newdate"
+              type="date"
+              required
+              value={recoveryDate}
+              onChange={(e) => setRecoveryDate(e.target.value)}
+            />
           </FormField>
-          <p className="callout">
-            This proposal changes only the Jira date after review and authority.
-            The commitment deadline remains{" "}
-            {new Date(active.agreedDueAt).toLocaleDateString("en-GB")}.
-          </p>
+          {(() => {
+            const target =
+              workspace.work.work.find(
+                (w) =>
+                  w.externalId === recoveryIssue &&
+                  active.supportingWorkIds.includes(w.id),
+              ) ??
+              workspace.work.work.find((w) =>
+                active.supportingWorkIds.includes(w.id),
+              );
+            const promise = formatDue(active.agreedDueAt, active.timeZone);
+            if (!target || !/^\d{4}-\d{2}-\d{2}$/.test(recoveryDate))
+              return (
+                <p className="callout" aria-live="polite">
+                  Pick a date to check it against the promise ({promise}) and
+                  any agreed slip budget. Only the Jira date changes; the
+                  commitment deadline stays as agreed.
+                </p>
+              );
+            let slip: ReturnType<typeof assessSlip>;
+            try {
+              slip = assessSlip(
+                active,
+                target.targetDate ?? null,
+                recoveryDate,
+              );
+            } catch {
+              return null;
+            }
+            const days = Math.abs(slip.delayDays);
+            const ok = slip.withinBudget;
+            return (
+              <div
+                className={`callout slip-check ${ok ? "ok" : "attention"}`}
+                aria-live="polite"
+              >
+                <b>
+                  {ok
+                    ? "Inside the agreed envelope"
+                    : "Needs escalation before it can be applied"}
+                </b>
+                <ul>
+                  <li>
+                    {target.targetDate === null
+                      ? `${target.displayKey} has no Jira date yet.`
+                      : slip.delayDays === 0
+                        ? `Same as ${target.displayKey}'s current date.`
+                        : `${slip.delayDays > 0 ? "+" : "−"}${days} ${days === 1 ? "day" : "days"} ${slip.delayDays > 0 ? "later" : "earlier"} than ${target.displayKey}'s current date.`}
+                  </li>
+                  <li>
+                    {slip.budgetDays === undefined
+                      ? "No slip budget is agreed for this commitment."
+                      : slip.delayDays <= slip.budgetDays
+                        ? `Within the ${slip.budgetDays}-day slip budget.`
+                        : `Outside the ${slip.budgetDays}-day slip budget.`}
+                  </li>
+                  <li>
+                    {slip.exceedsCommitmentDeadline
+                      ? `Moves past the promise date (${promise}). Renegotiate the promise separately.`
+                      : `Still before the promise date (${promise}).`}
+                  </li>
+                </ul>
+                <small>
+                  This is a preview. Review, institutional authorization and
+                  current Jira values are checked again before anything changes.
+                </small>
+              </div>
+            );
+          })()}
         </CommandForm>
       )}
       {form === "close" && current && active && (
@@ -3083,5 +3337,31 @@ function MappingForm({
         </>
       )}
     </CommandForm>
+  );
+}
+
+function LedgerCell({
+  label,
+  value,
+  empty,
+  note,
+  tone,
+}: {
+  label: string;
+  value: string | undefined;
+  empty: string;
+  note: string;
+  tone?: "danger" | "success";
+}) {
+  return (
+    <div>
+      <small>{label}</small>
+      {value ? (
+        <strong className={tone ? `text-${tone}` : undefined}>{value}</strong>
+      ) : (
+        <strong className="empty">{empty}</strong>
+      )}
+      {note && <small>{note}</small>}
+    </div>
   );
 }
