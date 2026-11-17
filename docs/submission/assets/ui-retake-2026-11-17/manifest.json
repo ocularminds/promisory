@@ -1,0 +1,409 @@
+{
+  "schemaVersion": "promisory.live-ui-stills.v1",
+  "master": "092c2f7",
+  "applicationVersion": "4.2.0",
+  "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b",
+  "source": "Native screenshots of the installed Forge development app on the Decionis Promisory test site",
+  "mode": "INSTALLED_TEST_SITE",
+  "exampleMode": false,
+  "edits": [
+    "Crop browser chrome",
+    "Redact account names and initials",
+    "Proportional resize with a neutral margin"
+  ],
+  "graphDataIncluded": false,
+  "images": [
+    {
+      "file": "overview-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "The installed app shows the decision card and promise ledger against original deadlines.",
+      "sourceFile": "release/video-ui-retake/stills/04-overview-ledger-live.png",
+      "capturedAt": "2026-11-17T01:46:08.909Z",
+      "sourceSha256": "8d3f3f5d115875e8b204416fc348fd901e03eab7669729a56a11589b7f2e6ba0",
+      "sha256": "a1e6548eadffc8baf6eea40dee0f955a55815b782eed8d311b2e5537f88e3f29",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          2538,
+          57,
+          2561,
+          76
+        ],
+        [
+          2591,
+          56,
+          2655,
+          76
+        ],
+        [
+          2656,
+          55,
+          2741,
+          80
+        ],
+        [
+          518,
+          692,
+          591,
+          715
+        ],
+        [
+          593,
+          692,
+          691,
+          720
+        ]
+      ]
+    },
+    {
+      "file": "inbox-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "A real KAN-3 status change is grouped under the affected commitment in the owner inbox.",
+      "sourceFile": "release/video-ui-retake/stills/02-inbox-live.png",
+      "capturedAt": "2026-11-17T01:43:58.175Z",
+      "sourceSha256": "4f53724be38dcfcd8867c74593229dfc98c14d388f899bb8bbb8af78cf077a3a",
+      "sha256": "3b3b053748300904557b87e23b85f3a219f36fa22879d509725af58cd2fbfdcf",
+      "sourceCrop": [
+        119,
+        408,
+        2871,
+        1698
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          2437,
+          70,
+          2465,
+          92
+        ],
+        [
+          2504,
+          69,
+          2581,
+          93
+        ],
+        [
+          2584,
+          69,
+          2689,
+          98
+        ]
+      ],
+      "preview": {
+        "file": "inbox-live-preview.png",
+        "width": 580,
+        "height": 330,
+        "sha256": "c853d0dd1d52621aea2b484af16d47212bd0be66db1cece8255c0c5c99d97931"
+      }
+    },
+    {
+      "file": "governed-recovery-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "The independently reviewed KAN-6 date change is verified by Jira read-back; authority finalization is recorded.",
+      "sourceFile": "release/video-ui-retake/stills/08-governed-change-verified-live.png",
+      "capturedAt": "2026-11-17T01:49:09.056Z",
+      "sourceSha256": "ad8852098b64883775e60ddc3951f0295f63f3a66bcacb0697d19e4be1d6a78f",
+      "sha256": "8fce85a793649ae5e5b8bf5a4f8efbc42234f90fa4c865e89f9786de66c1a63c",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          469,
+          1069,
+          532,
+          1089
+        ],
+        [
+          534,
+          1068,
+          619,
+          1093
+        ],
+        [
+          2538,
+          57,
+          2561,
+          76
+        ],
+        [
+          2591,
+          56,
+          2655,
+          76
+        ],
+        [
+          2656,
+          55,
+          2741,
+          80
+        ]
+      ],
+      "preview": {
+        "file": "governed-recovery-live-preview.png",
+        "width": 580,
+        "height": 330,
+        "sha256": "6de817f800ca7a7c9136f558177fa269841ae0d11e55fc45f74f5a621f412ae8"
+      }
+    },
+    {
+      "file": "outcome-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "Outcome acceptance is explicit and remains separate from Jira status and the agreed commitment deadline.",
+      "sourceFile": "release/video-ui-retake/stills/07-outcome-verified-live.png",
+      "capturedAt": "2026-11-17T01:48:31.136Z",
+      "sourceSha256": "c359e14c7b517c4cdab3592215c3145ceb4db58d3bbb1a5161561723d2cf9eaf",
+      "sha256": "fe39df98b564d55ce1884c931f4e31a3628588ec7da3b30ec40085ec43614e4a",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          2156,
+          510,
+          2224,
+          531
+        ],
+        [
+          2226,
+          509,
+          2317,
+          535
+        ],
+        [
+          2265,
+          1135,
+          2328,
+          1155
+        ],
+        [
+          2329,
+          1134,
+          2414,
+          1159
+        ]
+      ],
+      "preview": {
+        "file": "outcome-live-preview.png",
+        "width": 580,
+        "height": 330,
+        "sha256": "ef57718423f8ac3803bd44f795d749ff703036a51a59915f203601c113a213be"
+      }
+    },
+    {
+      "file": "requirements-readiness-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "PRD revision 2, mapping version 2, and release-readiness gate version 3 remain distinct.",
+      "sourceFile": "release/video-ui-retake/stills/06-requirements-readiness-live.png",
+      "capturedAt": "2026-11-17T01:46:51.982Z",
+      "sourceSha256": "f0d2129916fc364ac07bfcf372ab8abcfad808dda884815c454a6f92b59d12a0",
+      "sha256": "00022a4134f9caa6ca818dce2d189ed23313a9a2f7f6a476c8432d368d50fe63",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          552,
+          322,
+          616,
+          342
+        ],
+        [
+          617,
+          321,
+          702,
+          346
+        ]
+      ]
+    },
+    {
+      "file": "lifecycle-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "Planning context is visibly separate from native Jira ancestry across ten lifecycle phases.",
+      "sourceFile": "release/video-ui-retake/stills/05-lifecycle-context-live.png",
+      "capturedAt": "2026-11-17T01:46:30.956Z",
+      "sourceSha256": "513c3a37fd0704778d484656f6e7cd114a95e1a176fc30e2c6b2ae7beccfadfe",
+      "sha256": "44d2a84d7f75d3738816e0cab1ecdc246d8d4fdd7cc2357be423379b838fba4c",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          436,
+          528,
+          499,
+          548
+        ],
+        [
+          501,
+          527,
+          585,
+          552
+        ],
+        [
+          552,
+          1236,
+          616,
+          1256
+        ],
+        [
+          617,
+          1235,
+          702,
+          1260
+        ],
+        [
+          1614,
+          528,
+          1677,
+          548
+        ],
+        [
+          1679,
+          527,
+          1764,
+          552
+        ],
+        [
+          2538,
+          57,
+          2561,
+          76
+        ],
+        [
+          2591,
+          56,
+          2655,
+          76
+        ],
+        [
+          2656,
+          55,
+          2741,
+          80
+        ]
+      ]
+    },
+    {
+      "file": "work-map-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "Jira parentage and issue types are rendered from the installed test site.",
+      "sourceFile": "release/video-ui-retake/stills/03-work-map-live.png",
+      "capturedAt": "2026-11-17T01:46:05.166Z",
+      "sourceSha256": "9b9093761858fd0aaa5345109d13f862f02e298090cb53d8da37af6faeb4892c",
+      "sha256": "035801b0a49f70b5e11cd1c59d8702b740f165ade383711ff2346aa3915246b9",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          1787,
+          808,
+          1850,
+          828
+        ],
+        [
+          1851,
+          807,
+          1936,
+          832
+        ],
+        [
+          1787,
+          1135,
+          1850,
+          1155
+        ],
+        [
+          1851,
+          1134,
+          1936,
+          1159
+        ],
+        [
+          2538,
+          57,
+          2561,
+          76
+        ],
+        [
+          2591,
+          56,
+          2655,
+          76
+        ],
+        [
+          2656,
+          55,
+          2741,
+          80
+        ]
+      ]
+    },
+    {
+      "file": "authority-evidence-live.png",
+      "width": 1840,
+      "height": 900,
+      "caption": "The exact intent hash, reviewed source revision, and recorded authority finalization are visible.",
+      "sourceFile": "release/video-ui-retake/stills/09-authority-evidence-live.png",
+      "capturedAt": "2026-11-17T01:49:34.465Z",
+      "sourceSha256": "df524a1aa4524de05463956ea6ec65fe45b46929cc2d44517e69ac6b1e8b6dc7",
+      "sha256": "24c78f928b80f8bdd67610a4821ad346fcf2a256e7917c407628ddce1fc2c217",
+      "sourceCrop": [
+        96,
+        357,
+        2888,
+        1700
+      ],
+      "privacyMasksWithinCrop": [
+        [
+          469,
+          587,
+          533,
+          607
+        ],
+        [
+          534,
+          586,
+          619,
+          611
+        ]
+      ]
+    }
+  ],
+  "thumbnail": {
+    "file": "devpost-thumbnail.png",
+    "width": 1200,
+    "height": 800,
+    "sha256": "8cc57915d004d4a3e3b9f9eb6da5c6d31a54cb053ff192fbf1ded88be8a587f7",
+    "source": "overview-live.png",
+    "type": "Actual screenshot with an editorial brand heading"
+  }
+}

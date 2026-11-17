@@ -1,0 +1,64 @@
+{
+  "status": "PREPARED_NOT_UPLOADED",
+  "sourceDocument": "docs/submission/devpost/submission-v2.md",
+  "devpost": {
+    "thumbnail": "devpost-thumbnail.png",
+    "gallery": [
+      {
+        "file": "overview-live.png",
+        "caption": "Live decision card and promise ledger: current risk, accepted ownership, original dates and explicit outcome verification.",
+        "captionCharacters": 122
+      },
+      {
+        "file": "inbox-live.png",
+        "caption": "A real reopened test bug produces a notice under the affected commitment in the owner inbox.",
+        "captionCharacters": 92
+      },
+      {
+        "file": "governed-recovery-live.png",
+        "caption": "An independently reviewed Jira date change completes, is read back, and saves its authority record.",
+        "captionCharacters": 99
+      },
+      {
+        "file": "outcome-live.png",
+        "caption": "The designated verifier accepts the agreed evidence. Jira status and the original commitment deadline remain separate.",
+        "captionCharacters": 118
+      },
+      {
+        "file": "requirements-readiness-live.png",
+        "caption": "Confluence PRD revision 2, requirement mapping version 2 and readiness gate version 3 stay distinct.",
+        "captionCharacters": 100
+      },
+      {
+        "file": "lifecycle-live.png",
+        "caption": "Ten lifecycle phases connect goals, initiatives and Confluence artifacts without inventing Jira parents.",
+        "captionCharacters": 104
+      }
+    ],
+    "rovoCapture": "PENDING_MAC_UNLOCK"
+  },
+  "marketplace": {
+    "sourceDocument": "docs/submission/marketplace-listing.md",
+    "highlights": [
+      {
+        "file": "inbox-live.png",
+        "preview": "inbox-live-preview.png",
+        "title": "See what a change puts at risk",
+        "caption": "A real reopened test bug produces a notice under the affected commitment in the owner inbox."
+      },
+      {
+        "file": "governed-recovery-live.png",
+        "preview": "governed-recovery-live-preview.png",
+        "title": "Recover within agreed limits",
+        "caption": "An independently reviewed Jira date change completes, is read back, and saves its authority record."
+      },
+      {
+        "file": "outcome-live.png",
+        "preview": "outcome-live-preview.png",
+        "title": "Prove the promise was kept",
+        "caption": "The designated verifier accepts the agreed evidence. Jira status and the original commitment deadline remain separate."
+      }
+    ],
+    "note": "Use the verified ordinary governed-change flow; separate slip-budget policy remains a draft. Marketplace listing is pending approval and locked for ordinary edits."
+  }
+}

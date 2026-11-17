@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "promisory.ui-retake-checks.v1",
+  "checkedAt": "2026-11-17T01:36:23.277106+00:00",
+  "master": "092c2f7",
+  "localReleaseFixesIncluded": true,
+  "unitAndContractTests": {
+    "passed": 186,
+    "files": 30
+  },
+  "browserChecks": {
+    "passed": 20,
+    "mode": "LOCAL_FIXTURES_ONLY",
+    "captureDirectory": "release/ui-retake/fixtures"
+  },
+  "typecheck": "PASS",
+  "uiBuild": "PASS",
+  "remoteBuild": "PASS",
+  "manifest": "PASS",
+  "forgeBundle": "PASS",
+  "profileEquivalence": "PASS",
+  "sourceDigest": "d872e41357e5f1c80887ed84b66877dcbe7f9ea628b073f64a8f39da108a6f7b",
+  "deployments": {
+    "development": { "version": "4.2.0", "result": "DEPLOYED" },
+    "judgeProduction": { "version": "3.1.0", "result": "DEPLOYED" },
+    "marketplaceProduction": { "version": "4.1.0", "result": "DEPLOYED" }
+  },
+  "installedDevelopmentUI": {
+    "verified": true,
+    "resourceId": "e34cadc2-a3b5-4d0e-907f-6d6faac9197d",
+    "mode": "INSTALLED_TEST_SITE",
+    "exampleMode": false
+  },
+  "liveCaptureRequired": true
+}
