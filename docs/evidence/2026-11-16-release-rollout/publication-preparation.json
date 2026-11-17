@@ -1,0 +1,564 @@
+{
+  "schemaVersion": "promisory.release-publication-preparation.v1",
+  "preparedAt": "2026-11-17T04:17:47.192470+00:00",
+  "scope": "Historical rollout evidence and earlier submission assets only. Current retake assets remain unchanged.",
+  "sourceSnapshot": "Original local files retained in the ignored PR cleanup backup.",
+  "captureProvenance": "Images predate this PR preparation; no live tenant operation was performed to prepare the PR.",
+  "imageCount": 37,
+  "images": [
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/commitment-cancelled.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1280,
+        2026
+      ],
+      "size": [
+        1280,
+        2026
+      ],
+      "sha256": "2061525f2f38157824fd3ec6414145b384e5e47fca07ea2b8ca296288a429cec",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/desktop.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1440,
+        1631
+      ],
+      "size": [
+        1440,
+        1631
+      ],
+      "sha256": "2206bb5fe23b8214dd0f441f6ac3c91cb161b1087aeede564dafc93ec89090ba",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/held-review.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1280,
+        1065
+      ],
+      "size": [
+        1280,
+        1065
+      ],
+      "sha256": "52b77f7cfddf1de0bbc038d44b6a122849d514c85563ad04cb2c3eda49360669",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/ledger-and-graph-relations.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1280,
+        2445
+      ],
+      "size": [
+        1280,
+        2445
+      ],
+      "sha256": "258ee2a7fd610406c7f8fb5f1ffdd1e4a9d1e06361d992706d465055ac690df0",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/mobile-form-bottom.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        390,
+        844
+      ],
+      "size": [
+        390,
+        844
+      ],
+      "sha256": "4cb421f7ff432ddf800b96518a1b65ebfc2c894f46be955a5c672a56805163a7",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/mobile-form.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        390,
+        844
+      ],
+      "size": [
+        390,
+        844
+      ],
+      "sha256": "9e9eef283c1fda70907b457e322a10425b92c24cccf0cc63c6f740551916dfdf",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/mobile.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        390,
+        2797
+      ],
+      "size": [
+        390,
+        2797
+      ],
+      "sha256": "42454c049f207380176b34b34c8a2f15e0106eee6f34db448174691cd41e16d5",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/requirement-drift.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1280,
+        1845
+      ],
+      "size": [
+        1280,
+        1845
+      ],
+      "sha256": "9dd405179db60e4c07cea54555df7d294ea3e9e3c3652c4062b69c7c7cc3d34f",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/work-map.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1280,
+        1514
+      ],
+      "size": [
+        1280,
+        1514
+      ],
+      "sha256": "7e26a8e9bbfe98f5dcc105923e45be6326457edd2d7c4deed4bd95fa631bba9b",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/browser-fixtures/zoom-200-form.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1440,
+        1000
+      ],
+      "size": [
+        1440,
+        1000
+      ],
+      "sha256": "1e398aaef26c9141722dc4e0cdd05bf08fa269415c514d0293702f9a1afd9382",
+      "edits": []
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/judge-distribution.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "6567320497701fc44386f717c526c0e88b76a8fb3386fe07a91dd1e3213cb974",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "ce9311b7997fb0ebe5d9246d7bff59c2a23978aebf1fc7241abfa462108d242c"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/live-connections.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        2958,
+        1718
+      ],
+      "size": [
+        2958,
+        1553
+      ],
+      "sha256": "d15c0a707c257d7c8c8af0eecd4652d5c556e28fa081e81f298375ca7a129ff1",
+      "edits": [
+        "Masked account avatar and display name",
+        "Cropped browser chrome at y=165; retained product connection results",
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "7c2c15f6b749f5a51180fba17c6691ab59f7935dc54bac9b3205cfade9ec158b"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-distribution.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "e2c0737fa73e36617b2b8185baf435ec29d6e284cbfa934d1c031a74d7278239",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "ec15bcb98abb75e5f9803b1a273f2b2a0c6cdd0eb67fba24cb6534ac676dabcb"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-partner-approval.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "24a71f164c60cfc6fdb30c3ca96549ed1d0a2ca9325a93203682029077790874",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "1f0030a1949a544ec85678ef4c7490697535da05f9fc02590835417e9508c481"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-pricing-revised.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "463060fc02b4bad8ebaadfb2d1222d95bad67a42c7d7af12fddb5a451a18faf9",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "b8ee744b250cb3a69067f6fb73c151f36897b04924caa3c0057d2e2ffca7ef47"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-pricing.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "595350f6c778e12863e164e4906f049f96e1cd48db783e7376acf41b8ac52e7e",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "15dda2243cb265ef40163169744ef18d1b37a08d830960df15c2c0f21b061dfa"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-space-name-conflict.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "4b81b1e5e0d3a5124bb3f9311675f2222cabd6204e767100097ad758d0b30dee",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "a4fdab2ae6ac327177093069189e029419f508b378b9795c7f07bcafe9e36120"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-space-published.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "a1faa3b8c7e784db831059f4db9f9bb16abfbacc9ba9a39e053108f8ca1d7c9d",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "b10cac8b83f74fefa49025637ec5893681cc72a4883104e92027070227bfd673"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-submitted.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "303a26721d5c461986ff1c00ba52a79c52b4b707d560f6af5ba1c0b6d7985707",
+      "edits": [
+        "Masked operator names in Released by column; retained version/status rows",
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "b8b864d3c77f169f78c0b907e9b2243d7a81e57e9f04a36e674a5cd7745cefc1"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/marketplace-version4-pre-submit.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1492,
+        697
+      ],
+      "size": [
+        1492,
+        697
+      ],
+      "sha256": "8dca80295aaa0fbff43a2593cf403a9565c4178daae64ac253258147c24c1451",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "35f36fb3a94b6e91c1ba673bed6f3cd79af4530ca65ca4a8ff07662ca60993f0"
+    },
+    {
+      "file": "docs/evidence/2026-11-16-release-rollout/rovo-r03-candidates.png",
+      "originalFormat": "JPEG",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "c2739ff5894a67fa1d9962372a766f09a35b04aca8680994b42397cbfd55da93",
+      "edits": [
+        "Re-encoded decoded pixels from JPEG to PNG to match the filename; stripped capture metadata"
+      ],
+      "originalSha256": "742cf6456e83d82d3e127b940672662d55eb1ae755221b1e706ea6adf7c879b2"
+    },
+    {
+      "file": "docs/submission/assets/demo-thumbnail.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1920,
+        1080
+      ],
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "7aa0a8b5d75f56d9c3ad0c7aaa68435bb5de9350d1fab0878d0ea357eb0a6c18",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/devpost-lifecycle-live.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "c78ac176bbd23012e388732a40d60dca99acee52744c6266b9408cf2542595bb",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/devpost-overview-live.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "88197b3e86fd23dbc123d86d317700adbb6d322bc797c8a752e75c30bea68bd5",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/devpost-rovo-live.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "67badf2ec07b73d505adef4e04a424853d90b58c48eaaa785ae07dba77042369",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/devpost-thumbnail-v2.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1200,
+        800
+      ],
+      "size": [
+        1200,
+        800
+      ],
+      "sha256": "eff124c51a585feb20530d01ef6983af29afd62d8a10ac4d14d9c621cbdcad7a",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-banner-v2.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1120,
+        548
+      ],
+      "size": [
+        1120,
+        548
+      ],
+      "sha256": "f122a8dea601930161fe21bcb15b088b429c7b5c987ac06ab550e86185ee1048",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-banner.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1120,
+        548
+      ],
+      "size": [
+        1120,
+        548
+      ],
+      "sha256": "9fd280bd4792ab39b866a80f7f344a8e1ac82f496b73dd2cdac559ced478589e",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-hero-v2.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        960,
+        600
+      ],
+      "size": [
+        960,
+        600
+      ],
+      "sha256": "e4f2ac6d7075072c0c95efaa07a62447e5a96db6ffdd93bf0afbc58c509e0022",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-hero.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        960,
+        600
+      ],
+      "size": [
+        960,
+        600
+      ],
+      "sha256": "d7533574d9f68f07a65be96f2260eef278988302a44af078c8b65ac92883fe35",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-governance-preview.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        580,
+        330
+      ],
+      "size": [
+        580,
+        330
+      ],
+      "sha256": "14395bec0533262e6dbef1b788457d7d21443c8eeb553729d422acbc0f216ce6",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-governance.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "ab57d29b9155269299543052ed91955b6152c2d874b9c9d17059f3eb1c91b5e6",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-outcome-preview.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        580,
+        330
+      ],
+      "size": [
+        580,
+        330
+      ],
+      "sha256": "eb94eff38abf14eccd680a91665d46c401bed03b1c26371eb49a17bbb087b5fd",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-outcome.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "d31a77fc73f5b33badc16820220d0a37ca354cc30a02484e00873b7200bc7cd7",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-risk-preview.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        580,
+        330
+      ],
+      "size": [
+        580,
+        330
+      ],
+      "sha256": "739854f661d7b64e37ead37ba72640fd6f3decac9ace3708cf47f5cd43b71ef9",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-highlight-risk.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        1840,
+        900
+      ],
+      "size": [
+        1840,
+        900
+      ],
+      "sha256": "f54dc47671007a2d495f290cd6986f7c0ddd1b114b60541c8f83bc2b6d3e6d87",
+      "edits": []
+    },
+    {
+      "file": "docs/submission/assets/marketplace-logo.png",
+      "originalFormat": "PNG",
+      "originalSize": [
+        144,
+        144
+      ],
+      "size": [
+        144,
+        144
+      ],
+      "sha256": "bcac890940ee76e25361ab3f4329aa4759e04267148554d8e31ddf3b88edabde",
+      "edits": []
+    }
+  ]
+}

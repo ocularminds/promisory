@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "promisory.release-capability-deployments.v1",
+  "sourceDigest": "972a030d67778bc3861ff559d49475a7c1367dc41f1d57e6a49822a4091837e0",
+  "development": {
+    "version": "4.1.0",
+    "environment": "development"
+  },
+  "judge": {
+    "version": "3.0.0",
+    "environment": "production"
+  },
+  "marketplace": {
+    "version": "4.0.0",
+    "environment": "production",
+    "remoteOrigin": "https://promise.decionis.com"
+  },
+  "scopeApproval": "MAJOR_VERSION_RULE approved under the user-authorized Graph/MCP/privacy release",
+  "installationStatus": "Development major 4 and judge production major 3 installed on Jira and Confluence; Marketplace production install awaits listing approval"
+}

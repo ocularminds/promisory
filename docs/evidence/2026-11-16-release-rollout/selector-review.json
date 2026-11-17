@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "promisory.policy-selector-review.v1",
+  "preparedAt": "2026-11-16T21:33:00.542Z",
+  "configMap": {
+    "uid": "e45ab236-9b35-4dda-84a6-18224679fb5f",
+    "resourceVersion": "29856582"
+  },
+  "deployment": {
+    "uid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+    "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b"
+  },
+  "from": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "to": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "retained": "The expired recovery revision and its INDETERMINATE claim stay in Decionis and on the private disk. Reconciliation does not depend on the selector.",
+  "serverDryRun": "PASSED"
+}

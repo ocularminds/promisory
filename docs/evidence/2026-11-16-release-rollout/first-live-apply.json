@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "promisory.release-executor-observation.v1",
+  "recordedAt": "2026-11-16T22:17:19.827Z",
+  "context": {
+    "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+    "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+    "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+  },
+  "policyId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "mode": "ENFORCEMENT",
+  "readOnly": true,
+  "operations": [
+    {
+      "operationId": "operation-16f5adf7-11a8-4eb1-af5f-8c07dce8ad9b",
+      "proposalId": "proposal-233a6f45-ceda-40f5-a2a1-eb3676314728",
+      "state": "SETTLED",
+      "acknowledged": false,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10001",
+        "expectedUpdatedAt": "2026-11-11T04:53:04.072Z",
+        "expectedDueDate": "2026-11-19",
+        "desiredDueDate": "2026-11-25"
+      },
+      "result": {
+        "stage": "BLOCKED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "unavailable",
+        "finalization": "NOT_REQUIRED"
+      }
+    },
+    {
+      "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+      "proposalId": "proposal-ab834614-a28b-444b-b76e-be0bd9f929e8",
+      "state": "SETTLED",
+      "acknowledged": false,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10001",
+        "expectedUpdatedAt": "2026-11-11T03:51:24.479Z",
+        "expectedDueDate": "2026-11-18",
+        "desiredDueDate": "2026-11-19"
+      },
+      "authorization": {
+        "decisionId": "ca997e3a-1cf8-4a3a-86b0-f5c0d04155e7",
+        "dossierId": "ce216c34-5e22-4274-800a-54ebcd40bafe",
+        "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+        "intentHash": "sha256:211c6f97991aa97072024b39f3e95af393b684798367fb723c209c12e40a2d92",
+        "expiresAt": "2026-11-11T04:53:59.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "ca997e3a-1cf8-4a3a-86b0-f5c0d04155e7",
+        "grantReference": "88158868-1127-80a6-9dcf-c362a01eb94d",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "PENDING"
+      }
+    },
+    {
+      "operationId": "operation-9a24d5a1-2097-45ac-bdf9-e0bf31a87036",
+      "proposalId": "proposal-fdee684c-d174-41f2-a49c-244ea8228d8d",
+      "state": "SETTLED",
+      "acknowledged": true,
+      "effect": {
+        "kind": "SET_JIRA_DUE_DATE",
+        "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7",
+        "issueId": "10001",
+        "expectedUpdatedAt": "2026-11-10T20:41:07.858Z",
+        "expectedDueDate": "2026-11-12",
+        "desiredDueDate": "2026-11-18"
+      },
+      "authorization": {
+        "decisionId": "bf4f4c88-5be8-454f-bf90-24f60e17d111",
+        "dossierId": "8485dce8-7bfb-4a18-a0bd-f96e51384d37",
+        "grantId": "6206930c-05b6-80e5-849c-6ac3566d8317",
+        "intentHash": "sha256:a60917692b3b29d610eab9546b8207e0d953e1a40fb22ddb3f30a40342418ce4",
+        "expiresAt": "2026-11-11T03:52:19.000Z"
+      },
+      "result": {
+        "stage": "SUCCEEDED",
+        "mode": "ENFORCEMENT",
+        "evaluationReference": "bf4f4c88-5be8-454f-bf90-24f60e17d111",
+        "grantReference": "6206930c-05b6-80e5-849c-6ac3566d8317",
+        "observed": "MATCHED_EFFECT",
+        "finalization": "RECORDED"
+      }
+    }
+  ],
+  "originalRecoveryStillPending": true,
+  "sealedClaimFileCount": 1,
+  "probeFilesPresent": true
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "promisory.external-mcp-verification.v1",
+  "verifiedAt": "2026-11-17T01:03:08.130889+00:00",
+  "environment": "development",
+  "site": "decionis-promisory.atlassian.net",
+  "client": "Local @modelcontextprotocol/sdk 1.32.2, Streamable HTTP",
+  "endpoint": "https://mcp.atlassian.com/forge/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "adminExposure": "Enabled for the installed development app",
+  "consent": "User approved Read and Search; no write or Teamwork Graph scopes requested",
+  "scope": "offline_access read:me read:account email read:jira-work read:confluence-user read:page:confluence read:space:confluence",
+  "tokenHandling": "Memory only; client process exited and local callback server closed after verification",
+  "tools": [
+    "promisory-mcp-commitments_development",
+    "promisory-mcp-people_development",
+    "promisory-mcp-lifecycle_development"
+  ],
+  "invocation": {
+    "tool": "promisory-mcp-commitments_development",
+    "arguments": {
+      "projectId": "10000",
+      "view": "context"
+    },
+    "isError": false,
+    "coverage": "COMPLETE",
+    "commitmentCount": 5,
+    "sourceReferenceCount": 7,
+    "sourceTypes": [
+      "CONFLUENCE",
+      "JIRA"
+    ],
+    "egress": "MCP_GRAPH_EXCLUDED"
+  },
+  "payloadSha256": "919c87c9f603c8ebc160d69fadc6c4dc104296d4d2068796b1225a3097b25003",
+  "payloadIncluded": false,
+  "earlierAttempt": {
+    "result": "Atlassian invalid_request before OAuth callback",
+    "incidentId": "7423eef9-6d24-4a2d-acc7-742935bbdef8",
+    "resolution": "Standard localhost callback plus authorization_code/refresh_token metadata and offline_access; same Read and Search consent"
+  }
+}

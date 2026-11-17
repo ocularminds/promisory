@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "promisory.authority-diagnostic.v1",
+  "recordedAt": "2026-11-16T22:19:37.631Z",
+  "mode": "SHADOW",
+  "http": [
+    {
+      "status": 200,
+      "keys": [
+        "decision_id",
+        "chain_id",
+        "status",
+        "should_execute",
+        "authority_classification",
+        "execution_eligible",
+        "execution_binding_digest",
+        "reason_codes",
+        "action_hash",
+        "policy_version",
+        "mode",
+        "execution_token",
+        "execution_token_jti",
+        "execution_token_key_id",
+        "execution_token_expires_at",
+        "dossier_id",
+        "dossier_url",
+        "approval_request_id",
+        "ledger_entry_id"
+      ]
+    }
+  ],
+  "verdict": "ALLOW",
+  "failClosed": false,
+  "reasonCodes": [
+    "PROTOCOL_OUTCOME_APPROVE",
+    "POLICY_MATCHED",
+    "POLICY_ACTION_AUTO_APPROVE"
+  ],
+  "decisionId": "cf62a803-51a1-4c42-a003-553e6a652043",
+  "dossierId": "95d74624-0c5a-4f36-a9f3-18108d3af042",
+  "grantOrClaimOrJiraWriteAttempted": false
+}

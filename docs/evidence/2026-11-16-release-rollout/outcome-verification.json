@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-16T23:46:10.999Z",
+  "environment": "dedicated live test tenant",
+  "issueKey": "KAN-6",
+  "issueId": "10005",
+  "proposalId": "proposal-5ffb8f36-ff1c-41ce-a6f1-ebcaf5f59a09",
+  "operationId": "operation-9db9cc13-dc2a-431c-9417-6b2f806c2122",
+  "verifiedDueDate": "2026-11-23",
+  "agreedCommitmentDeadline": "2026-11-27T16:00:00.000Z",
+  "timeZone": "Europe/Stockholm",
+  "evidence": [
+    "Live Jira History: 2026-11-20 to 2026-11-23",
+    "Execution journal: acknowledged true; MATCHED_EFFECT; finalization RECORDED",
+    "Designated test verifier explicitly checked acceptance and recorded evidence",
+    "UI: Outcome verified; project ledger kept by original date 1 of 2"
+  ],
+  "caveats": [
+    "Test data visibly marked TEST",
+    "The prior KAN-2 recovery claim remains unresolved and unchanged",
+    "No inference from Jira Done status",
+    "Teamwork Graph results excluded from this artifact"
+  ]
+}

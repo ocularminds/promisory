@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "promisory.app-registrations.v1",
+  "recordedAt": "2026-11-16T21:46:04.824Z",
+  "developerSpaceId": "0f68d3d6-c7e7-428a-a05b-3caa95d44577",
+  "profiles": {
+    "development": {
+      "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+      "remoteUrl": "https://promisory-test.decionis.com"
+    },
+    "judge": {
+      "appId": "ari:cloud:ecosystem::app/bcbb3f27-4618-4076-89f0-084236fbc11a",
+      "remoteUrl": "https://promisory-test.decionis.com"
+    },
+    "marketplace": {
+      "appId": "ari:cloud:ecosystem::app/c704fb0b-0927-4ff1-9b50-6416cf67371e",
+      "remoteUrl": "https://promisory-test.decionis.com"
+    }
+  },
+  "registered": [
+    "judge",
+    "marketplace"
+  ],
+  "agreement": "User explicitly approved both registrations, Developer Terms, Privacy Policy and usage-based overages in this session."
+}

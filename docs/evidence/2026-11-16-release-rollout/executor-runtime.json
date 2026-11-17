@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "promisory.release-executor-runtime.v1",
+  "recordedAt": "2026-11-16T21:50:44.560Z",
+  "context": {
+    "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+    "environmentId": "ari:cloud:ecosystem::environment/6e0430ce-9c00-425a-80c2-97b5cec1e8ae/24550cf8-ab9d-4e6a-b46e-96df09cf2866",
+    "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+    "cloudId": "e207942a-9edf-4952-b945-2ed6ed3707a7"
+  },
+  "policyId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "true",
+  "command": [
+    "/usr/local/bin/node"
+  ],
+  "operationCount": 2,
+  "originalRecovery": {
+    "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+    "state": "SETTLED",
+    "acknowledged": false,
+    "grantId": "88158868-1127-80a6-9dcf-c362a01eb94d",
+    "stage": "SUCCEEDED",
+    "finalization": "PENDING"
+  },
+  "sealedClaimFileCount": 1,
+  "marker": {
+    "operationId": "operation-4ba64b81-05bd-4438-86db-280c983f061d",
+    "phase": "ACKNOWLEDGEMENT_SUPPRESSED",
+    "httpStatus": 204
+  },
+  "probeFilesPresent": true,
+  "readOnly": true,
+  "originalClaimReconciled": false
+}

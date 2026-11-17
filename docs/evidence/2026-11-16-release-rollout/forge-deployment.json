@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "promisory.forge-deployment.v1",
+  "recordedAt": "2026-11-16T21:50:44.564Z",
+  "reportedDeploymentVersion": "4.0.0",
+  "environment": "development",
+  "appId": "ari:cloud:ecosystem::app/6e0430ce-9c00-425a-80c2-97b5cec1e8ae",
+  "installationId": "ari:cloud:ecosystem::installation/283d450f-c6c4-43aa-85fc-aa9d05a085f8",
+  "installedMajor": 4,
+  "status": "UP_TO_DATE",
+  "additionalScopes": [
+    "read:graph:project:jira",
+    "read:graph:team:atlassian",
+    "read:graph:goal:atlassian",
+    "read:graph:deployment:external"
+  ],
+  "modules": [
+    "rovo:mcp",
+    "promisory-privacy daily scheduled trigger"
+  ]
+}

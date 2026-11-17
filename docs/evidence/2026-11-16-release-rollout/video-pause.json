@@ -1,0 +1,9 @@
+{
+  "status": "PAUSED_BY_OWNER",
+  "date": "2026-11-17",
+  "reason": "Retake when the new UI being worked on is ready",
+  "draftLocation": "release/video/paused-export",
+  "rawCapturesAndNarration": "release/video",
+  "uploadedToYouTube": false,
+  "devpostVideoField": "PENDING_RETAKE"
+}

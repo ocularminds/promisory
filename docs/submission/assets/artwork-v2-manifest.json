@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "promisory.submission-artwork.v1",
+  "type": "Original marketing artwork, not a product screenshot",
+  "direction": "A continuous thread connects risk, governed action and verified delivery",
+  "brandSource": "packages/design-system/brand",
+  "fonts": [
+    "Manrope (OFL)",
+    "Inter (OFL)"
+  ],
+  "copy": [
+    "Promisory for Jira",
+    "Keep every commitment connected.",
+    "See what's at risk",
+    "Act within limits",
+    "Prove delivery",
+    "by Decionis Inc"
+  ],
+  "exports": [
+    {
+      "file": "marketplace-banner-v2.png",
+      "width": 1120,
+      "height": 548,
+      "sha256": "f122a8dea601930161fe21bcb15b088b429c7b5c987ac06ab550e86185ee1048"
+    },
+    {
+      "file": "marketplace-hero-v2.png",
+      "width": 960,
+      "height": 600,
+      "sha256": "e4f2ac6d7075072c0c95efaa07a62447e5a96db6ffdd93bf0afbc58c509e0022"
+    }
+  ]
+}
