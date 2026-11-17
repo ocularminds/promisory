@@ -1,6 +1,6 @@
-# Draft privacy and data-handling disclosure
+# Promisory privacy and data-handling disclosure
 
-This is an engineering disclosure for the unpublished candidate, not a finalized public policy. The owner must supply the legal controller/support details, chosen host/region, applicable contracts and verified lifecycle behavior before publication.
+This engineering disclosure accompanies the Marketplace review candidate. Decionis Inc provides Promisory under its [terms](https://decionis.com/terms) and [privacy policy](https://decionis.com/privacy). Product support is available at support@decionis.com and [decionis.com/contact](https://decionis.com/contact); privacy and data-processing requests go to privacy@decionis.com. This document distinguishes implemented controls, the owner's retention decision, and verification still required before public launch.
 
 | Data                                                                                                    | Use and storage                                                                                                                                                                      | Access / external boundary                                                                                                     |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -29,7 +29,11 @@ Source content uses per-invocation memoization; there is no persistent shared so
 - **Personal data reporting:** a daily job reports stored Atlassian account IDs through the Forge `privacy.reportPersonalData` API in batches of 90. For each account Atlassian reports as closed, every account-ID field in Promisory records is replaced with a stable pseudonym (`deleted-user-…`), and that account's inbox state is deleted. Decisions, timestamps and outcomes are retained so history stays explainable.
 - **Administrator export:** a JSON export of the selected project's Promisory records, built from the same access-filtered read as the views. Restricted commitments and Teamwork Graph context are excluded.
 
-Still to verify or decide before launch: live behaviour of the scheduled jobs and personal-data API, Forge uninstall data removal, erasure of the external journal and sealed claims (pending claims must stay available for safe reconciliation), backup expiry, provider (Decionis) retention, and a real support request route.
+**External journal after uninstall:** the owner selected deletion after 90 days, with unresolved execution claims retained until reconciled. This is separate from the configurable 30–365-day retention for eligible Forge records. A reconciled claim whose 90-day uninstall period has already elapsed becomes eligible for deletion after its terminal acknowledgement is verified. The decision does not authorize discarding pending finalizations or replaying a write.
+
+The executor does not yet automate uninstall detection or the 90-day purge. Follow the [offboarding runbook](../runbooks/executor-offboarding.md), and keep public Marketplace publication manual until the operational deletion path has been verified. No data was deleted while preparing this release.
+
+Still to verify before launch: live behaviour of the scheduled jobs and personal-data API, Forge uninstall data removal, the external journal deletion path, backup expiry and the authority provider's separate evidence retention. The journal decision does not establish the retention of provider-owned Decionis policy evidence.
 
 Disconnect disables configured app access/actions and retains app records. It never deletes Jira issues or Confluence pages. Reinstallation uses a distinct installation scope. Uninstalling Forge does not establish that the external journal, sealed claims or Decionis evidence have been erased.
 
@@ -37,4 +41,6 @@ Disconnect disables configured app access/actions and retains app records. It ne
 
 The remote is optional. Basic manually entered commitments and source exploration can operate while external actions remain unavailable. Enabling the remote requires explicit sharing of the independently authored due-date intent and the narrow REST snapshot on both Forge and remote sides. Required scopes and the declared external storage domain must be disclosed in installation/review materials.
 
-Atlassian hosts Forge/Rovo and the native source products. The owner-selected remote host and Decionis authority provider/region are not yet configured for Promisory. No data residency, certification, legal compliance, uptime, support SLA or “Runs on Atlassian” claim is made by this candidate.
+Atlassian hosts Forge/Rovo and the native source products. The Marketplace remote origin is **https://promise.decionis.com**, hosted on Microsoft Azure in **Central US**. Microsoft Azure is a hosting subprocessor. The authenticated endpoint currently routes to the existing executor bound to the dedicated test installation; customer installation provisioning remains a public-launch prerequisite. Development and judge profiles continue to declare the test origin.
+
+The executor journal uses an encrypted Azure managed disk. Recovery claim material is additionally sealed with AES-256-GCM using a separate key. HTTPS certificate and hostname validation succeeded at the production origin. These controls do not establish a data-residency guarantee, certification, legal-compliance certification, uptime or support SLA, or eligibility for “Runs on Atlassian”.

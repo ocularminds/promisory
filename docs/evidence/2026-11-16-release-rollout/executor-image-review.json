@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.executor-compatibility-review.v1",
+  "preparedAt": "2026-11-16T22:01:13.387925+00:00",
+  "runId": "cj4m",
+  "buildStatus": "Succeeded",
+  "platform": "linux/amd64",
+  "buildSourceSha256": "56c0e9531352b086409d3d75686ca9913e9bacfeef6a39d3e973b6221ba7c4fc",
+  "oldImage": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b",
+  "newImage": "decionisacr.azurecr.io/promisory/executor@sha256:db4a62e113fba7833d28e8f1c94afa94959dbbf2b58bd4ba35ee0201a45920b7",
+  "policyId": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "serverDryRun": "PASSED",
+  "change": "Executor image only; startup arguments, binding, policy, private volume and retained recovery records unchanged."
+}

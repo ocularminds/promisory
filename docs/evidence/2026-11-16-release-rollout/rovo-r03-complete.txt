@@ -1,0 +1,105 @@
+Go back to Rovo chat
+Promisory
+New chat with Promisory
+Share
+More options
+Response complete.
+Copy
+Share chat up to this point
+
+Turn the [TEST] Promisory acceptance pilot PRD (Confluence page 164030) into candidate commitments for My Kanban Space, project KAN (project ID 10000).
+
+I've analyzed the sections of the [TEST] Promisory acceptance pilot PRD (Confluence page 164030, revision 2). Based on the content, the following sections appear to be candidates for commitments in project KAN (ID 10000):
+
+Potential Commitment Candidates
+
+REQ-TEST-01 (Anchor: id="062b6a05929a")
+
+Why: This section defines a specific requirement for explicit human verification of outcomes, stating that Jira "Done" status is insufficient. It also specifies behavior for source version changes and revocation.
+
+Release readiness (Anchor: id="665da6a92a06")
+
+Why: This outlines the conditions under which the pilot can be marked ready for review (requirement and source versions must be recorded).
+
+Product goal and initiative (Anchor: id="8a5546aa26b8")
+
+Why: While high-level, it establishes the core objective to prove that ownership, health, readiness, and outcomes remain separate.
+
+Discovery evidence (Anchor: id="530af7a354ce")
+
+Why: It specifies the need for a human verifier and mentions a technical dependency (test bug blocking a task).
+
+Learning and iteration (Anchor: id="393804e49c1f")
+
+Why: It requires recording observed results and testing stale mappings in later revisions.
+
+Next Steps
+
+I cannot create these commitments automatically. If you would like to proceed, please explicitly request which of these sections I should propose as candidate commitments.
+
+Note that I will not be able to assign owners, deadlines, or beneficiaries from the page text; those must be resolved independently during the review process.
+
+Good response
+Bad response
+Copy
+Share chat up to this point
+Debug response
+Copy
+Share chat up to this point
+
+Create only the REQ-TEST-01 candidate (anchor id="062b6a05929a", PRD revision 2) as a draft named '[TEST] PRD candidate — explicit outcome verification'. Leave the owner, deadline and acceptance unresolved for human confirmation.
+
+Please review
+Collapse
+
+Propose a commitment from a PRD section
+
+Project ID: 10000
+
+Page ID: 164030
+
+Title: [TEST] PRD candidate — explicit outcome verification
+
+Anchor: id="062b6a05929a"
+
+Expected Source Revision: 2
+
+Outcome: The designated test verifier must explicitly accept the recorded outcome after reviewing the supporting evidence. Jira Done status alone must not fulfill this requirement. A changed source version requires renewed readiness review. Revision 2 also requires the verifier to record that revocation returns the outcome to regression review while preserving the prior acceptance event.
+
+Confirm selected
+Cancel
+
+I have successfully proposed the candidate commitment from the PRD section REQ-TEST-01.
+
+Candidate Details:
+
+Title: [TEST] PRD candidate — explicit outcome verification
+
+ID: PM-1dd9f5cb-f456-43e2-921e-d1cc8f47a0b7
+
+Source: [TEST] Promisory acceptance pilot PRD (Confluence page 164030, revision 2, anchor id="062b6a05929a")
+
+Outcome: The designated test verifier must explicitly accept the recorded outcome after reviewing the supporting evidence. Jira Done status alone must not fulfill this requirement. A changed source version requires renewed readiness review. Revision 2 also requires the verifier to record that revocation returns the outcome to regression review while preserving the prior acceptance event.
+
+Status:
+This is currently an unconfirmed candidate (DRAFT). As requested, the owner, deadline, beneficiary, and acceptance conditions remain unresolved. These must be reviewed and confirmed by a human authority within the Promisory app before the commitment is accepted.
+
+Good response
+Bad response
+Copy
+Share chat up to this point
+Debug response
+Can you show the draft fields?
+How do I confirm the owner?
+What happens after acceptance?
+
+Describe what you want to know or do next
+
+
+Add
++4
+Auto
+Start dictation
+Submit
+Uses AI. Verify results.﻿
+, (opens new window)

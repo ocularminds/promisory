@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-17T00:48:00.527598+00:00",
+  "host": "promise.decionis.com",
+  "tlsVerification": "Default certificate/hostname verification enabled",
+  "health": {
+    "status": 200,
+    "body": {
+      "status": "ok"
+    }
+  },
+  "unauthenticatedConnection": {
+    "status": 400
+  },
+  "backend": "Existing single-installation executor; binding and policy unchanged",
+  "productionCustomerBinding": "Not provisioned; manual Marketplace publication required"
+}

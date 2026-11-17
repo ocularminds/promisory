@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "promisory.reusable-executor-startup-review.v1",
+  "preparedAt": "2026-11-16T21:40:53.085Z",
+  "deployment": {
+    "uid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+    "resourceVersion": "33218932",
+    "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b"
+  },
+  "policy": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "previousArguments": [
+    "--import",
+    "/app/recovery-probe.mjs",
+    "--import",
+    "/app/recovery-history-observer.mjs",
+    "/app/server.js"
+  ],
+  "arguments": [
+    "/app/server.js"
+  ],
+  "reason": "The test-only preloads expired on 12 November 2026 and refuse process startup under the new selector.",
+  "retained": "The probe and history ConfigMaps, mounts, environment flags, private volume, original operation, sealed claim and one-use marker are not mutated. The production server retains normal grant, claim, execution and reconciliation checks.",
+  "serverDryRun": "PASSED"
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "promisory.profile-capability-tests.v1",
+  "recordedAt": "2026-11-16T23:14:11.934Z",
+  "success": true,
+  "totalTests": 186,
+  "passedTests": 186,
+  "failedTests": 0,
+  "testFiles": 30,
+  "scope": "Full suite after restoring shared release manifest capabilities",
+  "typecheck": "PASSED",
+  "manifestValidation": "PASSED"
+}

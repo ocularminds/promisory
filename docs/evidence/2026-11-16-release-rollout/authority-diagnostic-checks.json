@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "promisory.local-checks.v1",
+  "recordedAt": "2026-11-16T22:23:16.901Z",
+  "status": "PASSED",
+  "unitContractTests": 183,
+  "testFiles": 30,
+  "checks": [
+    "typecheck",
+    "vitest",
+    "frontend build",
+    "remote build",
+    "manifest",
+    "Forge bundle"
+  ],
+  "releaseProfiles": "Prior profiles match each other; regeneration required for changed source."
+}

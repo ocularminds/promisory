@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-16T23:59:03.626Z",
+  "appId": "bcbb3f27-4618-4076-89f0-084236fbc11a",
+  "installationId": "80afcea6-c92d-459e-83ad-772d753e85cc",
+  "environmentId": "34387003-4c79-4ef8-82f9-a0a76de7323f",
+  "version": "3.0.0",
+  "products": [
+    "Jira",
+    "Confluence"
+  ],
+  "project": "KAN",
+  "jira": "Authenticated current-user read succeeded",
+  "confluence": "Authenticated current-user read succeeded",
+  "graphTransport": "Transport responded; curated query checked separately",
+  "governedExecution": "Unavailable: authenticated remote installation binding required",
+  "nativeHierarchy": {
+    "Epic": 1,
+    "Subtask": -1,
+    "Task": 0,
+    "Story": 0,
+    "Feature": 0,
+    "Bug": 0
+  },
+  "note": "A separately installed judge identity. No write was attempted from this unbound installation."
+}

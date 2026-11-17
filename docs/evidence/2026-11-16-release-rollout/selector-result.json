@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "promisory.policy-selector-result.v1",
+  "checkedAt": "2026-11-16T21:44:08.869Z",
+  "previousPolicy": "436f37a4-311f-4dd5-aa07-5a197ed277ed",
+  "selectedPolicy": "33c97bbd-7ab7-424a-b7d6-a069277d1101",
+  "mode": "ENFORCEMENT",
+  "enforcementVerified": "true",
+  "deployment": {
+    "uid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+    "image": "decionisacr.azurecr.io/promisory/executor@sha256:f30b1ab4606a5170bc3b1dc42d4b38599d50f5cf3053003dd6b84a3f49aaea7b",
+    "args": [
+      "/app/server.js"
+    ],
+    "generation": 14,
+    "observedGeneration": 14,
+    "readyReplicas": 1,
+    "updatedReplicas": 1,
+    "strategy": "Recreate"
+  },
+  "initialRollout": "FAILED_EXPIRED_RECOVERY_PRELOAD",
+  "repairedRollout": "PASSED",
+  "retained": "Original recovery policy, operation, encrypted claim, marker, probe and history ConfigMaps and state volume were not modified."
+}

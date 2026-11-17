@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sourceIssue": "KAN-3",
+  "sourceIssueIsSynthetic": true,
+  "transition": "Done to To Do",
+  "reopenUIRequestedAt": "2026-11-17T00:00:50.342Z",
+  "noticeRecordedAt": "2026-11-17T00:01:02.944Z",
+  "noticeDelayFromUIRequestSeconds": 12.602,
+  "firstOverviewInspectionAt": "2026-11-17T00:02:54.804Z",
+  "inboxConfirmedAt": "2026-11-17T00:04:08.583Z",
+  "notice": "KAN-3 was updated (status, resolution). It lies on a confirmed dependency path to this commitment.",
+  "affectedCommitment": "[TEST] Release-readiness acceptance stays explicit",
+  "method": "Time from local recorded UI request to the notice observed timestamp. Inbox presence was verified later; this is not a measured first-render inbox latency.",
+  "originalClaim": "Untouched"
+}

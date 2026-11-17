@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "promisory.release-checks.v1",
+  "recordedAt": "2026-11-16T22:51:17.994801+00:00",
+  "command": "PROMISORY_EVIDENCE_DIR=docs/evidence/2026-11-16-release-rollout/claim-diagnostics-check fnm exec --using=22.23.4 npm run check",
+  "status": "PASSED",
+  "testFiles": 30,
+  "tests": 184,
+  "includes": [
+    "typecheck",
+    "domain-contract-permission-tests",
+    "frontend-build",
+    "remote-build",
+    "manifest-validation",
+    "forge-bundle",
+    "previous-generated-profile-equivalence"
+  ],
+  "note": "Existing generated profiles precede these diagnostics and must be regenerated before the final deployments."
+}
