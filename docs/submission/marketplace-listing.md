@@ -110,8 +110,33 @@ Search terms to work into copy (the form has no keyword field): commitments, del
 | Privacy policy URL | **OWNER**. Required by the Marketplace Partner Agreement. Base it on `docs/submission/privacy-and-data-handling.md` |
 | Atlassian Community tag | Optional; enable once support coverage exists |
 
-### Pricing (OWNER decision)
-Jira is required and Confluence optional, so the listing must be **paid via Atlassian**; free multi-product listings are not supported. Set `licensing.enabled: true` only in the Marketplace profile. After the production deploy, the production app cannot be installed until the listing is approved; test in development or staging, because production installs are billed. Offer the standard trial. Choose a price only after measuring cost per active project (implementation plan §10). This document proposes no number.
+### Pricing
+
+Recommended launch structure, reviewed against comparable Marketplace apps on 17 Nov 2026. Prices are monthly; Atlassian sets annual at 10× monthly automatically. Customers are billed for **every Jira user on the site**, not only people who use Promisory.
+
+**Standard edition** (promise radar, PRD candidates, promise ledger, Rovo agent, MCP tools, verification, retention and export)
+
+| Jira users | Price | Effective annual cost |
+|---|---|---|
+| 1–10 | **$15 / month flat** | $150 |
+| 11–100 | **$4.90 / user / month** | 25 users $1,225 · 100 users $4,900 |
+| 101–250 | **$3.20 / user / month** for users in this band | 250 users $9,700 |
+| 251–1,000 | **$2.00 / user / month** for users in this band | 500 users $14,700 · 1,000 users $24,700 |
+| 1,001+ | **$1.10 / user / month** for users in this band | — |
+
+**Advanced edition** (adds governed Jira changes with slip budgets and institutional authorization): about **$7–8 / user / month** at 11–100, with the same band discounts. Offer it only once edition pricing is available for the listing and the production executor and authority service are ready. It carries the executor's hosting and authority costs.
+
+Why these numbers:
+- **1–10 users.** Jira is free at this size. 45 of the 100 most-installed Jira Cloud apps are free up to 10 users, and most paid ones charge about $10 a month. The earlier $49 was roughly five times the norm and adds friction for evaluating teams, for little revenue.
+- **11–100 users.** $4.90 sits just below BigPicture (about $5.20) and well below Xray Standard ($7.28). It is about half of Jira Standard's own $9.70.
+- **Volume bands.** Without them, $4.90 for every user would cost a 1,000-user site $49,000 a year, about double comparable portfolio and test-management apps (BigPicture about $22,550, Xray about $28,730). The bands above land between those two.
+- **Net to the vendor.** Promisory is not "Runs on Atlassian" (it uses a remote executor), so the standard Forge revenue share applies: most likely 17% from 1 Oct 2026, about $4.07 net per user per month at $4.90. Confirm with Atlassian whether the 0% incentive on a partner's first $1M of Forge revenue also covers apps that use Forge Remote.
+- **Raising prices later.** Consider moving 11–100 to $5.50–6.00 only after pilot results show measured value. Prefer growing revenue per customer through the Advanced edition. Price changes apply to new customers within 24 hours; existing customers keep their price for 60 days if they stay on the same tier.
+
+Before publishing:
+- Enter the bands in the partner portal and check its customer calculator, including how the per-user rate applies at 11 users.
+- Re-check competitor prices on their Marketplace pricing tabs. The figures above are third-party captures from Oct–Nov 2026.
+- Set `licensing.enabled: true` only in the Marketplace profile. After the production deploy, the production app cannot be installed until the listing is approved, so test in development or staging (production installs are billed). Offer the standard 30-day trial.
 
 ---
 
@@ -196,5 +221,5 @@ Test account for the governed flow: <OWNER: provided privately>.
 - [ ] Partner profile, support, documentation, privacy policy, EULA and DPA URLs live
 - [ ] Logo, banner, three highlight screenshots and crops, and additional screenshots captured from the real app
 - [ ] Privacy & Security answers confirmed by the owner (items marked OWNER/VERIFY)
-- [ ] Pricing and trial chosen; licensing enabled only in the Marketplace profile
+- [ ] Pricing bands entered and verified in the partner calculator; licensing enabled only in the Marketplace profile
 - [ ] Submit the listing and record the review-ticket URL in `docs/evidence/<release>/submission-links.md` (Codegeist Marketplace bonus)
