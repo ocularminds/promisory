@@ -40,6 +40,7 @@ const statusLabels: Record<string, string> = {
   CURRENT: "Current",
   STALE: "Source changed",
   COMPLETE: "Coverage complete",
+  SOURCE_READ: "Source read",
   INCOMPLETE: "Context incomplete",
   UNAVAILABLE: "Unavailable",
   UNVERIFIED: "Not verified",
@@ -55,6 +56,7 @@ export function Badge({ state }: { state: string }) {
     "ACCEPTED",
     "COMPLETE",
     "CURRENT",
+    "SOURCE_READ",
   ].includes(state)
     ? "success"
     : [
@@ -156,15 +158,27 @@ export function FormField({
   name,
   children,
   hint,
+  required,
 }: {
   label: string;
   name: string;
   children: ReactNode;
   hint?: string;
+  /** Visual marker only; the control itself carries `required`. */
+  required?: boolean;
 }) {
   return (
     <div className="field">
-      <label htmlFor={name}>{label}</label>
+      {required ? (
+        <div className="label-row">
+          <label htmlFor={name}>{label}</label>
+          <span className="required-mark" aria-hidden="true">
+            *
+          </span>
+        </div>
+      ) : (
+        <label htmlFor={name}>{label}</label>
+      )}
       {children}
       {hint && <small id={`${name}-hint`}>{hint}</small>}
     </div>
@@ -261,9 +275,12 @@ export function Empty({
 export function DateDisplay({
   instant,
   zone,
+  hideZone,
 }: {
   instant: string;
   zone: string;
+  /** Hide the zone line when a surrounding header already states it. */
+  hideZone?: boolean;
 }) {
   return (
     <time dateTime={instant} title={`${instant} · ${zone}`}>
@@ -274,7 +291,7 @@ export function DateDisplay({
         minute: "2-digit",
         timeZone: zone,
       }).format(new Date(instant))}
-      <small>{zone}</small>
+      {!hideZone && <small>{zone}</small>}
     </time>
   );
 }
