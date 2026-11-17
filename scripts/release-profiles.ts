@@ -82,7 +82,11 @@ export function assertProfileEquivalence(
     throw new Error(
       "Profile modules, source access, or execution capabilities differ. Only app identity, licensing, and remote origin may vary.",
     );
-  const first = manifests[0]!;
+  assertSharedManifest(manifests[0]!);
+}
+export function assertSharedManifest(
+  first: ReturnType<typeof makeManifest>,
+): void {
   const expected = makeManifest(
     first.app.id,
     false,

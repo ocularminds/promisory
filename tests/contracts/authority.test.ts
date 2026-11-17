@@ -227,8 +227,109 @@ describe("local SDK authority contract — no live policy or Jira calls", () => 
         dossier_id: "evaluation-only",
       },
     });
-    expect((await f.executor.execute(request, jira)).stage).toBe("BLOCKED");
+    expect((await f.executor.execute(request, jira)).stage).toBe("HELD");
     expect(jira.setDueDate).not.toHaveBeenCalled();
+  });
+  it("keeps an unavailable authority held, records bounded diagnostics, and never retries the operation", async () => {
+    const f = await setup(),
+      request = envelope(),
+      { jira } = testJira(request);
+    const requestSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(
+        Response.json(
+          { error: "sensitive provider text must not be retained" },
+          { status: 503 },
+        ),
+      );
+    const report = vi.fn();
+    const executor = new AgentSafeExecutor(
+      f.journal,
+      { ...f.binding, authorityUrl: "https://authority.example.invalid" },
+      undefined,
+      f.vault,
+      undefined,
+      report,
+    );
+    const result = await executor.execute(request, jira);
+    expect(result).toMatchObject({
+      stage: "HELD",
+      finalization: "NOT_REQUIRED",
+    });
+    expect(result.message).toContain("authority is unavailable");
+    expect(await executor.execute(request, jira)).toEqual(result);
+    expect(jira.setDueDate).not.toHaveBeenCalled();
+    expect(requestSpy).toHaveBeenCalledTimes(1);
+    expect(report).toHaveBeenCalledOnce();
+    expect(report.mock.calls[0]?.[0]).toMatchObject({
+      schemaVersion: "promisory.authority-observation.v1",
+      operationId: request.operationId,
+      verdict: "BLOCK",
+      failClosed: true,
+      httpStatus: 503,
+      reasonCodes: ["AUTHORITY_REQUEST_FAILED"],
+    });
+    expect(JSON.stringify(report.mock.calls)).not.toContain(
+      "sensitive provider text",
+    );
+    expect(JSON.stringify(report.mock.calls)).not.toContain(
+      LOCAL_AUTHORITY_API_KEY,
+    );
+  });
+  it("reports a refused claim without exposing its body, dispatching, or retrying", async () => {
+    const f = await setup(),
+      request = envelope(),
+      { jira } = testJira(request);
+    const realFetch = globalThis.fetch;
+    const calls = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async (input, init) => {
+        const url = String(input);
+        if (new URL(url).pathname.endsWith("/claims"))
+          return Response.json(
+            {
+              valid: false,
+              reason_codes: [
+                "AUTHORIZATION_SCOPE_BUSY",
+                "private value with spaces",
+              ],
+              execution_token: "secret-material-must-not-appear",
+            },
+            { status: 409 },
+          );
+        return realFetch(
+          url.replace("https://authority.example.invalid", f.local.baseUrl),
+          init,
+        );
+      });
+    const report = vi.fn();
+    const executor = new AgentSafeExecutor(
+      f.journal,
+      { ...f.binding, authorityUrl: "https://authority.example.invalid" },
+      undefined,
+      f.vault,
+      undefined,
+      report,
+    );
+    const result = await executor.execute(request, jira);
+    expect(result).toMatchObject({ stage: "BLOCKED", observed: "NO_EFFECT" });
+    expect(await executor.execute(request, jira)).toEqual(result);
+    expect(jira.setDueDate).not.toHaveBeenCalled();
+    expect(calls).toHaveBeenCalledTimes(2);
+    expect(report.mock.calls[1]?.[0]).toMatchObject({
+      event: "PROMISORY_EXECUTION_BOUNDARY",
+      operationId: request.operationId,
+      outcome: "BLOCKED",
+      reason: "AUTHORIZATION_INVALID",
+      claimHttpStatus: 409,
+      claimReasonCodes: ["AUTHORIZATION_SCOPE_BUSY"],
+      validClaimResponse: false,
+    });
+    expect(JSON.stringify(report.mock.calls)).not.toContain("secret-material");
+    expect(JSON.stringify(report.mock.calls)).not.toContain("private value");
+    expect(JSON.stringify(report.mock.calls)).not.toContain(
+      LOCAL_AUTHORITY_API_KEY,
+    );
   });
   it("requires a trusted policy selector and rejects caller-supplied policy overrides before evaluation", async () => {
     const f = await setup(),

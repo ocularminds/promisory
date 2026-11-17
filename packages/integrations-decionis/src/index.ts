@@ -237,6 +237,32 @@ export interface AuthorityBinding {
   independentlyVerifiedEnforcement: boolean;
   dataPolicy: DataSharingPolicy;
 }
+export const authorityDecisionObservationSchema = z.strictObject({
+  schemaVersion: z.literal("promisory.authority-observation.v1"),
+  event: z.literal("PROMISORY_AUTHORITY_DECISION"),
+  recordedAt: instant,
+  operationId: id,
+  verdict: z.enum(["ALLOW", "BLOCK", "ESCALATE"]),
+  failClosed: z.boolean(),
+  httpStatus: z.number().int().min(100).max(599).optional(),
+  elapsedMs: z.number().int().nonnegative(),
+  reasonCodes: z.array(z.string().regex(/^[A-Z][A-Z0-9_]{0,95}$/)).max(10),
+});
+export const executionBoundaryObservationSchema = z.strictObject({
+  schemaVersion: z.literal("promisory.execution-boundary-observation.v1"),
+  event: z.literal("PROMISORY_EXECUTION_BOUNDARY"),
+  recordedAt: instant,
+  operationId: id,
+  outcome: z.string().regex(/^[A-Z][A-Z0-9_]{0,95}$/),
+  reason: z
+    .string()
+    .regex(/^[A-Z][A-Z0-9_]{0,95}$/)
+    .optional(),
+  claimHttpStatus: z.number().int().min(100).max(599).optional(),
+  claimReasonCodes: z.array(z.string().regex(/^[A-Z][A-Z0-9_]{0,95}$/)).max(10),
+  validClaimResponse: z.boolean().optional(),
+  expectedEffectMatched: z.boolean().optional(),
+});
 export class AgentSafeExecutor {
   constructor(
     private journal: ExecutionJournal,
@@ -252,17 +278,23 @@ export class AgentSafeExecutor {
       operationId: string;
       report: ReconciliationReport;
     }) => void,
+    private reportAuthority?: (
+      event:
+        | z.infer<typeof authorityDecisionObservationSchema>
+        | z.infer<typeof executionBoundaryObservationSchema>,
+    ) => void,
   ) {
     authorityPolicyIdSchema.parse(binding.policyId);
     effectObserverIdSchema.parse(binding.effectObserverId);
   }
-  private verifier() {
+  private verifier(fetchOverride?: typeof fetch) {
     return (
       this.providers?.verifier ??
       new DecionisGrantVerifier({
         baseUrl: this.binding.authorityUrl,
         apiKey: this.binding.apiKey,
         timeoutMs: 4000,
+        ...(fetchOverride ? { fetch: fetchOverride } : {}),
       })
     );
   }
@@ -331,6 +363,7 @@ export class AgentSafeExecutor {
       "REPLAY",
       "Another invocation already owns this operation. Reconcile its result.",
     );
+    let authorityHttpStatus: number | undefined;
     const authority =
       this.providers?.authority ??
       new DecionisGate({
@@ -338,9 +371,59 @@ export class AgentSafeExecutor {
         apiKey: this.binding.apiKey,
         mode: "ENFORCEMENT",
         timeoutMs: 4000,
+        fetch: async (input, init) => {
+          const response = await fetch(input, init);
+          authorityHttpStatus = response.status;
+          return response;
+        },
       });
+    let claimHttpStatus: number | undefined;
+    let claimReasonCodes: string[] = [];
+    let validClaimResponse: boolean | undefined;
+    let expectedEffectMatched: boolean | undefined;
     const verifier = durableVerifier(
-      this.verifier(),
+      this.verifier(async (input, init) => {
+        const response = await fetch(input, init);
+        if (new URL(String(input)).pathname.endsWith("/claims")) {
+          claimHttpStatus = response.status;
+          // Inspect a bounded copy only. The verifier receives the original
+          // response, and no response body, token or claim material is logged.
+          try {
+            const reader = response.clone().body?.getReader();
+            if (reader) {
+              const chunks: Uint8Array[] = [];
+              let size = 0;
+              for (;;) {
+                const chunk = await reader.read();
+                if (chunk.done) break;
+                size += chunk.value.byteLength;
+                if (size > 100 * 1024) {
+                  void reader.cancel();
+                  throw new Error("DIAGNOSTIC_RESPONSE_BOUND");
+                }
+                chunks.push(chunk.value);
+              }
+              const body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+              if (Array.isArray(body.reason_codes))
+                claimReasonCodes = body.reason_codes
+                  .filter(
+                    (code: unknown) =>
+                      typeof code === "string" &&
+                      /^[A-Z][A-Z0-9_]{0,95}$/.test(code),
+                  )
+                  .slice(0, 10);
+              validClaimResponse = body.valid === true;
+              if (response.ok && body.claims?.binding)
+                expectedEffectMatched =
+                  body.claims.binding.expected_effect_digest ===
+                  captured.intent.expectedEffectDigest;
+            }
+          } catch {
+            // Observation failure never changes a grant or supplies permission.
+          }
+        }
+        return response;
+      }),
       this.vault,
       envelope.context,
       envelope.operationId,
@@ -454,17 +537,50 @@ export class AgentSafeExecutor {
         },
       })
       .seal();
+    const evaluationStartedAt = Date.now();
     const decision = await authority.evaluate(captured);
+    try {
+      this.reportAuthority?.(
+        authorityDecisionObservationSchema.parse({
+          schemaVersion: "promisory.authority-observation.v1",
+          event: "PROMISORY_AUTHORITY_DECISION",
+          recordedAt: new Date().toISOString(),
+          operationId: envelope.operationId,
+          verdict: decision.verdict,
+          failClosed: decision.failClosed,
+          httpStatus: authorityHttpStatus,
+          elapsedMs: Math.max(0, Date.now() - evaluationStartedAt),
+          reasonCodes: decision.reasonCodes
+            .filter((code) => /^[A-Z][A-Z0-9_]{0,95}$/.test(code))
+            .slice(0, 10),
+        }),
+      );
+    } catch {
+      // Diagnostic delivery never supplies authority or changes execution rules.
+    }
+    const authorityUnavailable =
+      decision.failClosed &&
+      decision.reasonCodes.some((code) =>
+        [
+          "AUTHORITY_UNAVAILABLE",
+          "AUTHORITY_REQUEST_FAILED",
+          "AUTHORITY_RESPONSE_TOO_LARGE",
+        ].includes(code),
+      );
     if (
       decision.verdict !== "ALLOW" ||
       decision.failClosed ||
       !decision.authorization
     ) {
       const result: ExecutionResult = {
-        stage: decision.verdict === "BLOCK" ? "BLOCKED" : "HELD",
+        stage:
+          decision.verdict === "BLOCK" && !authorityUnavailable
+            ? "BLOCKED"
+            : "HELD",
         mode: "ENFORCEMENT",
-        message:
-          decision.verdict === "BLOCK"
+        message: authorityUnavailable
+          ? "Execution authority is unavailable. No change was dispatched."
+          : decision.verdict === "BLOCK"
             ? "Decionis did not authorize this request. No change was dispatched."
             : "Decionis requires further authority. No change was dispatched.",
         evaluationReference: decision.decisionId,
@@ -479,6 +595,24 @@ export class AgentSafeExecutor {
       captured,
       decision,
     );
+    try {
+      this.reportAuthority?.(
+        executionBoundaryObservationSchema.parse({
+          schemaVersion: "promisory.execution-boundary-observation.v1",
+          event: "PROMISORY_EXECUTION_BOUNDARY",
+          recordedAt: new Date().toISOString(),
+          operationId: envelope.operationId,
+          outcome: executed.outcome,
+          ...("reason" in executed ? { reason: executed.reason } : {}),
+          claimHttpStatus,
+          claimReasonCodes,
+          validClaimResponse,
+          expectedEffectMatched,
+        }),
+      );
+    } catch {
+      // A diagnostic callback cannot change the execution result.
+    }
     const result: ExecutionResult = {
       stage:
         executed.outcome === "COMPLETED"

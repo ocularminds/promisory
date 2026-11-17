@@ -204,6 +204,7 @@ export function createRemoteHandler(
     undefined,
     vault,
     (event) => console.info(JSON.stringify(event)),
+    (event) => console.info(JSON.stringify(event)),
   );
   const connectionLog =
     dependencies.connectionLog ??

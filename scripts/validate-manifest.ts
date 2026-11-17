@@ -3,11 +3,13 @@ import { resolve } from "node:path";
 import { readFile } from "node:fs/promises";
 import { parse } from "yaml";
 import { assertForgeBuildConfig } from "./forge-build-config";
+import { assertSharedManifest } from "./release-profiles";
 const before = process.cwd();
 try {
   process.chdir(resolve(import.meta.dirname, "../apps/forge"));
   const result = await validate(false, "manifest.yml");
   const manifest = parse(await readFile("manifest.yml", "utf8"));
+  assertSharedManifest(manifest);
   await assertForgeBuildConfig(
     process.cwd(),
     Boolean(

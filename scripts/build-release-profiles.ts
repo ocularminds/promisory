@@ -1,11 +1,12 @@
 import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve, join } from "node:path";
-import { stringify } from "yaml";
+import { parse, stringify } from "yaml";
 import {
   profileNames,
   releaseIdentitiesSchema,
   profileManifest,
   assertProfileEquivalence,
+  assertSharedManifest,
 } from "./release-profiles";
 import {
   releaseInputs,
@@ -23,6 +24,9 @@ const identities = releaseIdentitiesSchema.parse(
 );
 const manifests = profileNames.map((name) => profileManifest(name, identities));
 assertProfileEquivalence(manifests);
+assertSharedManifest(
+  parse(await readFile(join(root, "apps/forge/manifest.yml"), "utf8")),
+);
 await assertForgeBuildConfig(
   join(root, "apps/forge"),
   Boolean(identities.development.remoteUrl),

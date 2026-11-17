@@ -60,6 +60,10 @@ if (existing.some(Boolean)) {
   );
   if (new Set(digests).size !== 1)
     throw new Error("Generated profile source files differ.");
+  if (digests[0] !== (await sourceDigest(root)))
+    throw new Error(
+      "Generated profiles are stale relative to the current source. Regenerate all three before deploying.",
+    );
   for (const [index, name] of profileNames.entries()) {
     await assertForgeBuildConfig(
       join(root, "release", name, "apps/forge"),
