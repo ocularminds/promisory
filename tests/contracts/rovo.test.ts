@@ -52,6 +52,34 @@ beforeEach(() => {
   composition.licenseActive = true;
 });
 describe("shared Rovo tools with synthetic trusted Forge context", () => {
+  it("binds a blocker citation to the current Jira key instead of its numeric identifier", async () => {
+    const f = await setup();
+    const blocker = f.sources.workItems.find(
+      (work) => work.externalId === "137",
+    )!;
+    blocker.displayKey = "BUG-8042";
+    const result = await getCommitmentContext(
+      { projectId: "10000", commitmentId: "PM-101" },
+      {},
+    );
+    const rows = result.result as Array<{
+      assessment: { reasons: Array<{ code: string; workEvidence: unknown[] }> };
+    }>;
+    const evidence = rows[0]!.assessment.reasons.find(
+      (reason) => reason.code === "BLOCKING_DEFECT",
+    )!.workEvidence;
+    expect(evidence).toEqual([
+      expect.objectContaining({
+        workId: blocker.id,
+        issueId: "137",
+        issueKey: "BUG-8042",
+        title: blocker.title,
+        resolved: false,
+        source: expect.objectContaining({ sourceId: blocker.id }),
+      }),
+    ]);
+    expect(JSON.stringify(evidence)).not.toContain('"issueKey":"MX-137"');
+  });
   it("keeps role subjects distinct from confirming administrators when display names collide", async () => {
     const f = await setup();
     vi.spyOn(f.sources, "person").mockImplementation(async (accountId) => ({

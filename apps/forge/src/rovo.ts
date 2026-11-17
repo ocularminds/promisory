@@ -108,6 +108,28 @@ async function tool(
       )
       .map((a) => ({
         ...a,
+        // Numeric Jira IDs do not encode issue keys. Bind each cited reason to
+        // the currently permitted source labels instead of asking Rovo to infer them.
+        reasons: a.reasons.map((reason) => ({
+          ...reason,
+          workEvidenceTruncated:
+            workspace.work.work.filter((work) =>
+              reason.evidenceSourceIds.includes(work.id),
+            ).length > 30,
+          workEvidence: workspace.work.work
+            .filter((work) => reason.evidenceSourceIds.includes(work.id))
+            .slice(0, 30)
+            .map((work) => ({
+              workId: work.id,
+              issueId: work.externalId,
+              issueKey: work.displayKey,
+              title: work.title,
+              issueType: work.type,
+              status: work.statusName,
+              resolved: work.resolved,
+              source: work.source,
+            })),
+        })),
         paths: a.paths.slice(0, 30),
         traversalTruncated: a.traversalTruncated || a.paths.length > 30,
       }));
