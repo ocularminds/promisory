@@ -126,6 +126,7 @@ test("review is independent and example execution stays held without an external
     .getByRole("button", { name: "Launch merchant onboarding", exact: true })
     .click();
   await page
+    .locator(".detail")
     .getByRole("button", { name: "Compare recovery options", exact: true })
     .click();
   await page.getByLabel("Proposed Jira due date").fill("2026-11-23");
@@ -161,7 +162,9 @@ test("PRD drift invalidates the accepted gate while retaining the recorded revie
   await expect(page.getByText("Gate accepted", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Simulate PRD revision" }).click();
   await expect(
-    page.getByText("Gate version 1 · Applicability: stale", { exact: true }),
+    page.getByText("Gate version 1 · sources changed since this was prepared", {
+      exact: true,
+    }),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Accept gate review" }),
@@ -344,7 +347,7 @@ test("promise ledger states counts truthfully and Graph relations are labelled a
   await expect(ledger.getByText("Kept by the original date")).toBeVisible();
   // Fewer than five due commitments: counts, never a percentage.
   await expect(ledger.getByText(/%/)).toHaveCount(0);
-  await expect(ledger.getByText("None stated")).toBeVisible();
+  await expect(ledger.getByText("No value stated")).toBeVisible();
   await page
     .getByRole("button", { name: "Launch merchant onboarding", exact: true })
     .click();
@@ -407,4 +410,90 @@ test("the commitment form offers an optional stated value and slip budget with a
     dialog.getByLabel("Slip budget in days (optional)"),
   ).toHaveAttribute("max", "30");
   expect((await axe(page)).violations).toEqual([]);
+});
+
+test("the overview leads with the decision and the recovery dialog previews the slip before preparing", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  const decision = page.getByRole("region", {
+    name: "Launch merchant onboarding is at risk",
+  });
+  await expect(decision).toBeVisible();
+  await expect(
+    decision.getByText(
+      "MX-137 · Duplicate onboarding events (reopened) blocks the delivery path.",
+    ),
+  ).toBeVisible();
+  await decision
+    .getByRole("button", { name: "Compare recovery options" })
+    .click();
+  const dialog = page.getByRole("dialog");
+  const approach = dialog.getByRole("group", { name: "Recovery approach" });
+  await expect(
+    approach.getByRole("radio", { name: /Repair the blocker/ }),
+  ).toBeChecked();
+  await approach.getByRole("radio", { name: /Renegotiate/ }).check();
+  await expect(
+    approach.getByRole("radio", { name: /Renegotiate/ }),
+  ).toBeChecked();
+  await expect(
+    dialog.getByText("Pick a date to check it", { exact: false }),
+  ).toBeVisible();
+  await dialog.getByLabel("Proposed Jira due date").fill("2026-11-23");
+  await expect(
+    dialog.getByText("Needs escalation before it can be applied"),
+  ).toBeVisible();
+  await expect(
+    dialog.getByText("+4 days later than MX-121's current date."),
+  ).toBeVisible();
+  await expect(
+    dialog.getByText("No slip budget is agreed for this commitment."),
+  ).toBeVisible();
+  await expect(dialog.getByText(/Moves past the promise date/)).toBeVisible();
+  expect((await axe(page)).violations).toEqual([]);
+  await captureTop(page, "recovery-slip-preview.png");
+});
+test("coverage that is complete reads as good news, not missing data", async ({
+  page,
+}) => {
+  await page.goto("/?mode=example");
+  await page
+    .getByRole("navigation", { name: "Workspace" })
+    .getByRole("button", { name: "Work map" })
+    .click();
+  const badge = page
+    .locator(".badge", { hasText: "Coverage complete" })
+    .first();
+  await expect(badge).toHaveClass(/success/);
+  await expect(page.getByText("native level", { exact: false })).toHaveCount(0);
+});
+test("on a narrow screen the commitment opens full screen with focus, and Escape returns focus", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/?mode=example");
+  const row = page.getByRole("button", {
+    name: "Launch merchant onboarding",
+    exact: true,
+  });
+  await row.focus();
+  await page.keyboard.press("Enter");
+  const heading = page.locator("#detail-title");
+  await expect(heading).toBeFocused();
+  await expect(heading).toBeInViewport();
+  const box = await page.locator(".overview-grid > .detail").boundingBox();
+  expect(box?.width).toBeGreaterThanOrEqual(389);
+  expect((await axe(page)).violations).toEqual([]);
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".overview-grid > .detail")).toHaveCount(0);
+  await expect(row).toBeFocused();
+});
+test("embedded views keep the refresh action compact", async ({ page }) => {
+  for (const surface of ["issue", "page"]) {
+    await page.goto(`/?mode=example&surface=${surface}`);
+    const refresh = page.getByRole("button", { name: "Refresh evidence" });
+    await expect(refresh).toBeVisible();
+    expect((await refresh.boundingBox())!.width).toBeLessThan(260);
+  }
 });

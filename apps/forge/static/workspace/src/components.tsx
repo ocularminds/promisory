@@ -39,7 +39,7 @@ const statusLabels: Record<string, string> = {
   NOT_APPLICABLE: "Not applicable",
   CURRENT: "Current",
   STALE: "Source changed",
-  COMPLETE: "Current coverage",
+  COMPLETE: "Coverage complete",
   INCOMPLETE: "Context incomplete",
   UNAVAILABLE: "Unavailable",
   UNVERIFIED: "Not verified",
@@ -53,6 +53,8 @@ export function Badge({ state }: { state: string }) {
     "SUCCEEDED",
     "AVAILABLE",
     "ACCEPTED",
+    "COMPLETE",
+    "CURRENT",
   ].includes(state)
     ? "success"
     : [
