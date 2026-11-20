@@ -1,5 +1,9 @@
 import { z } from "zod";
 import { Temporal } from "@js-temporal/polyfill";
+export {
+  hasJiraDueDatePermissions,
+  jiraDueDatePermissionKeys,
+} from "./jira-permissions";
 
 export const SCHEMA_VERSION = "promisory.v1" as const;
 export const id = z

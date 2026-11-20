@@ -19,6 +19,19 @@ const fixture = () =>
     ),
   );
 describe("offline release profile guardrails", () => {
+  it("keeps all remote profiles on user tokens with no system-token scope or web trigger", () => {
+    for (const name of profileNames) {
+      const manifest = profileManifest(name, fixture());
+      expect(manifest.remotes?.[0]?.auth).toEqual({
+        appUserToken: { enabled: true },
+      });
+      expect(manifest.permissions.scopes).toContain("read:app-user-token");
+      expect(manifest.permissions.scopes).not.toContain(
+        "read:app-system-token",
+      );
+      expect(manifest.modules).not.toHaveProperty("webtrigger");
+    }
+  });
   it("packages the PRD, read-only MCP, privacy and change-detection capabilities in every profile", () => {
     for (const name of profileNames) {
       const manifest = profileManifest(name, fixture());

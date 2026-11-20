@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "promisory.image-smoke.v1",
+  "recordedAt": "2026-11-20T13:54:33.679Z",
+  "fixture": "EXPLICITLY_SYNTHETIC",
+  "credentials": "SYNTHETIC_ONLY",
+  "checks": [
+    {
+      "name": "Linux amd64 Node 22.23.4",
+      "passed": true
+    },
+    {
+      "name": "UID 1000",
+      "passed": true
+    },
+    {
+      "name": "patched Zod 4.6.7",
+      "passed": true
+    },
+    {
+      "name": "patched presence-types 0.3.0",
+      "passed": true
+    },
+    {
+      "name": "Forge CLI excluded from runtime image",
+      "passed": true
+    },
+    {
+      "name": "due-date permission and system-token guards in image",
+      "passed": true
+    },
+    {
+      "name": "read-only root filesystem",
+      "passed": true
+    },
+    {
+      "name": "private writable state",
+      "passed": true
+    },
+    {
+      "name": "health response",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated /v1/actions/apply",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated /v1/actions/reconcile",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated /v1/connection/check",
+      "passed": true
+    },
+    {
+      "name": "unknown route refused",
+      "passed": true
+    },
+    {
+      "name": "oversize body refused",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "podUid": "b8ca79c1-933f-489a-a159-ec9cb9090ebf",
+  "phase": "Succeeded",
+  "exitCode": 0,
+  "imageId": "decionisacr.azurecr.io/promisory/executor@sha256:8a6baca1c33783d6a944e83d1793e129a4224f020a8067f1ac0caa5549e6909b"
+}

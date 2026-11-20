@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "promisory.remote-build-source.v1",
+  "generatedAt": "2026-11-20T13:46:40.109Z",
+  "sourceSha256": "dda30574dbd4eae5d29f9d6b663159c8e413d4fd60a7d76a06681f70bba966e6",
+  "archiveSha256": "132904a7c5e13fb3a0fbc5879913be9ff479f4c88f05fdd132fc5444d273d2da",
+  "archiveBytes": 201656,
+  "fileCount": 36,
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 667,
+      "sha256": "6f5ad484bfc897889b2f4111e0dd9844e8582df339b24e2f01d03ec08c03014a"
+    },
+    {
+      "path": ".npmrc",
+      "bytes": 35,
+      "sha256": "cde76ca04e048c3eba070a2c0dfcf5b723cf6014eab177157096b924f24ec4ca"
+    },
+    {
+      "path": "apps/forge/package.json",
+      "bytes": 626,
+      "sha256": "d5a493c737b11c051129d92ac5682d24c4ba42a14cefe5b268de9f3376a33140"
+    },
+    {
+      "path": "apps/remote/Dockerfile",
+      "bytes": 1627,
+      "sha256": "28899acc5e64509e250e39ebad0e63b18cd88f7e147f9eb27b6ab11db9286260"
+    },
+    {
+      "path": "apps/remote/package.json",
+      "bytes": 312,
+      "sha256": "ef4ac0fa204f88bb91650b7dea92febd994b121faa87189ddf6ee363d3949b55"
+    },
+    {
+      "path": "apps/remote/src/auth.ts",
+      "bytes": 6109,
+      "sha256": "54a61d9abc6ee06dc6c3ad97f291879c89588c6d89b474ddfb3f6a3d2306e2d7"
+    },
+    {
+      "path": "apps/remote/src/index.ts",
+      "bytes": 12111,
+      "sha256": "81bd9ed475ba148d6f560242bc5a28105a3d19354e5dce594717423c734cca2c"
+    },
+    {
+      "path": "apps/remote/src/journal.ts",
+      "bytes": 2401,
+      "sha256": "3b8e36c217b911965700cabcb1de376877023d70fdbfce2a4e53179f7daa1495"
+    },
+    {
+      "path": "apps/remote/src/server.ts",
+      "bytes": 4948,
+      "sha256": "de91824d834961af14847183932364d678a3ae652247b44cd6caa717f7dfbd2d"
+    },
+    {
+      "path": "apps/remote/src/vault.ts",
+      "bytes": 3662,
+      "sha256": "0b14942a96aa4b7749299892d9885157f187c7081e91fe44a7384e3fe75b8dd4"
+    },
+    {
+      "path": "apps/remote/vite.config.ts",
+      "bytes": 402,
+      "sha256": "c6e6bb59e514c56e63b54e80266a7197d5d59a7be4a08bbbc23e8ff3c3a34e9d"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 536222,
+      "sha256": "b27395474b3c628b346c1420f9d49d552ac835cc200aa56702779ab3afd0a17e"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2104,
+      "sha256": "7199fb5db12fca2c1629da174f3e1c18e05f155bd2eb0a9c4eced52cc8d7936f"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "bytes": 211,
+      "sha256": "17fc5b78146592ba530f25149afc9f32cec2884022d046885311b81c2befaa10"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "bytes": 25349,
+      "sha256": "bdd771e9dc385165b0d5bec5d83a94e751f4b718a7b1b805177923e250b5250a"
+    },
+    {
+      "path": "packages/contracts/src/jira-permissions.ts",
+      "bytes": 805,
+      "sha256": "79050bb27fa85292507e17fb2584144bbef5ce8839d4fadb4191eadf2bfefebd"
+    },
+    {
+      "path": "packages/design-system/package.json",
+      "bytes": 173,
+      "sha256": "44721b99240bac83f35d8abacbff7fb5a58900aca1696858ee5b560df3ebf735"
+    },
+    {
+      "path": "packages/domain/package.json",
+      "bytes": 245,
+      "sha256": "5deee32e1153b9a1a3da41bee2a040787705ed23962a30bc9fb450505f579fe2"
+    },
+    {
+      "path": "packages/domain/src/changes.ts",
+      "bytes": 4491,
+      "sha256": "59227cac2ffa908a70f95eadcf0746d4cd16a77508cc69d7ef5f28c8da78f82a"
+    },
+    {
+      "path": "packages/domain/src/impact.ts",
+      "bytes": 9284,
+      "sha256": "24c0816361591bd9088000d334611c410aa47b1db7718945d09d14cb210bbd34"
+    },
+    {
+      "path": "packages/domain/src/index.ts",
+      "bytes": 248,
+      "sha256": "c3aaf21bfcbe7563fb9434b93c8031a7a7e224ec59ddadb2907ca508140a4a1d"
+    },
+    {
+      "path": "packages/domain/src/lifecycle.ts",
+      "bytes": 7452,
+      "sha256": "0aafb27c0ba41aabdbc668771d9ae3c2d4cd20af29f745b47c468490bb912238"
+    },
+    {
+      "path": "packages/domain/src/metrics.ts",
+      "bytes": 6310,
+      "sha256": "f01798433cf0f02b1557fbe773790ad4fa2964d94ad88d335de12e397d41b531"
+    },
+    {
+      "path": "packages/domain/src/ports.ts",
+      "bytes": 4262,
+      "sha256": "10dcd348bc72c376c8d7a0cef61be9ede557e69cd4c7c44e5b8e0f4173d65269"
+    },
+    {
+      "path": "packages/domain/src/primitives.ts",
+      "bytes": 6873,
+      "sha256": "10da648d0ed8bb9a09d151301cdd23e5bd1d2c93dff6dacef074d158da1d8d88"
+    },
+    {
+      "path": "packages/domain/src/retention.ts",
+      "bytes": 6732,
+      "sha256": "b1f9e46602f8af580439c4ba9e46d33b98aa438112d19dff447adc8d8a439c09"
+    },
+    {
+      "path": "packages/domain/src/sections.ts",
+      "bytes": 2798,
+      "sha256": "4eb64c0257e4fbad52e95a1ea7ed64a8e776be04137a74327402c30e473d415c"
+    },
+    {
+      "path": "packages/domain/src/service.ts",
+      "bytes": 90367,
+      "sha256": "56df28fbe0cb4b5124a91b16de3e10f86c0fd32502e0b4bef364ba20ded715a3"
+    },
+    {
+      "path": "packages/integrations-atlassian/package.json",
+      "bytes": 257,
+      "sha256": "685d4d90b2b82092747190d80f1f5b443780c74a134cceb2d19b3b95666cffae"
+    },
+    {
+      "path": "packages/integrations-decionis/package.json",
+      "bytes": 302,
+      "sha256": "45f2fe191d6397f52bc392bd0890b0d646958c69408343a895407ff700e117f7"
+    },
+    {
+      "path": "packages/integrations-decionis/src/connection-diagnostics.ts",
+      "bytes": 3711,
+      "sha256": "cba1d7f6f9c7c750057af7f21150e8f2d994d99bda9676969d6d6609b75ae6d5"
+    },
+    {
+      "path": "packages/integrations-decionis/src/effects.ts",
+      "bytes": 1931,
+      "sha256": "376a16b20852f14906f1c9d4d2eabe59c439e947a2015c2421fa91a8f1ca5f72"
+    },
+    {
+      "path": "packages/integrations-decionis/src/hosted-invocation.ts",
+      "bytes": 1382,
+      "sha256": "a924ec872a69107e0614612a3e077d73a2a5f270de22425cbb24aa5525908a07"
+    },
+    {
+      "path": "packages/integrations-decionis/src/index.ts",
+      "bytes": 28552,
+      "sha256": "f96eb65db4e2ca933900c23b19c0b0c354f2ccad24ddbbc466277a7ec03d5ee2"
+    },
+    {
+      "path": "packages/integrations-decionis/src/recovery.ts",
+      "bytes": 14209,
+      "sha256": "540d37d235bb211b0392cc42687214df36191541fa6c87fb1f7f10555e3988b5"
+    },
+    {
+      "path": "packages/test-fixtures/package.json",
+      "bytes": 278,
+      "sha256": "6a2339c8f21400236c2aff372cc1853bdb93dcce5db34e9edcc01c6382a268ca"
+    }
+  ],
+  "containerImageBuilt": false,
+  "registryPushed": false,
+  "verification": {
+    "sourceHashesMatched": true,
+    "archiveHashMatched": true,
+    "excludedDocumentsEnvironmentAndGit": true,
+    "literalNpmCredential": false
+  }
+}

@@ -1,0 +1,19 @@
+# 0023 — Remote user identity and due-date permissions
+
+20 November 2026
+
+The Marketplace questionnaire for ECOHELP-186301 incorrectly identified Promisory as Connect-on-Forge, answered No to remote user-permission validation, and denied data egress. The application is native Forge with a declared remote, verified Forge Invocation Tokens (FITs), and `appUserToken`; it does not request `appSystemToken` or call `asApp()`. The deployed executor already checked issue edit permission before dispatch. Correcting the questionnaire is necessary independently of the following hardening.
+
+Every authenticated remote connection check, apply request, and reconciliation request now verifies the opaque user token with Jira `/rest/api/3/myself`. The account must be active and match the FIT principal and signed hosted envelope. This prevents accepting a different user's OAuth token with an otherwise valid invocation. A system-token header is explicitly refused, and a missing user token has no fallback. Invalid route contracts are rejected before product access.
+
+The hosted service and remote executor share one due-date permission contract: Jira `/rest/api/3/mypermissions` must return Boolean true for `BROWSE_PROJECTS`, `EDIT_ISSUES`, and `SCHEDULE_ISSUES`, scoped to the numeric target issue ID. Jira requires scheduling permission to edit the due date. Missing, malformed, denied, or unavailable permission evidence refuses execution. The remote repeats this check immediately before dispatch; native Jira authorization on the user-token PUT remains the final boundary if permissions change after the check.
+
+Connection diagnostics now project only bounded outcome and correlation fields. The authenticated response still carries context for identity comparison, but neither Forge nor remote connection logs contain account or tenant identifiers. Historical logs are not rewritten by this change.
+
+The read-only diagnostic reader accepts the new strict observation contract and requires identical observations from both Forge and the executor for the same request. One-sided or conflicting records cannot establish a verified connection. Identity comparison remains inside the authenticated services; the reader no longer reconstructs personal or tenant identifiers from logs.
+
+Decionis still supplies and claims the exact execution grant; these checks cannot substitute for it. No scopes, installation bindings, policy selectors, recovery data, graph serializers, or supported actions are expanded. A reconciliation request never repeats the original write.
+
+The dependency scan also found an older transitive Zod under the executor SDK. A root override selects the publisher's `@decionis/presence-types` 0.3.0, which supports Zod 4, while retaining the already verified AgentSafe 0.5.0 protocol. The presence client imports these declarations as types only. A second override selects patched `glob` 14.0.6 and its compatible `minimatch` 11 dependency. The production audit and dependency tree pass. Atlassian CLI 15.1.0 is the latest published CLI; its own shrinkwrapped development dependencies still have findings. These are recorded separately, not described as a clean full audit. No dependency upgrade bypasses grant or recovery validation.
+
+References: [Forge remote API tokens](https://developer.atlassian.com/platform/forge/remote/calling-product-apis/), [Marketplace authorization requirements](https://developer.atlassian.com/platform/marketplace/security-requirements/#forge-apps-that-egress-data), [Jira Schedule Issues permission](https://support.atlassian.com/jira/kb/due-date-field-not-showing-when-i-create-or-view-a-jira-cloud-issue/), [security questionnaires](https://developer.atlassian.com/platform/marketplace/app-security-questionnaires/), [Zod advisory](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5), [glob advisory](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4).

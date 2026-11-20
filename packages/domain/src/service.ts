@@ -2393,9 +2393,9 @@ export class PromisoryService {
     );
     await this.validateProposal(proposal, c);
     ensure(
-      await this.sources.canEdit(proposal.effect.issueId),
+      await this.sources.canSetDueDate(proposal.effect.issueId),
       "NATIVE_PERMISSION_REQUIRED",
-      "Your current Jira user must be allowed to edit this issue.",
+      "Your current Jira user needs Browse Projects, Edit Issues, and Schedule Issues permissions for this issue.",
     );
     const bindings = (
       await Promise.all(c.projectIds.map((id) => this.projectState(id)))

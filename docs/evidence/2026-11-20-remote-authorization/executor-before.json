@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.remote-source-observation.v1",
+  "recordedAt": "2026-11-20T13:28:45.872Z",
+  "serverSha256": "0af621e5bf76705626d8f8784b758e1e6dab2b1606edd070f3dbe703548c5013",
+  "userTokenHeader": true,
+  "systemTokenHeader": false,
+  "currentUserApi": true,
+  "permissionsApi": true,
+  "editPermission": true,
+  "schedulePermission": false,
+  "bindingEnabled": true,
+  "node": "v22.23.4"
+}

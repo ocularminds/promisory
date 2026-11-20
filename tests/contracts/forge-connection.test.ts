@@ -105,13 +105,16 @@ describe("Forge-side read-only connection boundary", () => {
     const proof = JSON.parse(vi.mocked(console.info).mock.calls[0]![0]);
     expect(proof).toMatchObject({
       event: "PROMISORY_REMOTE_CONNECTION_CHECK",
-      context: exampleContext(),
+      schemaVersion: "promisory.remote-connection-observation.v1",
       readOnly: true,
       enforcementVerificationHeld: true,
     });
     expect(JSON.stringify(proof)).not.toMatch(
-      /synthetic-forge-hmac|signature|oauth|graph|effect/i,
+      /accountId|synthetic-forge-hmac|signature|oauth|graph|effect/i,
     );
+    expect(proof).not.toHaveProperty("context");
+    for (const identifier of Object.values(exampleContext()))
+      expect(JSON.stringify(proof)).not.toContain(identifier);
   });
   it.each([
     { requestId: "22222222-2222-4222-8222-222222222222" },

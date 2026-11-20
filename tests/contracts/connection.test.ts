@@ -65,6 +65,25 @@ function query() {
     expiresAt: new Date(Date.now() + 60_000).toISOString(),
   };
 }
+function actionQuery() {
+  return {
+    schemaVersion: "promisory.remote.v1",
+    context,
+    operationId: randomUUID(),
+    proposalId: "synthetic-proposal",
+    proposalHash: `sha256:${"a".repeat(64)}`,
+    idempotencyKey: randomUUID(),
+    expiresAt: new Date(Date.now() + 60_000).toISOString(),
+    effect: {
+      kind: "SET_JIRA_DUE_DATE",
+      cloudId: context.cloudId,
+      issueId: "121",
+      expectedUpdatedAt: "2026-11-10T09:00:00.000Z",
+      expectedDueDate: "2026-11-20",
+      desiredDueDate: "2026-11-23",
+    },
+  };
+}
 function setup(
   user: unknown = { accountId: context.principalAccountId, active: true },
   status = 200,
@@ -103,6 +122,7 @@ function setup(
     options: {
       path?: string;
       oauth?: boolean;
+      systemOAuth?: boolean;
       signature?: string;
       moduleKey?: string;
       omitNotBefore?: boolean;
@@ -126,6 +146,9 @@ function setup(
           ...(options.oauth === false
             ? {}
             : { "x-forge-oauth-user": "synthetic-current-user-token" }),
+          ...(options.systemOAuth
+            ? { "x-forge-oauth-system": "synthetic-system-token" }
+            : {}),
           ...(options.originHeader === false
             ? {}
             : { "x-promisory-origin": JSON.stringify(origin) }),
@@ -188,39 +211,96 @@ describe("read-only remote connection verification — synthetic FIT and Jira", 
     );
     expect(f.connectionLog).toHaveBeenCalledExactlyOnceWith({
       event: "PROMISORY_REMOTE_CONNECTION_CHECK",
-      ...result,
+      schemaVersion: "promisory.remote-connection-observation.v1",
+      requestId: input.requestId,
+      checkedAt: result.checkedAt,
+      moduleKey: "promisory-resolver",
+      fitModuleKey: "promisory-resolver",
+      moduleVerification: "FIT_AND_HOSTED_CONTEXT",
+      appVersion: "3.1.0",
+      currentUserVerified: true,
+      readOnly: true,
+      mode: "ENFORCEMENT",
+      enforcementVerificationHeld: true,
+      dataSharingEnabled: true,
     });
-    expect(f.authority.independentlyVerifiedEnforcement).toBe(false);
-    const action = await f.call(
-      {
-        schemaVersion: "promisory.remote.v1",
-        context,
-        operationId: randomUUID(),
-        proposalId: "synthetic-proposal",
-        proposalHash: `sha256:${"a".repeat(64)}`,
-        idempotencyKey: randomUUID(),
-        expiresAt: new Date(Date.now() + 60_000).toISOString(),
-        effect: {
-          kind: "SET_JIRA_DUE_DATE",
-          cloudId: context.cloudId,
-          issueId: "121",
-          expectedUpdatedAt: "2026-11-10T09:00:00.000Z",
-          expectedDueDate: "2026-11-20",
-          desiredDueDate: "2026-11-23",
-        },
-      },
-      { path: "/v1/actions/apply" },
+    const log = JSON.stringify(f.connectionLog.mock.calls);
+    expect(f.connectionLog.mock.calls[0]?.[0]).not.toHaveProperty("context");
+    for (const identifier of Object.values(context))
+      expect(log).not.toContain(identifier);
+    expect(log).not.toMatch(
+      /accountId|never-retain|Never retain|synthetic-current-user-token/,
     );
+    expect(f.authority.independentlyVerifiedEnforcement).toBe(false);
+    const action = await f.call(actionQuery(), { path: "/v1/actions/apply" });
     expect(await action.json()).toMatchObject({
       stage: "HELD",
       mode: "UNKNOWN",
     });
-    expect(f.request).toHaveBeenCalledTimes(1);
+    expect(f.request).toHaveBeenCalledTimes(2);
     expect(f.journal.start).not.toHaveBeenCalled();
     expect(f.journal.save).not.toHaveBeenCalled();
     expect(f.vault.save).not.toHaveBeenCalled();
     expect(f.connectionLog).toHaveBeenCalledTimes(1);
   });
+  it.each([true, false])(
+    "rejects a system token even when a user token is present: %s",
+    async (oauth) => {
+      const f = setup();
+      const result = await f.call(query(), { oauth, systemOAuth: true });
+      expect(result.status).toBe(400);
+      expect(await result.json()).toMatchObject({
+        error: "SYSTEM_TOKEN_UNSUPPORTED",
+      });
+      expect(f.request).not.toHaveBeenCalled();
+      expect(f.journal.get).not.toHaveBeenCalled();
+      expect(f.vault.get).not.toHaveBeenCalled();
+    },
+  );
+  describe.each(["/v1/actions/apply", "/v1/actions/reconcile"])(
+    "current-user authorization on %s",
+    (path) => {
+      const body = () =>
+        path.endsWith("/apply")
+          ? actionQuery()
+          : { context, operationId: randomUUID() };
+      it.each([
+        { user: { accountId: "other-user", active: true }, status: 200 },
+        {
+          user: { accountId: context.principalAccountId, active: false },
+          status: 200,
+        },
+        { user: {}, status: 401 },
+        { user: {}, status: 403 },
+        { user: {}, status: 302 },
+        { user: {}, status: 200 },
+      ])(
+        "refuses a mismatched, inactive, expired or malformed OAuth identity %# before journal or authority access",
+        async ({ user, status }) => {
+          const f = setup(user, status);
+          const result = await f.call(body(), { path });
+          expect(result.status).toBe(400);
+          expect(f.request).toHaveBeenCalledTimes(1);
+          expect(f.request.mock.calls[0]?.[0]).toBe(
+            `https://api.atlassian.com/ex/jira/${context.cloudId}/rest/api/3/myself`,
+          );
+          expect(f.journal.get).not.toHaveBeenCalled();
+          expect(f.journal.start).not.toHaveBeenCalled();
+          expect(f.vault.get).not.toHaveBeenCalled();
+          expect(f.vault.save).not.toHaveBeenCalled();
+        },
+      );
+      it("refuses a missing user token before any product call", async () => {
+        const f = setup();
+        const result = await f.call(body(), { path, oauth: false });
+        expect(await result.json()).toMatchObject({
+          error: "FRESH_USER_REQUIRED",
+        });
+        expect(f.request).not.toHaveBeenCalled();
+        expect(f.journal.get).not.toHaveBeenCalled();
+      });
+    },
+  );
   it.each(["graph", "effect", "url", "principalAccountId"])(
     "rejects caller-supplied %s metadata before touching Jira",
     async (field) => {

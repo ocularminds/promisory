@@ -70,7 +70,7 @@ export interface SourcePort {
   people(projectId: string, query: string): Promise<Person[]>;
   person(accountId: string, projectId: string): Promise<Person>;
   isAdmin(projectId?: string): Promise<boolean>;
-  canEdit(issueId: string): Promise<boolean>;
+  canSetDueDate(issueId: string): Promise<boolean>;
   importWork(projectId: string): Promise<WorkSnapshot>;
   work(issueId: string): Promise<WorkNode>;
   page(pageId: string): Promise<SourcePage>;

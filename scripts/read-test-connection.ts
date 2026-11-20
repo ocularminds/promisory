@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { z } from "zod";
 import {
   connectionCheckResultSchema,
   connectionFailureSchema,
@@ -31,19 +32,55 @@ for (let i = 0; i < arguments_.length; i += 2) {
       "Use --since <time>, --deployment-evidence <folder>, and optional --output <new-file>.",
     );
 }
-const deployment = JSON.parse(
-  readFileSync(resolve(evidence, "forge-deployment.json"), "utf8"),
-) as { reportedDeploymentVersion: string };
-const runtime = JSON.parse(
-  readFileSync(resolve(evidence, "executor-runtime.json"), "utf8"),
-) as {
-  context: {
-    appId: string;
-    environmentId: string;
-    installationId: string;
-    cloudId: string;
-  };
-};
+const deploymentsFile = resolve(evidence, "forge-deployments.json");
+const expectedAppVersion = z
+  .string()
+  .regex(/^\d+\.\d+\.\d+$/)
+  .parse(
+    existsSync(deploymentsFile)
+      ? z
+          .object({
+            profiles: z.array(
+              z.object({
+                profile: z.string(),
+                result: z.string(),
+                version: z.string().optional(),
+              }),
+            ),
+          })
+          .parse(JSON.parse(readFileSync(deploymentsFile, "utf8")))
+          .profiles.find(
+            (profile) =>
+              profile.profile === "development" && profile.result === "SUCCESS",
+          )?.version
+      : JSON.parse(
+          readFileSync(resolve(evidence, "forge-deployment.json"), "utf8"),
+        ).reportedDeploymentVersion,
+  );
+// The authenticated response still carries context. Logs deliberately do not.
+// Reuse the response field contracts and reject legacy/extra identity fields.
+const fields = connectionCheckResultSchema.shape;
+const observationSchema = z
+  .strictObject({
+    event: z.literal("PROMISORY_REMOTE_CONNECTION_CHECK"),
+    schemaVersion: z.literal("promisory.remote-connection-observation.v1"),
+    requestId: fields.requestId,
+    checkedAt: fields.checkedAt,
+    moduleKey: fields.moduleKey,
+    fitModuleKey: fields.fitModuleKey,
+    moduleVerification: fields.moduleVerification,
+    appVersion: fields.appVersion,
+    currentUserVerified: fields.currentUserVerified,
+    readOnly: fields.readOnly,
+    mode: fields.mode,
+    enforcementVerificationHeld: fields.enforcementVerificationHeld,
+    dataSharingEnabled: fields.dataSharingEnabled,
+  })
+  .refine((value) =>
+    value.moduleVerification === "FIT_AND_HOSTED_CONTEXT"
+      ? value.fitModuleKey === value.moduleKey
+      : value.fitModuleKey === null,
+  );
 const providerLogs: { origin: "FORGE" | "EXECUTOR"; text: string }[] = [];
 const executorSince = /^\d+[mhd]$/.test(since)
   ? [
@@ -100,12 +137,9 @@ for (const provider of [
     );
   }
 }
-const expectedPrincipal = "712020:2921f941-93f4-4ccb-9c03-2555a8bfe3d9";
-const results = new Map<
-  string,
-  ReturnType<typeof connectionCheckResultSchema.parse>
->();
+const results = new Map<string, z.infer<typeof observationSchema>>();
 const verifiedSources = new Map<string, Set<string>>();
+const conflictingRequestIds = new Set<string>();
 const failureEvents: ConnectionFailure[] = [];
 let failedChecks = 0,
   rejectedEventCount = 0;
@@ -139,9 +173,7 @@ for (const provider of providerLogs)
       continue;
     }
     if (object.event !== "PROMISORY_REMOTE_CONNECTION_CHECK") continue;
-    const { event: ignored, ...fields } = object;
-    void ignored;
-    const parsed = connectionCheckResultSchema.safeParse(fields);
+    const parsed = observationSchema.safeParse(object);
     if (!parsed.success) {
       rejectedEventCount++;
       continue;
@@ -149,16 +181,17 @@ for (const provider of providerLogs)
     const result = parsed.data;
     const age = Date.now() - Date.parse(result.checkedAt);
     if (
-      result.appVersion !== deployment.reportedDeploymentVersion ||
+      result.appVersion !== expectedAppVersion ||
       !executorModuleKeySchema.safeParse(result.moduleKey).success ||
-      result.context.principalAccountId !== expectedPrincipal ||
-      Object.entries(runtime.context).some(
-        ([key, value]) =>
-          result.context[key as keyof typeof result.context] !== value,
-      ) ||
       age < -5_000 ||
       age > 10 * 60_000
     ) {
+      rejectedEventCount++;
+      continue;
+    }
+    const previous = results.get(result.requestId);
+    if (previous && JSON.stringify(previous) !== JSON.stringify(result)) {
+      conflictingRequestIds.add(result.requestId);
       rejectedEventCount++;
       continue;
     }
@@ -167,27 +200,37 @@ for (const provider of providerLogs)
     sources.add(provider.origin);
     verifiedSources.set(result.requestId, sources);
   }
+// A one-sided log does not prove that the hosted caller accepted the result.
+const paired = [...results.values()].filter(
+  (result) =>
+    verifiedSources.get(result.requestId)?.size === 2 &&
+    !conflictingRequestIds.has(result.requestId),
+);
 const report = {
-  schemaVersion: "promisory.installed-connection-observation.v2",
+  schemaVersion: "promisory.installed-connection-observation.v3",
   recordedAt: new Date().toISOString(),
   environment: "development",
-  expectedAppVersion: deployment.reportedDeploymentVersion,
+  expectedAppVersion,
   source:
-    "Forge CLI and the owned test executor logs; only strict connection-check events retained",
+    "Matching Forge CLI and owned test executor observations; no account or tenant identifiers retained",
+  identityValidation:
+    "Performed by FIT/OAuth verification and authenticated response comparison in the deployed services, not reconstructed from logs",
   failedChecks,
   failureEvents,
   rejectedEventCount,
-  verifiedConnections: [...results.values()].sort((a, b) =>
+  unpairedOrConflictingObservations: results.size - paired.length,
+  verifiedConnections: paired.sort((a, b) =>
     a.checkedAt.localeCompare(b.checkedAt),
   ),
-  verifiedConnectionSources: [...verifiedSources.entries()].map(
-    ([requestId, sources]) => ({ requestId, sources: [...sources] }),
-  ),
-  authenticatedForgeInvocationVerified: results.size > 0,
+  verifiedConnectionSources: paired.map(({ requestId }) => ({
+    requestId,
+    sources: [...verifiedSources.get(requestId)!],
+  })),
+  authenticatedForgeInvocationVerified: paired.length > 0,
   executionFlagChanged: false,
   grantOrJiraWriteAttempted: false,
   status:
-    results.size > 0
+    paired.length > 0
       ? "VERIFIED_CONNECTION"
       : failedChecks
         ? "CHECK_FAILED"
@@ -196,4 +239,4 @@ const report = {
 if (output)
   writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`, { flag: "wx" });
 console.log(JSON.stringify(report, null, 2));
-if (!results.size) process.exitCode = 2;
+if (!paired.length) process.exitCode = 2;

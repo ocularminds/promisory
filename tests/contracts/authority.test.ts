@@ -22,6 +22,7 @@ import {
   type RemoteJira,
 } from "@promisory/integrations-decionis";
 import { exampleContext } from "@promisory/test-fixtures";
+import { InvocationJira } from "../../apps/remote/src/index";
 
 class TestJournal implements ExecutionJournal {
   rows = new Map<string, JournalRecord>();
@@ -68,7 +69,7 @@ function testJira(input: RemoteEnvelope) {
   };
   const jira: RemoteJira = {
     read: vi.fn(async () => ({ ...value })),
-    canEdit: vi.fn(async () => true),
+    canSetDueDate: vi.fn(async () => true),
     setDueDate: vi.fn(async () => {
       value.dueDate = input.effect.desiredDueDate;
       return { status: 204 };
@@ -189,6 +190,65 @@ describe("local SDK authority contract — no live policy or Jira calls", () => 
       );
       expect(jira.setDueDate).not.toHaveBeenCalled();
       expect(f.local.requests).toHaveLength(1);
+    },
+  );
+  it.each([
+    "BROWSE_PROJECTS",
+    "EDIT_ISSUES",
+    "SCHEDULE_ISSUES",
+    "UNAVAILABLE",
+    "MALFORMED",
+  ])(
+    "refuses a granted action before dispatch when the fresh native permission check fails: %s",
+    async (failure) => {
+      const f = await setup();
+      const input = envelope();
+      const productRequest = vi.fn<typeof fetch>(async (url, init) => {
+        expect(init?.method).not.toBe("PUT");
+        if (String(url).includes("/mypermissions?")) {
+          if (failure === "UNAVAILABLE")
+            throw new Error("Synthetic connection failure");
+          if (failure === "MALFORMED") return new Response("not JSON");
+          return Response.json({
+            permissions: {
+              BROWSE_PROJECTS: {
+                havePermission: failure !== "BROWSE_PROJECTS",
+              },
+              EDIT_ISSUES: { havePermission: failure !== "EDIT_ISSUES" },
+              SCHEDULE_ISSUES: {
+                havePermission: failure !== "SCHEDULE_ISSUES",
+              },
+            },
+          });
+        }
+        return Response.json({
+          fields: {
+            updated: input.effect.expectedUpdatedAt,
+            duedate: input.effect.expectedDueDate,
+          },
+        });
+      });
+      const jira = new InvocationJira(
+        `https://api.atlassian.com/ex/jira/${input.context.cloudId}`,
+        "synthetic-active-user-token",
+        productRequest,
+      );
+      const result = await f.executor.execute(input, jira);
+      expect(result.stage).not.toBe("SUCCEEDED");
+      expect(result).toMatchObject({
+        observed: "NO_EFFECT",
+        finalization: "RECORDED",
+      });
+      expect(
+        productRequest.mock.calls.map(([url]) => new URL(String(url)).pathname),
+      ).toEqual([
+        `/ex/jira/${input.context.cloudId}/rest/api/3/issue/121`,
+        `/ex/jira/${input.context.cloudId}/rest/api/3/mypermissions`,
+      ]);
+      expect(
+        productRequest.mock.calls.every(([, init]) => init?.method !== "PUT"),
+      ).toBe(true);
+      expect([...f.journal.rows.values()][0]?.acknowledged).toBe(false);
     },
   );
   it("refuses shadow and unverified enforcement before any evaluation or write", async () => {

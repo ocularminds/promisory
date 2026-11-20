@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "promisory.marketplace-security-submission.v1",
+  "ticket": "ECOHELP-186301",
+  "ticketUrl": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-186301",
+  "submittedAtDisplayed": "20/11/2026 15:14:37",
+  "displayTimezone": "Europe/Stockholm",
+  "status": "SUBMISSION_SUCCESSFUL",
+  "confirmation": "Your responses have been submitted for review. Thank you.",
+  "answered": 31,
+  "total": 31,
+  "verifiedReadBack": {
+    "forgeRemote": true,
+    "fitValidation": true,
+    "remoteUserPermissions": true,
+    "asAppPermissionChecks": "NOT_APPLICABLE",
+    "webTriggers": false,
+    "displayConditions": false,
+    "dataEgress": true,
+    "wildcardEgress": false,
+    "sensitiveLogs": false,
+    "inputValidation": true,
+    "atlassianCredentialsCollected": false,
+    "thirdPartyOperatorCredential": true,
+    "thirdPartyCredentialLocation": "EXTERNAL_SECRET_STORE",
+    "scanTypes": [
+      "SCA"
+    ]
+  },
+  "listingResubmission": "SUCCESS_PENDING_APPROVAL",
+  "publicPublication": "MANUAL",
+  "atlassianApproval": "NOT_CLAIMED",
+  "listingReadBackAt": "2026-11-20T14:34:17.606Z",
+  "newTicket": "ECOHELP-188076",
+  "newTicketUrl": "https://ecosystem.atlassian.net/servicedesk/customer/portal/34/ECOHELP-188076",
+  "newTicketStatus": "WAITING_FOR_CUSTOMER",
+  "newTicketRequiredAction": "COMPLETE_PUBLIC_PRIVACY_AND_SECURITY_TAB",
+  "marketplaceVersion": "4.3.0",
+  "marketplaceBuild": "4000010",
+  "publicPrivacyTab": "TECHNICAL_DRAFT_PREPARED_COMPANY_DECLARATIONS_PENDING",
+  "originalUnsavedPrivacyDraftPreserved": true
+}

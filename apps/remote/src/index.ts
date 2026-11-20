@@ -1,11 +1,17 @@
 import { z } from "zod";
 import type { JWTVerifyGetKey } from "jose";
-import { externalId, type JiraDueDateEffect } from "@promisory/contracts";
+import {
+  externalId,
+  hasJiraDueDatePermissions,
+  jiraDueDatePermissionKeys,
+  type JiraDueDateEffect,
+} from "@promisory/contracts";
 import { DomainError, ensure } from "@promisory/domain";
 import {
   AgentSafeExecutor,
   connectionCheckRequestSchema,
   connectionCheckResultSchema,
+  connectionCheckObservation,
   connectionFailureSchema,
   connectionFailureDetails,
   remoteEnvelopeSchema,
@@ -14,7 +20,7 @@ import {
   type ClaimVault,
   type ExecutionJournal,
   type ConnectionFailure,
-  type ConnectionCheckResult,
+  type ConnectionCheckObservation,
 } from "@promisory/integrations-decionis";
 import {
   authenticateEnvelope,
@@ -105,18 +111,15 @@ export class InvocationJira implements RemoteJira {
       dueDate: value.fields.duedate,
     };
   }
-  async canEdit(issueId: string) {
-    const r = await this.send(
-      `/rest/api/3/mypermissions?issueId=${externalId.parse(issueId)}&permissions=EDIT_ISSUES`,
-    );
-    if (!r.ok) return false;
-    return z
-      .object({
-        permissions: z.object({
-          EDIT_ISSUES: z.object({ havePermission: z.boolean() }),
-        }),
-      })
-      .parse(await r.json()).permissions.EDIT_ISSUES.havePermission;
+  async canSetDueDate(issueId: string) {
+    const path = `/rest/api/3/mypermissions?issueId=${externalId.parse(issueId)}&permissions=${jiraDueDatePermissionKeys.join(",")}`;
+    try {
+      const response = await this.send(path);
+      return response.ok && hasJiraDueDatePermissions(await response.json());
+    } catch {
+      // Unavailable or malformed permission evidence never authorizes a write.
+      return false;
+    }
   }
   async setDueDate(
     effect: JiraDueDateEffect,
@@ -190,11 +193,7 @@ export function createRemoteHandler(
     jwks?: JWTVerifyGetKey;
     request?: typeof fetch;
     connectionLog?: (
-      event:
-        | ConnectionFailure
-        | (ConnectionCheckResult & {
-            event: "PROMISORY_REMOTE_CONNECTION_CHECK";
-          }),
+      event: ConnectionFailure | ConnectionCheckObservation,
     ) => void;
   } = {},
 ) {
@@ -239,6 +238,11 @@ export function createRemoteHandler(
           : undefined,
       );
       stage = "USER_TOKEN";
+      ensure(
+        !request.headers.has("x-forge-oauth-system"),
+        "SYSTEM_TOKEN_UNSUPPORTED",
+        "This executor accepts only an active-user OAuth token.",
+      );
       const userToken = request.headers.get("x-forge-oauth-user");
       ensure(
         userToken,
@@ -307,10 +311,7 @@ export function createRemoteHandler(
             authority.dataPolicy.independentDueDateIntent &&
             authority.dataPolicy.jiraDueDateSnapshot,
         });
-        connectionLog({
-          event: "PROMISORY_REMOTE_CONNECTION_CHECK",
-          ...result,
-        });
+        connectionLog(connectionCheckObservation(result));
         return Response.json(result);
       }
       if (path === "/v1/actions/apply") {
@@ -321,6 +322,9 @@ export function createRemoteHandler(
           "DATA_SHARING_DISABLED",
           "The action data contract is not enabled.",
         );
+        // FIT and the envelope bind the actor; Jira verifies that the separate
+        // opaque OAuth token belongs to that same active user on every request.
+        await jira.verifyCurrentUser(trusted.context.principalAccountId);
         return Response.json(await executor.execute(envelope, jira));
       }
       ensure(
@@ -332,6 +336,7 @@ export function createRemoteHandler(
         .object({ context: z.unknown(), operationId: z.string() })
         .strict()
         .parse(body);
+      await jira.verifyCurrentUser(trusted.context.principalAccountId);
       return Response.json(
         await executor.reconcile(trusted.context, query.operationId, jira),
       );

@@ -155,6 +155,19 @@ describe("shared prepare, review, execute service", () => {
       .as("jon")
       .run("review.record", review)) as Stored<CommitmentRecord>;
     f.sources.currentPrincipal = "maya";
+    const deniedPermission = vi
+      .spyOn(f.sources, "canSetDueDate")
+      .mockResolvedValueOnce(false);
+    await expect(
+      service.run("action.apply", {
+        commitmentId: "PM-101",
+        expectedRevision: reviewed.revision,
+        proposalId: proposal.id,
+        idempotencyKey: "permission-denied",
+      }),
+    ).rejects.toThrow("Schedule Issues");
+    expect(execute).not.toHaveBeenCalled();
+    deniedPermission.mockRestore();
     const first = await service.run("action.apply", {
       commitmentId: "PM-101",
       expectedRevision: reviewed.revision,

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "promisory.executor-update-verified.v1",
+  "recordedAt": "2026-11-20T14:00:31.280Z",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:8a6baca1c33783d6a944e83d1793e129a4224f020a8067f1ac0caa5549e6909b",
+  "readyReplicas": 1,
+  "deploymentUid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+  "specChangedOnlyImage": true,
+  "configmapUnchanged": true,
+  "configSha256": "e192b6fa2bb972fac590ce71f688c7b99756f3947628e8b09c4a381edb3c3854",
+  "runtime": {
+    "serverSha256": "233703558464d690544ce64b459989c8399c4a890cdd41c7b1b5da6d19564da4",
+    "node": "v22.23.4",
+    "schedulePermission": true,
+    "browsePermission": true,
+    "systemTokenRejected": true,
+    "safeConnectionLog": true,
+    "userVerificationCalls": 3,
+    "mode": "ENFORCEMENT",
+    "enforcementVerified": true
+  },
+  "localServerBytesMatched": true,
+  "tlsHealth": "HTTP_200_TLS_1_2_OR_ABOVE",
+  "temporarySmokeResources": "REMOVED",
+  "stateVolumeReferencesUnchanged": true,
+  "executionJournalRead": false,
+  "recoveryClaimRead": false
+}

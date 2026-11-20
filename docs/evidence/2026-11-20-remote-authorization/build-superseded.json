@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "promisory.remote-build-superseded.v1",
+  "runId": "cj4q",
+  "status": "Succeeded",
+  "sourceSha256": "3d511d22b71ded0ceefd7c5d17f8b8e8fb4f988637be6099fdfaa3b49be64e43",
+  "imageDigest": "sha256:27b8686d1d632d7a47956014e00c7dd794c4c4b21f2a4c3ad57f0783b2e200bd",
+  "deployed": false,
+  "reason": "Superseded after the production dependency audit found the transitive Zod advisory. Cancellation arrived after build completion."
+}

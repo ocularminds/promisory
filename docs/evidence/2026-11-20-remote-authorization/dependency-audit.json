@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "promisory.security-dependencies.v1",
+  "recordedAt": "2026-11-20T13:46:38.268Z",
+  "production": {
+    "command": "npm audit --omit=dev --json",
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencyTree": "VALID"
+  },
+  "allDependencies": {
+    "command": "npm audit --json",
+    "counts": {
+      "info": 0,
+      "low": 3,
+      "moderate": 20,
+      "high": 10,
+      "critical": 0,
+      "total": 33
+    },
+    "clean": false,
+    "findings": [
+      {
+        "name": "@forge/api",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/api"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/bridge",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/bridge"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/bundler",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/@forge/bundler"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/cli",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/cli-shared",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/@forge/cli-shared"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/lint",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/@forge/lint"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/manifest",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/@forge/manifest",
+          "node_modules/@forge/manifest"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/sql",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/sql"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "@forge/tunnel",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/@forge/tunnel"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "ajv",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/ajv-keywords/node_modules/ajv",
+          "node_modules/@forge/cli/node_modules/babel-loader/node_modules/ajv"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-2g4f-4pwh-qvx6",
+            "range": "<6.14.0",
+            "title": "ajv has ReDoS when using `$data` option"
+          }
+        ]
+      },
+      {
+        "name": "archiver",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/archiver"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "brace-expansion",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/recursive-readdir/node_modules/brace-expansion"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-f886-m6hf-6m8v",
+            "range": "<1.1.13",
+            "title": "brace-expansion: Zero-step sequence causes process hang and memory exhaustion"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+            "range": "<1.1.16",
+            "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+            "range": "<1.1.17",
+            "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+            "range": "<1.1.18",
+            "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+            "range": "<1.1.21",
+            "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+            "range": "<1.1.20",
+            "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+            "range": "<1.1.19",
+            "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion"
+          }
+        ]
+      },
+      {
+        "name": "compression",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/compression"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
+            "range": "<1.8.2",
+            "title": "compression vulnerable to Denial of Service via memory leak on premature response close"
+          }
+        ]
+      },
+      {
+        "name": "diff",
+        "severity": "low",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/diff"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-73rr-hh4g-fpgx",
+            "range": ">=6.0.0 <8.0.3",
+            "title": "jsdiff has a Denial of Service vulnerability in parsePatch and applyPatch"
+          }
+        ]
+      },
+      {
+        "name": "external-editor",
+        "severity": "low",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/external-editor"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "fast-uri",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/fast-uri"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-w74x-v6f9-j3xg",
+            "range": ">=3.0.0 <3.1.9",
+            "title": "fast-uri vulnerable to URI scheme spoofing via percent-encoded scheme decoding"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-xhq7-xmqj-769h",
+            "range": ">=3.0.0 <3.1.9",
+            "title": "fast-uri vulnerable to improper path equivalence in relative reference normalization"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-wjr9-j795-jxcr",
+            "range": ">=3.1.3 <3.1.9",
+            "title": "fast-uri vulnerable to host confusion via unchecked WHATWG host canonicalization"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-333x-w4r6-6crp",
+            "range": ">=3.0.0 <3.1.9",
+            "title": "fast-uri vulnerable to scheme injection via an unescaped first-segment colon in suffix references"
+          }
+        ]
+      },
+      {
+        "name": "follow-redirects",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/follow-redirects"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-r4q5-vmmm-2653",
+            "range": "<=1.15.11",
+            "title": "follow-redirects leaks Custom Authentication Headers to Cross-Domain Redirect Targets"
+          }
+        ]
+      },
+      {
+        "name": "glob",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/glob"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+            "range": ">=9.0.0 <=14.0.1",
+            "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal"
+          }
+        ]
+      },
+      {
+        "name": "http-proxy-middleware",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/http-proxy-middleware"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-64mm-vxmg-q3vj",
+            "range": ">=0.16.0 <2.0.10",
+            "title": "http-proxy-middleware `router` host+path substring matching allows Host-header-driven backend routing bypass"
+          }
+        ]
+      },
+      {
+        "name": "inquirer",
+        "severity": "low",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/inquirer"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "launch-editor",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/launch-editor"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-v6wh-96g9-6wx3",
+            "range": "<=2.14.0",
+            "title": "launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
+            "range": "<=2.14.1",
+            "title": "launch-editor: escapeCmdArgs() omits % escaping on Windows"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-r825-w8mm-5pxw",
+            "range": "<=2.14.1",
+            "title": "launch-editor: Editor CLI flag misinterpretation causing arbitrary command execution for some editors"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm",
+            "range": "<=2.14.1",
+            "title": "launch-editor: `fs.existsSync()` existence check can be bypassed on Windows"
+          }
+        ]
+      },
+      {
+        "name": "lodash",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/lodash"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-r5fr-rjxr-66jc",
+            "range": ">=4.0.0 <=4.17.23",
+            "title": "lodash vulnerable to Code Injection via `_.template` imports key names"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-xxjr-mmjv-4gpg",
+            "range": ">=4.0.0 <=4.17.22",
+            "title": "Lodash has Prototype Pollution Vulnerability in `_.unset`, `_.omit`, and `_.pullAt` functions"
+          }
+        ]
+      },
+      {
+        "name": "minimatch",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/glob/node_modules/minimatch",
+          "node_modules/@forge/cli/node_modules/readdir-glob/node_modules/minimatch",
+          "node_modules/@forge/cli/node_modules/recursive-readdir/node_modules/minimatch"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-3ppc-4f35-3m26",
+            "range": "<3.1.3",
+            "title": "minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-7r86-cg39-jmmj",
+            "range": "<3.1.3",
+            "title": "minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-23c5-xmqv-rm74",
+            "range": "<3.1.4",
+            "title": "minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+            "range": ">=7.0.0 <11.0.1",
+            "title": "minimatch has potential denial of service via globparts amplification"
+          }
+        ]
+      },
+      {
+        "name": "picomatch",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/picomatch"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-3v7f-55p6-f55p",
+            "range": "<2.3.2",
+            "title": "Picomatch: Method Injection in POSIX Character Classes causes incorrect Glob Matching"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-c2c7-rcm5-vvqj",
+            "range": "<2.3.2",
+            "title": "Picomatch has a ReDoS vulnerability via extglob quantifiers"
+          }
+        ]
+      },
+      {
+        "name": "qs",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/qs"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-6pq8-jhm2-2vcw",
+            "range": ">=6.7.0 <=6.16.0",
+            "title": "qs : qs.stringify with arrayFormat 'comma' throws an uncaught TypeError on array elements carrying a non-callable own toString (DoS)"
+          }
+        ]
+      },
+      {
+        "name": "readdir-glob",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/readdir-glob"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "sockjs",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/sockjs"
+        ],
+        "advisories": []
+      },
+      {
+        "name": "tar-fs",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/tar-fs"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-vj76-c3g6-qr5v",
+            "range": ">=2.0.0 <2.1.4",
+            "title": "tar-fs has a symlink validation bypass if destination directory is predictable with a specific tarball"
+          }
+        ]
+      },
+      {
+        "name": "tmp",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/external-editor/node_modules/tmp"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-52f5-9888-hmc6",
+            "range": "<=0.2.3",
+            "title": "tmp allows arbitrary temporary file / directory write via symbolic link `dir` parameter"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-ph9p-34f9-6g65",
+            "range": "<0.2.6",
+            "title": "tmp has Path Traversal via unsanitized prefix/postfix that enables directory escape"
+          }
+        ]
+      },
+      {
+        "name": "uuid",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/sockjs/node_modules/uuid"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+            "range": "<11.1.1",
+            "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided"
+          }
+        ]
+      },
+      {
+        "name": "webpack-dev-middleware",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/webpack-dev-middleware"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-g84c-rxfj-3j2c",
+            "range": "<7.4.5",
+            "title": "webpack-dev-middleware vulnerable to Path Traversal via non-slash-terminated publicPath"
+          }
+        ]
+      },
+      {
+        "name": "webpack-dev-server",
+        "severity": "moderate",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/webpack-dev-server"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-f5vj-f2hx-8m93",
+            "range": "<=5.2.5",
+            "title": "webpack-dev-server vulnerable to cross-site request forgery via internal developer endpoints"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-m28w-2pqf-7qgj",
+            "range": "<=5.2.5",
+            "title": "webpack-dev-server vulnerable to denial of service via a malformed Host or Origin header"
+          }
+        ]
+      },
+      {
+        "name": "ws",
+        "severity": "high",
+        "nodes": [
+          "node_modules/@forge/cli/node_modules/webpack-bundle-analyzer/node_modules/ws",
+          "node_modules/@forge/cli/node_modules/ws"
+        ],
+        "advisories": [
+          {
+            "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
+            "range": ">=8.0.0 <8.20.1",
+            "title": "ws: Uninitialized memory disclosure"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+            "range": ">=8.0.0 <8.21.0",
+            "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks"
+          },
+          {
+            "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+            "range": ">=7.0.0 <7.5.11",
+            "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks"
+          }
+        ]
+      }
+    ]
+  },
+  "remediation": {
+    "presenceTypes": "0.3.0",
+    "zod": "4.6.7",
+    "glob": "14.0.6",
+    "minimatch": "11.0.9",
+    "agentSafe": "0.5.0 retained"
+  },
+  "limitation": "Latest published Forge CLI 15.1.0 contains shrinkwrapped development dependencies with advisories. These remain visible in the full audit, including propagated Forge package findings. The production-only dependency audit is clean. This is dependency evidence, not a penetration test."
+}

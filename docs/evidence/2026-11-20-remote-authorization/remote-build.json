@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "promisory.remote-build.v1",
+  "runId": "cj4r",
+  "status": "Succeeded",
+  "startedAt": "2026-11-20T13:47:19.555905+00:00",
+  "finishedAt": "2026-11-20T13:48:56.964987+00:00",
+  "sourceSha256": "dda30574dbd4eae5d29f9d6b663159c8e413d4fd60a7d76a06681f70bba966e6",
+  "image": "decionisacr.azurecr.io/promisory/executor@sha256:8a6baca1c33783d6a944e83d1793e129a4224f020a8067f1ac0caa5549e6909b",
+  "tag": "dda30574dbd4",
+  "requestedPlatform": "linux/amd64",
+  "smokeTest": "PASSED_14_CHECKS",
+  "deployment": "VERIFIED"
+}

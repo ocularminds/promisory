@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "promisory.forge-installations-observed.v1",
+  "recordedAt": "2026-11-20T14:18:31.253Z",
+  "profiles": [
+    {
+      "profile": "development",
+      "installations": [
+        {
+          "environment": "development",
+          "site": "decionis-promisory.atlassian.net",
+          "product": "Jira (Required), Confluence",
+          "majorVersion": "4 (Latest)",
+          "status": "Up-to-date"
+        }
+      ],
+      "customerProvisioningVerified": false
+    },
+    {
+      "profile": "judge",
+      "installations": [
+        {
+          "environment": "production",
+          "site": "decionis-promisory.atlassian.net",
+          "product": "Jira (Required), Confluence",
+          "majorVersion": "3 (Latest)",
+          "status": "Up-to-date"
+        }
+      ],
+      "customerProvisioningVerified": false
+    },
+    {
+      "profile": "marketplace",
+      "installations": [],
+      "customerProvisioningVerified": false
+    }
+  ]
+}

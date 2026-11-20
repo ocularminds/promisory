@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "promisory.guarded-executor-update.v1",
+  "recordedAt": "2026-11-20T13:56:47.699Z",
+  "smokeChecks": 14,
+  "smokePassed": true,
+  "temporaryResources": "DELETION_REQUESTED",
+  "deploymentUid": "d2900804-2853-4318-8aa7-488c4d9a5fb0",
+  "resourceVersion": "33253378",
+  "beforeImage": "decionisacr.azurecr.io/promisory/executor@sha256:ea9104cf1e4133638b6cfc1e009083fe235b2845b5cf0de814378626469d3649",
+  "afterImage": "decionisacr.azurecr.io/promisory/executor@sha256:8a6baca1c33783d6a944e83d1793e129a4224f020a8067f1ac0caa5549e6909b",
+  "serverDryRun": "PASSED",
+  "specChanges": [
+    "spec.template.spec.containers[0].image"
+  ],
+  "configmapChanged": false,
+  "executionJournalRead": false,
+  "recoveryClaimRead": false,
+  "patch": [
+    {
+      "op": "test",
+      "path": "/metadata/uid",
+      "value": "d2900804-2853-4318-8aa7-488c4d9a5fb0"
+    },
+    {
+      "op": "test",
+      "path": "/metadata/resourceVersion",
+      "value": "33253378"
+    },
+    {
+      "op": "test",
+      "path": "/spec/template/spec/containers/0/name",
+      "value": "executor"
+    },
+    {
+      "op": "test",
+      "path": "/spec/template/spec/containers/0/image",
+      "value": "decionisacr.azurecr.io/promisory/executor@sha256:ea9104cf1e4133638b6cfc1e009083fe235b2845b5cf0de814378626469d3649"
+    },
+    {
+      "op": "replace",
+      "path": "/spec/template/spec/containers/0/image",
+      "value": "decionisacr.azurecr.io/promisory/executor@sha256:8a6baca1c33783d6a944e83d1793e129a4224f020a8067f1ac0caa5549e6909b"
+    }
+  ]
+}
