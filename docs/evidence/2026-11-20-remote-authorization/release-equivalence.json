@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "promisory.release-security-equivalence.v1",
+  "recordedAt": "2026-11-20T14:26:17.282Z",
+  "profiles": [
+    {
+      "profile": "development",
+      "deployedSourceDigest": "d42ef8c7343c75a5d5b7c0a44d9c85671dc8f30a52d2f4e42b1bb538b3476522",
+      "preparedSourceDigest": "2db4885dbbf0885f8492873809c1383c3427091fe35e826e285df544c24ff5e2",
+      "changedFiles": [
+        "scripts/read-test-connection.ts"
+      ],
+      "applicationSourcesUnchangedSinceDeployment": true
+    },
+    {
+      "profile": "judge",
+      "deployedSourceDigest": "d42ef8c7343c75a5d5b7c0a44d9c85671dc8f30a52d2f4e42b1bb538b3476522",
+      "preparedSourceDigest": "2db4885dbbf0885f8492873809c1383c3427091fe35e826e285df544c24ff5e2",
+      "changedFiles": [
+        "scripts/read-test-connection.ts"
+      ],
+      "applicationSourcesUnchangedSinceDeployment": true
+    },
+    {
+      "profile": "marketplace",
+      "deployedSourceDigest": "d42ef8c7343c75a5d5b7c0a44d9c85671dc8f30a52d2f4e42b1bb538b3476522",
+      "preparedSourceDigest": "2db4885dbbf0885f8492873809c1383c3427091fe35e826e285df544c24ff5e2",
+      "changedFiles": [
+        "scripts/read-test-connection.ts"
+      ],
+      "applicationSourcesUnchangedSinceDeployment": true
+    }
+  ],
+  "preparedProfileEquivalence": "PASSED",
+  "capabilities": "EQUIVALENT",
+  "explanation": "Only the read-only operator log reader changed after runtime deployment. Forge entrypoint sources, UI assets, runtime dependencies and executor source bytes are unchanged. The reader was typechecked and successfully paired the fresh Forge/executor connection observations.",
+  "runtimeRedeploymentRequired": false
+}

@@ -54,6 +54,8 @@
     "@forge/manifest": "13.9.0"
   },
   "overrides": {
-    "prosemirror-view": "1.42.3"
+    "prosemirror-view": "1.42.3",
+    "@decionis/presence-types": "0.3.0",
+    "glob": "14.0.6"
   }
 }

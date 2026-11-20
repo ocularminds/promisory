@@ -1,0 +1,25 @@
+{
+  "mode": "FORGE_BUNDLE_ONLY",
+  "success": true,
+  "cliVersion": "15.1.0",
+  "bundlerVersion": "7.3.2",
+  "runtimeWrapper": {
+    "version": "/assets/loader.2026-11-16T04%3A17%3A47.763Z--19523--90091369a8979d2d2811770d7d7ab5e404f124e5.js"
+  },
+  "entryPoints": [
+    {
+      "name": "index",
+      "sha256": "5ded42dc1daea89f9f60063b90428bb6e5ceab870c282cc9c161550b3ae4b4ce"
+    },
+    {
+      "name": "events",
+      "sha256": "5a9156457f49eb18f0aeb7d8c2d6370e2ae701ce6b16fd4720a71269c2b40e3d"
+    },
+    {
+      "name": "rovo",
+      "sha256": "5e005a441277146d7c2cf5728e8a6896bd7f997a131250a7e55dbe44e22bef04"
+    }
+  ],
+  "installation": "NOT_VERIFIED",
+  "recordedAt": "2026-11-20T13:44:59.015Z"
+}

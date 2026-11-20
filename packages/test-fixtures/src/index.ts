@@ -216,7 +216,7 @@ export class ExampleSources implements SourcePort {
   async isAdmin() {
     return ["maya", "jon"].includes(this.currentPrincipal);
   }
-  async canEdit(issueId: string) {
+  async canSetDueDate(issueId: string) {
     return !this.hiddenWork.has(issueId);
   }
   async work(issueId: string) {

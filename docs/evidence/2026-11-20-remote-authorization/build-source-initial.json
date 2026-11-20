@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "promisory.reviewed-remote-build.v1",
+  "reviewedAt": "2026-11-20T13:35:20.098Z",
+  "sourceSha256": "3d511d22b71ded0ceefd7c5d17f8b8e8fb4f988637be6099fdfaa3b49be64e43",
+  "archiveSha256": "5e64e74066a703c26b6d4df3b6bf0defc8bfc399a9e4c32d294c88b60151c88c",
+  "archiveBytes": 201605,
+  "fileCount": 36,
+  "allFileHashesMatched": true,
+  "localIdentityAndEnvFilesExcluded": true,
+  "literalNpmCredentialsAbsent": true
+}

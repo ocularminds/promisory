@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "promisory.installed-connection-observation.v3",
+  "recordedAt": "2026-11-20T14:05:40.757Z",
+  "environment": "development",
+  "expectedAppVersion": "4.4.0",
+  "source": "Matching Forge CLI and owned test executor observations; no account or tenant identifiers retained",
+  "identityValidation": "Performed by FIT/OAuth verification and authenticated response comparison in the deployed services, not reconstructed from logs",
+  "failedChecks": 0,
+  "failureEvents": [],
+  "rejectedEventCount": 0,
+  "unpairedOrConflictingObservations": 0,
+  "verifiedConnections": [
+    {
+      "event": "PROMISORY_REMOTE_CONNECTION_CHECK",
+      "schemaVersion": "promisory.remote-connection-observation.v1",
+      "requestId": "07226cab-373a-40a1-84d2-ba68899e46eb",
+      "checkedAt": "2026-11-20T13:59:58.464Z",
+      "moduleKey": "promisory-workspace",
+      "fitModuleKey": "promisory-workspace",
+      "moduleVerification": "FIT_AND_HOSTED_CONTEXT",
+      "appVersion": "4.4.0",
+      "currentUserVerified": true,
+      "readOnly": true,
+      "mode": "ENFORCEMENT",
+      "enforcementVerificationHeld": false,
+      "dataSharingEnabled": true
+    }
+  ],
+  "verifiedConnectionSources": [
+    {
+      "requestId": "07226cab-373a-40a1-84d2-ba68899e46eb",
+      "sources": [
+        "FORGE",
+        "EXECUTOR"
+      ]
+    }
+  ],
+  "authenticatedForgeInvocationVerified": true,
+  "executionFlagChanged": false,
+  "grantOrJiraWriteAttempted": false,
+  "status": "VERIFIED_CONNECTION"
+}

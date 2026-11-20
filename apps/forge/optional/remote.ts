@@ -11,6 +11,7 @@ import {
   dueDateLineage,
   connectionCheckRequestSchema,
   connectionCheckResultSchema,
+  connectionCheckObservation,
   connectionFailureSchema,
   connectionFailureDetails,
   hostedInvocationSchema,
@@ -114,12 +115,7 @@ export async function configuredExecutor(): Promise<ExecutorPort> {
         );
         // Runtime-validated verification metadata only; no OAuth, source
         // content, Graph derivatives, or execution grant enters the log.
-        console.info(
-          JSON.stringify({
-            event: "PROMISORY_REMOTE_CONNECTION_CHECK",
-            ...result,
-          }),
-        );
+        console.info(JSON.stringify(connectionCheckObservation(result)));
         return {
           key: "Governed execution",
           state:

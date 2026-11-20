@@ -1,7 +1,9 @@
 import { z } from "zod";
 import {
   externalId,
+  hasJiraDueDatePermissions,
   id,
+  jiraDueDatePermissionKeys,
   sourceSchema,
   workSchema,
   type Capability,
@@ -369,15 +371,15 @@ export class AtlassianSources implements SourcePort {
       return false;
     }
   }
-  async canEdit(issueId: string): Promise<boolean> {
-    const result = permissionSchema.parse(
-      await this.read(() =>
-        this.api.jira(
-          `/rest/api/3/mypermissions?issueId=${externalId.parse(issueId)}&permissions=EDIT_ISSUES`,
-        ),
-      ),
-    );
-    return result.permissions.EDIT_ISSUES?.havePermission === true;
+  async canSetDueDate(issueId: string): Promise<boolean> {
+    const path = `/rest/api/3/mypermissions?issueId=${externalId.parse(issueId)}&permissions=${jiraDueDatePermissionKeys.join(",")}`;
+    try {
+      return hasJiraDueDatePermissions(
+        await this.read(() => this.api.jira(path)),
+      );
+    } catch {
+      return false;
+    }
   }
   async work(issueId: string): Promise<WorkNode> {
     return this.memo(`work:${issueId}`, async () =>

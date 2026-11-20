@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "promisory.judge-connection-security-check.v1",
+  "recordedAt": "2026-11-20T14:36:08.133Z",
+  "profile": "judge",
+  "deployedVersion": "3.3.0",
+  "source": "Installed judge UI Check connections followed by strict-schema diagnostic log read",
+  "observations": [
+    {
+      "origin": "FORGE",
+      "events": []
+    },
+    {
+      "origin": "EXECUTOR",
+      "events": []
+    }
+  ],
+  "grantOrJiraWriteAttempted": false,
+  "journalOrClaimRead": false,
+  "status": "INSTALLED_NATIVE_READS_VERIFIED_EXECUTION_UNAVAILABLE",
+  "uiReadBack": {
+    "jiraCurrentUserRead": "AVAILABLE",
+    "confluenceCurrentUserRead": "AVAILABLE",
+    "governedExecution": "UNAVAILABLE",
+    "reason": "An enforcement-capable AgentSafe connection and authenticated remote installation binding are required."
+  },
+  "externalConnectionAttemptObserved": false,
+  "interpretation": "The hosted judge configuration holds execution before any remote action. Empty remote diagnostic observations are not represented as a successful remote verification."
+}

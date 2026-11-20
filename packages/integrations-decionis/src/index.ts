@@ -69,6 +69,29 @@ export const connectionCheckResultSchema = z
   );
 export type ConnectionCheckResult = z.infer<typeof connectionCheckResultSchema>;
 
+/** Log only connection outcomes. Identity is needed for the authenticated
+ * response comparison, but account and tenant identifiers do not belong in logs. */
+export function connectionCheckObservation(value: ConnectionCheckResult) {
+  return {
+    event: "PROMISORY_REMOTE_CONNECTION_CHECK" as const,
+    schemaVersion: "promisory.remote-connection-observation.v1" as const,
+    requestId: value.requestId,
+    checkedAt: value.checkedAt,
+    moduleKey: value.moduleKey,
+    fitModuleKey: value.fitModuleKey,
+    moduleVerification: value.moduleVerification,
+    appVersion: value.appVersion,
+    currentUserVerified: value.currentUserVerified,
+    readOnly: value.readOnly,
+    mode: value.mode,
+    enforcementVerificationHeld: value.enforcementVerificationHeld,
+    dataSharingEnabled: value.dataSharingEnabled,
+  };
+}
+export type ConnectionCheckObservation = ReturnType<
+  typeof connectionCheckObservation
+>;
+
 export const remoteEnvelopeSchema = z.strictObject({
   schemaVersion: z.literal("promisory.remote.v1"),
   context: trustedContextSchema,
@@ -177,7 +200,7 @@ export const executionResultSchema = z.strictObject({
 });
 export interface RemoteJira {
   read(issueId: string): Promise<{ updatedAt: string; dueDate: string | null }>;
-  canEdit(issueId: string): Promise<boolean>;
+  canSetDueDate(issueId: string): Promise<boolean>;
   /** Implementations must use the current invocation's opaque user token and reject redirects. */
   setDueDate(
     effect: JiraDueDateEffect,
@@ -506,7 +529,7 @@ export class AgentSafeExecutor {
             current.dueDate !== bound.expectedDueDate
           )
             throw new PreDispatchRefusal("SOURCE_CHANGED");
-          if (!(await jira.canEdit(bound.issueId)))
+          if (!(await jira.canSetDueDate(bound.issueId)))
             throw new PreDispatchRefusal("USER_PERMISSION_MISSING");
           // Leave a bounded read-back/finalization window inside the grant lease.
           const budget = Math.min(

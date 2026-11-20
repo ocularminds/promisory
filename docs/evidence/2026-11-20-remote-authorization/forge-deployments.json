@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "promisory.security-forge-deployments.v1",
+  "sourceDigest": "d42ef8c7343c75a5d5b7c0a44d9c85671dc8f30a52d2f4e42b1bb538b3476522",
+  "profiles": [
+    {
+      "profile": "development",
+      "environment": "development",
+      "version": "4.4.0",
+      "result": "SUCCESS",
+      "recordedAt": "2026-11-20T13:52:22.474Z",
+      "forgeLint": "PASSED",
+      "installation": "FIT_AND_CURRENT_USER_OAUTH_VERIFIED"
+    },
+    {
+      "profile": "judge",
+      "environment": "production",
+      "result": "SUCCESS",
+      "version": "3.3.0",
+      "recordedAt": "2026-11-20T14:10:16.410Z",
+      "forgeLint": "PASSED",
+      "installation": "INSTALLED_NATIVE_READS_VERIFIED_EXECUTION_UNAVAILABLE"
+    },
+    {
+      "profile": "marketplace",
+      "environment": "production",
+      "result": "SUCCESS",
+      "version": "4.3.0",
+      "recordedAt": "2026-11-20T14:10:16.411Z",
+      "forgeLint": "PASSED",
+      "installation": "NO_CUSTOMER_INSTALLATION_CLAIMED"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "promisory.security-local-checks.v1",
+  "recordedAt": "2026-11-20T13:46:38.287Z",
+  "unitTests": {
+    "passed": 229,
+    "failed": 0,
+    "files": 31,
+    "synthetic": true
+  },
+  "typecheck": "PASSED",
+  "uiBuild": "PASSED",
+  "remoteBuild": "PASSED",
+  "manifest": "PASSED",
+  "forgeBundle": "PASSED",
+  "formatting": "PASSED",
+  "productionDependencyAudit": "PASSED",
+  "fullDependencyAudit": "FINDINGS_IN_CLI_DEVELOPMENT_TREE",
+  "liveAcceptance": "READ_ONLY_INSTALLED_CHECKS_VERIFIED",
+  "freshLiveGovernedWrite": "NOT_REPEATED",
+  "imageRuntimeChecks": {
+    "passed": 14,
+    "failed": 0,
+    "fixture": "SYNTHETIC_ISOLATED"
+  },
+  "operatorLogReader": "TYPECHECK_AND_PAIRED_LIVE_OBSERVATION_PASSED",
+  "releaseProfiles": "EQUIVALENT_APPLICATION_BYTES_UNCHANGED_SINCE_DEPLOYMENT"
+}

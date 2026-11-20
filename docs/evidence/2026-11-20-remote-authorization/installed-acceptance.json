@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "promisory.installed-security-acceptance.v1",
+  "recordedAt": "2026-11-20T14:37:14.621Z",
+  "source": "Installed apps in the owned Atlassian test site; live UI and strict-schema connection observations",
+  "development": {
+    "version": "4.4.0",
+    "workspace": "LIVE_NATIVE_JIRA_AND_LIFECYCLE_LOADED",
+    "rovo": "CONTEXT_AND_LIFECYCLE_TOOLS_RETURNED_CITED_ANSWER",
+    "graph": "CHECKED_WITHIN_ATLASSIAN_CONTENT_AND_DERIVED_VALUES_NOT_EXPORTED",
+    "connection": "MATCHING_FORGE_AND_EXECUTOR_VERIFIED",
+    "successfulGovernedAction": "PREVIOUS_SUCCESS_READ_BACK",
+    "outcomeVerification": "PREVIOUS_VERIFIED_OUTCOME_READ_BACK",
+    "freshGovernedWriteAttempted": false
+  },
+  "judge": {
+    "version": "3.3.0",
+    "jiraRead": "AVAILABLE",
+    "confluenceRead": "AVAILABLE",
+    "governedExecution": "HELD_BY_HOSTED_CONFIGURATION",
+    "remoteConnectionVerified": false
+  },
+  "marketplace": {
+    "version": "4.3.0",
+    "customerInstallations": 0,
+    "customerProvisioningVerified": false
+  },
+  "permissionsDenialMatrix": "SYNTHETIC_TESTS_ONLY",
+  "existingRecoveryClaimRead": false,
+  "existingRecoveryClaimModified": false,
+  "publicLaunchPrerequisites": [
+    "Customer executor provisioning",
+    "Operational uninstall/deletion verification",
+    "Required public privacy declarations and Atlassian approval"
+  ]
+}
